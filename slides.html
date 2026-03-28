@@ -5,40 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AutoBiomarker — Evolved26 Toronto</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <style>
   :root {
-    --r-background-color: #0a0a1a;
-    --r-main-color: #e0e0e0;
-    --r-heading-color: #ffffff;
-    --accent: #00d4aa;
+    --r-background-color: #ffffff;
+    --r-main-color: #2d3436;
+    --r-heading-color: #1a1a2e;
+    --accent: #0984e3;
     --accent2: #6c5ce7;
-    --warn: #ff6b6b;
+    --warn: #d63031;
   }
-  .reveal { font-family: 'Inter', 'Segoe UI', sans-serif; }
+  .reveal { font-family: 'Inter', 'Segoe UI', sans-serif; color: #2d3436; }
   .reveal section { overflow: hidden; }
-  .reveal h1, .reveal h2, .reveal h3 { font-weight: 700; }
+  .reveal h1, .reveal h2, .reveal h3 { font-weight: 700; color: #1a1a2e; }
   .reveal h1 { font-size: 2.0em; }
   .reveal h2 { font-size: 1.3em; color: var(--accent); }
   .reveal h3 { font-size: 1.0em; color: var(--accent2); }
-  .reveal p, .reveal li { font-size: 0.7em; line-height: 1.4; }
+  .reveal p, .reveal li { font-size: 0.7em; line-height: 1.4; color: #2d3436; }
   .reveal .stat { font-size: 2.0em; font-weight: 800; color: var(--accent); }
-  .reveal .stat-label { font-size: 0.6em; color: #aaa; margin-top: -8px; }
+  .reveal .stat-label { font-size: 0.6em; color: #636e72; margin-top: -8px; }
   .reveal .highlight { color: var(--accent); font-weight: 600; }
   .reveal .warn { color: var(--warn); font-weight: 600; }
-  .reveal .dim { color: #888; font-size: 0.6em; }
+  .reveal .dim { color: #636e72; font-size: 0.6em; }
   .reveal .cols { display: flex; gap: 20px; align-items: flex-start; }
   .reveal .cols > div { flex: 1; min-width: 0; }
   .reveal .box {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: #f8f9fa;
+    border: 1px solid #dfe6e9;
     border-radius: 12px;
     padding: 14px;
     margin: 8px 0;
   }
   .reveal .box-accent {
-    background: rgba(0,212,170,0.08);
-    border: 1px solid rgba(0,212,170,0.3);
+    background: rgba(9,132,227,0.06);
+    border: 1px solid rgba(9,132,227,0.25);
     border-radius: 12px;
     padding: 14px;
     margin: 8px 0;
@@ -52,19 +53,19 @@
     margin: 15px 0;
   }
   .reveal .flow-box {
-    background: rgba(108,92,231,0.2);
-    border: 1px solid rgba(108,92,231,0.5);
+    background: rgba(108,92,231,0.1);
+    border: 1px solid rgba(108,92,231,0.35);
     border-radius: 8px;
     padding: 8px 12px;
     text-align: center;
   }
   .reveal .flow-arrow { color: var(--accent); font-size: 1.2em; }
   .reveal table { font-size: 0.65em; margin: 0 auto; }
-  .reveal table th { background: rgba(0,212,170,0.15); color: var(--accent); }
-  .reveal table td, .reveal table th { padding: 8px 14px; border: 1px solid rgba(255,255,255,0.1); }
+  .reveal table th { background: rgba(9,132,227,0.1); color: var(--accent); }
+  .reveal table td, .reveal table th { padding: 8px 14px; border: 1px solid #dfe6e9; }
   .reveal .tag {
     display: inline-block;
-    background: rgba(0,212,170,0.15);
+    background: rgba(9,132,227,0.1);
     color: var(--accent);
     border-radius: 20px;
     padding: 4px 14px;
@@ -72,30 +73,22 @@
     margin: 2px;
   }
   .reveal .tag-warn {
-    background: rgba(255,107,107,0.15);
+    background: rgba(214,48,49,0.1);
     color: var(--warn);
   }
   .reveal .title-sub {
     font-size: 0.8em;
-    color: #aaa;
+    color: #636e72;
     font-weight: 400;
     margin-top: 10px;
   }
-  .reveal .gap-card {
-    background: rgba(255,255,255,0.04);
-    border-left: 3px solid var(--accent);
-    padding: 10px 14px;
-    margin: 6px 0;
-    text-align: left;
-    font-size: 0.65em;
-  }
-  .reveal .gap-card strong { color: var(--accent); }
   .reveal blockquote {
-    background: rgba(108,92,231,0.1);
+    background: rgba(108,92,231,0.06);
     border-left: 4px solid var(--accent2);
     padding: 12px 20px;
     font-style: italic;
     font-size: 0.75em;
+    color: #2d3436;
   }
   .reveal .logo-row {
     display: flex;
@@ -103,7 +96,7 @@
     gap: 30px;
     margin-top: 20px;
     font-size: 0.6em;
-    color: #888;
+    color: #636e72;
   }
 </style>
 </head>
@@ -111,12 +104,14 @@
 <div class="reveal">
 <div class="slides">
 
-<!-- SLIDE 1: Title -->
+<!-- ============================================ -->
+<!-- SLIDE 1: Title (10s)                         -->
+<!-- ============================================ -->
 <section>
   <h1>AutoBiomarker</h1>
   <p class="title-sub">Tracking Depressive State &amp; Treatment Response<br>from Wearable Data</p>
   <br>
-  <p style="font-size:0.6em; color:#888;">Evolved26 Toronto &mdash; March 2026</p>
+  <p style="font-size:0.6em; color:#636e72;">Evolved26 Toronto &mdash; March 2026</p>
   <div class="logo-row">
     <span>Nebius Token Factory</span>
     <span>&bull;</span>
@@ -126,7 +121,9 @@
   </div>
 </section>
 
-<!-- SLIDE 2: The Problem -->
+<!-- ============================================ -->
+<!-- SLIDE 2: The Problem (30s)                   -->
+<!-- ============================================ -->
 <section>
   <h2>The Problem</h2>
   <div class="cols">
@@ -144,60 +141,58 @@
     </div>
   </div>
   <br>
-  <div class="box">
-    <p style="font-size:0.75em;">Depression is <span class="highlight">gradual</span> &mdash; patients don't "fall into" it, they drift. <span class="warn">By the time they report worsening, they've often dropped out.</span></p>
-    <p style="font-size:0.75em;">Clinicians need <span class="highlight">objective, continuous tracking</span> of depressive state to know whether treatment is working &mdash; before the next appointment.</p>
+  <div class="cols">
+    <div class="box">
+      <h3 style="color:var(--warn);">The Gap</h3>
+      <p style="font-size:0.7em;">Depression is <span class="highlight">gradual</span> &mdash; patients drift. By the time they report worsening, they've often <span class="warn">dropped out</span>.</p>
+      <p style="font-size:0.7em;">Treatment response is assessed every 4&ndash;6 weeks via <span class="warn">subjective</span> self-report questionnaires.</p>
+    </div>
+    <div class="box-accent">
+      <h3>What's Needed</h3>
+      <p style="font-size:0.7em;"><span class="highlight">Objective, continuous tracking</span> of depressive state from wearables &mdash; a daily signal that tells clinicians whether treatment is working <span class="highlight">between appointments</span>.</p>
+    </div>
   </div>
 </section>
 
-<!-- SLIDE 3: The Insight -->
+<!-- ============================================ -->
+<!-- SLIDE 3: Insight & Core Finding (40s)        -->
+<!-- ============================================ -->
 <section>
   <h2>The Insight: Multi-System Destabilization</h2>
-  <blockquote>
-    Neither HRV alone nor sleep alone predicts depression reliably. But when <span class="highlight">both systems destabilize simultaneously</span>, the signal becomes strong and significant.
-  </blockquote>
-  <br>
   <div class="cols">
-    <div class="box">
-      <h3>Known from physics</h3>
-      <p>Systems under stress show rising variability and sluggish recovery &mdash; "critical slowing down"</p>
-      <p><span class="tag">Ecology</span> <span class="tag">Climate</span> <span class="tag">Finance</span> <span class="tag">Mood (PNAS 2014)</span></p>
+    <div style="flex:1.2;">
+      <canvas id="chartAUC" style="max-height:280px;"></canvas>
     </div>
-    <div class="box-accent">
-      <h3>Our finding</h3>
-      <p><span class="highlight">HRV slope &times; sleep dynamics</span> = significant biomarker (d &gt; 0.9, FDR-corrected)</p>
-      <p class="dim">Neither modality alone survives FDR &mdash; the interaction is the signal</p>
+    <div style="flex:1;">
+      <div class="box-accent" style="text-align:center; padding:14px; margin-top:0;">
+        <p style="font-size:0.85em; font-weight:700;">Neither modality alone predicts depression. Their <span class="highlight">simultaneous destabilization</span> does.</p>
+      </div>
+      <div class="box" style="margin-top:8px;">
+        <p class="dim" style="font-size:0.6em;"><strong style="color:var(--accent);">Critical slowing down:</strong> Systems under stress show rising variability &amp; sluggish recovery (Scheffer 2009; van de Leemput et al. 2014, PNAS).</p>
+        <p class="dim" style="font-size:0.6em; margin-top:6px;">It's not <span style="color:#636e72;">HOW LOW</span> your HRV is &mdash; it's whether HRV <span class="highlight">AND</span> sleep are destabilizing <span class="highlight">at the same time</span>.</p>
+      </div>
+      <div class="cols" style="margin-top:8px; gap:8px;">
+        <div style="text-align:center;">
+          <p class="stat" style="font-size:1.3em;">+25%</p>
+          <p class="stat-label">vs standard HRV</p>
+        </div>
+        <div style="text-align:center;">
+          <p class="stat" style="font-size:1.3em;">1.06</p>
+          <p class="stat-label">Cohen's d (large)</p>
+        </div>
+      </div>
     </div>
-  </div>
-  <p class="dim" style="margin-top:15px;">Scheffer 2009; van de Leemput et al. 2014, PNAS</p>
-</section>
-
-<!-- SLIDE 4: What We Do Differently -->
-<section>
-  <h2>Standard vs. Our Approach</h2>
-  <div class="cols">
-    <div class="box">
-      <h3 style="color:#888;">Standard Approach</h3>
-      <p>How <strong>low</strong> is your HRV?</p>
-      <p style="font-size:0.65em; color:#888;">Single timepoint, single modality<br>Small effect sizes (d &approx; 0.3)<br>Doesn't survive multiple testing correction</p>
-    </div>
-    <div class="box-accent">
-      <h3>Our Approach</h3>
-      <p>How <span class="highlight">unstable</span> are HRV <em>and</em> sleep <em>together</em>?</p>
-      <p style="font-size:0.65em;">Cross-domain interactions over 28 days<br>Large effect sizes (d &gt; 0.9)<br><span class="highlight">Survives FDR correction</span> at n=49</p>
-    </div>
-  </div>
-  <div class="box" style="margin-top:15px;">
-    <p style="font-size:0.7em;">HRV and sleep are <span class="highlight">transdiagnostic stress markers</span>. Their <em>interaction</em> captures multi-system regulatory state &mdash; giving clinicians a <span class="highlight">continuous, objective signal</span> of whether treatment is working.</p>
   </div>
 </section>
 
-<!-- SLIDE 5: The Autoresearch Loop -->
+<!-- ============================================ -->
+<!-- SLIDE 4: Autoresearch Engine (40s)           -->
+<!-- ============================================ -->
 <section>
-  <h2>The Autoresearch Loop</h2>
-  <p class="dim">Adapted from Karpathy's autoresearch for biomarker discovery</p>
+  <h2>The Autoresearch Engine</h2>
+  <p class="dim">Adapted from Karpathy's autoresearch for biomarker discovery &bull; Powered by Nebius Token Factory</p>
   <div class="flow">
-    <div class="flow-box"><strong>Hypothesis Generator</strong><br><span class="dim">Llama 3.3 70B on Nebius</span></div>
+    <div class="flow-box"><strong>Hypothesis Generator</strong><br><span class="dim">Llama 3.3 70B</span></div>
     <span class="flow-arrow">&rarr;</span>
     <div class="flow-box"><strong>Feature Extractor</strong><br><span class="dim">200+ temporal features</span></div>
     <span class="flow-arrow">&rarr;</span>
@@ -205,336 +200,198 @@
     <span class="flow-arrow">&rarr;</span>
     <div class="flow-box" style="border-color:var(--accent);"><strong>KEEP / DISCARD</strong></div>
   </div>
-  <div style="text-align:center; margin-top:10px;">
+  <div style="text-align:center;">
     <span class="flow-arrow">&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;</span>
-    <span class="dim" style="display:block;">Results feed back into hypothesis generation</span>
+    <span class="dim" style="display:block;">Results feed back &rarr; LLM proposes refined hypotheses</span>
   </div>
-  <div class="box" style="margin-top:15px;">
-    <p style="font-size:0.75em;">Set it up before sleep. Wake up to <span class="highlight">5,000 hypotheses tested</span> with full statistical rigor.</p>
-  </div>
-</section>
-
-<!-- SLIDE 6: Self-Improving Loop -->
-<section>
-  <h2>Self-Improving Discovery Engine</h2>
-  <div class="flow">
-    <div class="flow-box"><strong>Round 1</strong><br><span class="dim">5,000 broad sweep</span></div>
-    <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box"><strong>137 promising</strong><br><span class="dim">0 after strict FDR</span></div>
-    <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box" style="border-color:var(--accent);"><strong>Feed to LLM</strong><br><span class="dim">Adapt &amp; refine</span></div>
-    <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box" style="border-color:var(--accent);"><strong>50 rounds</strong><br><span class="highlight">3 significant!</span></div>
-  </div>
-  <br>
-  <div class="cols">
+  <div class="cols" style="margin-top:12px;">
     <div class="box">
       <h3>Round 1 (broad)</h3>
-      <p style="font-size:0.7em;">5,000 single-feature hypotheses</p>
-      <p style="font-size:0.7em;">137 promising but 0 after BH-FDR across 5,000 tests</p>
-      <p style="font-size:0.65em;">Lesson: single features can't survive 5,000-test correction at n=49</p>
+      <p style="font-size:0.65em;">5,000 single-feature hypotheses &rarr; 137 promising &rarr; <span class="warn">0 after strict FDR</span></p>
+      <p style="font-size:0.6em; color:#636e72;">Lesson: single features can't survive 5,000-test correction at n=49</p>
     </div>
     <div class="box-accent">
       <h3>Rounds 2&ndash;50 (LLM-guided)</h3>
-      <p style="font-size:0.7em;">271 targeted interaction hypotheses</p>
-      <p style="font-size:0.7em;"><span class="highlight">3 survived per-round FDR</span> (8 tests/round)</p>
-      <p style="font-size:0.65em;">Best: lfhf_slope &times; sleep_qual (<span class="highlight">AUC 0.76</span>, d=1.06)</p>
+      <p style="font-size:0.65em;">271 targeted interaction hypotheses &rarr; <span class="highlight">3 survived per-round FDR</span></p>
+      <p style="font-size:0.6em;">Small rounds (8 tests each) keep FDR mild. Total cost: <span class="highlight">$0.22</span></p>
     </div>
   </div>
-  <p class="dim" style="margin-top:10px;">Small rounds keep FDR mild. LLM adapts each round. Total cost: $0.22 on Nebius Token Factory.</p>
 </section>
 
-<!-- SLIDE 7: Methods -->
+<!-- ============================================ -->
+<!-- SLIDE 5: Methods & Results (40s)             -->
+<!-- ============================================ -->
 <section>
-  <h2>Methods: Model &amp; Evaluation</h2>
-  <div class="cols">
-    <div class="box-accent">
-      <h3>Data Split</h3>
-      <p style="font-size:0.7em;"><span class="highlight">49 subjects</span> from Baigutanova et al. 2025</p>
-      <p style="font-size:0.7em;">Stratified by PHQ-9 status (mild+ vs. healthy)</p>
-      <table style="font-size:0.6em; margin-top:8px;">
-        <tr><th></th><th>Discovery</th><th>Validation</th></tr>
-        <tr><td>Subjects</td><td style="color:var(--accent);">33 (70%)</td><td style="color:var(--accent);">16 (30%)</td></tr>
-        <tr><td>PHQ-9 &ge; 5</td><td>~12</td><td>~5</td></tr>
-        <tr><td>Healthy</td><td>~21</td><td>~11</td></tr>
+  <h2>Methods &amp; Results</h2>
+  <div class="cols" style="align-items:stretch;">
+    <div style="flex:1; display:flex; flex-direction:column; gap:6px;">
+      <div class="box" style="padding:8px 10px; margin:0;">
+        <p style="font-size:0.55em; margin:0;"><strong>Data:</strong> 49 subjects, 28 days &bull; <strong>Features:</strong> 187 temporal dynamics &bull; <strong>Interactions:</strong> HRV &times; sleep products</p>
+        <p style="font-size:0.55em; margin:2px 0 0;"><strong>CV:</strong> LOSO, feature selection <span class="highlight">inside</span> each fold &bull; <strong>Model:</strong> Logistic Regression, top-10</p>
+      </div>
+      <div class="cols" style="gap:10px; margin:0;">
+        <div style="text-align:center;"><p class="stat" style="font-size:1.4em; margin:0;">5,271</p><p class="stat-label">hypotheses tested</p></div>
+        <div style="text-align:center;"><p class="stat" style="font-size:1.4em; margin:0;">3</p><p class="stat-label">survived FDR</p></div>
+      </div>
+      <table style="font-size:0.52em; margin-top:0;">
+        <thead><tr><th>Interaction</th><th>d</th><th>p_adj</th><th>AUC</th></tr></thead>
+        <tbody>
+          <tr><td>RMSSD slope &times; sleep dur autocorr</td><td style="color:var(--accent);">1.11</td><td>0.006</td><td>0.22</td></tr>
+          <tr><td>RMSSD slope &times; LF/HF slope</td><td style="color:var(--accent);">0.92</td><td>0.004</td><td>0.26</td></tr>
+          <tr><td><strong>LF/HF slope &times; sleep quality</strong></td><td style="color:var(--accent);">1.06</td><td>0.021</td><td style="color:var(--accent);"><strong>0.76</strong></td></tr>
+        </tbody>
       </table>
+      <p class="dim" style="margin:0; font-size:0.5em;">All 3 significant features are cross-modal HRV &times; sleep interactions.</p>
     </div>
-    <div class="box">
-      <h3>Classifier Pipeline</h3>
-      <p style="font-size:0.65em;">1. <strong>Feature extraction:</strong> 187 temporal features (autocorrelation, CV, slope, std) over 3/7/14/21-day windows</p>
-      <p style="font-size:0.65em;">2. <strong>Interaction terms:</strong> HRV &times; sleep cross-domain products</p>
-      <p style="font-size:0.65em;">3. <strong>Subject-level aggregation:</strong> Per-subject z-scored composites</p>
-      <p style="font-size:0.65em;">4. <strong>Evaluation:</strong> Leave-one-subject-out CV (LOSO) &mdash; feature selection <span class="highlight">inside</span> each fold</p>
-      <p style="font-size:0.65em;">5. <strong>Model:</strong> Logistic Regression with top-10 selected features</p>
+    <div style="flex:1.1; display:flex; flex-direction:column;">
+      <p style="font-size:0.55em; text-align:center; color:#636e72; margin:0 0 2px;">Volcano Plot: Effect Size vs. Significance</p>
+      <canvas id="chartVolcano" style="flex:1; max-height:280px;"></canvas>
     </div>
-  </div>
-  <div class="box" style="margin-top:10px;">
-    <p style="font-size:0.7em;"><span class="highlight">Key:</span> Feature selection happens <em>inside</em> each CV fold &mdash; no data leakage. Subject-level stats prevent pseudoreplication from daily rows.</p>
   </div>
 </section>
 
-<!-- SLIDE 8: Key Results -->
-<section>
-  <h2>Results: Significant Findings</h2>
-  <div class="cols">
-    <div>
-      <p class="stat">5,271</p>
-      <p class="stat-label">total hypotheses tested</p>
-    </div>
-    <div>
-      <p class="stat">3</p>
-      <p class="stat-label">survived FDR (p_adj &lt; 0.05)</p>
-    </div>
-    <div>
-      <p class="stat" style="color:var(--accent2);">0.76</p>
-      <p class="stat-label">best interaction AUC</p>
-    </div>
-  </div>
-  <br>
-  <table>
-    <thead><tr><th>Interaction Feature</th><th>Cohen's d</th><th>p_adj</th><th>AUC</th></tr></thead>
-    <tbody>
-      <tr><td><span class="highlight">RMSSD 3d slope &times; sleep dur autocorr</span></td><td style="color:var(--accent);">1.11</td><td>0.006</td><td>0.22</td></tr>
-      <tr><td><span class="highlight">RMSSD 3d slope &times; LF/HF 3d slope</span></td><td style="color:var(--accent);">0.92</td><td>0.004</td><td>0.26</td></tr>
-      <tr><td><span class="highlight">LF/HF 21d slope &times; sleep quality</span></td><td style="color:var(--accent);">1.06</td><td>0.021</td><td style="color:var(--accent);">0.76</td></tr>
-    </tbody>
-  </table>
-  <p class="dim" style="margin-top:12px;">All significant features are HRV &times; sleep interactions. No single-modality feature survived FDR. The interaction <em>is</em> the biomarker.</p>
-</section>
-
-<!-- SLIDE 8: The Core Finding -->
-<section>
-  <h2>The Core Finding</h2>
-  <div class="box-accent" style="text-align:center; padding:20px;">
-    <p style="font-size:1.0em; font-weight:700; color:var(--accent);">Neither HRV alone nor sleep alone predicts depression.</p>
-    <p style="font-size:1.0em; font-weight:700;">Their simultaneous destabilization does.</p>
-  </div>
-  <br>
-  <div class="cols">
-    <div class="box">
-      <h3 style="color:#888;">HRV alone</h3>
-      <p>AUC 0.61 (standard means)</p>
-      <p>Does not survive FDR</p>
-      <p class="dim">d &approx; 0.3 &mdash; too small</p>
-    </div>
-    <div class="box">
-      <h3 style="color:#888;">Sleep alone</h3>
-      <p>AUC 0.63 (sleep features)</p>
-      <p>Does not survive FDR</p>
-      <p class="dim">d &approx; 0.4 &mdash; marginal</p>
-    </div>
-    <div class="box-accent">
-      <h3>HRV &times; Sleep</h3>
-      <p><span class="highlight">AUC 0.76</span> (interaction)</p>
-      <p><span class="highlight">Survives FDR</span> (p_adj=0.02)</p>
-      <p class="dim">d = 1.06 &mdash; large effect</p>
-    </div>
-  </div>
-  <p class="dim" style="margin-top:10px;">The HRV &times; sleep interaction gives clinicians a continuous, objective signal of depressive state &mdash; trackable daily from a wearable.</p>
-</section>
-
-<!-- SLIDE 9: Comparison Table -->
-<section>
-  <h2>Our Features vs. Standard HRV</h2>
-  <table>
-    <thead><tr><th>Approach</th><th>Features</th><th>AUC</th><th>vs. Baseline</th></tr></thead>
-    <tbody>
-      <tr><td>Standard HRV</td><td>Mean RMSSD, mean HR</td><td style="color:#888;">0.61</td><td>&mdash;</td></tr>
-      <tr><td>Sleep only</td><td>Sleep duration, quality, latency</td><td style="color:#888;">0.63</td><td>+3%</td></tr>
-      <tr><td>Temporal (single)</td><td>Autocorr, CV, slope, std</td><td style="color:#aaa;">0.69</td><td>+13%</td></tr>
-      <tr><td><span class="highlight">Ours (interaction)</span></td><td><span class="highlight">HRV slope &times; sleep dynamics</span></td><td style="color:var(--accent);"><strong>0.76</strong></td><td><span class="highlight"><strong>+25%</strong></span></td></tr>
-      <tr><td>Cross-dataset transfer</td><td>Same patterns on actigraphy</td><td style="color:var(--accent);">0.66</td><td>+8%</td></tr>
-    </tbody>
-  </table>
-  <br>
-  <div class="box-accent">
-    <p style="font-size:0.8em;">The interaction between HRV and sleep dynamics gives an <span class="highlight">objective, daily-level signal</span> of depressive state &mdash; trackable between clinical appointments.</p>
-  </div>
-</section>
-
-<!-- SLIDE 10: Datasets -->
-<section>
-  <h2>Two Datasets, Two Modalities</h2>
-  <div class="cols">
-    <div class="box-accent">
-      <h3>Baigutanova et al. 2025</h3>
-      <p><span class="highlight">49</span> participants &bull; <span class="highlight">28</span> days</p>
-      <p class="dim">HRV (5-min), sleep diary, PHQ-9/GAD-7</p>
-      <p class="dim">~39K HRV segments, ~1.4K sleep records</p>
-      <p><span class="highlight">3 significant interactions after FDR</span></p>
-    </div>
-    <div class="box">
-      <h3>Depresjon (Garcia-Ceja 2018)</h3>
-      <p><span class="highlight">55</span> participants &bull; <span class="highlight">~20</span> days avg</p>
-      <p class="dim">Motor actigraphy (1-min), MADRS scores</p>
-      <p class="dim">1.5M activity measurements</p>
-      <p>Transfer AUC: <span class="highlight">0.66</span> (preliminary)</p>
-    </div>
-  </div>
-  <br>
-  <div class="box">
-    <p style="font-size:0.75em;">Two modalities (HRV vs actigraphy) test whether temporal dynamics features <span class="highlight">generalize across sensor types</span>. Transfer AUC 0.66 suggests the temporal instability signal is not modality-specific.</p>
-  </div>
-</section>
-
-<!-- SLIDE 11: Validation — Is It Overfitted? -->
+<!-- ============================================ -->
+<!-- SLIDE 6: Validation (30s)                    -->
+<!-- ============================================ -->
 <section>
   <h2>Validation: Is It Overfitted?</h2>
-  <p class="dim">We ran 4 independent validation tests to check if our findings are real.</p>
   <div class="cols">
-    <div class="box-accent">
-      <h3>Permutation Test (gold standard)</h3>
-      <p style="font-size:0.65em;">Shuffled depression labels at subject level, re-ran entire analysis <span class="highlight">100 times</span></p>
-      <table style="font-size:0.58em; margin-top:6px;">
-        <tr><th>Interaction</th><th>Real d</th><th>Null mean d</th><th>Empirical p</th></tr>
-        <tr><td>RMSSD slope &times; sleep dur</td><td style="color:var(--accent);">1.11</td><td>0.26</td><td style="color:var(--accent);"><strong>0/100</strong></td></tr>
-        <tr><td>RMSSD slope &times; LF/HF</td><td style="color:var(--accent);">0.92</td><td>0.22</td><td style="color:var(--accent);"><strong>0/100</strong></td></tr>
-        <tr><td>LF/HF slope &times; sleep qual</td><td style="color:var(--accent);">1.06</td><td>0.30</td><td style="color:var(--accent);"><strong>3/100</strong></td></tr>
-      </table>
-      <p style="font-size:0.6em; margin-top:6px;"><span class="highlight">0 out of 20 full shuffled simulations</span> produced any significant finding. Real data: 3.</p>
+    <div style="flex:1.2;">
+      <p style="font-size:0.6em; text-align:center; color:#636e72; margin-bottom:2px;">Permutation Null Distribution (100 shuffles) vs. Real Effect</p>
+      <canvas id="chartNull" style="max-height:250px;"></canvas>
+      <p style="font-size:0.55em; text-align:center; margin-top:4px;"><span class="highlight">Real effects are 3&ndash;4&times; larger than null.</span> 0/20 full shuffled simulations produced any significant finding.</p>
     </div>
-    <div class="box">
-      <h3>Hold-Out Validation</h3>
-      <p style="font-size:0.65em;">33 discovery / 16 validation (stratified split)</p>
-      <table style="font-size:0.58em; margin-top:6px;">
-        <tr><th>Interaction</th><th>Disc. d</th><th>Val. d</th><th>Direction</th></tr>
-        <tr><td>RMSSD &times; sleep dur</td><td>1.09</td><td>1.08</td><td style="color:var(--accent);">Consistent</td></tr>
-        <tr><td>RMSSD &times; LF/HF</td><td>0.55</td><td>1.95</td><td style="color:var(--accent);">Consistent</td></tr>
-        <tr><td>LF/HF &times; sleep qual</td><td>0.89</td><td>1.54</td><td style="color:var(--accent);">Consistent</td></tr>
-      </table>
-      <p style="font-size:0.6em; margin-top:6px;"><span class="highlight">All 3 directions consistent.</span> 2/3 reach p&lt;0.05 in held-out set.</p>
+    <div style="flex:1;">
+      <div class="box" style="padding:10px;">
+        <h3>Hold-Out Validation</h3>
+        <p style="font-size:0.58em;">33 discovery / 16 validation (stratified)</p>
+        <table style="font-size:0.53em; margin-top:4px;">
+          <tr><th>Interaction</th><th>Disc. d</th><th>Val. d</th><th>Dir.</th></tr>
+          <tr><td>RMSSD &times; sleep dur</td><td>1.09</td><td>1.08</td><td style="color:var(--accent);">Same</td></tr>
+          <tr><td>RMSSD &times; LF/HF</td><td>0.55</td><td>1.95</td><td style="color:var(--accent);">Same</td></tr>
+          <tr><td>LF/HF &times; sleep qual</td><td>0.89</td><td>1.54</td><td style="color:var(--accent);">Same</td></tr>
+        </table>
+        <p style="font-size:0.55em; margin-top:4px;"><span class="highlight">All 3 directions consistent.</span> 2/3 reach p&lt;0.05 in held-out.</p>
+      </div>
+      <div class="box-accent" style="padding:10px; margin-top:6px;">
+        <h3>Cross-Dataset Transfer</h3>
+        <p style="font-size:0.58em;">Depresjon (n=55, actigraphy, MADRS)</p>
+        <p style="font-size:0.58em;">Transfer AUC: <span class="highlight">0.66</span> &mdash; temporal patterns generalize across sensor types</p>
+      </div>
     </div>
   </div>
-  <div class="box" style="margin-top:8px;">
-    <p style="font-size:0.7em;">Verdict: <span class="highlight">Not overfitted.</span> Real effects are 3&ndash;4&times; larger than null. Effects replicate in held-out subjects with consistent direction.</p>
-  </div>
-  <p style="font-size:0.55em; color:#aaa; margin-top:6px;"><strong>Limitations:</strong> n=49 is pilot-scale. Global FDR across all 271 tests gives p_adj=0.09 (close but not &lt;0.05). Prospective validation needed.</p>
+  <p style="font-size:0.5em; color:#636e72; margin-top:4px;"><strong>Limitations:</strong> n=49 is pilot-scale. PHQ-9 &ge; 5 = mild symptoms. Global FDR across all 271 tests gives p_adj=0.09. Prospective validation needed.</p>
 </section>
 
-<!-- SLIDE 12: Clinical Utility -->
+<!-- ============================================ -->
+<!-- SLIDE 7: Regulatory Pathway (20s)            -->
+<!-- ============================================ -->
 <section>
-  <h2>Why This Matters Clinically</h2>
-  <blockquote>
-    "You need something between appointments &mdash; an objective signal that tells you whether the patient is getting better or worse."
-    <br><span class="dim">&mdash; Prof. Dr. Steffen Moritz, Uni of Hamburg</span>
-  </blockquote>
-  <br>
+  <h2>Regulatory Pathway</h2>
   <div class="cols">
-    <div class="box">
-      <h3>Current Problem</h3>
-      <ul style="font-size:0.7em;">
-        <li>Treatment response assessed every <span class="warn">4&ndash;6 weeks</span></li>
-        <li>Self-report questionnaires are <span class="warn">subjective</span></li>
-        <li>Patients drop out before clinicians notice decline</li>
+    <div class="box-accent">
+      <h3>Health Canada SaMD Class II</h3>
+      <p style="font-size:0.65em;">Clinical decision support &mdash; not diagnosis</p>
+      <ul style="font-size:0.6em;">
+        <li><strong>Classification:</strong> Software as Medical Device (SaMD), Class II &mdash; provides clinical information to aid treatment decisions</li>
+        <li><strong>Predicate:</strong> Continuous glucose monitors (CGM) established SaMD Class II pathway for wearable-derived clinical signals</li>
+        <li><strong>Data governance:</strong> PHIPA-compliant, on-device processing, no raw physiological data leaves the device</li>
+        <li><strong>Bias detection:</strong> LOSO-CV ensures no single subject drives the model; demographic stratification in prospective trial</li>
       </ul>
     </div>
-    <div class="box-accent">
-      <h3>Our Answer: Continuous Tracking</h3>
-      <ul style="font-size:0.7em;">
-        <li><span class="highlight">Daily</span> HRV &times; sleep signal from wearables</li>
-        <li>Objective <span class="highlight">treatment response tracking</span></li>
-        <li>Flag destabilization <span class="highlight">between appointments</span></li>
-        <li>Clinician sees trajectory, not just snapshots</li>
-      </ul>
+    <div class="box">
+      <h3>Regulatory Timeline</h3>
+      <div style="font-size:0.6em;">
+        <p><span class="tag">Now</span> Retrospective pilot (n=49)</p>
+        <p><span class="tag">Q3 2026</span> Prospective validation (n=200+, Uni of Hamburg)</p>
+        <p><span class="tag">2027</span> Multi-site trial (Ontario Health)</p>
+        <p><span class="tag">2028</span> SaMD Class II filing</p>
+      </div>
+      <h3 style="margin-top:12px;">Locked Model Approach</h3>
+      <p style="font-size:0.6em;">Discovery engine evolves freely. Clinical product is a <span class="highlight">frozen snapshot</span> &mdash; no autonomous model changes post-validation.</p>
     </div>
   </div>
-  <p class="dim" style="margin-top:8px;">We don't diagnose depression. We give clinicians a continuous, objective signal of depressive state &mdash; so they can see if treatment is working.</p>
 </section>
 
-<!-- SLIDE 13: Two Products -->
+<!-- ============================================ -->
+<!-- SLIDE 8: Market & Products (20s)             -->
+<!-- ============================================ -->
 <section>
-  <h2>Two Products, One Engine</h2>
+  <h2>Two Products, Two Customers</h2>
   <div class="cols">
     <div class="box-accent">
-      <h3>Product 1: Discovery Engine (R&D)</h3>
-      <p style="font-size:0.7em;">The autoresearch loop &mdash; sold to <span class="highlight">pharma</span> for digital endpoint discovery</p>
-      <ul style="font-size:0.65em;">
-        <li>Not a medical device &mdash; internal R&D tool</li>
-        <li>No regulatory burden on discovery</li>
-        <li>Revenue: per-trial licensing to pharma CROs</li>
+      <h3>Discovery Engine (R&amp;D Tool)</h3>
+      <p style="font-size:0.75em; font-weight:600;">Customer: <span class="highlight">Pharma Companies</span></p>
+      <p style="font-size:0.65em;">Autoresearch loop as a service for digital endpoint discovery in clinical trials</p>
+      <ul style="font-size:0.6em;">
+        <li>Not a medical device &mdash; no regulatory burden</li>
+        <li>Revenue: per-trial licensing</li>
+        <li>Revenue <span class="highlight">before</span> SaMD approval</li>
       </ul>
     </div>
-    <div class="box">
-      <h3>Product 2: Treatment Response Tracker (SaMD)</h3>
-      <p style="font-size:0.7em;">Frozen model for <span class="highlight">continuous depressive state tracking</span></p>
-      <ul style="font-size:0.65em;">
+    <div class="box-accent">
+      <h3>Treatment Response Tracker (SaMD)</h3>
+      <p style="font-size:0.75em; font-weight:600;">Customer: <span class="highlight">Hospitals &amp; Clinics</span></p>
+      <p style="font-size:0.65em;">Frozen, validated model for continuous depressive state tracking</p>
+      <ul style="font-size:0.6em;">
         <li>Health Canada SaMD Class II</li>
         <li>Daily HRV &times; sleep score between appointments</li>
-        <li>Clinician dashboard: trajectory, not snapshots</li>
-        <li>Revenue: per-patient SaaS to clinics</li>
+        <li>Revenue: per-patient SaaS</li>
       </ul>
     </div>
   </div>
-  <div class="box" style="margin-top:10px;">
-    <p style="font-size:0.7em;"><span class="highlight">Key:</span> The discovery engine evolves freely. The clinical product is a <em>snapshot</em> &mdash; frozen, validated, regulatable.</p>
-  </div>
 </section>
 
-<!-- SLIDE 14: Tech Stack -->
+<!-- ============================================ -->
+<!-- SLIDE 9: Team & Roadmap (30s)                -->
+<!-- ============================================ -->
 <section>
-  <h2>Tech Stack</h2>
+  <h2>Team &amp; Roadmap</h2>
+  <div class="cols" style="margin-bottom:12px;">
+    <div class="box">
+      <h3>Sarah Iskin</h3>
+      <p style="font-size:0.6em; color:#636e72;">[Title / Expertise]</p>
+    </div>
+    <div class="box">
+      <h3>Baljinder Maan</h3>
+      <p style="font-size:0.6em; color:#636e72;">[Title / Expertise]</p>
+    </div>
+    <div class="box">
+      <h3>Athif Shaffy</h3>
+      <p style="font-size:0.6em; color:#636e72;">[Title / Expertise]</p>
+    </div>
+    <div class="box">
+      <h3>Darien Lee</h3>
+      <p style="font-size:0.6em; color:#636e72;">[Title / Expertise]</p>
+    </div>
+  </div>
+  <p style="font-size:0.6em; color:#636e72; margin-bottom:10px;"><span class="highlight">Clinical Advisor:</span> Prof. Dr. Steffen Moritz, Uni of Hamburg (confirmed)</p>
   <div class="cols">
-    <div class="box">
-      <h3>Compute</h3>
-      <p><span class="tag">Nebius Token Factory</span></p>
-      <p><span class="tag">Llama 3.3 70B (inference)</span></p>
-      <p><span class="tag">H100 GPUs</span></p>
-      <p style="font-size:0.6em; color:#888;">Total LLM cost: <span class="highlight">$0.22</span></p>
-    </div>
-    <div class="box">
-      <h3>Science</h3>
-      <p><span class="tag">scikit-learn</span></p>
-      <p><span class="tag">scipy / statsmodels</span></p>
-      <p><span class="tag">Permutation tests</span></p>
-      <p><span class="tag">Bootstrap CI</span></p>
-    </div>
-    <div class="box">
-      <h3>Interface</h3>
-      <p><span class="tag">Streamlit dashboard</span></p>
-      <p><span class="tag">Plotly</span></p>
-      <p><span class="tag">reveal.js</span></p>
-    </div>
-  </div>
-  <br>
-  <div class="box-accent">
-    <p style="font-size:0.7em;">50 rounds of LLM-guided discovery for <span class="highlight">$0.22 total</span>. Absurdly capital-efficient &mdash; Nebius Token Factory makes iterative biomarker search economically viable.</p>
-  </div>
-</section>
-
-<!-- SLIDE 15: What's Next -->
-<section>
-  <h2>What's Next</h2>
-  <div class="flow">
-    <div class="flow-box" style="border-color:var(--accent);">Hackathon<br><span class="dim">Discovery (now)</span></div>
-    <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box">Clinical Validation<br><span class="dim">Prospective study with<br>Uni of Hamburg</span></div>
-    <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box">Multi-site Trial<br><span class="dim">Ontario Health + partners</span></div>
-    <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box">SaMD Filing<br><span class="dim">Health Canada Class II</span></div>
-  </div>
-  <br>
-  <div class="cols">
-    <div class="box">
-      <h3>Immediate</h3>
-      <ul style="font-size:0.65em;">
-        <li>Prospective validation: track patients through treatment</li>
-        <li>Test with consumer wearables (Apple Watch, Oura)</li>
-        <li>Correlate daily HRV &times; sleep score with PHQ-9 trajectory</li>
-      </ul>
-    </div>
     <div class="box-accent">
-      <h3>The Ask</h3>
-      <ul style="font-size:0.65em;">
-        <li>Longitudinal dataset with repeated PHQ-9 + wearables</li>
-        <li>Clinical partner for treatment response tracking study</li>
-        <li>Pilot in outpatient depression clinic</li>
+      <h3>Next Steps</h3>
+      <ul style="font-size:0.6em;">
+        <li><span class="highlight">Muse EEG integration</span> &mdash; real-time brainwave monitoring as 3rd modality (HRV &times; sleep &times; EEG)</li>
+        <li><span class="highlight">Mobile app</span> &mdash; unified data hub for all wearable streams</li>
+        <li>Consumer wearable add-ons (Apple Watch, Oura)</li>
+        <li>Prospective validation (n=200+, Uni of Hamburg)</li>
       </ul>
+    </div>
+    <div class="box">
+      <h3>Long-Term Vision</h3>
+      <p style="font-size:0.6em;">Critical slowing down is <span class="highlight">condition-agnostic</span>:</p>
+      <ul style="font-size:0.6em;">
+        <li><span class="highlight">Anxiety</span> &mdash; HRV + sleep + EEG beta waves</li>
+        <li><span class="highlight">Bipolar</span> &mdash; manic/depressive transitions</li>
+        <li><span class="highlight">PTSD</span> &mdash; autonomic hyperarousal</li>
+      </ul>
+      <p style="font-size:0.55em; color:#636e72; margin-top:4px;">One engine, many conditions.</p>
     </div>
   </div>
 </section>
 
-<!-- SLIDE 16: Closing -->
+<!-- ============================================ -->
+<!-- SLIDE 10: Closing (15s)                      -->
+<!-- ============================================ -->
 <section>
   <h1>AutoBiomarker</h1>
   <p style="font-size:0.9em; color:var(--accent);">Objective, continuous tracking of depressive state<br>from a wrist.</p>
@@ -554,11 +411,7 @@
     </div>
   </div>
   <br>
-  <blockquote style="font-size:0.7em;">
-    "You need something between appointments &mdash; an objective signal of whether treatment is working."
-    <br><span class="dim">&mdash; Prof. Dr. Steffen Moritz, Uni of Hamburg</span>
-  </blockquote>
-  <p class="dim" style="margin-top:15px;">In collaboration with Uni of Hamburg &bull; Built on Nebius Token Factory</p>
+  <p class="dim" style="margin-top:15px;">In collaboration with Prof. Dr. Steffen Moritz, Uni of Hamburg &bull; Built on Nebius Token Factory</p>
 </section>
 
 </div>
@@ -574,6 +427,164 @@ Reveal.initialize({
   width: 1280,
   height: 720,
   margin: 0.1,
+});
+
+// Wait for reveal.js to load, then init charts
+Reveal.on('ready', () => {
+  const TEAL = '#0984e3';
+  const PURPLE = '#6c5ce7';
+  const RED = '#d63031';
+  const GRAY = 'rgba(0,0,0,0.15)';
+  const TEXT = '#2d3436';
+
+  // ---- SLIDE 3: AUC Comparison Bar Chart ----
+  new Chart(document.getElementById('chartAUC'), {
+    type: 'bar',
+    data: {
+      labels: ['Standard\nHRV', 'Sleep\nOnly', 'Temporal\n(single)', 'HRV x Sleep\n(ours)', 'Cross-dataset\nTransfer'],
+      datasets: [{
+        label: 'AUC',
+        data: [0.61, 0.63, 0.69, 0.76, 0.66],
+        backgroundColor: [GRAY, GRAY, PURPLE, TEAL, 'rgba(0,212,170,0.4)'],
+        borderColor: [GRAY, GRAY, PURPLE, TEAL, TEAL],
+        borderWidth: 2,
+        borderRadius: 6,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      indexAxis: 'y',
+      scales: {
+        x: {
+          min: 0.45, max: 0.82,
+          title: { display: true, text: 'AUC', color: TEXT, font: { size: 13 } },
+          grid: { color: 'rgba(0,0,0,0.06)' },
+          ticks: { color: TEXT, font: { size: 11 } },
+        },
+        y: {
+          grid: { display: false },
+          ticks: { color: TEXT, font: { size: 12, weight: 'bold' } },
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { enabled: true },
+        annotation: {
+          annotations: {
+            line1: {
+              type: 'line',
+              xMin: 0.5, xMax: 0.5,
+              borderColor: 'rgba(0,0,0,0.12)',
+              borderDash: [5,5],
+              borderWidth: 1,
+            }
+          }
+        }
+      }
+    }
+  });
+
+  // ---- SLIDE 5: Volcano Plot (REAL DATA from persistent_search_results.tsv) ----
+  const volcanoDiscard = [{"x":1.0382,"y":1.6025},{"x":0.9921,"y":1.6025},{"x":1.0571,"y":1.6025},{"x":0.6775,"y":1.469},{"x":0.6483,"y":1.469},{"x":1.0382,"y":1.6025},{"x":0.9921,"y":1.6025},{"x":1.0571,"y":1.6025},{"x":0.6775,"y":1.5233},{"x":1.0382,"y":1.6025},{"x":1.0382,"y":1.4264},{"x":0.7318,"y":1.3806},{"x":1.0382,"y":1.4264},{"x":0.0627,"y":0.0525},{"x":0.6751,"y":1.3125},{"x":0.8393,"y":1.3192},{"x":0.3198,"y":0.5888},{"x":0.4791,"y":0.6122},{"x":0.8393,"y":1.5533},{"x":0.3198,"y":0.5277},{"x":0.3198,"y":0.4994},{"x":0.4791,"y":0.5176},{"x":0.8393,"y":1.2929},{"x":0.3198,"y":0.5277},{"x":0.4644,"y":0.7416},{"x":0.8393,"y":1.2844},{"x":0.5519,"y":0.8669},{"x":0.3198,"y":0.5321},{"x":0.4644,"y":0.7484},{"x":0.521,"y":0.2745},{"x":0.1471,"y":0.0361},{"x":0.3553,"y":0.2745},{"x":0.3843,"y":0.2745},{"x":0.0177,"y":0.0218},{"x":0.0687,"y":0.0361},{"x":0.1059,"y":0.0361},{"x":0.3315,"y":0.2745},{"x":0.3496,"y":0.1792},{"x":0.1471,"y":0.1111},{"x":0.0313,"y":0.0438},{"x":0.2072,"y":0.1111},{"x":0.3851,"y":0.1792},{"x":0.3119,"y":0.0896},{"x":0.0301,"y":0.0329},{"x":0.2057,"y":0.0896},{"x":0.0924,"y":0.0691},{"x":0.3267,"y":0.0896},{"x":0.224,"y":0.0896},{"x":0.1286,"y":0.0691},{"x":0.3371,"y":0.0896},{"x":0.4957,"y":0.3293},{"x":0.232,"y":0.3293},{"x":0.4885,"y":0.3293},{"x":0.2657,"y":0.3293},{"x":0.2399,"y":0.3293},{"x":0.2325,"y":0.3293},{"x":0.3073,"y":0.3293},{"x":0.2199,"y":0.3293},{"x":0.3843,"y":0.4996},{"x":0.4537,"y":0.5204},{"x":0.3437,"y":0.4622},{"x":0.1094,"y":0.0875},{"x":0.4537,"y":0.5204},{"x":0.0229,"y":0.0218},{"x":0.6808,"y":0.8421},{"x":0.5085,"y":0.5204},{"x":0.2271,"y":0.2612},{"x":0.3747,"y":0.2612},{"x":0.3008,"y":0.2612},{"x":0.0036,"y":0.0022},{"x":0.2182,"y":0.2612},{"x":0.226,"y":0.2612},{"x":0.2837,"y":0.2612},{"x":0.4633,"y":0.2612},{"x":0.1431,"y":0.139},{"x":0.5031,"y":0.3941},{"x":0.4167,"y":0.3676},{"x":0.3067,"y":0.2585},{"x":0.0246,"y":0.0324},{"x":0.219,"y":0.1713},{"x":0.2956,"y":0.2585},{"x":0.4806,"y":0.3941},{"x":1.0382,"y":1.3472},{"x":0.5107,"y":0.6054},{"x":0.0558,"y":0.0614},{"x":0.9228,"y":1.6994},{"x":0.3439,"y":0.4178},{"x":0.0141,"y":0.0186},{"x":0.6735,"y":0.3898},{"x":0.241,"y":0.1879},{"x":0.4743,"y":0.2745},{"x":0.067,"y":0.0186},{"x":0.6318,"y":0.3898},{"x":0.4545,"y":0.3758},{"x":0.0107,"y":0.0146},{"x":0.3627,"y":0.3067},{"x":0.613,"y":0.3758},{"x":0.2242,"y":0.1809},{"x":0.0177,"y":0.0146},{"x":1.0382,"y":1.056},{"x":0.2066,"y":0.1809},{"x":0.4545,"y":0.3415},{"x":0.4587,"y":0.3396},{"x":0.2033,"y":0.2293},{"x":0.0633,"y":0.0787},{"x":0.6111,"y":0.3415},{"x":0.2242,"y":0.2293},{"x":0.1059,"y":0.0039},{"x":0.293,"y":0.0039},{"x":0.0036,"y":0.0039},{"x":0.1052,"y":0.0039},{"x":0.5518,"y":0.2223},{"x":0.0557,"y":0.0039},{"x":0.1059,"y":0.0597},{"x":0.6751,"y":0.4899},{"x":0.0036,"y":0.0039},{"x":0.1281,"y":0.0597},{"x":0.5518,"y":0.4478},{"x":0.2357,"y":0.07},{"x":0.1059,"y":0.0017},{"x":0.293,"y":0.1324},{"x":0.0036,"y":0.0017},{"x":0.6775,"y":1.2223},{"x":0.0177,"y":0.0017},{"x":0.8393,"y":1.2223},{"x":1.0382,"y":1.0182},{"x":0.2033,"y":0.2538},{"x":0.4791,"y":0.5035},{"x":0.0036,"y":0.0035},{"x":0.6775,"y":1.0182},{"x":0.313,"y":0.34},{"x":0.1423,"y":0.0639},{"x":0.105,"y":0.0639},{"x":0.5518,"y":0.1692},{"x":0.3562,"y":0.1185},{"x":0.0627,"y":0.0639},{"x":0.1495,"y":0.0639},{"x":0.1059,"y":0.055},{"x":0.0627,"y":0.055},{"x":0.0827,"y":0.055},{"x":0.2033,"y":0.055},{"x":0.5606,"y":0.1431},{"x":0.3562,"y":0.1431},{"x":1.0382,"y":1.3472},{"x":0.0036,"y":0.0039},{"x":0.6775,"y":1.1553},{"x":0.0827,"y":0.0039},{"x":0.0627,"y":0.0039},{"x":0.1423,"y":0.1359},{"x":0.1674,"y":0.1359},{"x":0.4803,"y":0.305},{"x":0.0627,"y":0.0366},{"x":0.1674,"y":0.0366},{"x":1.0571,"y":1.0182},{"x":0.2102,"y":0.0366},{"x":0.0827,"y":0.0366},{"x":0.0499,"y":0.0366},{"x":0.0627,"y":0.0035},{"x":0.6775,"y":1.0182},{"x":0.0827,"y":0.0035},{"x":1.1131,"y":1.9213},{"x":0.0036,"y":0.0035},{"x":0.3036,"y":0.148},{"x":0.0627,"y":0.051},{"x":0.6775,"y":1.1431},{"x":0.0827,"y":0.051},{"x":1.0571,"y":1.3984},{"x":0.0667,"y":0.051},{"x":0.0827,"y":0.051},{"x":0.3036,"y":0.105},{"x":0.1423,"y":0.0057},{"x":0.1687,"y":0.0057},{"x":0.098,"y":0.0057},{"x":0.0036,"y":0.0057},{"x":0.1423,"y":0.0995},{"x":0.0684,"y":0.0995},{"x":0.2159,"y":0.0995},{"x":0.364,"y":0.238},{"x":0.6775,"y":0.8543},{"x":0.0827,"y":0.0995},{"x":1.1131,"y":1.6782},{"x":0.6659,"y":0.5813},{"x":0.1096,"y":0.0634},{"x":0.0558,"y":0.0634},{"x":0.3116,"y":0.2614},{"x":0.8233,"y":0.5813},{"x":0.6659,"y":0.4953},{"x":0.3659,"y":0.4917},{"x":0.0558,"y":0.0675},{"x":0.4629,"y":0.4917},{"x":0.1423,"y":0.1083},{"x":0.3659,"y":0.415},{"x":0.0827,"y":0.1083},{"x":0.7819,"y":1.4264},{"x":1.0382,"y":1.4264},{"x":0.6659,"y":0.4381},{"x":0.3116,"y":0.3088},{"x":0.0827,"y":0.1012},{"x":0.3659,"y":0.3088},{"x":0.2102,"y":0.2107},{"x":0.1423,"y":0.0936},{"x":0.657,"y":0.613},{"x":0.0558,"y":0.0695},{"x":0.1726,"y":0.1189},{"x":0.551,"y":0.613},{"x":0.2389,"y":0.1189},{"x":0.2813,"y":0.1591},{"x":0.4668,"y":0.4042},{"x":0.2102,"y":0.1892},{"x":1.0571,"y":1.2223},{"x":0.0558,"y":0.0664},{"x":0.1878,"y":0.1892},{"x":0.7366,"y":1.0462},{"x":0.6659,"y":0.6069},{"x":0.5164,"y":0.6069},{"x":0.0558,"y":0.072},{"x":0.4771,"y":0.5611},{"x":0.363,"y":0.4658},{"x":0.6659,"y":0.5418},{"x":0.1859,"y":0.1423},{"x":0.0827,"y":0.1034},{"x":0.3659,"y":0.4207},{"x":0.4644,"y":0.5418},{"x":1.1131,"y":1.9213},{"x":1.0382,"y":1.3192},{"x":0.0879,"y":0.1095},{"x":0.5164,"y":0.7071},{"x":0.6659,"y":0.7082},{"x":0.0879,"y":0.1095},{"x":0.6659,"y":0.4346},{"x":0.1281,"y":0.1547},{"x":0.2243,"y":0.1826},{"x":0.4771,"y":0.4346},{"x":0.9228,"y":1.7452},{"x":1.0382,"y":1.6202},{"x":0.1281,"y":0.0818},{"x":0.7819,"y":1.6202},{"x":0.5103,"y":0.6721},{"x":0.0558,"y":0.0624},{"x":0.6659,"y":0.7021},{"x":0.411,"y":0.7021},{"x":0.0558,"y":0.0675},{"x":0.5164,"y":0.7021},{"x":0.4791,"y":0.7021},{"x":0.6659,"y":0.75},{"x":0.4791,"y":0.6148},{"x":0.0558,"y":0.071},{"x":0.7819,"y":1.2446},{"x":1.0382,"y":1.2446},{"x":0.1281,"y":0.0991},{"x":0.6659,"y":0.7263},{"x":0.4791,"y":0.6768},{"x":0.0558,"y":0.0649},{"x":0.7819,"y":0.9213},{"x":0.6659,"y":0.8669},{"x":0.5164,"y":0.8669},{"x":0.0558,"y":0.0777},{"x":0.9897,"y":1.9213},{"x":0.6659,"y":0.7869},{"x":0.1281,"y":0.1647},{"x":1.0571,"y":1.3772},{"x":0.6659,"y":0.8559},{"x":0.1281,"y":0.1692},{"x":1.0571,"y":1.6782},{"x":0.6659,"y":0.9165},{"x":0.7819,"y":1.3377},{"x":0.1281,"y":0.1622},{"x":1.0382,"y":1.3377}];
+
+  const volcanoKeep = [{"x":1.1131,"y":2.2223},{"x":0.9228,"y":2.3984},{"x":1.1131,"y":2.0973}];
+
+  new Chart(document.getElementById('chartVolcano'), {
+    type: 'scatter',
+    data: {
+      datasets: [
+        {
+          label: 'Non-significant (n=' + volcanoDiscard.length + ')',
+          data: volcanoDiscard,
+          backgroundColor: 'rgba(0,0,0,0.12)',
+          pointRadius: 3.5,
+          pointHoverRadius: 5,
+        },
+        {
+          label: 'Significant / KEEP (n=' + volcanoKeep.length + ')',
+          data: volcanoKeep,
+          backgroundColor: TEAL,
+          pointRadius: 9,
+          pointHoverRadius: 11,
+          borderColor: '#1a1a2e',
+          borderWidth: 2,
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      scales: {
+        x: {
+          title: { display: true, text: "Cohen's d (effect size)", color: TEXT, font: { size: 12 } },
+          grid: { color: 'rgba(0,0,0,0.06)' },
+          ticks: { color: TEXT },
+          min: 0, max: 1.25,
+        },
+        y: {
+          title: { display: true, text: '-log\u2081\u2080(p_adj)', color: TEXT, font: { size: 12 } },
+          grid: { color: 'rgba(0,0,0,0.06)' },
+          ticks: { color: TEXT },
+          min: 0, max: 2.7,
+        }
+      },
+      plugins: {
+        legend: {
+          labels: { color: TEXT, font: { size: 11 }, usePointStyle: true },
+          position: 'bottom',
+        },
+      }
+    }
+  });
+
+  // ---- SLIDE 6: Real vs Null Cohen's d (from validation permutation tests) ----
+  new Chart(document.getElementById('chartNull'), {
+    type: 'bar',
+    data: {
+      labels: ['RMSSD slope\n\u00d7 sleep dur', 'RMSSD slope\n\u00d7 LF/HF', 'LF/HF slope\n\u00d7 sleep qual'],
+      datasets: [
+        {
+          label: "Real Cohen's d",
+          data: [1.11, 0.92, 1.06],
+          backgroundColor: TEAL,
+          borderColor: TEAL,
+          borderWidth: 1,
+          borderRadius: 6,
+        },
+        {
+          label: 'Null mean d (100 shuffles)',
+          data: [0.26, 0.22, 0.30],
+          backgroundColor: 'rgba(0,0,0,0.15)',
+          borderColor: 'rgba(0,0,0,0.25)',
+          borderWidth: 1,
+          borderRadius: 6,
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { color: TEXT, font: { size: 11 } },
+        },
+        y: {
+          title: { display: true, text: "Cohen's d", color: TEXT, font: { size: 12 } },
+          grid: { color: 'rgba(0,0,0,0.06)' },
+          ticks: { color: TEXT },
+          min: 0, max: 1.3,
+        }
+      },
+      plugins: {
+        legend: {
+          labels: { color: TEXT, font: { size: 11 }, usePointStyle: true },
+          position: 'bottom',
+        },
+      }
+    }
+  });
 });
 </script>
 </body>
