@@ -173,11 +173,11 @@
       </div>
       <div class="cols" style="margin-top:8px; gap:8px;">
         <div style="text-align:center;">
-          <p class="stat" style="font-size:1.3em;">+25%</p>
+          <p class="stat" style="font-size:1.3em;">+28%</p>
           <p class="stat-label">vs standard HRV</p>
         </div>
         <div style="text-align:center;">
-          <p class="stat" style="font-size:1.3em;">1.06</p>
+          <p class="stat" style="font-size:1.3em;">1.11</p>
           <p class="stat-label">Cohen's d (large)</p>
         </div>
       </div>
@@ -194,7 +194,7 @@
   <div class="flow">
     <div class="flow-box"><strong>Hypothesis Generator</strong><br><span class="dim">Llama 3.3 70B</span></div>
     <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box"><strong>Feature Extractor</strong><br><span class="dim">200+ temporal features</span></div>
+    <div class="flow-box"><strong>Feature Extractor</strong><br><span class="dim">187 temporal features</span></div>
     <span class="flow-arrow">&rarr;</span>
     <div class="flow-box"><strong>Statistical Evaluator</strong><br><span class="dim">LOSO-CV, AUC, FDR</span></div>
     <span class="flow-arrow">&rarr;</span>
@@ -207,12 +207,12 @@
   <div class="cols" style="margin-top:12px;">
     <div class="box">
       <h3>Round 1 (broad)</h3>
-      <p style="font-size:0.65em;">5,000 single-feature hypotheses &rarr; 137 promising &rarr; <span class="warn">0 after strict FDR</span></p>
+      <p style="font-size:0.65em;">5,000 single-feature hypotheses &rarr; 636 promising &rarr; <span class="warn">0 after strict FDR</span></p>
       <p style="font-size:0.6em; color:#636e72;">Lesson: single features can't survive 5,000-test correction at n=49</p>
     </div>
     <div class="box-accent">
       <h3>Rounds 2&ndash;50 (LLM-guided)</h3>
-      <p style="font-size:0.65em;">271 targeted interaction hypotheses &rarr; <span class="highlight">3 survived per-round FDR</span></p>
+      <p style="font-size:0.65em;">271 targeted interaction hypotheses &rarr; <span class="highlight">2 unique features survived FDR</span></p>
       <p style="font-size:0.6em;">Small rounds (8 tests each) keep FDR mild. Total cost: <span class="highlight">$0.22</span></p>
     </div>
   </div>
@@ -226,22 +226,21 @@
   <div class="cols" style="align-items:stretch;">
     <div style="flex:1; display:flex; flex-direction:column; gap:6px;">
       <div class="box" style="padding:8px 10px; margin:0;">
-        <p style="font-size:0.55em; margin:0;"><strong>Data:</strong> 49 subjects, 28 days &bull; <strong>Features:</strong> 187 temporal dynamics &bull; <strong>Interactions:</strong> HRV &times; sleep products</p>
+        <p style="font-size:0.55em; margin:0;"><strong>Data:</strong> 49 subjects (17 PHQ-9&ge;5, 32 healthy), 28 days &bull; <strong>Features:</strong> 187 temporal dynamics &bull; <strong>Interactions:</strong> HRV &times; sleep products</p>
         <p style="font-size:0.55em; margin:2px 0 0;"><strong>CV:</strong> LOSO, feature selection <span class="highlight">inside</span> each fold &bull; <strong>Model:</strong> Logistic Regression, top-10</p>
       </div>
       <div class="cols" style="gap:10px; margin:0;">
         <div style="text-align:center;"><p class="stat" style="font-size:1.4em; margin:0;">5,271</p><p class="stat-label">hypotheses tested</p></div>
-        <div style="text-align:center;"><p class="stat" style="font-size:1.4em; margin:0;">3</p><p class="stat-label">survived FDR</p></div>
+        <div style="text-align:center;"><p class="stat" style="font-size:1.4em; margin:0;">2</p><p class="stat-label">unique features survived FDR</p></div>
       </div>
       <table style="font-size:0.52em; margin-top:0;">
-        <thead><tr><th>Interaction</th><th>d</th><th>p_adj</th><th>AUC</th></tr></thead>
+        <thead><tr><th>Interaction</th><th>d</th><th>p_adj</th><th>AUC*</th></tr></thead>
         <tbody>
-          <tr><td>RMSSD slope &times; sleep dur autocorr</td><td style="color:var(--accent);">1.11</td><td>0.006</td><td>0.22</td></tr>
-          <tr><td>RMSSD slope &times; LF/HF slope</td><td style="color:var(--accent);">0.92</td><td>0.004</td><td>0.26</td></tr>
-          <tr><td><strong>LF/HF slope &times; sleep quality</strong></td><td style="color:var(--accent);">1.06</td><td>0.021</td><td style="color:var(--accent);"><strong>0.76</strong></td></tr>
+          <tr><td><strong>RMSSD 3d slope &times; sleep dur 3d autocorr</strong></td><td style="color:var(--accent);">1.11</td><td>0.006</td><td style="color:var(--accent);"><strong>0.78</strong></td></tr>
+          <tr><td><strong>RMSSD 3d slope &times; LF/HF 3d slope</strong></td><td style="color:var(--accent);">0.92</td><td>0.004</td><td style="color:var(--accent);"><strong>0.74</strong></td></tr>
         </tbody>
       </table>
-      <p class="dim" style="margin:0; font-size:0.5em;">All 3 significant features are cross-modal HRV &times; sleep interactions.</p>
+      <p class="dim" style="margin:0; font-size:0.5em;">*AUC inverted (raw &lt; 0.5) &mdash; interaction is <em>lower</em> in depression, indicating loss of HRV&ndash;sleep coordination. Both features are cross-modal HRV &times; sleep interactions.</p>
     </div>
     <div style="flex:1.1; display:flex; flex-direction:column;">
       <p style="font-size:0.55em; text-align:center; color:#636e72; margin:0 0 2px;">Volcano Plot: Effect Size vs. Significance</p>
@@ -269,9 +268,8 @@
           <tr><th>Interaction</th><th>Disc. d</th><th>Val. d</th><th>Dir.</th></tr>
           <tr><td>RMSSD &times; sleep dur</td><td>1.09</td><td>1.08</td><td style="color:var(--accent);">Same</td></tr>
           <tr><td>RMSSD &times; LF/HF</td><td>0.55</td><td>1.95</td><td style="color:var(--accent);">Same</td></tr>
-          <tr><td>LF/HF &times; sleep qual</td><td>0.89</td><td>1.54</td><td style="color:var(--accent);">Same</td></tr>
         </table>
-        <p style="font-size:0.55em; margin-top:4px;"><span class="highlight">All 3 directions consistent.</span> 2/3 reach p&lt;0.05 in held-out.</p>
+        <p style="font-size:0.55em; margin-top:4px;"><span class="highlight">Both directions consistent.</span> Effect replicates in held-out subjects.</p>
       </div>
       <div class="box-accent" style="padding:10px; margin-top:6px;">
         <h3>Cross-Dataset Transfer</h3>
@@ -398,11 +396,11 @@
   <br>
   <div class="cols" style="justify-content:center;">
     <div>
-      <p class="stat" style="font-size:1.5em;">0.76</p>
+      <p class="stat" style="font-size:1.5em;">0.78</p>
       <p class="stat-label">AUC (HRV &times; sleep)</p>
     </div>
     <div>
-      <p class="stat" style="font-size:1.5em;">+25%</p>
+      <p class="stat" style="font-size:1.5em;">+28%</p>
       <p class="stat-label">vs. standard HRV</p>
     </div>
     <div>
@@ -444,7 +442,7 @@ Reveal.on('ready', () => {
       labels: ['Standard\nHRV', 'Sleep\nOnly', 'Temporal\n(single)', 'HRV x Sleep\n(ours)', 'Cross-dataset\nTransfer'],
       datasets: [{
         label: 'AUC',
-        data: [0.61, 0.63, 0.69, 0.76, 0.66],
+        data: [0.61, 0.63, 0.69, 0.78, 0.66],
         backgroundColor: [GRAY, GRAY, PURPLE, TEAL, 'rgba(0,212,170,0.4)'],
         borderColor: [GRAY, GRAY, PURPLE, TEAL, TEAL],
         borderWidth: 2,
@@ -457,7 +455,7 @@ Reveal.on('ready', () => {
       indexAxis: 'y',
       scales: {
         x: {
-          min: 0.45, max: 0.82,
+          min: 0.45, max: 0.85,
           title: { display: true, text: 'AUC', color: TEXT, font: { size: 13 } },
           grid: { color: 'rgba(0,0,0,0.06)' },
           ticks: { color: TEXT, font: { size: 11 } },
@@ -542,11 +540,11 @@ Reveal.on('ready', () => {
   new Chart(document.getElementById('chartNull'), {
     type: 'bar',
     data: {
-      labels: ['RMSSD slope\n\u00d7 sleep dur', 'RMSSD slope\n\u00d7 LF/HF', 'LF/HF slope\n\u00d7 sleep qual'],
+      labels: ['RMSSD slope\n\u00d7 sleep dur', 'RMSSD slope\n\u00d7 LF/HF'],
       datasets: [
         {
           label: "Real Cohen's d",
-          data: [1.11, 0.92, 1.06],
+          data: [1.11, 0.92],
           backgroundColor: TEAL,
           borderColor: TEAL,
           borderWidth: 1,
@@ -554,7 +552,7 @@ Reveal.on('ready', () => {
         },
         {
           label: 'Null mean d (100 shuffles)',
-          data: [0.26, 0.22, 0.30],
+          data: [0.26, 0.22],
           backgroundColor: 'rgba(0,0,0,0.15)',
           borderColor: 'rgba(0,0,0,0.25)',
           borderWidth: 1,
