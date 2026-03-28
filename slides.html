@@ -412,20 +412,29 @@
 <section>
   <h2>Self-Improving Discovery Engine</h2>
   <div class="flow">
-    <div class="flow-box"><strong>Round 1</strong><br><span class="dim">Llama 3.3 70B generates hypotheses</span></div>
+    <div class="flow-box"><strong>Round 1</strong><br><span class="dim">Broad feature sweep</span></div>
     <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box"><strong>Test 5,000</strong><br><span class="dim">1,731 significant</span></div>
+    <div class="flow-box"><strong>5,000 tested</strong><br><span class="dim">34.6% hit rate</span></div>
     <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box" style="border-color:var(--accent);"><strong>Fine-tune</strong><br><span class="dim">Llama 3.1 8B on results</span></div>
+    <div class="flow-box" style="border-color:var(--accent);"><strong>Feed back to LLM</strong><br><span class="dim">Top findings + nulls</span></div>
     <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box"><strong>Round 2</strong><br><span class="dim">Better hypotheses</span></div>
+    <div class="flow-box" style="border-color:var(--accent);"><strong>Round 2</strong><br><span class="highlight">67.9% hit rate</span></div>
   </div>
   <br>
-  <div class="box-accent">
-    <p style="font-size:0.8em;">Fine-tuned on Nebius H100s: <span class="highlight">190K tokens</span>, 83 training examples</p>
-    <p style="font-size:0.7em;">Training data: successful hypothesis proposals + result interpretations + null result reasoning</p>
-    <p style="font-size:0.7em;">Round 1 complete. Pipeline designed for iterative improvement &mdash; Round 2 comparison pending.</p>
+  <div class="cols">
+    <div class="box">
+      <h3>Round 1 (broad)</h3>
+      <p style="font-size:0.7em;">5,000 hypotheses &bull; 1,731 significant</p>
+      <p style="font-size:0.7em;">Hit rate: <span style="color:#aaa;">34.6%</span></p>
+    </div>
+    <div class="box-accent">
+      <h3>Round 2 (targeted)</h3>
+      <p style="font-size:0.7em;">28 hypotheses &bull; 19 significant</p>
+      <p style="font-size:0.7em;">Hit rate: <span class="highlight">67.9%</span> (+96% improvement)</p>
+      <p style="font-size:0.65em;">Best: lfhf_slope &times; rmssd_std (AUC 0.72)</p>
+    </div>
   </div>
+  <p class="dim" style="margin-top:10px;">Round 2 cost $0.03 on Nebius. Fine-tuned Llama 3.1 8B on 190K tokens (Round 1 data) for future iterations.</p>
 </section>
 
 <!-- SLIDE 12b: Tech Stack -->
