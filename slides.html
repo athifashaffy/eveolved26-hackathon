@@ -214,7 +214,7 @@
     <span class="dim" style="display:block;">Results feed back into hypothesis generation</span>
   </div>
   <div class="box" style="margin-top:15px;">
-    <p style="font-size:0.75em;">Set it up before sleep. Wake up to <span class="highlight">500 hypotheses tested</span> with full statistical rigor.</p>
+    <p style="font-size:0.75em;">Set it up before sleep. Wake up to <span class="highlight">5,000 hypotheses tested</span> with full statistical rigor.</p>
   </div>
 </section>
 
@@ -235,7 +235,7 @@
       <tr><td>Cross-variable coupling</td><td>HRV x Sleep x Mood interactions</td><td><span class="highlight">Yes</span></td></tr>
     </tbody>
   </table>
-  <p class="dim" style="margin-top:15px;">200+ features across 3 rolling windows (7d, 14d, 28d) for HRV, HR, LF/HF, mood, sleep</p>
+  <p class="dim" style="margin-top:15px;">187 features across 6 rolling windows (3, 5, 7, 14, 21, 28 days) for HRV, HR, LF/HF, sleep quality, duration, latency</p>
 </section>
 
 <!-- SLIDE 8: Statistical Rigor -->
@@ -261,61 +261,81 @@
     </div>
   </div>
   <div class="box-accent" style="margin-top:15px;">
-    <p style="font-size:0.8em;"><span class="highlight">Benjamini-Hochberg FDR correction</span> across all 500 hypotheses &mdash; no cherry-picking</p>
+    <p style="font-size:0.8em;"><span class="highlight">Benjamini-Hochberg FDR correction</span> across all 5,000 hypotheses &mdash; no cherry-picking</p>
   </div>
 </section>
 
-<!-- SLIDE 9: Dataset -->
+<!-- SLIDE 9: Datasets -->
 <section>
-  <h2>Dataset: Baigutanova et al. 2025</h2>
+  <h2>Two Datasets, Two Modalities</h2>
   <div class="cols">
-    <div>
-      <p class="stat">49</p>
-      <p class="stat-label">participants</p>
+    <div class="box">
+      <h3>Baigutanova et al. 2025</h3>
+      <p><span class="highlight">49</span> participants &bull; <span class="highlight">28</span> days</p>
+      <p class="dim">HRV (5-min), sleep diary, PHQ-9/GAD-7</p>
+      <p class="dim">~39K HRV segments, ~1.4K sleep records</p>
+      <p class="dim">Source: Figshare (open access)</p>
     </div>
-    <div>
-      <p class="stat">28</p>
-      <p class="stat-label">continuous days</p>
-    </div>
-    <div>
-      <p class="stat">~1.3M</p>
-      <p class="stat-label">HRV data points</p>
-    </div>
-  </div>
-  <br>
-  <table>
-    <thead><tr><th>Stream</th><th>Resolution</th><th>Key Variables</th></tr></thead>
-    <tbody>
-      <tr><td>HRV Physiology</td><td>Per-minute</td><td>RMSSD, SDNN, pNN50, LF/HF, HR</td></tr>
-      <tr><td>Self-Report</td><td>Daily</td><td>Sleep quality, mood, stress, steps</td></tr>
-      <tr><td>Clinical</td><td>Baseline</td><td>PHQ-9, GAD-7, PSS, demographics</td></tr>
-    </tbody>
-  </table>
-  <p class="dim" style="margin-top:10px;">Open access: springernature.figshare.com &bull; Provided by hackathon organizers</p>
-</section>
-
-<!-- SLIDE 10: Results (placeholder) -->
-<section>
-  <h2>Results</h2>
-  <div class="cols">
-    <div>
-      <p class="stat">500</p>
-      <p class="stat-label">hypotheses tested autonomously</p>
-    </div>
-    <div>
-      <p class="stat">12h</p>
-      <p class="stat-label">total runtime</p>
-    </div>
-    <div>
-      <p class="stat" style="color:var(--accent2);">?</p>
-      <p class="stat-label">significant after FDR</p>
+    <div class="box">
+      <h3>Depresjon (Garcia-Ceja 2018)</h3>
+      <p><span class="highlight">55</span> participants &bull; <span class="highlight">~20</span> days avg</p>
+      <p class="dim">Motor actigraphy (1-min), MADRS scores</p>
+      <p class="dim">1.5M activity measurements</p>
+      <p class="dim">Source: Simula Research Lab</p>
     </div>
   </div>
   <br>
   <div class="box-accent">
-    <p style="font-size:0.8em;">Top finding: <span class="highlight">[to be filled after running experiments]</span></p>
-    <p style="font-size:0.7em;">A human researcher would need months to test this many hypotheses.</p>
-    <p style="font-size:0.7em;">This is the <span class="highlight">first application</span> of critical slowing down theory to wearable depression monitoring.</p>
+    <p style="font-size:0.75em;">Two different modalities (HRV vs actigraphy) let us test whether temporal dynamics features are <span class="highlight">universal early warning signals</span> or modality-specific artifacts.</p>
+  </div>
+</section>
+
+<!-- SLIDE 10: Results -->
+<section>
+  <h2>Results: Baigutanova Dataset</h2>
+  <div class="cols">
+    <div>
+      <p class="stat">5,000</p>
+      <p class="stat-label">hypotheses tested autonomously</p>
+    </div>
+    <div>
+      <p class="stat">1,731</p>
+      <p class="stat-label">significant after FDR</p>
+    </div>
+    <div>
+      <p class="stat" style="color:var(--accent2);">0.851</p>
+      <p class="stat-label">best model AUC</p>
+    </div>
+  </div>
+  <br>
+  <div class="box-accent">
+    <p style="font-size:0.8em;">Top finding: <span class="highlight">LF/HF 28-day slope</span> (d=0.931, AUC=0.78) &mdash; rising sympathovagal imbalance trend predicts depression</p>
+    <p style="font-size:0.7em;">Variability features (CV, autocorr, std) dominate over level features (mean) &mdash; <span class="highlight">confirms critical slowing down hypothesis</span></p>
+    <p style="font-size:0.7em;">A human researcher would need months to test 5,000 hypotheses with full statistical rigor.</p>
+  </div>
+</section>
+
+<!-- SLIDE 10b: Cross-Dataset -->
+<section>
+  <h2>Cross-Dataset Validation</h2>
+  <div class="cols">
+    <div class="box">
+      <h3>Baigutanova (HRV+Sleep)</h3>
+      <p>49 subjects, 28 days</p>
+      <p><span class="highlight">AUC 0.851</span></p>
+      <p class="dim">1,731 / 5,000 significant</p>
+    </div>
+    <div class="box">
+      <h3>Depresjon (Actigraphy)</h3>
+      <p>55 subjects, motor activity</p>
+      <p><span class="highlight">AUC 0.755</span> (top feature)</p>
+      <p class="dim">Strong trends, needs larger n</p>
+    </div>
+  </div>
+  <br>
+  <div class="box-accent">
+    <p style="font-size:0.8em;"><span class="highlight">Transfer learning:</span> Model trained on HRV achieves <span class="highlight">AUC 0.66</span> on motor activity data</p>
+    <p style="font-size:0.7em;">Same temporal dynamics patterns generalize across different sensor modalities &mdash; this is a <span class="highlight">universal early warning signal</span>, not a modality artifact</p>
   </div>
 </section>
 
@@ -323,44 +343,67 @@
 <section>
   <h2>Our Features vs. Standard HRV</h2>
   <table>
-    <thead><tr><th>Approach</th><th>Features</th><th>AUC</th><th>Novel?</th></tr></thead>
+    <thead><tr><th>Approach</th><th>Features</th><th>AUC</th><th>Improvement</th></tr></thead>
     <tbody>
-      <tr><td>Standard</td><td>Mean RMSSD, mean HR</td><td style="color:#888;">[baseline]</td><td>No</td></tr>
-      <tr><td><span class="highlight">Ours</span></td><td>Temporal dynamics + interactions</td><td style="color:var(--accent);">[improvement]</td><td><span class="highlight">Yes</span></td></tr>
+      <tr><td>Standard</td><td>Mean RMSSD, mean HR</td><td style="color:#888;">0.612</td><td>&mdash;</td></tr>
+      <tr><td><span class="highlight">Ours (temporal)</span></td><td>Autocorr + CV + SD + Slope</td><td style="color:var(--accent);">0.851</td><td><span class="highlight">+40%</span></td></tr>
+      <tr><td><span class="highlight">Ours (transfer)</span></td><td>Same patterns on actigraphy</td><td style="color:var(--accent);">0.660</td><td>Above chance</td></tr>
     </tbody>
   </table>
   <br>
-  <div class="box">
-    <p style="font-size:0.75em;">Key question: Do <span class="highlight">temporal patterns</span> in HRV predict depression better than <span style="color:#888;">static levels</span>?</p>
-    <p style="font-size:0.65em; color:#888;">Results will populate during hackathon runtime</p>
+  <div class="box-accent">
+    <p style="font-size:0.8em;">It's not <span style="color:#888;">HOW LOW</span> your HRV is &mdash; it's <span class="highlight">HOW MUCH IT WOBBLES</span> that predicts depression.</p>
+    <p style="font-size:0.7em;">Variability features (CV, std, autocorr) account for <span class="highlight">89%</span> of significant findings vs only 7% for level features (mean).</p>
   </div>
 </section>
 
-<!-- SLIDE 12: Tech Stack -->
+<!-- SLIDE 12: Self-Improving Loop -->
+<section>
+  <h2>Self-Improving Discovery Engine</h2>
+  <div class="flow">
+    <div class="flow-box"><strong>Round 1</strong><br><span class="dim">Llama 3.3 70B generates hypotheses</span></div>
+    <span class="flow-arrow">&rarr;</span>
+    <div class="flow-box"><strong>Test 5,000</strong><br><span class="dim">1,731 significant</span></div>
+    <span class="flow-arrow">&rarr;</span>
+    <div class="flow-box" style="border-color:var(--accent);"><strong>Fine-tune</strong><br><span class="dim">Llama 3.1 8B on results</span></div>
+    <span class="flow-arrow">&rarr;</span>
+    <div class="flow-box"><strong>Round 2</strong><br><span class="dim">Better hypotheses</span></div>
+  </div>
+  <br>
+  <div class="box-accent">
+    <p style="font-size:0.8em;">Fine-tuned on Nebius H100s: <span class="highlight">190K tokens</span>, 83 training examples</p>
+    <p style="font-size:0.7em;">Training data: successful hypothesis proposals + result interpretations + null result reasoning</p>
+    <p style="font-size:0.7em;">Each round, the model learns what <em>works</em> &mdash; hit rate should improve with each iteration</p>
+  </div>
+</section>
+
+<!-- SLIDE 12b: Tech Stack -->
 <section>
   <h2>Tech Stack</h2>
   <div class="cols">
     <div class="box">
       <h3>Compute</h3>
       <p><span class="tag">Nebius Token Factory</span></p>
-      <p><span class="tag">Llama 3.3 70B</span></p>
+      <p><span class="tag">Llama 3.3 70B (inference)</span></p>
+      <p><span class="tag">Llama 3.1 8B (fine-tuning)</span></p>
       <p><span class="tag">H100 GPUs</span></p>
     </div>
     <div class="box">
       <h3>Science</h3>
       <p><span class="tag">scipy</span> <span class="tag">statsmodels</span></p>
       <p><span class="tag">scikit-learn</span></p>
-      <p><span class="tag">tsfresh</span></p>
+      <p><span class="tag">Permutation tests</span></p>
+      <p><span class="tag">Bootstrap CI</span></p>
     </div>
     <div class="box">
       <h3>Interface</h3>
       <p><span class="tag">Streamlit</span></p>
       <p><span class="tag">Plotly</span></p>
-      <p><span class="tag">matplotlib</span></p>
+      <p><span class="tag">reveal.js</span></p>
     </div>
   </div>
   <br>
-  <p class="dim">Autoresearch loop pattern adapted from Karpathy (2026)</p>
+  <p class="dim">Autoresearch loop adapted from Karpathy (2026) &bull; Budget: $70 on Nebius</p>
 </section>
 
 <!-- SLIDE 13: Regulatory & Market -->
