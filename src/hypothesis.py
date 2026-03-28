@@ -259,6 +259,10 @@ class HypothesisEvaluator:
         X = features_df[[feature_col]].copy()
         if hypothesis.combination and hypothesis.combination in features_df.columns:
             X[hypothesis.combination] = features_df[hypothesis.combination]
+            # Add true interaction term (product)
+            X[f"{feature_col}_x_{hypothesis.combination}"] = (
+                features_df[feature_col] * features_df[hypothesis.combination]
+            )
 
         y = outcome_series.values
         subjects = subject_ids.values
@@ -308,16 +312,22 @@ class HypothesisEvaluator:
         except ValueError:
             return self._null_result(hypothesis, "AUC computation failed")
 
-        # Cohen's d (effect size)
-        feature_vals = X[feature_col].values
-        group_pos = feature_vals[y.astype(bool)]
-        group_neg = feature_vals[~y.astype(bool)]
+        # Aggregate to subject level for Cohen's d and permutation test
+        subj_feat_mean = pd.DataFrame({
+            "subject": subjects, "feat": X[feature_col].values, "label": y
+        }).groupby("subject").agg({"feat": "mean", "label": "first"})
+        subj_feat = subj_feat_mean["feat"].values
+        subj_label = subj_feat_mean["label"].values
+
+        # Cohen's d (effect size) — subject-level
+        group_pos = subj_feat[subj_label.astype(bool)]
+        group_neg = subj_feat[~subj_label.astype(bool)]
         cohens_d = self._cohens_d(group_pos, group_neg)
 
-        # Permutation test for p-value
-        p_value = self._permutation_test(feature_vals, y, n_permutations=1000)
+        # Permutation test — subject-level
+        p_value = self._permutation_test(subj_feat, subj_label, n_permutations=1000)
 
-        # Bootstrap 95% CI for AUC
+        # Bootstrap 95% CI for AUC — subject-level (one prediction per subject)
         ci_lower, ci_upper = self._bootstrap_ci(y_true_all, y_pred_all)
 
         status = "PENDING"  # Will be set after FDR correction

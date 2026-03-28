@@ -71,16 +71,11 @@ def train_and_evaluate(X, y, groups, dataset_name, feature_cols):
     """Train with LOGO-CV and return metrics."""
     logo = LeaveOneGroupOut()
 
-    # Impute NaN with column median
-    for j in range(X.shape[1]):
-        col = X[:, j]
-        if np.any(np.isnan(col)):
-            median = np.nanmedian(col)
-            col[np.isnan(col)] = median if not np.isnan(median) else 0
-            X[:, j] = col
-
-    # Pipeline: scale → select top features → classify
+    # Pipeline: impute → scale → select top features → classify
+    # Imputation is INSIDE the pipeline so it's per-fold (no leakage)
+    from sklearn.impute import SimpleImputer
     pipe = Pipeline([
+        ("imputer", SimpleImputer(strategy="median")),
         ("scaler", StandardScaler()),
         ("select", SelectKBest(f_classif, k=min(20, X.shape[1]))),
         ("clf", LogisticRegression(C=0.1, max_iter=1000, class_weight="balanced")),

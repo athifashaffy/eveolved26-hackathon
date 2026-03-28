@@ -134,6 +134,83 @@ def loso_cv(X, y, subjects, model_fn, model_name="Model"):
     }
 
 
+def loso_cv_with_selection(X, y, subjects, model_fn, k=50, model_name="Model"):
+    """LOSO-CV with feature selection INSIDE the loop (no leakage)."""
+    unique_subjects = np.unique(subjects)
+    y_true_all, y_pred_all, y_prob_all = [], [], []
+    all_selected = []
+
+    for held_out in unique_subjects:
+        train_mask = subjects != held_out
+        test_mask = subjects == held_out
+
+        if y[train_mask].sum() == 0 or y[train_mask].sum() == train_mask.sum():
+            continue
+        if test_mask.sum() == 0:
+            continue
+
+        X_train_raw = X[train_mask]
+        X_test_raw = X[test_mask]
+
+        # Impute NaN per fold
+        train_medians = np.nanmedian(X_train_raw, axis=0)
+        train_medians = np.nan_to_num(train_medians, nan=0.0)
+        for j in range(X_train_raw.shape[1]):
+            X_train_raw[np.isnan(X_train_raw[:, j]), j] = train_medians[j]
+            X_test_raw[np.isnan(X_test_raw[:, j]), j] = train_medians[j]
+
+        # Scale per fold
+        scaler = StandardScaler()
+        X_train = scaler.fit_transform(X_train_raw)
+        X_test = scaler.transform(X_test_raw)
+
+        # Feature selection per fold
+        selector = SelectKBest(f_classif, k=min(k, X_train.shape[1]))
+        X_train = selector.fit_transform(X_train, y[train_mask])
+        X_test = selector.transform(X_test)
+        all_selected.append(set(np.where(selector.get_support())[0]))
+
+        X_train = np.nan_to_num(X_train, nan=0.0)
+        X_test = np.nan_to_num(X_test, nan=0.0)
+
+        model = model_fn()
+        try:
+            model.fit(X_train, y[train_mask])
+            preds = model.predict(X_test)
+            probs = model.predict_proba(X_test)[:, 1] if hasattr(model, "predict_proba") else preds
+            y_true_all.extend(y[test_mask])
+            y_pred_all.extend(preds)
+            y_prob_all.extend(probs)
+        except Exception:
+            continue
+
+    y_true_all = np.array(y_true_all)
+    y_pred_all = np.array(y_pred_all)
+    y_prob_all = np.array(y_prob_all)
+
+    if len(y_true_all) < 10 or len(np.unique(y_true_all)) < 2:
+        return None
+
+    try:
+        auc = roc_auc_score(y_true_all, y_prob_all)
+    except ValueError:
+        auc = 0.5
+
+    return {
+        "model": model_name,
+        "auc": round(auc, 4),
+        "accuracy": round(accuracy_score(y_true_all, y_pred_all), 4),
+        "f1": round(f1_score(y_true_all, y_pred_all, zero_division=0), 4),
+        "precision": round(precision_score(y_true_all, y_pred_all, zero_division=0), 4),
+        "recall": round(recall_score(y_true_all, y_pred_all, zero_division=0), 4),
+        "n_subjects": len(unique_subjects),
+        "n_positive": int(y_true_all.sum()),
+        "n_predictions": len(y_true_all),
+        "y_true": y_true_all,
+        "y_prob": y_prob_all,
+    }
+
+
 def get_top_features_from_results():
     """Get top features from the autoresearch results."""
     results_path = os.path.join(RESULTS_DIR, "results.tsv")
@@ -298,28 +375,27 @@ def run_training():
             else:
                 log(f"    FAILED (insufficient data)")
 
-    # ---- Also train with SelectKBest ----
-    log("\nTraining with automatic feature selection (SelectKBest)...")
+    # ---- Also train with SelectKBest INSIDE CV loop (no leakage) ----
+    log("\nTraining with feature selection INSIDE CV loop...")
     for k in [5, 10, 20, 50]:
         X_all = subject_features[all_feat_cols].values
         X_all = np.nan_to_num(X_all, nan=0.0)
+        actual_k = min(k, X_all.shape[1])
 
-        try:
-            selector = SelectKBest(f_classif, k=min(k, X_all.shape[1]))
-            X_selected = selector.fit_transform(X_all, y)
-            selected_feats = [all_feat_cols[i] for i in selector.get_support(indices=True)]
-
-            for model_name, model_fn in models.items():
-                label = f"{model_name} + top{k}_selected"
-                result = loso_cv(X_selected, y, subjects, model_fn, model_name=label)
+        for model_name, model_fn in models.items():
+            label = f"{model_name} + top{k}_selected"
+            try:
+                result = loso_cv_with_selection(
+                    X_all, y, subjects, model_fn, k=actual_k, model_name=label
+                )
                 if result:
                     result["feature_set"] = f"top{k}_selected"
                     result["n_features"] = k
-                    result["selected_features"] = selected_feats
+                    result["selected_features"] = result.get("selected_features", [])
                     all_results.append(result)
                     log(f"  {label}: AUC={result['auc']:.3f}  F1={result['f1']:.3f}")
-        except Exception as e:
-            log(f"  SelectKBest k={k} failed: {e}")
+            except Exception as e:
+                log(f"  SelectKBest k={k} {model_name} failed: {e}")
 
     # ---- Compile and save results ----
     log("\n" + "=" * 70)

@@ -205,19 +205,24 @@ def compute_new_window_features(merged_df: pd.DataFrame, window: int, base_signa
 
 
 def compute_composite_feature(features_df: pd.DataFrame, component_features: list[str], name: str) -> tuple:
-    """Compute a composite index by averaging z-scored component features."""
+    """Compute a composite index by averaging per-subject z-scored component features.
+
+    Z-scoring is done per-subject to avoid leaking population statistics.
+    The evaluator's LOSO-CV will handle train/test separation.
+    """
     available = [f for f in component_features if f in features_df.columns]
     if len(available) < 2:
         return None, None
 
+    # Z-score within each subject (no cross-subject leakage)
     z_scored = pd.DataFrame(index=features_df.index)
     for f in available:
-        col = features_df[f]
-        mean, std = col.mean(), col.std()
-        if std > 0:
-            z_scored[f] = (col - mean) / std
-        else:
-            z_scored[f] = 0.0
+        col = features_df[f].copy()
+        # Per-subject z-scoring
+        subj_groups = features_df.groupby("subject_id")[f]
+        z_scored[f] = subj_groups.transform(
+            lambda x: (x - x.mean()) / x.std() if x.std() > 0 else 0.0
+        )
 
     composite = z_scored.mean(axis=1)
     result_df = features_df[["subject_id"]].copy()

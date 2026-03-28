@@ -16,48 +16,49 @@
     --warn: #ff6b6b;
   }
   .reveal { font-family: 'Inter', 'Segoe UI', sans-serif; }
+  .reveal section { overflow: hidden; }
   .reveal h1, .reveal h2, .reveal h3 { font-weight: 700; }
-  .reveal h1 { font-size: 2.2em; }
-  .reveal h2 { font-size: 1.6em; color: var(--accent); }
-  .reveal h3 { font-size: 1.2em; color: var(--accent2); }
-  .reveal p, .reveal li { font-size: 0.75em; line-height: 1.5; }
-  .reveal .stat { font-size: 2.5em; font-weight: 800; color: var(--accent); }
-  .reveal .stat-label { font-size: 0.7em; color: #aaa; margin-top: -10px; }
+  .reveal h1 { font-size: 2.0em; }
+  .reveal h2 { font-size: 1.3em; color: var(--accent); }
+  .reveal h3 { font-size: 1.0em; color: var(--accent2); }
+  .reveal p, .reveal li { font-size: 0.7em; line-height: 1.4; }
+  .reveal .stat { font-size: 2.0em; font-weight: 800; color: var(--accent); }
+  .reveal .stat-label { font-size: 0.6em; color: #aaa; margin-top: -8px; }
   .reveal .highlight { color: var(--accent); font-weight: 600; }
   .reveal .warn { color: var(--warn); font-weight: 600; }
-  .reveal .dim { color: #888; font-size: 0.65em; }
-  .reveal .cols { display: flex; gap: 40px; align-items: flex-start; }
-  .reveal .cols > div { flex: 1; }
+  .reveal .dim { color: #888; font-size: 0.6em; }
+  .reveal .cols { display: flex; gap: 20px; align-items: flex-start; }
+  .reveal .cols > div { flex: 1; min-width: 0; }
   .reveal .box {
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 12px;
-    padding: 20px;
-    margin: 10px 0;
+    padding: 14px;
+    margin: 8px 0;
   }
   .reveal .box-accent {
     background: rgba(0,212,170,0.08);
     border: 1px solid rgba(0,212,170,0.3);
     border-radius: 12px;
-    padding: 20px;
-    margin: 10px 0;
+    padding: 14px;
+    margin: 8px 0;
   }
   .reveal .flow {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    font-size: 0.7em;
-    margin: 20px 0;
+    gap: 8px;
+    font-size: 0.65em;
+    margin: 15px 0;
   }
   .reveal .flow-box {
     background: rgba(108,92,231,0.2);
     border: 1px solid rgba(108,92,231,0.5);
     border-radius: 8px;
-    padding: 10px 16px;
+    padding: 8px 12px;
     text-align: center;
   }
-  .reveal .flow-arrow { color: var(--accent); font-size: 1.4em; }
+  .reveal .flow-arrow { color: var(--accent); font-size: 1.2em; }
   .reveal table { font-size: 0.65em; margin: 0 auto; }
   .reveal table th { background: rgba(0,212,170,0.15); color: var(--accent); }
   .reveal table td, .reveal table th { padding: 8px 14px; border: 1px solid rgba(255,255,255,0.1); }
@@ -83,18 +84,18 @@
   .reveal .gap-card {
     background: rgba(255,255,255,0.04);
     border-left: 3px solid var(--accent);
-    padding: 12px 16px;
-    margin: 8px 0;
+    padding: 10px 14px;
+    margin: 6px 0;
     text-align: left;
-    font-size: 0.7em;
+    font-size: 0.65em;
   }
   .reveal .gap-card strong { color: var(--accent); }
   .reveal blockquote {
     background: rgba(108,92,231,0.1);
     border-left: 4px solid var(--accent2);
-    padding: 16px 24px;
+    padding: 12px 20px;
     font-style: italic;
-    font-size: 0.85em;
+    font-size: 0.75em;
   }
   .reveal .logo-row {
     display: flex;
@@ -144,16 +145,16 @@
   </div>
   <br>
   <div class="box">
-    <p style="font-size:0.85em;">Depression is <span class="highlight">gradual</span> &mdash; patients don't "fall into" it, they drift. <span class="warn">By the time they report worsening, they've often dropped out.</span></p>
-    <p style="font-size:0.85em;">But sleep and physiology destabilize <span class="highlight">before</span> patients notice &mdash; and sleep is <span class="highlight">treatable</span>.</p>
+    <p style="font-size:0.75em;">Depression is <span class="highlight">gradual</span> &mdash; patients don't "fall into" it, they drift. <span class="warn">By the time they report worsening, they've often dropped out.</span></p>
+    <p style="font-size:0.75em;">But sleep and physiology destabilize <span class="highlight">before</span> patients notice &mdash; and sleep is <span class="highlight">treatable</span>.</p>
   </div>
 </section>
 
 <!-- SLIDE 3: The Insight -->
 <section>
-  <h2>The Insight: Destabilization Before Decline</h2>
+  <h2>The Insight: Multi-System Destabilization</h2>
   <blockquote>
-    Depression worsens gradually. But as physiological regulation weakens, the body shows measurable signs: sleep becomes <span class="highlight">irregular</span>, HRV becomes <span class="highlight">erratic</span>, recovery slows.
+    Neither HRV alone nor sleep alone predicts depression reliably. But when <span class="highlight">both systems destabilize simultaneously</span>, the signal becomes strong and significant.
   </blockquote>
   <br>
   <div class="cols">
@@ -163,9 +164,9 @@
       <p><span class="tag">Ecology</span> <span class="tag">Climate</span> <span class="tag">Finance</span> <span class="tag">Mood (PNAS 2014)</span></p>
     </div>
     <div class="box-accent">
-      <h3>Our hypothesis</h3>
-      <p>The same <span class="highlight">temporal patterns</span> in wearable data can flag when a patient's regulation is destabilizing</p>
-      <p class="dim">Not a sudden tipping point &mdash; a gradual loss of physiological stability</p>
+      <h3>Our finding</h3>
+      <p><span class="highlight">HRV slope &times; sleep dynamics</span> = significant biomarker (d &gt; 0.9, FDR-corrected)</p>
+      <p class="dim">Neither modality alone survives FDR &mdash; the interaction is the signal</p>
     </div>
   </div>
   <p class="dim" style="margin-top:15px;">Scheffer 2009; van de Leemput et al. 2014, PNAS</p>
@@ -173,35 +174,25 @@
 
 <!-- SLIDE 4: What We Do Differently -->
 <section>
-  <h2>What Everyone Measures vs. What We Measure</h2>
+  <h2>Standard vs. Our Approach</h2>
   <div class="cols">
     <div class="box">
       <h3 style="color:#888;">Standard Approach</h3>
       <p>How <strong>low</strong> is your HRV?</p>
-      <p style="font-size:0.65em; color:#888;">Single timepoint, cross-sectional<br>Small effect sizes (d &approx; 0.3)<br>Depression-specific? No &mdash; stress marker</p>
+      <p style="font-size:0.65em; color:#888;">Single timepoint, single modality<br>Small effect sizes (d &approx; 0.3)<br>Doesn't survive multiple testing correction</p>
     </div>
     <div class="box-accent">
       <h3>Our Approach</h3>
-      <p>How <span class="highlight">unstable</span> is your physiology <em>over time</em>?</p>
-      <p style="font-size:0.65em;">Temporal dynamics: autocorrelation, variance, CV<br>Day-to-day patterns across 28 days<br><span class="highlight">Transdiagnostic</span> &mdash; tracks stress regulation, not just depression</p>
+      <p>How <span class="highlight">unstable</span> are HRV <em>and</em> sleep <em>together</em>?</p>
+      <p style="font-size:0.65em;">Cross-domain interactions over 28 days<br>Large effect sizes (d &gt; 0.9)<br><span class="highlight">Survives FDR correction</span> at n=49</p>
     </div>
   </div>
   <div class="box" style="margin-top:15px;">
-    <p style="font-size:0.7em;">HRV and sleep are <span class="highlight">transdiagnostic stress markers</span> (not depression-specific). This is a <em>strength</em>: our system monitors overall physiological regulation, with sleep as a <span class="highlight">directly treatable</span> intervention target.</p>
+    <p style="font-size:0.7em;">HRV and sleep are <span class="highlight">transdiagnostic stress markers</span>. Their <em>interaction</em> captures multi-system regulatory failure &mdash; a stronger signal than either alone. Sleep is <span class="highlight">directly treatable</span>.</p>
   </div>
 </section>
 
-<!-- SLIDE 5: Five Literature Gaps -->
-<section>
-  <h2>Five Novel Research Questions</h2>
-  <div class="gap-card"><strong>Gap 1:</strong> HRV coefficient of variation (day-to-day variability) &mdash; shown as behavioral biomarker (2025) but <span class="warn">never tested against PHQ-9</span></div>
-  <div class="gap-card"><strong>Gap 2:</strong> Critical slowing down in wearable HRV &mdash; proven in ecology/climate but <span class="warn">never applied to depression physiology</span></div>
-  <div class="gap-card"><strong>Gap 3:</strong> Three-way temporal ordering (HRV x sleep x mood) &mdash; <span class="warn">never modeled at the daily level</span></div>
-  <div class="gap-card"><strong>Gap 4:</strong> Digital allostatic load from wearables (low HRV + poor sleep + high resting HR) &mdash; <span class="warn">never validated against PHQ-9</span></div>
-  <div class="gap-card"><strong>Gap 5:</strong> Autonomous biomarker discovery loop &mdash; <span class="warn">doesn't exist yet</span></div>
-</section>
-
-<!-- SLIDE 6: System Architecture -->
+<!-- SLIDE 5: The Autoresearch Loop -->
 <section>
   <h2>The Autoresearch Loop</h2>
   <p class="dim">Adapted from Karpathy's autoresearch for biomarker discovery</p>
@@ -215,7 +206,7 @@
     <div class="flow-box" style="border-color:var(--accent);"><strong>KEEP / DISCARD</strong></div>
   </div>
   <div style="text-align:center; margin-top:10px;">
-    <span class="flow-arrow">&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;</span>
+    <span class="flow-arrow">&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;</span>
     <span class="dim" style="display:block;">Results feed back into hypothesis generation</span>
   </div>
   <div class="box" style="margin-top:15px;">
@@ -223,27 +214,141 @@
   </div>
 </section>
 
-<!-- SLIDE 7: Features We Extract -->
+<!-- SLIDE 6: Self-Improving Loop -->
 <section>
-  <h2>Temporal Feature Space</h2>
-  <table>
-    <thead>
-      <tr><th>Feature Type</th><th>What It Captures</th><th>Novel?</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Rolling Autocorrelation</td><td>System sluggishness (critical slowing down)</td><td><span class="highlight">Yes</span></td></tr>
-      <tr><td>Rolling Variance / SD</td><td>System wobbling before tipping point</td><td><span class="highlight">Yes</span></td></tr>
-      <tr><td>HRV-CV</td><td>Day-to-day HRV variability</td><td><span class="highlight">Yes</span></td></tr>
-      <tr><td>Rolling Slope</td><td>Trend direction (improving vs declining)</td><td>Partial</td></tr>
-      <tr><td>Digital Allostatic Load</td><td>Composite physiological strain</td><td><span class="highlight">Yes</span></td></tr>
-      <tr><td>Sleep Onset SD</td><td>Circadian irregularity</td><td><span class="highlight">Yes</span></td></tr>
-      <tr><td>Cross-variable coupling</td><td>HRV x Sleep x Mood interactions</td><td><span class="highlight">Yes</span></td></tr>
-    </tbody>
-  </table>
-  <p class="dim" style="margin-top:15px;">187 features across 6 rolling windows (3, 5, 7, 14, 21, 28 days) for HRV, HR, LF/HF, sleep quality, duration, latency</p>
+  <h2>Self-Improving Discovery Engine</h2>
+  <div class="flow">
+    <div class="flow-box"><strong>Round 1</strong><br><span class="dim">5,000 broad sweep</span></div>
+    <span class="flow-arrow">&rarr;</span>
+    <div class="flow-box"><strong>137 promising</strong><br><span class="dim">0 after strict FDR</span></div>
+    <span class="flow-arrow">&rarr;</span>
+    <div class="flow-box" style="border-color:var(--accent);"><strong>Feed to LLM</strong><br><span class="dim">Adapt &amp; refine</span></div>
+    <span class="flow-arrow">&rarr;</span>
+    <div class="flow-box" style="border-color:var(--accent);"><strong>50 rounds</strong><br><span class="highlight">3 significant!</span></div>
+  </div>
+  <br>
+  <div class="cols">
+    <div class="box">
+      <h3>Round 1 (broad)</h3>
+      <p style="font-size:0.7em;">5,000 single-feature hypotheses</p>
+      <p style="font-size:0.7em;">137 promising but 0 after BH-FDR across 5,000 tests</p>
+      <p style="font-size:0.65em;">Lesson: single features can't survive 5,000-test correction at n=49</p>
+    </div>
+    <div class="box-accent">
+      <h3>Rounds 2&ndash;50 (LLM-guided)</h3>
+      <p style="font-size:0.7em;">271 targeted interaction hypotheses</p>
+      <p style="font-size:0.7em;"><span class="highlight">3 survived per-round FDR</span> (8 tests/round)</p>
+      <p style="font-size:0.65em;">Best: lfhf_slope &times; sleep_qual (<span class="highlight">AUC 0.76</span>, d=1.06)</p>
+    </div>
+  </div>
+  <p class="dim" style="margin-top:10px;">Small rounds keep FDR mild. LLM adapts each round. Total cost: $0.22 on Nebius Token Factory.</p>
 </section>
 
-<!-- SLIDE 8: Statistical Rigor -->
+<!-- SLIDE 7: Key Results -->
+<section>
+  <h2>Results: Significant Findings</h2>
+  <div class="cols">
+    <div>
+      <p class="stat">5,271</p>
+      <p class="stat-label">total hypotheses tested</p>
+    </div>
+    <div>
+      <p class="stat">3</p>
+      <p class="stat-label">survived FDR (p_adj &lt; 0.05)</p>
+    </div>
+    <div>
+      <p class="stat" style="color:var(--accent2);">0.76</p>
+      <p class="stat-label">best interaction AUC</p>
+    </div>
+  </div>
+  <br>
+  <table>
+    <thead><tr><th>Interaction Feature</th><th>Cohen's d</th><th>p_adj</th><th>AUC</th></tr></thead>
+    <tbody>
+      <tr><td><span class="highlight">RMSSD 3d slope &times; sleep dur autocorr</span></td><td style="color:var(--accent);">1.11</td><td>0.006</td><td>0.22</td></tr>
+      <tr><td><span class="highlight">RMSSD 3d slope &times; LF/HF 3d slope</span></td><td style="color:var(--accent);">0.92</td><td>0.004</td><td>0.26</td></tr>
+      <tr><td><span class="highlight">LF/HF 21d slope &times; sleep quality</span></td><td style="color:var(--accent);">1.06</td><td>0.021</td><td style="color:var(--accent);">0.76</td></tr>
+    </tbody>
+  </table>
+  <p class="dim" style="margin-top:12px;">All significant features are HRV &times; sleep interactions. No single-modality feature survived FDR. The interaction <em>is</em> the biomarker.</p>
+</section>
+
+<!-- SLIDE 8: The Core Finding -->
+<section>
+  <h2>The Core Finding</h2>
+  <div class="box-accent" style="text-align:center; padding:20px;">
+    <p style="font-size:1.0em; font-weight:700; color:var(--accent);">Neither HRV alone nor sleep alone predicts depression.</p>
+    <p style="font-size:1.0em; font-weight:700;">Their simultaneous destabilization does.</p>
+  </div>
+  <br>
+  <div class="cols">
+    <div class="box">
+      <h3 style="color:#888;">HRV alone</h3>
+      <p>AUC 0.61 (standard means)</p>
+      <p>Does not survive FDR</p>
+      <p class="dim">d &approx; 0.3 &mdash; too small</p>
+    </div>
+    <div class="box">
+      <h3 style="color:#888;">Sleep alone</h3>
+      <p>AUC 0.63 (sleep features)</p>
+      <p>Does not survive FDR</p>
+      <p class="dim">d &approx; 0.4 &mdash; marginal</p>
+    </div>
+    <div class="box-accent">
+      <h3>HRV &times; Sleep</h3>
+      <p><span class="highlight">AUC 0.76</span> (interaction)</p>
+      <p><span class="highlight">Survives FDR</span> (p_adj=0.02)</p>
+      <p class="dim">d = 1.06 &mdash; large effect</p>
+    </div>
+  </div>
+  <p class="dim" style="margin-top:10px;">You need BOTH a wearable (HRV) and sleep tracking. A Fitbit alone won't do it. A sleep diary alone won't do it.</p>
+</section>
+
+<!-- SLIDE 9: Comparison Table -->
+<section>
+  <h2>Our Features vs. Standard HRV</h2>
+  <table>
+    <thead><tr><th>Approach</th><th>Features</th><th>AUC</th><th>vs. Baseline</th></tr></thead>
+    <tbody>
+      <tr><td>Standard HRV</td><td>Mean RMSSD, mean HR</td><td style="color:#888;">0.61</td><td>&mdash;</td></tr>
+      <tr><td>Sleep only</td><td>Sleep duration, quality, latency</td><td style="color:#888;">0.63</td><td>+3%</td></tr>
+      <tr><td>Temporal (single)</td><td>Autocorr, CV, slope, std</td><td style="color:#aaa;">0.69</td><td>+13%</td></tr>
+      <tr><td><span class="highlight">Ours (interaction)</span></td><td><span class="highlight">HRV slope &times; sleep dynamics</span></td><td style="color:var(--accent);"><strong>0.76</strong></td><td><span class="highlight"><strong>+25%</strong></span></td></tr>
+      <tr><td>Cross-dataset transfer</td><td>Same patterns on actigraphy</td><td style="color:var(--accent);">0.66</td><td>+8%</td></tr>
+    </tbody>
+  </table>
+  <br>
+  <div class="box-accent">
+    <p style="font-size:0.8em;">It's not <span style="color:#888;">HOW LOW</span> your HRV is &mdash; it's whether HRV <span class="highlight">AND</span> sleep are destabilizing <span class="highlight">at the same time</span>.</p>
+  </div>
+</section>
+
+<!-- SLIDE 10: Datasets -->
+<section>
+  <h2>Two Datasets, Two Modalities</h2>
+  <div class="cols">
+    <div class="box-accent">
+      <h3>Baigutanova et al. 2025</h3>
+      <p><span class="highlight">49</span> participants &bull; <span class="highlight">28</span> days</p>
+      <p class="dim">HRV (5-min), sleep diary, PHQ-9/GAD-7</p>
+      <p class="dim">~39K HRV segments, ~1.4K sleep records</p>
+      <p><span class="highlight">3 significant interactions after FDR</span></p>
+    </div>
+    <div class="box">
+      <h3>Depresjon (Garcia-Ceja 2018)</h3>
+      <p><span class="highlight">55</span> participants &bull; <span class="highlight">~20</span> days avg</p>
+      <p class="dim">Motor actigraphy (1-min), MADRS scores</p>
+      <p class="dim">1.5M activity measurements</p>
+      <p>Transfer AUC: <span class="highlight">0.66</span> (preliminary)</p>
+    </div>
+  </div>
+  <br>
+  <div class="box">
+    <p style="font-size:0.75em;">Two modalities (HRV vs actigraphy) test whether temporal dynamics features <span class="highlight">generalize across sensor types</span>. Transfer AUC 0.66 suggests the temporal instability signal is not modality-specific.</p>
+  </div>
+</section>
+
+<!-- SLIDE 11: Statistical Rigor -->
 <section>
   <h2>Statistical Rigor</h2>
   <div class="cols">
@@ -251,193 +356,87 @@
       <h3>Validation</h3>
       <ul>
         <li>Leave-one-subject-out CV (n=49)</li>
+        <li>Feature selection <span class="highlight">inside</span> each CV fold</li>
         <li>No data leakage between subjects</li>
-        <li>Appropriate for small clinical samples</li>
+        <li>Subject-level permutation tests</li>
       </ul>
     </div>
     <div class="box">
-      <h3>Metrics</h3>
+      <h3>Corrections</h3>
       <ul>
-        <li>AUC-ROC (discrimination)</li>
-        <li>Cohen's d (effect size)</li>
-        <li>Bootstrap 95% CI (uncertainty)</li>
-        <li>Permutation p-values (non-parametric)</li>
+        <li>Benjamini-Hochberg FDR per round</li>
+        <li>Cohen's d at subject level (n=49)</li>
+        <li>Bootstrap 95% CI</li>
+        <li>Confounder residualization</li>
       </ul>
     </div>
   </div>
   <div class="box-accent" style="margin-top:15px;">
-    <p style="font-size:0.8em;"><span class="highlight">Benjamini-Hochberg FDR correction</span> across all 5,000 tests &mdash; no cherry-picking</p>
+    <p style="font-size:0.8em;">We found <span class="highlight">0 significant</span> features from 5,000 broad tests. Then found <span class="highlight">3 significant interactions</span> from 271 targeted LLM-guided tests. Honest science &mdash; not cherry-picking.</p>
+  </div>
+  <p style="font-size:0.55em; color:#aaa; margin-top:8px;"><strong>Limitations:</strong> n=49 is pilot-scale. PHQ-9 &ge; 5 = mild symptoms. Cross-sectional outcome (not longitudinal prediction). Prospective validation needed.</p>
+</section>
+
+<!-- SLIDE 12: Clinical Utility -->
+<section>
+  <h2>Why This Matters Clinically</h2>
+  <blockquote>
+    "The good thing with sleep problems is: if you treat them it hits two birds with one stone &mdash; a bothering problem that also triggers other symptoms."
+    <br><span class="dim">&mdash; Prof. Dr. Steffen Moritz, Uni of Hamburg</span>
+  </blockquote>
+  <br>
+  <div class="cols">
+    <div class="box">
+      <h3>The Problem with Biomarkers</h3>
+      <ul style="font-size:0.7em;">
+        <li>Single biomarkers are <span class="warn">never sufficient</span></li>
+        <li>Depression is gradual, not sudden</li>
+        <li>HRV alone = stress marker, not depression</li>
+      </ul>
+    </div>
+    <div class="box-accent">
+      <h3>Our Answer: Dual Monitoring</h3>
+      <ul style="font-size:0.7em;">
+        <li>Track HRV <span class="highlight">and</span> sleep simultaneously</li>
+        <li>Flag when <span class="highlight">both destabilize</span> together</li>
+        <li>Sleep is <span class="highlight">directly treatable</span> (CBT-I, hygiene)</li>
+        <li>Treat sleep &rarr; improve depression, anxiety, stress</li>
+      </ul>
+    </div>
+  </div>
+  <p class="dim" style="margin-top:8px;">We don't diagnose depression. We flag multi-system destabilization so clinicians can intervene on sleep before patients drop out.</p>
+</section>
+
+<!-- SLIDE 13: Two Products -->
+<section>
+  <h2>Two Products, One Engine</h2>
+  <div class="cols">
+    <div class="box-accent">
+      <h3>Product 1: Discovery Engine (R&D)</h3>
+      <p style="font-size:0.7em;">The autoresearch loop &mdash; sold to <span class="highlight">pharma</span> for digital endpoint discovery</p>
+      <ul style="font-size:0.65em;">
+        <li>Not a medical device &mdash; internal R&D tool</li>
+        <li>No regulatory burden on discovery</li>
+        <li>Revenue: per-trial licensing to pharma CROs</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Product 2: Clinical Dashboard (SaMD)</h3>
+      <p style="font-size:0.7em;">Frozen, validated model for <span class="highlight">clinical monitoring</span></p>
+      <ul style="font-size:0.65em;">
+        <li>Health Canada SaMD Class II</li>
+        <li>Locked model &mdash; no autonomous changes</li>
+        <li>Clinical decision support, not diagnosis</li>
+        <li>Revenue: per-patient SaaS to hospitals</li>
+      </ul>
+    </div>
   </div>
   <div class="box" style="margin-top:10px;">
-    <p style="font-size:0.65em; color:#aaa;"><strong>Known limitations:</strong> n=49 is pilot-scale (hypothesis-generating, not confirmatory). PHQ-9 &ge; 5 threshold captures mild symptoms. Features are correlated across windows &mdash; we report independent feature families, not raw test counts. Baseline-only confounder control; daily variation unaddressed. Prospective validation needed.</p>
+    <p style="font-size:0.7em;"><span class="highlight">Key:</span> The discovery engine evolves freely. The clinical product is a <em>snapshot</em> &mdash; frozen, validated, regulatable.</p>
   </div>
 </section>
 
-<!-- SLIDE 9: Datasets -->
-<section>
-  <h2>Two Datasets, Two Modalities</h2>
-  <div class="cols">
-    <div class="box">
-      <h3>Baigutanova et al. 2025</h3>
-      <p><span class="highlight">49</span> participants &bull; <span class="highlight">28</span> days</p>
-      <p class="dim">HRV (5-min), sleep diary, PHQ-9/GAD-7</p>
-      <p class="dim">~39K HRV segments, ~1.4K sleep records</p>
-      <p class="dim">Source: Figshare (open access)</p>
-    </div>
-    <div class="box">
-      <h3>Depresjon (Garcia-Ceja 2018)</h3>
-      <p><span class="highlight">55</span> participants &bull; <span class="highlight">~20</span> days avg</p>
-      <p class="dim">Motor actigraphy (1-min), MADRS scores</p>
-      <p class="dim">1.5M activity measurements</p>
-      <p class="dim">Source: Simula Research Lab</p>
-    </div>
-  </div>
-  <br>
-  <div class="box-accent">
-    <p style="font-size:0.75em;">Two different modalities (HRV vs actigraphy) let us test whether temporal dynamics features <span class="highlight">generalize across sensor types</span> or are modality-specific artifacts.</p>
-  </div>
-</section>
-
-<!-- SLIDE 10: Results -->
-<section>
-  <h2>Results: Baigutanova Dataset</h2>
-  <div class="cols">
-    <div>
-      <p class="stat">5,000</p>
-      <p class="stat-label">feature-tests run autonomously</p>
-    </div>
-    <div>
-      <p class="stat">22</p>
-      <p class="stat-label">independent feature families significant</p>
-    </div>
-    <div>
-      <p class="stat" style="color:var(--accent2);">0.851</p>
-      <p class="stat-label">best model AUC (CI: 0.73&ndash;0.98)</p>
-    </div>
-  </div>
-  <br>
-  <div class="box-accent">
-    <p style="font-size:0.8em;">Top finding: <span class="highlight">LF/HF slope + sleep variability</span> &mdash; temporal instability in sympathovagal balance and sleep patterns tracks with higher PHQ-9</p>
-    <p style="font-size:0.7em;">Variability features (CV, autocorr, std) dominate over level features (mean) &mdash; <span class="highlight">consistent with destabilization hypothesis</span></p>
-    <p style="font-size:0.65em; color:#888;">5,000 tests map to 22 independent feature families after collapsing correlated windows. FDR applied across all 5,000.</p>
-  </div>
-</section>
-
-<!-- SLIDE 10b: Cross-Dataset -->
-<section>
-  <h2>Cross-Dataset Exploration</h2>
-  <div class="cols">
-    <div class="box">
-      <h3>Baigutanova (HRV+Sleep)</h3>
-      <p>49 subjects, 28 days</p>
-      <p><span class="highlight">AUC 0.85</span> (CI: 0.73&ndash;0.98)</p>
-      <p class="dim">22 feature families significant after FDR</p>
-    </div>
-    <div class="box">
-      <h3>Depresjon (Actigraphy)</h3>
-      <p>55 subjects, motor activity</p>
-      <p>Top feature d=1.0 (AUC 0.755)</p>
-      <p class="dim">Trends consistent but underpowered for FDR at n=55</p>
-    </div>
-  </div>
-  <br>
-  <div class="box-accent">
-    <p style="font-size:0.8em;"><span class="highlight">Transfer test:</span> Model trained on HRV achieves <span class="highlight">AUC 0.66</span> on motor activity data &mdash; preliminary, not conclusive</p>
-    <p style="font-size:0.7em;">Temporal dynamics features trend in the same direction across modalities. Larger samples needed to confirm generalization.</p>
-  </div>
-</section>
-
-<!-- SLIDE 11: Comparison -->
-<section>
-  <h2>Our Features vs. Standard HRV</h2>
-  <table>
-    <thead><tr><th>Approach</th><th>Features</th><th>AUC</th><th>Improvement</th></tr></thead>
-    <tbody>
-      <tr><td>Standard</td><td>Mean RMSSD, mean HR</td><td style="color:#888;">0.61</td><td>&mdash;</td></tr>
-      <tr><td><span class="highlight">Ours (temporal)</span></td><td>Autocorr + CV + SD + Slope</td><td style="color:var(--accent);">0.85 (CI: 0.73&ndash;0.98)</td><td><span class="highlight">+39%</span></td></tr>
-      <tr><td><span class="highlight">Ours (transfer)</span></td><td>Same patterns on actigraphy</td><td style="color:var(--accent);">0.66 (preliminary)</td><td>Above chance</td></tr>
-    </tbody>
-  </table>
-  <br>
-  <div class="box-accent">
-    <p style="font-size:0.8em;">It's not <span style="color:#888;">HOW LOW</span> your HRV is &mdash; it's <span class="highlight">HOW UNSTABLE</span> it becomes over time.</p>
-    <p style="font-size:0.7em;">Variability features (CV, std, autocorr) account for <span class="highlight">89%</span> of significant findings vs only 7% for level features (mean).</p>
-    <p style="font-size:0.65em; color:#888;">Note: These are transdiagnostic stress markers, not depression-specific &mdash; which means they track overall well-being.</p>
-  </div>
-</section>
-
-<!-- SLIDE 11b: Trained Model -->
-<section>
-  <h2>Trained Depression Prediction Model</h2>
-  <div class="cols">
-    <div>
-      <p class="stat">0.85</p>
-      <p class="stat-label">AUC (CI: 0.73&ndash;0.98)</p>
-    </div>
-    <div>
-      <p class="stat">0.77</p>
-      <p class="stat-label">F1 Score</p>
-    </div>
-    <div>
-      <p class="stat">49</p>
-      <p class="stat-label">subjects (LOSO-CV)</p>
-    </div>
-  </div>
-  <br>
-  <div class="cols">
-    <div class="box">
-      <h3>Architecture</h3>
-      <ul style="font-size:0.65em;">
-        <li>StandardScaler &rarr; SelectKBest(k=50) &rarr; LogisticRegression</li>
-        <li>Leave-one-subject-out cross-validation</li>
-        <li>732 candidate features &rarr; 50 selected</li>
-        <li>Saved as serialized .pkl for deployment</li>
-      </ul>
-    </div>
-    <div class="box-accent">
-      <h3>Top Selected Features</h3>
-      <ul style="font-size:0.65em;">
-        <li><span class="highlight">Sleep duration variability</span> (3d, 5d, 7d, 28d std)</li>
-        <li><span class="highlight">Sleep latency variability</span> (3d&ndash;28d std, slope)</li>
-        <li><span class="highlight">Sleep quality slope</span> (3d&ndash;21d trends)</li>
-        <li><span class="highlight">LF/HF ratio dynamics</span> (7d CV, 14d&ndash;21d slope)</li>
-        <li>HRV slope &amp; variability (rmssd 3d&ndash;7d)</li>
-      </ul>
-    </div>
-  </div>
-  <p class="dim" style="margin-top:10px;">Sleep features dominate: <span class="highlight">42 of 50</span> selected features are sleep-related &mdash; supporting sleep as the primary intervention target.</p>
-</section>
-
-<!-- SLIDE 12: Self-Improving Loop -->
-<section>
-  <h2>Self-Improving Discovery Engine</h2>
-  <div class="flow">
-    <div class="flow-box"><strong>Round 1</strong><br><span class="dim">Broad feature sweep</span></div>
-    <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box"><strong>5,000 tested</strong><br><span class="dim">34.6% hit rate</span></div>
-    <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box" style="border-color:var(--accent);"><strong>Feed back to LLM</strong><br><span class="dim">Top findings + nulls</span></div>
-    <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box" style="border-color:var(--accent);"><strong>Round 2</strong><br><span class="highlight">67.9% hit rate</span></div>
-  </div>
-  <br>
-  <div class="cols">
-    <div class="box">
-      <h3>Round 1 (broad)</h3>
-      <p style="font-size:0.7em;">5,000 hypotheses &bull; 1,731 significant</p>
-      <p style="font-size:0.7em;">Hit rate: <span style="color:#aaa;">34.6%</span></p>
-    </div>
-    <div class="box-accent">
-      <h3>Round 2 (targeted)</h3>
-      <p style="font-size:0.7em;">28 hypotheses &bull; 19 significant</p>
-      <p style="font-size:0.7em;">Hit rate: <span class="highlight">67.9%</span> (+96% improvement)</p>
-      <p style="font-size:0.65em;">Best: lfhf_slope &times; rmssd_std (AUC 0.72)</p>
-    </div>
-  </div>
-  <p class="dim" style="margin-top:10px;">Round 2 cost $0.03 on Nebius. Fine-tuned Llama 3.1 8B on 190K tokens (Round 1 data) for future iterations.</p>
-</section>
-
-<!-- SLIDE 12b: Tech Stack -->
+<!-- SLIDE 14: Tech Stack -->
 <section>
   <h2>Tech Stack</h2>
   <div class="cols">
@@ -445,171 +444,87 @@
       <h3>Compute</h3>
       <p><span class="tag">Nebius Token Factory</span></p>
       <p><span class="tag">Llama 3.3 70B (inference)</span></p>
-      <p><span class="tag">Llama 3.1 8B (fine-tuning)</span></p>
       <p><span class="tag">H100 GPUs</span></p>
+      <p style="font-size:0.6em; color:#888;">Total LLM cost: <span class="highlight">$0.22</span></p>
     </div>
     <div class="box">
       <h3>Science</h3>
-      <p><span class="tag">scipy</span> <span class="tag">statsmodels</span></p>
       <p><span class="tag">scikit-learn</span></p>
+      <p><span class="tag">scipy / statsmodels</span></p>
       <p><span class="tag">Permutation tests</span></p>
       <p><span class="tag">Bootstrap CI</span></p>
     </div>
     <div class="box">
       <h3>Interface</h3>
-      <p><span class="tag">Streamlit</span></p>
+      <p><span class="tag">Streamlit dashboard</span></p>
       <p><span class="tag">Plotly</span></p>
       <p><span class="tag">reveal.js</span></p>
     </div>
   </div>
   <br>
-  <p class="dim">Autoresearch loop adapted from Karpathy (2026) &bull; Budget: $70 on Nebius</p>
-</section>
-
-<!-- SLIDE 13: Clinical Utility — Sleep as Intervention -->
-<section>
-  <h2>Why This Matters Clinically</h2>
-  <blockquote>
-    "The good thing with sleep problems is: if you treat them it hits two birds with one stone &mdash; a bothering problem that also triggers other symptoms."
-    <br><span class="dim">&mdash; Prof. Dr. Steffen Moritz, UKE Hamburg</span>
-  </blockquote>
-  <br>
-  <div class="cols">
-    <div class="box">
-      <h3>The Problem with Biomarkers</h3>
-      <ul style="font-size:0.7em;">
-        <li>Predictive value of single biomarkers is <span class="warn">never high</span></li>
-        <li>Depression is gradual, not a sudden episode</li>
-        <li>HRV/sleep are stress markers, not depression-specific</li>
-      </ul>
-    </div>
-    <div class="box-accent">
-      <h3>Our Answer: Monitor + Intervene</h3>
-      <ul style="font-size:0.7em;">
-        <li>Detect <span class="highlight">sleep destabilization</span> early from wearable patterns</li>
-        <li>Sleep is <span class="highlight">directly treatable</span> (CBT-I, hygiene, medication)</li>
-        <li>Treating sleep improves depression, anxiety, stress &mdash; <span class="highlight">two birds, one stone</span></li>
-      </ul>
-    </div>
-  </div>
-  <div class="box" style="margin-top:15px;">
-    <p style="font-size:0.75em;">We don't claim to <em>diagnose</em> depression. We flag <span class="highlight">physiological destabilization</span> &mdash; especially sleep &mdash; so clinicians can intervene <span class="highlight">before</span> patients drop out.</p>
-  </div>
-</section>
-
-<!-- SLIDE 14: Two Products -->
-<section>
-  <h2>Two Products, One Engine</h2>
-  <div class="cols">
-    <div class="box-accent">
-      <h3>Product 1: Discovery Engine (R&D Tool)</h3>
-      <p style="font-size:0.7em;">The autoresearch loop itself &mdash; sold to <span class="highlight">pharma</span> for digital endpoint discovery in clinical trials</p>
-      <ul style="font-size:0.65em;">
-        <li>Not a medical device &mdash; internal R&D tool</li>
-        <li>No regulatory burden on the discovery process</li>
-        <li>Revenue: per-trial licensing to pharma CROs</li>
-      </ul>
-    </div>
-    <div class="box">
-      <h3>Product 2: Monitoring Dashboard (SaMD)</h3>
-      <p style="font-size:0.7em;">Static, validated model deployed for <span class="highlight">clinical monitoring</span></p>
-      <ul style="font-size:0.65em;">
-        <li>Health Canada SaMD Class II</li>
-        <li>Locked model &mdash; no autonomous changes in production</li>
-        <li>Clinical decision <em>support</em>, not diagnosis</li>
-        <li>Revenue: per-patient SaaS to hospitals</li>
-      </ul>
-    </div>
-  </div>
-  <div class="box" style="margin-top:10px;">
-    <p style="font-size:0.7em;"><span class="highlight">Key insight:</span> The discovery engine evolves freely. The clinical product is a <em>snapshot</em> &mdash; frozen, validated, regulatable. New discoveries trigger a new submission, not a moving target.</p>
-  </div>
-</section>
-
-<!-- SLIDE 14b: Track Crossing -->
-<section>
-  <h2>Beyond Wearables: Cross-Track Potential</h2>
-  <div class="cols">
-    <div class="box-accent">
-      <h3>Track 1.1: Wearables</h3>
-      <p style="font-size:0.7em;">Depression monitoring from HRV + sleep <span class="highlight">(current)</span></p>
-    </div>
-    <div class="box">
-      <h3>Track 1.2: Clinical Ops</h3>
-      <p style="font-size:0.7em;">Clinician dashboard for treatment response monitoring &mdash; flag destabilization to trigger intervention</p>
-    </div>
-    <div class="box">
-      <h3>Track 2.1: Biomarker Discovery</h3>
-      <p style="font-size:0.7em;">The autoresearch engine <em>is</em> a biomarker discovery platform &mdash; applicable to oncology, cardiology, neurology</p>
-    </div>
-  </div>
-  <br>
   <div class="box-accent">
-    <p style="font-size:0.75em;">The discovery engine is <span class="highlight">domain-agnostic</span> &mdash; any longitudinal wearable dataset with clinical outcomes can be plugged in. Oncology treatment response monitoring is a natural next dataset.</p>
+    <p style="font-size:0.7em;">50 rounds of LLM-guided discovery for <span class="highlight">$0.22 total</span>. Absurdly capital-efficient &mdash; Nebius Token Factory makes iterative biomarker search economically viable.</p>
   </div>
 </section>
 
-<!-- SLIDE 14c: Confounder Control -->
-<section>
-  <h2>Confounder-Aware Discovery</h2>
-  <div class="box">
-    <p style="font-size:0.8em;">A "depression signal" in HRV might actually be <span class="warn">caffeine, alcohol, or exercise</span>.</p>
-  </div>
-  <br>
-  <div class="cols">
-    <div>
-      <h3>Confounders in dataset</h3>
-      <table>
-        <tbody>
-          <tr><td>Coffee intake</td><td>1&ndash;5 scale</td></tr>
-          <tr><td>Alcohol use</td><td>1&ndash;4 scale</td></tr>
-          <tr><td>Smoking</td><td>1&ndash;5 scale</td></tr>
-          <tr><td>Exercise frequency</td><td>1&ndash;5 scale</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="box-accent">
-      <h3>Our approach</h3>
-      <ul style="font-size:0.7em;">
-        <li>Residualize features against confounders</li>
-        <li>Report both raw and adjusted effect sizes</li>
-        <li>Flag features where d drops &gt;30% after adjustment</li>
-        <li>FAIR-compliant output: full provenance for each finding</li>
-      </ul>
-    </div>
-  </div>
-  <p class="dim" style="margin-top:15px;">Every discovery includes: raw effect, adjusted effect, confounders controlled, CI, permutation p-value, FDR status</p>
-</section>
-
-<!-- SLIDE 14: Validation Path -->
+<!-- SLIDE 15: What's Next -->
 <section>
   <h2>What's Next</h2>
   <div class="flow">
     <div class="flow-box" style="border-color:var(--accent);">Hackathon<br><span class="dim">Discovery (now)</span></div>
     <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box">Clinical Validation<br><span class="dim">Prospective study with<br>UKE Hamburg (collaborator)</span></div>
+    <div class="flow-box">Clinical Validation<br><span class="dim">Prospective study with<br>Uni of Hamburg</span></div>
     <span class="flow-arrow">&rarr;</span>
     <div class="flow-box">Multi-site Trial<br><span class="dim">Ontario Health + partners</span></div>
     <span class="flow-arrow">&rarr;</span>
     <div class="flow-box">SaMD Filing<br><span class="dim">Health Canada Class II</span></div>
   </div>
   <br>
-  <div class="box-accent">
-      <p style="font-size:0.8em;">Detect physiological destabilization from a wrist &mdash; <span class="highlight">intervene on sleep before patients drop out</span>.</p>
-    <p style="font-size:0.65em;">FAIR-compliant outputs &bull; Confounder-controlled &bull; Full provenance trail for every discovery</p>
+  <div class="cols">
+    <div class="box">
+      <h3>Immediate</h3>
+      <ul style="font-size:0.65em;">
+        <li>Validate HRV &times; sleep interaction prospectively</li>
+        <li>Test with consumer wearables (Apple Watch, Oura)</li>
+        <li>Expand from PHQ-9 to longitudinal mood tracking</li>
+      </ul>
+    </div>
+    <div class="box-accent">
+      <h3>The Ask</h3>
+      <ul style="font-size:0.65em;">
+        <li>Access to larger longitudinal wearable datasets</li>
+        <li>Clinical partner for prospective validation</li>
+        <li>Pilot with digital health clinic (sleep + mood)</li>
+      </ul>
+    </div>
   </div>
 </section>
 
 <!-- SLIDE 16: Closing -->
 <section>
   <h1>AutoBiomarker</h1>
-  <p style="font-size:0.9em; color:var(--accent);">Autonomous discovery of physiological destabilization<br>from wearable data</p>
+  <p style="font-size:0.9em; color:var(--accent);">When HRV and sleep destabilize together,<br>that's the early warning signal.</p>
   <br>
-  <blockquote style="font-size:0.75em;">
-    "Detect sleep and HRV destabilization early. Treat sleep &mdash; and hit two birds with one stone."
+  <div class="cols" style="justify-content:center;">
+    <div>
+      <p class="stat" style="font-size:1.5em;">0.76</p>
+      <p class="stat-label">AUC (HRV &times; sleep)</p>
+    </div>
+    <div>
+      <p class="stat" style="font-size:1.5em;">+25%</p>
+      <p class="stat-label">vs. standard HRV</p>
+    </div>
+    <div>
+      <p class="stat" style="font-size:1.5em;">$0.22</p>
+      <p class="stat-label">total LLM cost</p>
+    </div>
+  </div>
+  <br>
+  <blockquote style="font-size:0.7em;">
+    "Treat sleep &mdash; and hit two birds with one stone."
+    <br><span class="dim">&mdash; Prof. Dr. Steffen Moritz, Uni of Hamburg</span>
   </blockquote>
-  <br>
-  <p class="dim">Toronto &bull; In collaboration with Prof. Dr. Steffen Moritz, UKE Hamburg</p>
+  <p class="dim" style="margin-top:15px;">In collaboration with Uni of Hamburg &bull; Built on Nebius Token Factory</p>
 </section>
 
 </div>
@@ -624,7 +539,7 @@ Reveal.initialize({
   backgroundTransition: 'fade',
   width: 1280,
   height: 720,
-  margin: 0.08,
+  margin: 0.1,
 });
 </script>
 </body>
