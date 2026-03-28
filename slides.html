@@ -134,39 +134,41 @@
       <p class="stat-label">people with depression globally</p>
     </div>
     <div>
-      <p class="stat">5.4M</p>
-      <p class="stat-label">in Canada alone</p>
-    </div>
-    <div>
       <p class="stat">50%</p>
       <p class="stat-label">drop out of treatment</p>
+    </div>
+    <div>
+      <p class="stat">75%</p>
+      <p class="stat-label">of depressed patients have sleep problems</p>
     </div>
   </div>
   <br>
   <div class="box">
-    <p style="font-size:0.85em;">We can't predict who's getting worse until they tell us &mdash; <span class="warn">by which point they've often dropped out.</span></p>
-    <p style="font-size:0.85em;">What if their <span class="highlight">body already knows</span>?</p>
+    <p style="font-size:0.85em;">Depression is <span class="highlight">gradual</span> &mdash; patients don't "fall into" it, they drift. <span class="warn">By the time they report worsening, they've often dropped out.</span></p>
+    <p style="font-size:0.85em;">But sleep and physiology destabilize <span class="highlight">before</span> patients notice &mdash; and sleep is <span class="highlight">treatable</span>.</p>
   </div>
 </section>
 
 <!-- SLIDE 3: The Insight -->
 <section>
-  <h2>The Insight: Critical Slowing Down</h2>
+  <h2>The Insight: Destabilization Before Decline</h2>
   <blockquote>
-    In physics, systems approaching a tipping point show measurable warning signs &mdash; they get <span class="highlight">sluggish</span> and start <span class="highlight">wobbling</span>.
+    Depression worsens gradually. But as physiological regulation weakens, the body shows measurable signs: sleep becomes <span class="highlight">irregular</span>, HRV becomes <span class="highlight">erratic</span>, recovery slows.
   </blockquote>
   <br>
   <div class="cols">
     <div class="box">
-      <h3>Proven in</h3>
+      <h3>Known from physics</h3>
+      <p>Systems under stress show rising variability and sluggish recovery &mdash; "critical slowing down"</p>
       <p><span class="tag">Ecology</span> <span class="tag">Climate</span> <span class="tag">Finance</span> <span class="tag">Mood (PNAS 2014)</span></p>
     </div>
     <div class="box-accent">
-      <h3>Never tested on</h3>
-      <p><span class="tag-warn">Wearable HRV</span> <span class="tag-warn">Daily physiology</span> <span class="tag-warn">Depression prediction</span></p>
+      <h3>Our hypothesis</h3>
+      <p>The same <span class="highlight">temporal patterns</span> in wearable data can flag when a patient's regulation is destabilizing</p>
+      <p class="dim">Not a sudden tipping point &mdash; a gradual loss of physiological stability</p>
     </div>
   </div>
-  <p class="dim" style="margin-top:20px;">Scheffer 2009; van de Leemput et al. 2014, PNAS</p>
+  <p class="dim" style="margin-top:15px;">Scheffer 2009; van de Leemput et al. 2014, PNAS</p>
 </section>
 
 <!-- SLIDE 4: What We Do Differently -->
@@ -176,13 +178,16 @@
     <div class="box">
       <h3 style="color:#888;">Standard Approach</h3>
       <p>How <strong>low</strong> is your HRV?</p>
-      <p style="font-size:0.65em; color:#888;">Single timepoint, cross-sectional<br>Small effect sizes (d &approx; 0.3)</p>
+      <p style="font-size:0.65em; color:#888;">Single timepoint, cross-sectional<br>Small effect sizes (d &approx; 0.3)<br>Depression-specific? No &mdash; stress marker</p>
     </div>
     <div class="box-accent">
       <h3>Our Approach</h3>
-      <p>How <span class="highlight">rigid</span> or <span class="highlight">chaotic</span> is your HRV <em>over time</em>?</p>
-      <p style="font-size:0.65em;">Temporal dynamics: autocorrelation, variance, CV<br>Day-to-day patterns across 28 days</p>
+      <p>How <span class="highlight">unstable</span> is your physiology <em>over time</em>?</p>
+      <p style="font-size:0.65em;">Temporal dynamics: autocorrelation, variance, CV<br>Day-to-day patterns across 28 days<br><span class="highlight">Transdiagnostic</span> &mdash; tracks stress regulation, not just depression</p>
     </div>
+  </div>
+  <div class="box" style="margin-top:15px;">
+    <p style="font-size:0.7em;">HRV and sleep are <span class="highlight">transdiagnostic stress markers</span> (not depression-specific). This is a <em>strength</em>: our system monitors overall physiological regulation, with sleep as a <span class="highlight">directly treatable</span> intervention target.</p>
   </div>
 </section>
 
@@ -310,7 +315,7 @@
   <br>
   <div class="box-accent">
     <p style="font-size:0.8em;">Top finding: <span class="highlight">LF/HF 28-day slope</span> (d=0.931, AUC=0.78) &mdash; rising sympathovagal imbalance trend predicts depression</p>
-    <p style="font-size:0.7em;">Variability features (CV, autocorr, std) dominate over level features (mean) &mdash; <span class="highlight">confirms critical slowing down hypothesis</span></p>
+    <p style="font-size:0.7em;">Variability features (CV, autocorr, std) dominate over level features (mean) &mdash; <span class="highlight">consistent with destabilization hypothesis</span></p>
     <p style="font-size:0.7em;">A human researcher would need months to test 5,000 hypotheses with full statistical rigor.</p>
   </div>
 </section>
@@ -335,7 +340,7 @@
   <br>
   <div class="box-accent">
     <p style="font-size:0.8em;"><span class="highlight">Transfer learning:</span> Model trained on HRV achieves <span class="highlight">AUC 0.66</span> on motor activity data</p>
-    <p style="font-size:0.7em;">Same temporal dynamics patterns generalize across different sensor modalities &mdash; this is a <span class="highlight">universal early warning signal</span>, not a modality artifact</p>
+    <p style="font-size:0.7em;">Same temporal dynamics patterns show consistent direction across different sensor modalities &mdash; suggesting these capture <span class="highlight">general physiological destabilization</span>, not a modality artifact</p>
   </div>
 </section>
 
@@ -352,8 +357,9 @@
   </table>
   <br>
   <div class="box-accent">
-    <p style="font-size:0.8em;">It's not <span style="color:#888;">HOW LOW</span> your HRV is &mdash; it's <span class="highlight">HOW MUCH IT WOBBLES</span> that predicts depression.</p>
+    <p style="font-size:0.8em;">It's not <span style="color:#888;">HOW LOW</span> your HRV is &mdash; it's <span class="highlight">HOW UNSTABLE</span> it becomes over time.</p>
     <p style="font-size:0.7em;">Variability features (CV, std, autocorr) account for <span class="highlight">89%</span> of significant findings vs only 7% for level features (mean).</p>
+    <p style="font-size:0.65em; color:#888;">Note: These are transdiagnostic stress markers, not depression-specific &mdash; which means they track overall well-being.</p>
   </div>
 </section>
 
@@ -406,7 +412,38 @@
   <p class="dim">Autoresearch loop adapted from Karpathy (2026) &bull; Budget: $70 on Nebius</p>
 </section>
 
-<!-- SLIDE 13: Regulatory & Market -->
+<!-- SLIDE 13: Clinical Utility — Sleep as Intervention -->
+<section>
+  <h2>Why This Matters Clinically</h2>
+  <blockquote>
+    "The good thing with sleep problems is: if you treat them it hits two birds with one stone &mdash; a bothering problem that also triggers other symptoms."
+    <br><span class="dim">&mdash; Prof. Dr. Steffen Moritz, UKE Hamburg</span>
+  </blockquote>
+  <br>
+  <div class="cols">
+    <div class="box">
+      <h3>The Problem with Biomarkers</h3>
+      <ul style="font-size:0.7em;">
+        <li>Predictive value of single biomarkers is <span class="warn">never high</span></li>
+        <li>Depression is gradual, not a sudden episode</li>
+        <li>HRV/sleep are stress markers, not depression-specific</li>
+      </ul>
+    </div>
+    <div class="box-accent">
+      <h3>Our Answer: Monitor + Intervene</h3>
+      <ul style="font-size:0.7em;">
+        <li>Detect <span class="highlight">sleep destabilization</span> early from wearable patterns</li>
+        <li>Sleep is <span class="highlight">directly treatable</span> (CBT-I, hygiene, medication)</li>
+        <li>Treating sleep improves depression, anxiety, stress &mdash; <span class="highlight">two birds, one stone</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="box" style="margin-top:15px;">
+    <p style="font-size:0.75em;">We don't claim to <em>diagnose</em> depression. We flag <span class="highlight">physiological destabilization</span> &mdash; especially sleep &mdash; so clinicians can intervene <span class="highlight">before</span> patients drop out.</p>
+  </div>
+</section>
+
+<!-- SLIDE 14: Regulatory & Market -->
 <section>
   <h2>Path to Market</h2>
   <div class="cols">
@@ -448,17 +485,17 @@
   </div>
   <br>
   <div class="box-accent">
-    <p style="font-size:0.8em;">Precision psychiatry from a wrist &mdash; <span class="highlight">before the patient knows they're getting worse</span>.</p>
+      <p style="font-size:0.8em;">Detect physiological destabilization from a wrist &mdash; <span class="highlight">intervene on sleep before patients drop out</span>.</p>
   </div>
 </section>
 
 <!-- SLIDE 15: Closing -->
 <section>
   <h1>AutoBiomarker</h1>
-  <p style="font-size:0.9em; color:var(--accent);">Autonomous depression early warning signals<br>from wearable data</p>
+  <p style="font-size:0.9em; color:var(--accent);">Autonomous discovery of physiological destabilization<br>from wearable data</p>
   <br>
   <blockquote style="font-size:0.75em;">
-    "What if we could see depression coming &mdash; not from what patients say, but from what their body whispers?"
+    "Detect sleep and HRV destabilization early. Treat sleep &mdash; and hit two birds with one stone."
   </blockquote>
   <br>
   <p class="dim">Team: [Your names] &bull; UKE Hamburg &bull; Evolved26 Toronto</p>
