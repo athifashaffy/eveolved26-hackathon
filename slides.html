@@ -443,32 +443,88 @@
   </div>
 </section>
 
-<!-- SLIDE 14: Regulatory & Market -->
+<!-- SLIDE 14: Two Products -->
 <section>
-  <h2>Path to Market</h2>
+  <h2>Two Products, One Engine</h2>
   <div class="cols">
+    <div class="box-accent">
+      <h3>Product 1: Discovery Engine (R&D Tool)</h3>
+      <p style="font-size:0.7em;">The autoresearch loop itself &mdash; sold to <span class="highlight">pharma</span> for digital endpoint discovery in clinical trials</p>
+      <ul style="font-size:0.65em;">
+        <li>Not a medical device &mdash; internal R&D tool</li>
+        <li>No regulatory burden on the discovery process</li>
+        <li>Revenue: per-trial licensing to pharma CROs</li>
+      </ul>
+    </div>
     <div class="box">
-      <h3>Regulatory</h3>
-      <ul style="font-size:0.7em;">
+      <h3>Product 2: Monitoring Dashboard (SaMD)</h3>
+      <p style="font-size:0.7em;">Static, validated model deployed for <span class="highlight">clinical monitoring</span></p>
+      <ul style="font-size:0.65em;">
         <li>Health Canada SaMD Class II</li>
-        <li>Clinical decision support exemption possible</li>
-        <li>Privacy by design (PIPEDA/GDPR)</li>
-        <li>Bias testing across demographics</li>
+        <li>Locked model &mdash; no autonomous changes in production</li>
+        <li>Clinical decision <em>support</em>, not diagnosis</li>
+        <li>Revenue: per-patient SaaS to hospitals</li>
       </ul>
+    </div>
+  </div>
+  <div class="box" style="margin-top:10px;">
+    <p style="font-size:0.7em;"><span class="highlight">Key insight:</span> The discovery engine evolves freely. The clinical product is a <em>snapshot</em> &mdash; frozen, validated, regulatable. New discoveries trigger a new submission, not a moving target.</p>
+  </div>
+</section>
+
+<!-- SLIDE 14b: Track Crossing -->
+<section>
+  <h2>Beyond Wearables: Cross-Track Potential</h2>
+  <div class="cols">
+    <div class="box-accent">
+      <h3>Track 1.1: Wearables</h3>
+      <p style="font-size:0.7em;">Depression monitoring from HRV + sleep <span class="highlight">(current)</span></p>
     </div>
     <div class="box">
-      <h3>Customers</h3>
+      <h3>Track 1.2: Clinical Ops</h3>
+      <p style="font-size:0.7em;">Clinician dashboard for treatment response monitoring &mdash; flag destabilization to trigger intervention</p>
+    </div>
+    <div class="box">
+      <h3>Track 2.1: Biomarker Discovery</h3>
+      <p style="font-size:0.7em;">The autoresearch engine <em>is</em> a biomarker discovery platform &mdash; applicable to oncology, cardiology, neurology</p>
+    </div>
+  </div>
+  <br>
+  <div class="box-accent">
+    <p style="font-size:0.75em;"><span class="highlight">Oncology crossover:</span> Cancer patients on chemotherapy show physiological destabilization before treatment failure. Same temporal dynamics features could predict treatment response from wearables.</p>
+  </div>
+</section>
+
+<!-- SLIDE 14c: Confounder Control -->
+<section>
+  <h2>Confounder-Aware Discovery</h2>
+  <div class="box">
+    <p style="font-size:0.8em;">A "depression signal" in HRV might actually be <span class="warn">caffeine, alcohol, or exercise</span>.</p>
+  </div>
+  <br>
+  <div class="cols">
+    <div>
+      <h3>Confounders in dataset</h3>
+      <table>
+        <tbody>
+          <tr><td>Coffee intake</td><td>1&ndash;5 scale</td></tr>
+          <tr><td>Alcohol use</td><td>1&ndash;4 scale</td></tr>
+          <tr><td>Smoking</td><td>1&ndash;5 scale</td></tr>
+          <tr><td>Exercise frequency</td><td>1&ndash;5 scale</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="box-accent">
+      <h3>Our approach</h3>
       <ul style="font-size:0.7em;">
-        <li><span class="highlight">Pharma:</span> digital endpoint for trials</li>
-        <li><span class="highlight">Digital Tx:</span> precision intervention trigger</li>
-        <li><span class="highlight">Hospitals:</span> remote psychiatric monitoring</li>
+        <li>Residualize features against confounders</li>
+        <li>Report both raw and adjusted effect sizes</li>
+        <li>Flag features where d drops &gt;30% after adjustment</li>
+        <li>FAIR-compliant output: full provenance for each finding</li>
       </ul>
     </div>
   </div>
-  <div class="box-accent" style="margin-top:15px;">
-    <p style="font-size:0.75em;"><strong>Moat:</strong> Proprietary biomarker signatures + autonomous discovery engine</p>
-    <p style="font-size:0.65em;">Revenue: SaaS per-patient or per-trial licensing</p>
-  </div>
+  <p class="dim" style="margin-top:15px;">Every discovery includes: raw effect, adjusted effect, confounders controlled, CI, permutation p-value, FDR status</p>
 </section>
 
 <!-- SLIDE 14: Validation Path -->
@@ -477,7 +533,7 @@
   <div class="flow">
     <div class="flow-box" style="border-color:var(--accent);">Hackathon<br><span class="dim">Discovery (now)</span></div>
     <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box">UKE Hamburg<br><span class="dim">Validation study with<br>Prof. Steffen's D-MCT patients</span></div>
+    <div class="flow-box">UKE Hamburg<br><span class="dim">Prospective study with<br>Prof. Moritz's D-MCT patients</span></div>
     <span class="flow-arrow">&rarr;</span>
     <div class="flow-box">Multi-site Trial<br><span class="dim">Ontario Health + partners</span></div>
     <span class="flow-arrow">&rarr;</span>
@@ -486,10 +542,11 @@
   <br>
   <div class="box-accent">
       <p style="font-size:0.8em;">Detect physiological destabilization from a wrist &mdash; <span class="highlight">intervene on sleep before patients drop out</span>.</p>
+    <p style="font-size:0.65em;">FAIR-compliant outputs &bull; Confounder-controlled &bull; Full provenance trail for every discovery</p>
   </div>
 </section>
 
-<!-- SLIDE 15: Closing -->
+<!-- SLIDE 16: Closing -->
 <section>
   <h1>AutoBiomarker</h1>
   <p style="font-size:0.9em; color:var(--accent);">Autonomous discovery of physiological destabilization<br>from wearable data</p>
