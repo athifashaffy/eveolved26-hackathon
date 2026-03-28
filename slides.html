@@ -366,6 +366,48 @@
   </div>
 </section>
 
+<!-- SLIDE 11b: Trained Model -->
+<section>
+  <h2>Trained Depression Prediction Model</h2>
+  <div class="cols">
+    <div>
+      <p class="stat">0.85</p>
+      <p class="stat-label">AUC (CI: 0.73&ndash;0.98)</p>
+    </div>
+    <div>
+      <p class="stat">0.77</p>
+      <p class="stat-label">F1 Score</p>
+    </div>
+    <div>
+      <p class="stat">49</p>
+      <p class="stat-label">subjects (LOSO-CV)</p>
+    </div>
+  </div>
+  <br>
+  <div class="cols">
+    <div class="box">
+      <h3>Architecture</h3>
+      <ul style="font-size:0.65em;">
+        <li>StandardScaler &rarr; SelectKBest(k=50) &rarr; LogisticRegression</li>
+        <li>Leave-one-subject-out cross-validation</li>
+        <li>732 candidate features &rarr; 50 selected</li>
+        <li>Saved as serialized .pkl for deployment</li>
+      </ul>
+    </div>
+    <div class="box-accent">
+      <h3>Top Selected Features</h3>
+      <ul style="font-size:0.65em;">
+        <li><span class="highlight">Sleep duration variability</span> (3d, 5d, 7d, 28d std)</li>
+        <li><span class="highlight">Sleep latency variability</span> (3d&ndash;28d std, slope)</li>
+        <li><span class="highlight">Sleep quality slope</span> (3d&ndash;21d trends)</li>
+        <li><span class="highlight">LF/HF ratio dynamics</span> (7d CV, 14d&ndash;21d slope)</li>
+        <li>HRV slope &amp; variability (rmssd 3d&ndash;7d)</li>
+      </ul>
+    </div>
+  </div>
+  <p class="dim" style="margin-top:10px;">Sleep features dominate: <span class="highlight">42 of 50</span> selected features are sleep-related &mdash; supporting sleep as the primary intervention target.</p>
+</section>
+
 <!-- SLIDE 12: Self-Improving Loop -->
 <section>
   <h2>Self-Improving Discovery Engine</h2>
@@ -536,7 +578,7 @@
   <div class="flow">
     <div class="flow-box" style="border-color:var(--accent);">Hackathon<br><span class="dim">Discovery (now)</span></div>
     <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box">UKE Hamburg<br><span class="dim">Prospective study with<br>Prof. Moritz's D-MCT patients</span></div>
+    <div class="flow-box">Clinical Validation<br><span class="dim">Prospective study with<br>UKE Hamburg (collaborator)</span></div>
     <span class="flow-arrow">&rarr;</span>
     <div class="flow-box">Multi-site Trial<br><span class="dim">Ontario Health + partners</span></div>
     <span class="flow-arrow">&rarr;</span>
@@ -558,7 +600,7 @@
     "Detect sleep and HRV destabilization early. Treat sleep &mdash; and hit two birds with one stone."
   </blockquote>
   <br>
-  <p class="dim">Team: [Your names] &bull; UKE Hamburg &bull; Evolved26 Toronto</p>
+  <p class="dim">Toronto &bull; In collaboration with Prof. Dr. Steffen Moritz, UKE Hamburg</p>
 </section>
 
 </div>
