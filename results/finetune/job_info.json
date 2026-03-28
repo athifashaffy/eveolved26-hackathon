@@ -1,0 +1,9 @@
+{
+  "job_id": "ftjob-bef3eeb8849444a8ab55a3b6b5ef5811",
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "training_file": "file-019d32ae-3ca6-75e1-ad01-2a90b79b2e19",
+  "validation_file": "file-019d32ae-3d6e-76e9-b04f-00f70057dafd",
+  "status": "succeeded",
+  "started_at": "2026-03-28T00:22:55.075668",
+  "fine_tuned_model": null
+}

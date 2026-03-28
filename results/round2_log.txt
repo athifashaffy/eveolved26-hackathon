@@ -1,0 +1,564 @@
+[2026-03-28 11:18:14] ======================================================================
+[2026-03-28 11:18:14] AutoBiomarker — ROUND 2 (LLM-Guided Refinement)
+[2026-03-28 11:18:14] Max LLM calls: 7
+[2026-03-28 11:18:14] ======================================================================
+[2026-03-28 11:18:14] Loaded Round 1: 5000 hypotheses, 1731 KEEP, 3269 DISCARD
+[2026-03-28 11:18:14] Round 1 hit rate: 34.6% (1731/5000)
+[2026-03-28 11:18:14] Loading dataset...
+[2026-03-28 11:18:14] Extracting features...
+[2026-03-28 11:18:17]   187 features available
+[2026-03-28 11:18:18] 
+--- LLM Call 1/7 ---
+[2026-03-28 11:18:40]   Tokens: 3186, Cost: $0.0041 (total: $0.0041)
+[2026-03-28 11:18:40]   LLM proposed 5 hypotheses
+[2026-03-28 11:18:40]     Tested interaction lfhf_21d_slope x rmssd_7d_std: AUC=0.717, d=0.921
+[2026-03-28 11:18:41]     Tested interaction rmssd_14d_autocorr x sleep_qual_21d_std: AUC=0.501, d=0.160
+[2026-03-28 11:18:41]     Tested composite composite_r2_10002: AUC=0.547, d=0.519
+[2026-03-28 11:18:42]     Tested interaction rmssd_7d_std x sleep_lat_21d_std: AUC=0.627, d=0.760
+[2026-03-28 11:18:42]     Tested composite composite_r2_10004: AUC=0.443, d=0.318
+[2026-03-28 11:18:42]   Tested 5 hypotheses this call
+[2026-03-28 11:18:42] 
+--- LLM Call 2/7 ---
+[2026-03-28 11:19:04]   Tokens: 3439, Cost: $0.0045 (total: $0.0086)
+[2026-03-28 11:19:04]   LLM proposed 5 hypotheses
+[2026-03-28 11:19:04]     Tested interaction lfhf_21d_slope x rmssd_14d_autocorr: AUC=0.631, d=0.921
+[2026-03-28 11:19:05]     Tested interaction rmssd_7d_std x sleep_qual_21d_cv: AUC=0.606, d=0.760
+[2026-03-28 11:19:06]     Tested composite composite_r2_10008: AUC=0.676, d=0.776
+[2026-03-28 11:19:06]     Tested interaction rmssd_14d_autocorr x sleep_dur_21d_cv: AUC=0.631, d=0.160
+[2026-03-28 11:19:07]     Tested interaction lfhf_21d_slope x rmssd_7d_std: AUC=0.717, d=0.921
+[2026-03-28 11:19:07]   Tested 5 hypotheses this call
+[2026-03-28 11:19:07] 
+--- LLM Call 3/7 ---
+[2026-03-28 11:19:24]   Tokens: 3476, Cost: $0.0045 (total: $0.0131)
+[2026-03-28 11:19:24]   LLM proposed 5 hypotheses
+[2026-03-28 11:19:24]     Error testing hypothesis 10012: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 11:19:24]     Error testing hypothesis 10013: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 11:19:24]     Error testing hypothesis 10014: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 11:19:25]     Tested interaction rmssd_7d_std x lfhf_21d_slope: AUC=0.717, d=0.692
+[2026-03-28 11:19:25]     Tested composite composite_r2_10016: AUC=0.018, d=0.054
+[2026-03-28 11:19:25]   Tested 2 hypotheses this call
+[2026-03-28 11:19:25] 
+--- LLM Call 4/7 ---
+[2026-03-28 11:19:48]   Tokens: 3771, Cost: $0.0049 (total: $0.0180)
+[2026-03-28 11:19:48]   LLM proposed 5 hypotheses
+[2026-03-28 11:19:48]     Error testing hypothesis 10018: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 11:19:49]     Error testing hypothesis 10019: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 11:19:49]     Error testing hypothesis 10020: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 11:19:49]     Tested interaction rmssd_7d_std x sleep_lat_21d_slope: AUC=0.553, d=0.760
+[2026-03-28 11:19:50]     Tested composite composite_r2_10022: AUC=0.001, d=0.037
+[2026-03-28 11:19:50]   Tested 2 hypotheses this call
+[2026-03-28 11:19:50] 
+--- LLM Call 5/7 ---
+[2026-03-28 11:20:09]   Tokens: 3892, Cost: $0.0051 (total: $0.0231)
+[2026-03-28 11:20:09]   LLM proposed 5 hypotheses
+[2026-03-28 11:20:09]     Tested composite composite_r2_10024: AUC=0.432, d=0.259
+[2026-03-28 11:20:10]     Tested composite composite_r2_10025: AUC=0.627, d=0.612
+[2026-03-28 11:20:10]     Tested composite composite_r2_10026: AUC=0.002, d=0.022
+[2026-03-28 11:20:11]     Tested composite composite_r2_10027: AUC=0.537, d=0.495
+[2026-03-28 11:20:11]     Tested interaction rmssd_7d_std x sleep_qual_21d_cv: AUC=0.606, d=0.760
+[2026-03-28 11:20:11]   Tested 5 hypotheses this call
+[2026-03-28 11:20:11] 
+--- LLM Call 6/7 ---
+[2026-03-28 11:20:33]   Tokens: 4138, Cost: $0.0054 (total: $0.0285)
+[2026-03-28 11:20:33]   LLM proposed 5 hypotheses
+[2026-03-28 11:20:34]     Tested composite composite_r2_10030: AUC=0.604, d=0.553
+[2026-03-28 11:20:35]     Tested composite composite_r2_10031: AUC=0.651, d=0.753
+[2026-03-28 11:20:36]     Tested composite composite_r2_10032: AUC=0.472, d=0.305
+[2026-03-28 11:20:36]     Tested interaction rmssd_7d_std x sleep_qual_21d_cv: AUC=0.606, d=0.760
+[2026-03-28 11:20:36]     Error testing hypothesis 10034: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 11:20:36]   Tested 4 hypotheses this call
+[2026-03-28 11:20:36] 
+--- LLM Call 7/7 ---
+[2026-03-28 11:20:59]   Tokens: 4341, Cost: $0.0056 (total: $0.0341)
+[2026-03-28 11:20:59]   LLM proposed 5 hypotheses
+[2026-03-28 11:21:01]     Tested composite composite_r2_10036: AUC=0.584, d=0.516
+[2026-03-28 11:21:01]     Tested composite composite_r2_10037: AUC=0.012, d=0.050
+[2026-03-28 11:21:02]     Tested composite composite_r2_10038: AUC=0.594, d=0.516
+[2026-03-28 11:21:03]     Tested composite composite_r2_10039: AUC=0.144, d=0.079
+[2026-03-28 11:21:03]     Tested composite composite_r2_10040: AUC=0.075, d=0.070
+[2026-03-28 11:21:03]   Tested 5 hypotheses this call
+[2026-03-28 11:21:03] 
+Applying FDR correction across 28 Round 2 hypotheses...
+[2026-03-28 11:21:03] Round 2 results saved to /Users/athifshaffy/Documents/Repo/COGITO/evolved26-hackathon/src/../results/results_round2.tsv
+[2026-03-28 11:21:03] 
+======================================================================
+[2026-03-28 11:21:03] ROUND 2 COMPLETE
+[2026-03-28 11:21:03] ======================================================================
+[2026-03-28 11:21:03] Time: 169s
+[2026-03-28 11:21:03] LLM cost: $0.0341
+[2026-03-28 11:21:03] 
+[2026-03-28 11:21:03] Metric                              Round 1      Round 2
+[2026-03-28 11:21:03] ------------------------------------------------------
+[2026-03-28 11:21:03] Hypotheses tested                      5000           28
+[2026-03-28 11:21:03] Significant (KEEP)                     1731           19
+[2026-03-28 11:21:03] Hit rate                              34.6%        67.9%
+[2026-03-28 11:21:03] 
+Round 2 SIGNIFICANT FINDINGS:
+[2026-03-28 11:21:03]   1. lfhf_21d_slope × rmssd_7d_std: AUC=0.717, d=0.921, p_adj=0.0015
+[2026-03-28 11:21:03]      R2 Interaction: lfhf_21d_slope x rmssd_7d_std | The interaction between LF/HF slope and RMSSD standard deviation may capture the complex relationship between sympathetic and parasympathetic nervous system activity and heart rate variability. A stronger interaction could indicate impaired autonomic regulation, which is often observed in individuals with depression.
+[2026-03-28 11:21:03]   2. lfhf_21d_slope × rmssd_14d_autocorr: AUC=0.631, d=0.921, p_adj=0.0015
+[2026-03-28 11:21:03]      R2 Interaction: lfhf_21d_slope x rmssd_14d_autocorr | The interaction between LF/HF slope and RMSSD autocorrelation at 14 days may capture the dynamic relationship between parasympathetic activity and heart rate variability, which could be indicative of depression. LF/HF slope is a strong predictor of depression, and RMSSD autocorrelation at 14 days shows a critical slowing down signal, which may be related to emotional processing and regulation.
+[2026-03-28 11:21:03]   3. lfhf_21d_slope × rmssd_7d_std: AUC=0.717, d=0.921, p_adj=0.0015
+[2026-03-28 11:21:03]      R2 Interaction: lfhf_21d_slope x rmssd_7d_std | The interaction between LF/HF slope and RMSSD standard deviation at 7 days may capture the dynamic relationship between parasympathetic activity and heart rate variability, which could be indicative of depression. LF/HF slope is a strong predictor of depression, and RMSSD standard deviation is a strong predictor of depression.
+[2026-03-28 11:21:03]   4. composite_r2_10008: AUC=0.676, d=0.776, p_adj=0.0015
+[2026-03-28 11:21:03]      R2 Composite (lfhf_21d_slope+sleep_lat_21d_std): The composite feature combining LF/HF slope and sleep latency standard deviation at 21 days may capture the relationship between parasympathetic activity and sleep disturbances, which are common in depression. LF/HF slope is a strong predictor of depression, and sleep latency variability may be related to emotional arousal and stress.
+[2026-03-28 11:21:03]   5. rmssd_7d_std × sleep_lat_21d_std: AUC=0.627, d=0.760, p_adj=0.0015
+[2026-03-28 11:21:03]      R2 Interaction: rmssd_7d_std x sleep_lat_21d_std | The interaction between RMSSD standard deviation and sleep latency standard deviation may reflect the impact of sleep disturbances on autonomic nervous system function. Individuals with depression often experience sleep disruptions, including prolonged sleep latency, which can exacerbate autonomic dysfunction.
+[2026-03-28 11:21:03]   6. rmssd_7d_std × sleep_qual_21d_cv: AUC=0.606, d=0.760, p_adj=0.0015
+[2026-03-28 11:21:03]      R2 Interaction: rmssd_7d_std x sleep_qual_21d_cv | The interaction between RMSSD standard deviation at 7 days and sleep quality coefficient of variation at 21 days may capture the relationship between parasympathetic activity and sleep disturbances, which are common in depression. RMSSD standard deviation is a strong predictor of depression, and sleep quality variability may be related to emotional arousal and stress.
+[2026-03-28 11:21:03]   7. rmssd_7d_std × sleep_lat_21d_slope: AUC=0.553, d=0.760, p_adj=0.0015
+[2026-03-28 11:21:03]      R2 Interaction: rmssd_7d_std x sleep_lat_21d_slope | The interaction between RMSSD standard deviation at 7 days and sleep latency slope over 21 days could reflect how short-term autonomic function influences or is influenced by longer-term sleep patterns. This interaction might predict depression by highlighting individuals whose short-term physiological stress responses are exacerbated by or contribute to disrupted sleep patterns.
+[2026-03-28 11:21:03]   8. rmssd_7d_std × sleep_qual_21d_cv: AUC=0.606, d=0.760, p_adj=0.0015
+[2026-03-28 11:21:03]      R2 Interaction: rmssd_7d_std x sleep_qual_21d_cv | The interaction between RMSSD standard deviation at a 7-day window and sleep quality variability at a 21-day window may capture the relationship between autonomic function and sleep quality, which is a potential indicator of depression.
+[2026-03-28 11:21:03]   9. rmssd_7d_std × sleep_qual_21d_cv: AUC=0.606, d=0.760, p_adj=0.0015
+[2026-03-28 11:21:03]      R2 Interaction: rmssd_7d_std x sleep_qual_21d_cv | This interaction between RMSSD standard deviation over 7 days and sleep quality coefficient of variation over 21 days can indicate the relationship between autonomic function and sleep quality, both of which are disrupted in depression.
+[2026-03-28 11:21:03]   10. composite_r2_10031: AUC=0.651, d=0.753, p_adj=0.0015
+[2026-03-28 11:21:03]      R2 Composite (sleep_onset_sd_21d+sleep_qual_21d_cv+sleep_dur_21d_mean+sleep_dur_21d_cv+sleep_lat_21d_std): This composite index combines the coefficient of variation of sleep duration over 21 days, the standard deviation of sleep latency over 21 days, and the coefficient of variation of sleep quality over 21 days, with the standard deviation of sleep onset and the mean sleep duration over 21 days. It aims to capture sleep fragility, which is a common feature of depression. The interaction between sleep duration, latency, and quality can indicate sleep disruptions, while the inclusion of sleep onset and duration can provide additional information on sleep patterns.
+[2026-03-28 11:21:03]   11. rmssd_7d_std × lfhf_21d_slope: AUC=0.717, d=0.692, p_adj=0.0015
+[2026-03-28 11:21:03]      R2 Interaction: rmssd_7d_std x lfhf_21d_slope | The interaction between RMSSD standard deviation at 7 days and LF/HF slope at 21 days may capture the complex relationship between short-term parasympathetic activity and longer-term autonomic balance, providing a nuanced predictor of depression.
+[2026-03-28 11:21:03]   12. composite_r2_10025: AUC=0.627, d=0.612, p_adj=0.0015
+[2026-03-28 11:21:03]      R2 Composite (sleep_onset_sd_21d+sleep_dur_21d_cv+sleep_lat_21d_std): This composite index combines sleep duration variability, sleep latency standard deviation, and sleep onset standard deviation at a 21-day window to capture sleep disruption, which is a common symptom of depression. The theory is that increased sleep disruption is associated with reduced sleep quality, which can contribute to the development of depression.
+[2026-03-28 11:21:03]   13. composite_r2_10030: AUC=0.604, d=0.553, p_adj=0.0015
+[2026-03-28 11:21:03]      R2 Composite (rmssd_7d_std+hr_7d_mean+lfhf_21d_slope+sleep_qual_21d_std): This composite index combines the standard deviation of RMSSD over 7 days, the slope of LF/HF ratio over 21 days, the mean heart rate over 7 days, and the standard deviation of sleep quality over 21 days. It aims to capture autonomic dysregulation, which is a key feature of depression. The interaction between RMSSD and LF/HF ratio can indicate autonomic imbalance, while the inclusion of heart rate and sleep quality can provide additional information on physiological and behavioral aspects of depression.
+[2026-03-28 11:21:03]   14. composite_r2_10002: AUC=0.547, d=0.519, p_adj=0.0015
+[2026-03-28 11:21:03]      R2 Composite (lfhf_21d_slope+rmssd_7d_std+rmssd_7d_mean): This composite feature combines the LF/HF slope and RMSSD standard deviation to create a novel biomarker. The formula is designed to capture the relationship between autonomic regulation and heart rate variability, while accounting for individual differences in RMSSD mean values.
+[2026-03-28 11:21:03]   15. composite_r2_10038: AUC=0.594, d=0.516, p_adj=0.0015
+[2026-03-28 11:21:03]      R2 Composite (rmssd_7d_std+lfhf_21d_slope+sleep_dur_21d_cv): This composite index combines the LF/HF slope over 21 days, RMSSD standard deviation over 7 days, and sleep duration coefficient of variation over 21 days. The theory is that a higher LF/HF slope is indicative of sympathetic nervous system dominance, while higher RMSSD variability and sleep duration variability are indicative of autonomic nervous system dysfunction and sleep disruptions, respectively. By combining these signals, we may capture a more nuanced picture of an individual's risk for depression.
+[2026-03-28 11:21:03]   16. composite_r2_10036: AUC=0.584, d=0.516, p_adj=0.0015
+[2026-03-28 11:21:03]      R2 Composite (rmssd_7d_std+lfhf_21d_slope+sleep_qual_21d_std): This composite index combines the standard deviation of RMSSD over 7 days, the LF/HF slope over 21 days, and sleep quality standard deviation over 21 days. The theory is that higher RMSSD variability and LF/HF slope are indicative of autonomic nervous system dysfunction, while poorer sleep quality is a known risk factor for depression. By combining these signals, we may capture a more comprehensive picture of an individual's risk for depression.
+[2026-03-28 11:21:03]   17. composite_r2_10027: AUC=0.537, d=0.495, p_adj=0.0015
+[2026-03-28 11:21:03]      R2 Composite (rmssd_7d_std+lfhf_21d_slope): This composite index combines the LF/HF slope and RMSSD standard deviation at a 7-21 day window to capture parasympathetic vulnerability, which is a potential indicator of depression. The theory is that increased parasympathetic vulnerability is associated with reduced parasympathetic activity, which can contribute to the development of depression.
+[2026-03-28 11:21:03]   18. composite_r2_10004: AUC=0.443, d=0.318, p_adj=0.0015
+[2026-03-28 11:21:03]      R2 Composite (rmssd_14d_autocorr+sleep_qual_21d_std+sleep_qual_21d_mean): This composite feature combines the RMSSD autocorrelation and sleep quality standard deviation to create a novel biomarker. The formula is designed to capture the relationship between autonomic regulation, sleep quality, and individual differences in sleep quality mean values.
+[2026-03-28 11:21:03]   19. composite_r2_10032: AUC=0.472, d=0.305, p_adj=0.0015
+[2026-03-28 11:21:03]      R2 Composite (rmssd_7d_std+rmssd_14d_autocorr+hr_7d_std+hr_14d_autocorr+sleep_qual_21d_std): This composite index combines the autocorrelation of RMSSD over 14 days, the autocorrelation of heart rate over 14 days, and the autocorrelation of sleep quality over 21 days, with the standard deviation of RMSSD, heart rate, and sleep quality over 7 and 21 days. It aims to capture critical slowing down, which is a signal of approaching tipping points in complex systems. The interaction between RMSSD, heart rate, and sleep quality autocorrelations can indicate increased physiological rigidity, while the inclusion of standard deviations can provide additional information on physiological and behavioral variability.
+[2026-03-28 13:00:15] ======================================================================
+[2026-03-28 13:00:15] AutoBiomarker — ROUND 2 (LLM-Guided Refinement)
+[2026-03-28 13:00:15] Max LLM calls: 7
+[2026-03-28 13:00:15] ======================================================================
+[2026-03-28 13:00:15] Loaded Round 1: 5000 hypotheses, 0 KEEP, 5000 DISCARD
+[2026-03-28 13:00:15] Round 1 hit rate: 0.0% (0/5000)
+[2026-03-28 13:00:15] Loading dataset...
+[2026-03-28 13:00:15] Extracting features...
+[2026-03-28 13:00:18]   187 features available
+[2026-03-28 13:00:18] 
+--- LLM Call 1/7 ---
+[2026-03-28 13:00:36]   Tokens: 2141, Cost: $0.0028 (total: $0.0028)
+[2026-03-28 13:00:36]   LLM proposed 5 hypotheses
+[2026-03-28 13:00:37]     Tested interaction rmssd_7d_std x lfhf_21d_slope: AUC=0.713, d=0.632
+[2026-03-28 13:00:37]     Tested interaction rmssd_14d_autocorr x sleep_qual_21d_std: AUC=0.472, d=0.239
+[2026-03-28 13:00:38]     Tested composite composite_r2_10002: AUC=0.097, d=0.455
+[2026-03-28 13:00:38]     Tested interaction rmssd_7d_std x sleep_lat_21d_std: AUC=0.620, d=0.992
+[2026-03-28 13:00:39]     Tested composite composite_r2_10004: AUC=0.130, d=0.438
+[2026-03-28 13:00:39]   Tested 5 hypotheses this call
+[2026-03-28 13:00:39] 
+--- LLM Call 2/7 ---
+[2026-03-28 13:01:02]   Tokens: 2365, Cost: $0.0031 (total: $0.0059)
+[2026-03-28 13:01:02]   LLM proposed 5 hypotheses
+[2026-03-28 13:01:02]     Tested interaction rmssd_14d_autocorr x lfhf_21d_slope: AUC=0.619, d=0.261
+[2026-03-28 13:01:03]     Tested interaction rmssd_7d_std x sleep_qual_21d_cv: AUC=0.592, d=0.992
+[2026-03-28 13:01:03]     Tested composite composite_r2_10008: AUC=0.064, d=0.273
+[2026-03-28 13:01:04]     Tested interaction lfhf_28d_slope x rmssd_7d_std: AUC=0.463, d=0.958
+[2026-03-28 13:01:04]     Tested interaction rmssd_14d_autocorr x sleep_dur_21d_cv: AUC=0.630, d=0.239
+[2026-03-28 13:01:04]   Tested 5 hypotheses this call
+[2026-03-28 13:01:04] 
+--- LLM Call 3/7 ---
+[2026-03-28 13:01:24]   Tokens: 2405, Cost: $0.0031 (total: $0.0090)
+[2026-03-28 13:01:24]   LLM proposed 5 hypotheses
+[2026-03-28 13:01:24]     Error testing hypothesis 10012: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 13:01:24]     Error testing hypothesis 10013: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 13:01:24]     Error testing hypothesis 10014: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 13:01:25]     Tested interaction rmssd_7d_std x sleep_dur_14d_mean: AUC=0.519, d=0.880
+[2026-03-28 13:01:25]     Tested composite composite_r2_10016: AUC=0.064, d=0.273
+[2026-03-28 13:01:25]   Tested 2 hypotheses this call
+[2026-03-28 13:01:25] 
+--- LLM Call 4/7 ---
+[2026-03-28 13:01:44]   Tokens: 2560, Cost: $0.0033 (total: $0.0123)
+[2026-03-28 13:01:44]   LLM proposed 5 hypotheses
+[2026-03-28 13:01:44]     Error testing hypothesis 10018: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 13:01:44]     Error testing hypothesis 10019: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 13:01:44]     Error testing hypothesis 10020: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 13:01:45]     Tested single rmssd_7d_std: AUC=0.482, d=0.677
+[2026-03-28 13:01:45]     Tested composite composite_r2_10022: AUC=0.130, d=0.438
+[2026-03-28 13:01:45]   Tested 2 hypotheses this call
+[2026-03-28 13:01:45] 
+--- LLM Call 5/7 ---
+[2026-03-28 13:02:06]   Tokens: 2739, Cost: $0.0036 (total: $0.0159)
+[2026-03-28 13:02:06]   LLM proposed 5 hypotheses
+[2026-03-28 13:02:06]     Tested composite composite_r2_10024: AUC=0.000, d=0.213
+[2026-03-28 13:02:07]     Tested composite composite_r2_10025: AUC=0.000, d=0.483
+[2026-03-28 13:02:07]     Tested composite composite_r2_10026: AUC=0.167, d=0.463
+[2026-03-28 13:02:08]     Tested composite composite_r2_10027: AUC=0.000, d=0.165
+[2026-03-28 13:02:09]     Tested composite composite_r2_10028: AUC=0.000, d=0.014
+[2026-03-28 13:02:09]   Tested 5 hypotheses this call
+[2026-03-28 13:02:09] 
+--- LLM Call 6/7 ---
+[2026-03-28 13:02:29]   Tokens: 2879, Cost: $0.0037 (total: $0.0196)
+[2026-03-28 13:02:29]   LLM proposed 5 hypotheses
+[2026-03-28 13:02:30]     Tested composite composite_r2_10030: AUC=0.024, d=0.260
+[2026-03-28 13:02:31]     Tested composite composite_r2_10031: AUC=0.000, d=0.111
+[2026-03-28 13:02:31]     Tested composite composite_r2_10032: AUC=0.021, d=0.204
+[2026-03-28 13:02:32]     Tested composite composite_r2_10033: AUC=0.028, d=0.247
+[2026-03-28 13:02:32]     Tested composite composite_r2_10034: AUC=0.000, d=0.052
+[2026-03-28 13:02:32]   Tested 5 hypotheses this call
+[2026-03-28 13:02:32] 
+--- LLM Call 7/7 ---
+[2026-03-28 13:03:08]   Tokens: 3080, Cost: $0.0040 (total: $0.0236)
+[2026-03-28 13:03:08]   LLM proposed 5 hypotheses
+[2026-03-28 13:03:08]     Tested composite composite_r2_10036: AUC=0.004, d=0.311
+[2026-03-28 13:03:09]     Tested composite composite_r2_10037: AUC=0.000, d=0.261
+[2026-03-28 13:03:10]     Tested composite composite_r2_10038: AUC=0.000, d=0.199
+[2026-03-28 13:03:11]     Tested composite composite_r2_10039: AUC=0.019, d=0.205
+[2026-03-28 13:03:12]     Tested composite composite_r2_10040: AUC=0.066, d=0.443
+[2026-03-28 13:03:12]   Tested 5 hypotheses this call
+[2026-03-28 13:03:12] 
+Applying FDR correction across 29 Round 2 hypotheses...
+[2026-03-28 13:03:12] Round 2 results saved to /Users/athifshaffy/Documents/Repo/COGITO/evolved26-hackathon/src/../results/results_round2.tsv
+[2026-03-28 13:03:12] 
+======================================================================
+[2026-03-28 13:03:12] ROUND 2 COMPLETE
+[2026-03-28 13:03:12] ======================================================================
+[2026-03-28 13:03:12] Time: 177s
+[2026-03-28 13:03:12] LLM cost: $0.0236
+[2026-03-28 13:03:12] 
+[2026-03-28 13:03:12] Metric                              Round 1      Round 2
+[2026-03-28 13:03:12] ------------------------------------------------------
+[2026-03-28 13:03:12] Hypotheses tested                      5000           29
+[2026-03-28 13:03:12] Significant (KEEP)                        0            0
+[2026-03-28 13:03:12] Hit rate                               0.0%         0.0%
+[2026-03-28 13:03:12] 
+No significant findings in Round 2 after FDR correction.
+[2026-03-28 13:03:12] 
+Top 10 Round 2 results (not significant after FDR):
+[2026-03-28 13:03:12]   1. rmssd_7d_std × sleep_lat_21d_std: AUC=0.620, d=0.992, p=0.0060, p_adj=0.0579
+[2026-03-28 13:03:12]   2. rmssd_7d_std × sleep_qual_21d_cv: AUC=0.592, d=0.992, p=0.0050, p_adj=0.0579
+[2026-03-28 13:03:12]   3. lfhf_28d_slope × rmssd_7d_std: AUC=0.463, d=0.958, p=0.0490, p_adj=0.2839
+[2026-03-28 13:03:12]   4. rmssd_7d_std × sleep_dur_14d_mean: AUC=0.519, d=0.880, p=0.0060, p_adj=0.0579
+[2026-03-28 13:03:12]   5. rmssd_7d_std: AUC=0.482, d=0.677, p=0.0310, p_adj=0.2245
+[2026-03-28 13:03:12]   6. rmssd_7d_std × lfhf_21d_slope: AUC=0.713, d=0.632, p=0.1409, p_adj=0.4032
+[2026-03-28 13:03:12]   7. composite_r2_10025: AUC=0.000, d=0.483, p=0.0729, p_adj=0.3525
+[2026-03-28 13:03:12]   8. composite_r2_10026: AUC=0.167, d=0.463, p=0.1339, p_adj=0.4032
+[2026-03-28 13:03:12]   9. composite_r2_10002: AUC=0.097, d=0.455, p=0.1578, p_adj=0.4032
+[2026-03-28 13:03:12]   10. composite_r2_10040: AUC=0.066, d=0.443, p=0.1668, p_adj=0.4032
+[2026-03-28 13:46:32]     Tested interaction lfhf_21d_slope x rmssd_7d_std: AUC=0.713, d=1.038
+[2026-03-28 13:46:32]     Tested interaction rmssd_7d_std x sleep_qual_21d_mean: AUC=0.597, d=0.992
+[2026-03-28 13:46:33]     Tested interaction lfhf_21d_slope x sleep_onset_sd_21d: AUC=0.673, d=1.057
+[2026-03-28 13:46:33]     Tested interaction rmssd_7d_std x lfhf_7d_slope: AUC=0.474, d=0.677
+[2026-03-28 13:46:34]     Tested interaction rmssd_7d_std x sleep_dur_3d_autocorr: AUC=0.477, d=0.648
+[2026-03-28 13:46:52]     Tested interaction lfhf_21d_slope x rmssd_7d_std: AUC=0.713, d=1.038
+[2026-03-28 13:46:52]     Tested interaction rmssd_7d_std x sleep_onset_sd_21d: AUC=0.555, d=0.992
+[2026-03-28 13:46:53]     Tested interaction lfhf_21d_slope x sleep_qual_21d_mean: AUC=0.760, d=1.057
+[2026-03-28 13:46:53]     Tested interaction rmssd_7d_std x lfhf_7d_slope: AUC=0.474, d=0.677
+[2026-03-28 13:46:54]     Tested interaction lfhf_21d_slope x rmssd_14d_std: AUC=0.692, d=1.038
+[2026-03-28 13:47:25]     Tested interaction lfhf_21d_slope x rmssd_14d_std: AUC=0.692, d=1.038
+[2026-03-28 13:47:26]     Tested interaction rmssd_7d_std x lfhf_14d_slope: AUC=0.622, d=0.732
+[2026-03-28 13:47:26]     Tested interaction lfhf_21d_slope x rmssd_7d_std: AUC=0.713, d=1.038
+[2026-03-28 13:47:27]     Tested interaction rmssd_21d_slope x lfhf_14d_std: AUC=0.329, d=0.063
+[2026-03-28 13:47:27]     Tested interaction rmssd_14d_std x lfhf_7d_slope: AUC=0.394, d=0.675
+[2026-03-28 13:47:57]     Tested single lfhf_14d_slope: AUC=0.508, d=0.839
+[2026-03-28 13:47:57]     Error testing hypothesis 20019: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 13:47:58]     Tested composite composite_r2_20020: AUC=0.047, d=0.320
+[2026-03-28 13:47:58]     Tested single rmssd_14d_autocorr: AUC=0.521, d=0.479
+[2026-03-28 13:47:58]     Error testing hypothesis 20022: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 13:48:27]     Tested single lfhf_14d_slope: AUC=0.508, d=0.839
+[2026-03-28 13:48:27]     Error testing hypothesis 20025: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 13:48:28]     Tested composite composite_r2_20026: AUC=0.047, d=0.320
+[2026-03-28 13:48:28]     Skipped interaction: lfhf_10d_slope or rmssd_14d_autocorr not in features
+[2026-03-28 13:48:28]     Error testing hypothesis 20028: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 13:48:46]     Skipped interaction: lfhf_10d_slope or rmssd_10d_std not in features
+[2026-03-28 13:48:47]     Error testing hypothesis 20031: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 13:48:47]     Tested composite composite_r2_20032: AUC=0.047, d=0.320
+[2026-03-28 13:48:48]     Tested interaction rmssd_14d_autocorr x lfhf_14d_slope: AUC=0.614, d=0.479
+[2026-03-28 13:48:48]     Error testing hypothesis 20034: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 13:49:07]     Skipped interaction: lfhf_10d_slope or rmssd_10d_std not in features
+[2026-03-28 13:49:07]     Tested interaction lfhf_14d_slope x rmssd_14d_autocorr: AUC=0.614, d=0.839
+[2026-03-28 13:49:08]     Error testing hypothesis 20038: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 13:49:08]     Tested composite composite_r2_20039: AUC=0.047, d=0.320
+[2026-03-28 13:49:09]     Tested interaction lfhf_7d_slope x hr_7d_std: AUC=0.286, d=0.464
+[2026-03-28 13:49:40]     Tested single lfhf_14d_slope: AUC=0.508, d=0.839
+[2026-03-28 13:49:41]     Tested single rmssd_7d_autocorr: AUC=0.420, d=0.552
+[2026-03-28 13:49:41]     Error testing hypothesis 20044: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 13:49:41]     Tested composite composite_r2_20045: AUC=0.047, d=0.320
+[2026-03-28 13:49:42]     Tested interaction lfhf_7d_slope x hr_7d_std: AUC=0.286, d=0.464
+[2026-03-28 13:50:22]     Tested composite composite_r2_20048: AUC=0.174, d=0.521
+[2026-03-28 13:50:22]     Tested composite composite_r2_20049: AUC=0.025, d=0.147
+[2026-03-28 13:50:23]     Tested composite composite_r2_20050: AUC=0.000, d=0.355
+[2026-03-28 13:50:24]     Tested composite composite_r2_20051: AUC=0.060, d=0.384
+[2026-03-28 13:50:24]     Tested composite composite_r2_20052: AUC=0.001, d=0.018
+[2026-03-28 13:50:25]     Tested composite composite_r2_20053: AUC=0.000, d=0.069
+[2026-03-28 13:50:25]     Tested composite composite_r2_20054: AUC=0.000, d=0.106
+[2026-03-28 13:50:26]     Tested composite composite_r2_20055: AUC=0.044, d=0.332
+[2026-03-28 13:50:53]     Tested composite composite_r2_20057: AUC=0.009, d=0.350
+[2026-03-28 13:50:54]     Tested composite composite_r2_20058: AUC=0.025, d=0.147
+[2026-03-28 13:50:55]     Tested composite composite_r2_20059: AUC=0.003, d=0.031
+[2026-03-28 13:50:55]     Tested composite composite_r2_20060: AUC=0.005, d=0.207
+[2026-03-28 13:50:56]     Tested composite composite_r2_20061: AUC=0.000, d=0.385
+[2026-03-28 13:51:44]     Tested composite composite_r2_20063: AUC=0.016, d=0.312
+[2026-03-28 13:51:45]     Tested composite composite_r2_20064: AUC=0.002, d=0.030
+[2026-03-28 13:51:45]     Tested composite composite_r2_20065: AUC=0.007, d=0.206
+[2026-03-28 13:51:46]     Tested composite composite_r2_20066: AUC=0.007, d=0.092
+[2026-03-28 13:51:46]     Tested composite composite_r2_20067: AUC=0.029, d=0.327
+[2026-03-28 13:51:47]     Tested composite composite_r2_20068: AUC=0.013, d=0.224
+[2026-03-28 13:51:48]     Tested composite composite_r2_20069: AUC=0.003, d=0.129
+[2026-03-28 13:51:48]     Tested composite composite_r2_20070: AUC=0.061, d=0.337
+[2026-03-28 13:53:14]     Tested composite composite_r2_20072: AUC=0.053, d=0.496
+[2026-03-28 13:53:15]     Tested composite composite_r2_20073: AUC=0.003, d=0.232
+[2026-03-28 13:53:16]     Tested composite composite_r2_20074: AUC=0.141, d=0.488
+[2026-03-28 13:53:16]     Tested composite composite_r2_20075: AUC=0.000, d=0.266
+[2026-03-28 13:53:17]     Tested composite composite_r2_20076: AUC=0.010, d=0.240
+[2026-03-28 13:53:17]     Tested composite composite_r2_20077: AUC=0.003, d=0.233
+[2026-03-28 13:53:18]     Tested composite composite_r2_20078: AUC=0.119, d=0.307
+[2026-03-28 13:53:18]     Tested composite composite_r2_20079: AUC=0.004, d=0.220
+[2026-03-28 13:55:40]     Tested composite composite_r2_20081: AUC=0.060, d=0.384
+[2026-03-28 13:55:41]     Tested composite composite_r2_20082: AUC=0.130, d=0.454
+[2026-03-28 13:55:42]     Tested composite composite_r2_20083: AUC=0.092, d=0.344
+[2026-03-28 13:55:42]     Tested composite composite_r2_20084: AUC=0.011, d=0.109
+[2026-03-28 13:55:43]     Tested composite composite_r2_20085: AUC=0.130, d=0.454
+[2026-03-28 13:55:43]     Tested composite composite_r2_20086: AUC=0.001, d=0.023
+[2026-03-28 13:55:44]     Tested composite composite_r2_20087: AUC=0.253, d=0.681
+[2026-03-28 13:55:45]     Tested composite composite_r2_20088: AUC=0.194, d=0.508
+[2026-03-28 13:58:02]     Tested composite composite_r2_20090: AUC=0.000, d=0.227
+[2026-03-28 13:58:03]     Tested composite composite_r2_20091: AUC=0.154, d=0.375
+[2026-03-28 13:58:03]     Tested composite composite_r2_20092: AUC=0.105, d=0.301
+[2026-03-28 13:58:04]     Tested composite composite_r2_20093: AUC=0.000, d=0.004
+[2026-03-28 13:58:05]     Tested composite composite_r2_20094: AUC=0.000, d=0.218
+[2026-03-28 13:58:05]     Tested composite composite_r2_20095: AUC=0.006, d=0.226
+[2026-03-28 13:58:06]     Tested composite composite_r2_20096: AUC=0.051, d=0.284
+[2026-03-28 13:58:06]     Tested composite composite_r2_20097: AUC=0.172, d=0.463
+[2026-03-28 14:00:15]     Tested composite composite_r2_20099: AUC=0.000, d=0.143
+[2026-03-28 14:00:15]     Tested composite composite_r2_20100: AUC=0.132, d=0.503
+[2026-03-28 14:00:16]     Tested composite composite_r2_20101: AUC=0.036, d=0.417
+[2026-03-28 14:00:16]     Tested composite composite_r2_20102: AUC=0.002, d=0.307
+[2026-03-28 14:00:17]     Tested composite composite_r2_20103: AUC=0.000, d=0.025
+[2026-03-28 14:00:18]     Tested composite composite_r2_20104: AUC=0.000, d=0.219
+[2026-03-28 14:00:18]     Tested composite composite_r2_20105: AUC=0.007, d=0.296
+[2026-03-28 14:00:19]     Tested composite composite_r2_20106: AUC=0.013, d=0.481
+[2026-03-28 14:00:44]     Tested interaction lfhf_21d_slope x rmssd_7d_std: AUC=0.713, d=1.038
+[2026-03-28 14:00:44]     Error testing hypothesis 20109: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:00:45]     Tested interaction hr_14d_slope x sleep_dur_3d_autocorr: AUC=0.397, d=0.511
+[2026-03-28 14:00:45]     Tested composite composite_r2_20111: AUC=0.000, d=0.056
+[2026-03-28 14:00:45]     Error testing hypothesis 20112: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:00:46]     Tested interaction rmssd_3d_slope x hr_3d_slope: AUC=0.266, d=0.923
+[2026-03-28 14:00:47]     Tested composite composite_r2_20114: AUC=0.000, d=0.344
+[2026-03-28 14:00:47]     Error testing hypothesis 20115: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:01:19]     Tested composite composite_r2_20117: AUC=0.000, d=0.014
+[2026-03-28 14:01:19]     Tested interaction rmssd_14d_std x sleep_qual_21d_mean: AUC=0.585, d=0.673
+[2026-03-28 14:01:19]     Error testing hypothesis 20119: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:01:20]     Tested composite composite_r2_20120: AUC=0.000, d=0.241
+[2026-03-28 14:01:21]     Tested interaction rmssd_21d_mean x sleep_lat_14d_std: AUC=0.519, d=0.474
+[2026-03-28 14:01:22]     Tested composite composite_r2_20122: AUC=0.000, d=0.067
+[2026-03-28 14:01:22]     Error testing hypothesis 20123: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:01:22]     Tested interaction rmssd_7d_std x lfhf_21d_autocorr: AUC=0.603, d=0.632
+[2026-03-28 14:01:47]     Tested composite composite_r2_20126: AUC=0.097, d=0.455
+[2026-03-28 14:01:47]     Tested composite composite_r2_20127: AUC=0.000, d=0.011
+[2026-03-28 14:01:48]     Tested composite composite_r2_20128: AUC=0.013, d=0.363
+[2026-03-28 14:01:48]     Tested interaction rmssd_21d_autocorr x sleep_lat_14d_std: AUC=0.583, d=0.613
+[2026-03-28 14:01:49]     Tested composite composite_r2_20130: AUC=0.000, d=0.224
+[2026-03-28 14:01:50]     Tested composite composite_r2_20131: AUC=0.000, d=0.018
+[2026-03-28 14:01:50]     Tested interaction lfhf_21d_slope x rmssd_7d_std: AUC=0.713, d=1.038
+[2026-03-28 14:01:51]     Tested composite composite_r2_20133: AUC=0.024, d=0.207
+[2026-03-28 14:02:29]     Tested composite composite_r2_20135: AUC=0.097, d=0.455
+[2026-03-28 14:02:29]     Tested interaction hr_14d_slope x sleep_qual_21d_mean: AUC=0.552, d=0.459
+[2026-03-28 14:02:30]     Tested composite composite_r2_20137: AUC=0.000, d=0.203
+[2026-03-28 14:02:30]     Error testing hypothesis 20138: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:02:30]     Tested composite composite_r2_20139: AUC=0.000, d=0.063
+[2026-03-28 14:02:31]     Tested interaction rmssd_21d_autocorr x sleep_dur_3d_autocorr: AUC=0.519, d=0.611
+[2026-03-28 14:02:31]     Tested composite composite_r2_20141: AUC=0.000, d=0.224
+[2026-03-28 14:02:32]     Error testing hypothesis 20142: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:02:56]     Tested composite composite_r2_20144: AUC=0.000, d=0.106
+[2026-03-28 14:02:56]     Tested interaction rmssd_14d_mean x hr_14d_cv: AUC=0.310, d=0.293
+[2026-03-28 14:02:57]     Tested composite composite_r2_20146: AUC=0.000, d=0.004
+[2026-03-28 14:02:57]     Error testing hypothesis 20147: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:02:57]     Tested composite composite_r2_20148: AUC=0.000, d=0.105
+[2026-03-28 14:02:58]     Tested interaction lfhf_14d_autocorr x rmssd_14d_autocorr: AUC=0.521, d=0.552
+[2026-03-28 14:02:58]     Tested composite composite_r2_20150: AUC=0.000, d=0.056
+[2026-03-28 14:02:59]     Error testing hypothesis 20151: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:03:25]     Tested composite composite_r2_20153: AUC=0.000, d=0.106
+[2026-03-28 14:03:25]     Tested interaction rmssd_14d_std x hr_14d_cv: AUC=0.339, d=0.675
+[2026-03-28 14:03:26]     Tested composite composite_r2_20155: AUC=0.000, d=0.004
+[2026-03-28 14:03:26]     Error testing hypothesis 20156: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:03:26]     Tested composite composite_r2_20157: AUC=0.000, d=0.128
+[2026-03-28 14:03:27]     Tested interaction lfhf_14d_autocorr x rmssd_14d_autocorr: AUC=0.521, d=0.552
+[2026-03-28 14:03:27]     Tested composite composite_r2_20159: AUC=0.000, d=0.236
+[2026-03-28 14:03:27]     Error testing hypothesis 20160: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:03:51]     Tested composite composite_r2_20162: AUC=0.000, d=0.106
+[2026-03-28 14:03:52]     Tested interaction rmssd_14d_mean x hr_14d_cv: AUC=0.310, d=0.293
+[2026-03-28 14:03:52]     Error testing hypothesis 20164: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:03:53]     Tested composite composite_r2_20165: AUC=0.000, d=0.004
+[2026-03-28 14:03:53]     Tested interaction rmssd_7d_std x hr_7d_mean: AUC=0.462, d=0.677
+[2026-03-28 14:03:54]     Tested composite composite_r2_20167: AUC=0.000, d=0.018
+[2026-03-28 14:03:54]     Error testing hypothesis 20168: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:03:54]     Tested interaction lfhf_14d_slope x rmssd_14d_slope: AUC=0.502, d=0.839
+[2026-03-28 14:04:29]     Tested interaction lfhf_21d_slope x rmssd_7d_std: AUC=0.713, d=1.038
+[2026-03-28 14:04:30]     Tested composite composite_r2_20172: AUC=0.000, d=0.203
+[2026-03-28 14:04:30]     Error testing hypothesis 20173: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:04:31]     Tested interaction rmssd_14d_autocorr x lfhf_14d_autocorr: AUC=0.521, d=0.479
+[2026-03-28 14:04:32]     Tested composite composite_r2_20175: AUC=0.000, d=0.004
+[2026-03-28 14:04:32]     Error testing hypothesis 20176: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:04:33]     Tested interaction rmssd_7d_std x hr_7d_cv: AUC=0.477, d=0.677
+[2026-03-28 14:04:33]     Tested composite composite_r2_20178: AUC=0.000, d=0.313
+[2026-03-28 14:04:56]     Tested interaction rmssd_7d_slope x lfhf_21d_slope: AUC=0.641, d=0.142
+[2026-03-28 14:04:57]     Tested composite composite_r2_20181: AUC=0.000, d=0.105
+[2026-03-28 14:04:57]     Error testing hypothesis 20182: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:04:58]     Tested interaction lfhf_14d_autocorr x rmssd_14d_autocorr: AUC=0.521, d=0.552
+[2026-03-28 14:04:58]     Tested composite composite_r2_20184: AUC=0.000, d=0.356
+[2026-03-28 14:04:58]     Error testing hypothesis 20185: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:04:59]     Tested interaction rmssd_21d_slope x hr_21d_slope: AUC=0.447, d=0.063
+[2026-03-28 14:04:59]     Tested composite composite_r2_20187: AUC=0.000, d=0.149
+[2026-03-28 14:05:26]     Tested composite composite_r2_20189: AUC=0.000, d=0.106
+[2026-03-28 14:05:26]     Tested interaction rmssd_21d_slope x hr_21d_cv: AUC=0.018, d=0.063
+[2026-03-28 14:05:27]     Tested composite composite_r2_20191: AUC=0.000, d=0.083
+[2026-03-28 14:05:27]     Error testing hypothesis 20192: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:05:27]     Tested composite composite_r2_20193: AUC=0.000, d=0.203
+[2026-03-28 14:05:28]     Tested interaction lfhf_21d_autocorr x rmssd_21d_autocorr: AUC=0.475, d=0.561
+[2026-03-28 14:05:28]     Tested composite composite_r2_20195: AUC=0.000, d=0.356
+[2026-03-28 14:05:29]     Error testing hypothesis 20196: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:05:53]     Tested interaction lfhf_21d_slope x rmssd_7d_std: AUC=0.713, d=1.038
+[2026-03-28 14:05:54]     Tested interaction rmssd_3d_slope x sleep_dur_3d_autocorr: AUC=0.223, d=1.113
+[2026-03-28 14:05:54]     Tested composite composite_r2_20200: AUC=0.000, d=0.004
+[2026-03-28 14:05:54]     Error testing hypothesis 20201: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:05:55]     Tested interaction rmssd_7d_std x hr_7d_cv: AUC=0.477, d=0.677
+[2026-03-28 14:05:55]     Tested composite composite_r2_20203: AUC=0.000, d=0.083
+[2026-03-28 14:05:56]     Tested interaction rmssd_21d_slope x hr_21d_slope: AUC=0.447, d=0.063
+[2026-03-28 14:05:56]     Error testing hypothesis 20205: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:06:15]     Tested interaction rmssd_7d_slope x lfhf_21d_slope: AUC=0.641, d=0.142
+[2026-03-28 14:06:15]     Tested composite composite_r2_20208: AUC=0.000, d=0.167
+[2026-03-28 14:06:16]     Tested interaction lfhf_21d_autocorr x sleep_qual_21d_mean: AUC=0.517, d=0.480
+[2026-03-28 14:06:16]     Error testing hypothesis 20210: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:06:17]     Tested interaction rmssd_3d_slope x lfhf_3d_slope: AUC=0.256, d=0.923
+[2026-03-28 14:06:35]     Tested interaction rmssd_21d_slope x lfhf_21d_slope: AUC=0.617, d=0.063
+[2026-03-28 14:06:36]     Tested composite composite_r2_20214: AUC=0.000, d=0.167
+[2026-03-28 14:06:36]     Tested interaction lfhf_21d_slope x sleep_qual_21d_mean: AUC=0.760, d=1.057
+[2026-03-28 14:06:37]     Error testing hypothesis 20216: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:06:37]     Tested interaction rmssd_7d_slope x hr_7d_cv: AUC=0.213, d=0.210
+[2026-03-28 14:06:38]     Tested composite composite_r2_20218: AUC=0.000, d=0.083
+[2026-03-28 14:06:38]     Tested interaction rmssd_21d_slope x sleep_dur_21d_mean: AUC=0.272, d=0.050
+[2026-03-28 14:06:38]     Error testing hypothesis 20220: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:07:01]     Tested interaction rmssd_21d_slope x lfhf_21d_slope: AUC=0.617, d=0.063
+[2026-03-28 14:07:01]     Tested interaction rmssd_7d_std x hr_7d_cv: AUC=0.477, d=0.677
+[2026-03-28 14:07:02]     Tested composite composite_r2_20224: AUC=0.000, d=0.083
+[2026-03-28 14:07:02]     Error testing hypothesis 20225: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:07:02]     Tested interaction rmssd_3d_slope x sleep_dur_3d_autocorr: AUC=0.223, d=1.113
+[2026-03-28 14:07:03]     Tested composite composite_r2_20227: AUC=0.000, d=0.004
+[2026-03-28 14:07:03]     Tested interaction hr_14d_cv x rmssd_14d_std: AUC=0.339, d=0.304
+[2026-03-28 14:07:04]     Error testing hypothesis 20229: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:07:25]     Tested interaction rmssd_21d_slope x lfhf_21d_slope: AUC=0.617, d=0.063
+[2026-03-28 14:07:26]     Tested interaction rmssd_7d_std x hr_7d_cv: AUC=0.477, d=0.677
+[2026-03-28 14:07:26]     Tested composite composite_r2_20233: AUC=0.000, d=0.083
+[2026-03-28 14:07:27]     Tested interaction lfhf_21d_slope x sleep_qual_21d_mean: AUC=0.760, d=1.057
+[2026-03-28 14:07:27]     Tested composite composite_r2_20235: AUC=0.000, d=0.067
+[2026-03-28 14:07:28]     Tested interaction rmssd_3d_slope x sleep_dur_3d_autocorr: AUC=0.223, d=1.113
+[2026-03-28 14:07:28]     Tested composite composite_r2_20237: AUC=0.000, d=0.083
+[2026-03-28 14:07:29]     Tested interaction hr_14d_cv x rmssd_14d_std: AUC=0.339, d=0.304
+[2026-03-28 14:07:43]     Tested interaction rmssd_7d_slope x lfhf_21d_slope: AUC=0.641, d=0.142
+[2026-03-28 14:07:43]     Tested composite composite_r2_20241: AUC=0.000, d=0.169
+[2026-03-28 14:07:43]     Error testing hypothesis 20242: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:07:44]     Tested interaction lfhf_3d_slope x rmssd_3d_autocorr: AUC=0.095, d=0.098
+[2026-03-28 14:07:45]     Tested composite composite_r2_20244: AUC=0.000, d=0.004
+[2026-03-28 14:08:05]     Tested interaction rmssd_7d_slope x lfhf_21d_slope: AUC=0.641, d=0.142
+[2026-03-28 14:08:05]     Tested composite composite_r2_20247: AUC=0.000, d=0.068
+[2026-03-28 14:08:06]     Tested interaction rmssd_3d_autocorr x sleep_dur_3d_autocorr: AUC=0.198, d=0.216
+[2026-03-28 14:08:06]     Tested composite composite_r2_20249: AUC=0.052, d=0.364
+[2026-03-28 14:08:07]     Tested interaction rmssd_7d_std x hr_7d_cv: AUC=0.477, d=0.677
+[2026-03-28 14:08:07]     Error testing hypothesis 20251: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:08:08]     Tested composite composite_r2_20252: AUC=0.000, d=0.083
+[2026-03-28 14:08:08]     Tested interaction rmssd_3d_slope x sleep_dur_3d_autocorr: AUC=0.223, d=1.113
+[2026-03-28 14:08:24]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:08:25]     Tested interaction sleep_dur_3d_autocorr x hr_14d_cv: AUC=0.007, d=0.110
+[2026-03-28 14:08:25]     Tested composite composite_r2_20257: AUC=0.000, d=0.056
+[2026-03-28 14:08:26]     Tested interaction rmssd_3d_autocorr x sleep_qual_21d_mean: AUC=0.441, d=0.312
+[2026-03-28 14:08:26]     Tested interaction lfhf_21d_slope x hr_28d_slope: AUC=0.595, d=0.823
+[2026-03-28 14:08:40]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:08:40]     Tested interaction hr_3d_cv x sleep_dur_3d_autocorr: AUC=0.319, d=0.366
+[2026-03-28 14:08:41]     Tested composite composite_r2_20263: AUC=0.000, d=0.056
+[2026-03-28 14:08:41]     Error testing hypothesis 20264: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:08:41]     Tested interaction rmssd_14d_slope x sleep_lat_3d_mean: AUC=0.521, d=0.463
+[2026-03-28 14:08:56]     Tested interaction rmssd_7d_slope x lfhf_21d_slope: AUC=0.641, d=0.142
+[2026-03-28 14:08:57]     Tested interaction hr_3d_cv x sleep_dur_3d_autocorr: AUC=0.319, d=0.366
+[2026-03-28 14:08:57]     Tested composite composite_r2_20269: AUC=0.000, d=0.083
+[2026-03-28 14:08:58]     Tested interaction rmssd_3d_slope x sleep_qual_21d_mean: AUC=0.458, d=0.782
+[2026-03-28 14:08:58]     Tested interaction lfhf_21d_slope x rmssd_7d_autocorr: AUC=0.656, d=1.038
+[2026-03-28 14:09:15]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:09:15]     Tested interaction rmssd_3d_autocorr x sleep_qual_21d_mean: AUC=0.441, d=0.312
+[2026-03-28 14:09:16]     Tested composite composite_r2_20275: AUC=0.000, d=0.083
+[2026-03-28 14:09:16]     Tested interaction hr_3d_cv x sleep_dur_3d_autocorr: AUC=0.319, d=0.366
+[2026-03-28 14:09:17]     Tested interaction rmssd_7d_slope x lfhf_7d_slope: AUC=0.273, d=0.210
+[2026-03-28 14:09:41]     Tested interaction rmssd_7d_slope x lfhf_21d_slope: AUC=0.641, d=0.142
+[2026-03-28 14:09:42]     Tested interaction hr_3d_cv x rmssd_14d_autocorr: AUC=0.512, d=0.657
+[2026-03-28 14:09:42]     Tested composite composite_r2_20281: AUC=0.000, d=0.056
+[2026-03-28 14:09:43]     Tested interaction sleep_dur_3d_autocorr x rmssd_3d_slope: AUC=0.223, d=0.173
+[2026-03-28 14:09:43]     Tested composite composite_r2_20283: AUC=0.000, d=0.551
+[2026-03-28 14:09:44]     Tested interaction rmssd_14d_autocorr x sleep_qual_21d_mean: AUC=0.465, d=0.239
+[2026-03-28 14:09:45]     Tested composite composite_r2_20285: AUC=0.000, d=0.281
+[2026-03-28 14:09:45]     Tested interaction lfhf_7d_slope x sleep_lat_3d_mean: AUC=0.452, d=0.467
+[2026-03-28 14:09:58]     Tested interaction rmssd_7d_slope x hr_7d_cv: AUC=0.213, d=0.210
+[2026-03-28 14:09:58]     Tested interaction lfhf_21d_slope x sleep_qual_21d_mean: AUC=0.760, d=1.057
+[2026-03-28 14:09:59]     Tested composite composite_r2_20290: AUC=0.000, d=0.056
+[2026-03-28 14:09:59]     Tested interaction rmssd_3d_autocorr x sleep_lat_3d_mean: AUC=0.469, d=0.188
+[2026-03-28 14:10:00]     Tested interaction hr_14d_slope x sleep_dur_14d_mean: AUC=0.413, d=0.737
+[2026-03-28 14:10:13]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:10:14]     Tested interaction hr_3d_cv x sleep_qual_21d_mean: AUC=0.526, d=0.516
+[2026-03-28 14:10:14]     Tested composite composite_r2_20296: AUC=0.000, d=0.056
+[2026-03-28 14:10:15]     Tested interaction rmssd_14d_autocorr x sleep_lat_3d_mean: AUC=0.512, d=0.477
+[2026-03-28 14:10:15]     Tested interaction lfhf_7d_slope x sleep_dur_3d_autocorr: AUC=0.145, d=0.363
+[2026-03-28 14:10:32]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:10:32]     Tested interaction rmssd_7d_autocorr x sleep_qual_21d_mean: AUC=0.381, d=0.186
+[2026-03-28 14:10:33]     Tested composite composite_r2_20302: AUC=0.000, d=0.083
+[2026-03-28 14:10:33]     Tested interaction hr_3d_cv x sleep_dur_3d_autocorr: AUC=0.319, d=0.366
+[2026-03-28 14:10:34]     Tested interaction lfhf_7d_slope x rmssd_7d_slope: AUC=0.273, d=0.464
+[2026-03-28 14:11:40]     Tested interaction rmssd_3d_slope x sleep_dur_3d_autocorr: AUC=0.223, d=1.113
+[2026-03-28 14:11:41]     Tested interaction lfhf_21d_slope x rmssd_7d_autocorr: AUC=0.656, d=1.038
+[2026-03-28 14:11:41]     Tested composite composite_r2_20308: AUC=0.000, d=0.088
+[2026-03-28 14:11:42]     Tested interaction hr_3d_cv x sleep_qual_21d_mean: AUC=0.526, d=0.516
+[2026-03-28 14:11:42]     Error testing hypothesis 20310: "['rmssd_10d_entropy'] not in index"
+[2026-03-28 14:11:42]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:11:43]     Tested composite composite_r2_20312: AUC=0.000, d=0.088
+[2026-03-28 14:12:35]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:12:35]     Error testing hypothesis 20316: "['sleep_dur_10d_entropy'] not in index"
+[2026-03-28 14:12:36]     Tested composite composite_r2_20317: AUC=0.000, d=0.128
+[2026-03-28 14:12:36]     Tested interaction lfhf_7d_slope x sleep_qual_21d_mean: AUC=0.470, d=0.224
+[2026-03-28 14:12:37]     Tested interaction rmssd_14d_autocorr x sleep_lat_3d_mean: AUC=0.512, d=0.477
+[2026-03-28 14:14:06]     Tested interaction rmssd_3d_slope x hr_3d_cv: AUC=0.304, d=0.923
+[2026-03-28 14:14:06]     Tested interaction lfhf_21d_slope x rmssd_14d_autocorr: AUC=0.619, d=1.038
+[2026-03-28 14:14:07]     Tested composite composite_r2_20324: AUC=0.000, d=0.128
+[2026-03-28 14:14:07]     Tested interaction rmssd_3d_slope x sleep_qual_21d_mean: AUC=0.458, d=0.782
+[2026-03-28 14:14:08]     Error testing hypothesis 20326: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:14:08]     Tested interaction hr_14d_slope x rmssd_14d_autocorr: AUC=0.535, d=0.510
+[2026-03-28 14:14:09]     Tested composite composite_r2_20328: AUC=0.000, d=0.056
+[2026-03-28 14:15:00]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:15:01]     Tested existing window sleep_dur_5d_slope: AUC=0.071, d=0.411
+[2026-03-28 14:15:02]     Tested composite composite_r2_20332: AUC=0.000, d=0.056
+[2026-03-28 14:15:02]     Tested interaction hr_3d_cv x sleep_qual_21d_mean: AUC=0.526, d=0.516
+[2026-03-28 14:15:03]     Tested interaction rmssd_14d_autocorr x lfhf_14d_slope: AUC=0.614, d=0.479
+[2026-03-28 14:16:04]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:16:05]     Tested interaction rmssd_14d_autocorr x hr_14d_slope: AUC=0.535, d=0.479
+[2026-03-28 14:16:06]     Tested composite composite_r2_20339: AUC=0.000, d=0.056
+[2026-03-28 14:16:06]     Tested interaction rmssd_3d_slope x sleep_qual_21d_mean: AUC=0.458, d=0.782
+[2026-03-28 14:16:06]     Error testing hypothesis 20341: "['rmssd_10d_change_point'] not in index"
+[2026-03-28 14:16:07]     Tested interaction lfhf_21d_slope x sleep_lat_3d_mean: AUC=0.704, d=1.038
+[2026-03-28 14:16:07]     Tested composite composite_r2_20343: AUC=0.000, d=0.128
+[2026-03-28 14:16:30]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:16:30]     Tested interaction rmssd_14d_autocorr x hr_14d_slope: AUC=0.535, d=0.479
+[2026-03-28 14:16:31]     Tested composite composite_r2_20347: AUC=0.000, d=0.056
+[2026-03-28 14:16:31]     Error testing hypothesis 20348: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:16:31]     Tested interaction rmssd_3d_slope x sleep_qual_21d_mean: AUC=0.458, d=0.782
+[2026-03-28 14:16:46]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:16:47]     Tested interaction hr_3d_cv x sleep_qual_21d_mean: AUC=0.526, d=0.516
+[2026-03-28 14:16:47]     Error testing hypothesis 20353: "['sleep_dur_10d_entropy'] not in index"
+[2026-03-28 14:16:47]     Tested composite composite_r2_20354: AUC=0.000, d=0.056
+[2026-03-28 14:16:48]     Tested interaction rmssd_3d_slope x sleep_lat_3d_mean: AUC=0.472, d=0.990
+[2026-03-28 14:17:10]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:17:10]     Error testing hypothesis 20358: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:17:11]     Tested composite composite_r2_20359: AUC=0.000, d=0.128
+[2026-03-28 14:17:11]     Tested interaction lfhf_21d_slope x sleep_qual_21d_mean: AUC=0.760, d=1.057
+[2026-03-28 14:17:11]     Error testing hypothesis 20361: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:17:28]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:17:28]     Error testing hypothesis 20364: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:17:29]     Tested composite composite_r2_20365: AUC=0.000, d=0.128
+[2026-03-28 14:17:29]     Tested interaction lfhf_21d_slope x sleep_qual_21d_mean: AUC=0.760, d=1.057
+[2026-03-28 14:17:29]     Error testing hypothesis 20367: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:17:51]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:17:52]     Tested interaction rmssd_3d_slope x sleep_qual_21d_mean: AUC=0.458, d=0.782
+[2026-03-28 14:17:52]     Error testing hypothesis 20371: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:17:52]     Tested composite composite_r2_20372: AUC=0.000, d=0.128
+[2026-03-28 14:17:53]     Tested interaction lfhf_21d_slope x sleep_lat_3d_mean: AUC=0.704, d=1.038

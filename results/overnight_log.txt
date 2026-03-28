@@ -1,0 +1,205 @@
+[2026-03-28 00:06:04] ======================================================================
+[2026-03-28 00:06:04] AutoBiomarker — OVERNIGHT RUN
+[2026-03-28 00:06:04] Started at 2026-03-28 00:06:04
+[2026-03-28 00:06:04] Max hypotheses: 5000
+[2026-03-28 00:06:04] ======================================================================
+[2026-03-28 00:06:04] [1/6] Loading dataset...
+[2026-03-28 00:06:05] [2/6] Extracting temporal features (6 rolling windows)...
+[2026-03-28 00:06:07]   187 features extracted
+[2026-03-28 00:06:07] [3/6] Preparing outcome...
+[2026-03-28 00:06:07]   Outcome (PHQ-9 >= 5): 515 positive, 969 negative
+[2026-03-28 00:06:07] [4/6] Generating predefined hypotheses...
+[2026-03-28 00:06:07]   Will test 5000 predefined hypotheses
+[2026-03-28 00:07:03]   [100/5000] 1.8 hyp/sec | Promising: 0 | AUC: 0.274
+[2026-03-28 00:07:55]   [200/5000] 1.9 hyp/sec | Promising: 8 | AUC: 0.000
+[2026-03-28 00:08:52]   [300/5000] 1.8 hyp/sec | Promising: 24 | AUC: 0.503
+[2026-03-28 00:09:46]   [400/5000] 1.8 hyp/sec | Promising: 30 | AUC: 0.520
+[2026-03-28 00:10:37]   [500/5000] 1.9 hyp/sec | Promising: 30 | AUC: 0.500
+[2026-03-28 00:11:26]   [600/5000] 1.9 hyp/sec | Promising: 30 | AUC: 0.484
+[2026-03-28 00:12:12]   [700/5000] 1.9 hyp/sec | Promising: 48 | AUC: 0.500
+[2026-03-28 00:13:05]   [800/5000] 1.9 hyp/sec | Promising: 52 | AUC: 0.562
+[2026-03-28 00:13:55]   [900/5000] 1.9 hyp/sec | Promising: 70 | AUC: 0.401
+[2026-03-28 00:14:54]   [1000/5000] 1.9 hyp/sec | Promising: 72 | AUC: 0.471
+[2026-03-28 00:15:44]   [1100/5000] 1.9 hyp/sec | Promising: 72 | AUC: 0.497
+[2026-03-28 00:16:33]   [1200/5000] 1.9 hyp/sec | Promising: 72 | AUC: 0.288
+[2026-03-28 00:17:23]   [1300/5000] 1.9 hyp/sec | Promising: 72 | AUC: 0.242
+[2026-03-28 00:18:13]   [1400/5000] 1.9 hyp/sec | Promising: 72 | AUC: 0.516
+[2026-03-28 00:18:57]   [1500/5000] 1.9 hyp/sec | Promising: 72 | AUC: 0.568
+[2026-03-28 00:19:49]   [1600/5000] 1.9 hyp/sec | Promising: 74 | AUC: 0.694
+[2026-03-28 00:20:38]   [1700/5000] 2.0 hyp/sec | Promising: 88 | AUC: 0.492
+[2026-03-28 00:21:26]   [1800/5000] 2.0 hyp/sec | Promising: 94 | AUC: 0.500
+[2026-03-28 00:22:22]   [1900/5000] 1.9 hyp/sec | Promising: 108 | AUC: 0.449
+[2026-03-28 00:23:07]   [2000/5000] 2.0 hyp/sec | Promising: 112 | AUC: 0.070
+[2026-03-28 00:24:02]   [2100/5000] 2.0 hyp/sec | Promising: 112 | AUC: 0.459
+[2026-03-28 00:24:48]   [2200/5000] 2.0 hyp/sec | Promising: 112 | AUC: 0.362
+[2026-03-28 00:25:41]   [2300/5000] 2.0 hyp/sec | Promising: 118 | AUC: 0.439
+[2026-03-28 00:26:26]   [2400/5000] 2.0 hyp/sec | Promising: 119 | AUC: 0.563
+[2026-03-28 00:27:15]   [2500/5000] 2.0 hyp/sec | Promising: 119 | AUC: 0.500
+[2026-03-28 00:28:01]   [2600/5000] 2.0 hyp/sec | Promising: 129 | AUC: 0.482
+[2026-03-28 00:28:44]   [2700/5000] 2.0 hyp/sec | Promising: 147 | AUC: 0.500
+[2026-03-28 00:29:32]   [2800/5000] 2.0 hyp/sec | Promising: 153 | AUC: 0.620
+[2026-03-28 00:30:16]   [2900/5000] 2.0 hyp/sec | Promising: 157 | AUC: 0.290
+[2026-03-28 00:31:04]   [3000/5000] 2.0 hyp/sec | Promising: 157 | AUC: 0.192
+[2026-03-28 00:31:48]   [3100/5000] 2.0 hyp/sec | Promising: 157 | AUC: 0.031
+[2026-03-28 00:32:38]   [3200/5000] 2.0 hyp/sec | Promising: 163 | AUC: 0.374
+[2026-03-28 00:33:20]   [3300/5000] 2.0 hyp/sec | Promising: 163 | AUC: 0.489
+[2026-03-28 00:34:08]   [3400/5000] 2.0 hyp/sec | Promising: 165 | AUC: 0.521
+[2026-03-28 00:34:48]   [3500/5000] 2.0 hyp/sec | Promising: 165 | AUC: 0.374
+[2026-03-28 00:35:34]   [3600/5000] 2.0 hyp/sec | Promising: 169 | AUC: 0.506
+[2026-03-28 00:36:12]   [3700/5000] 2.1 hyp/sec | Promising: 169 | AUC: 0.459
+[2026-03-28 00:36:54]   [3800/5000] 2.1 hyp/sec | Promising: 171 | AUC: 0.500
+[2026-03-28 00:37:36]   [3900/5000] 2.1 hyp/sec | Promising: 171 | AUC: 0.459
+[2026-03-28 00:38:15]   [4000/5000] 2.1 hyp/sec | Promising: 171 | AUC: 0.465
+[2026-03-28 00:38:58]   [4100/5000] 2.1 hyp/sec | Promising: 171 | AUC: 0.522
+[2026-03-28 00:39:38]   [4200/5000] 2.1 hyp/sec | Promising: 179 | AUC: 0.526
+[2026-03-28 00:40:19]   [4300/5000] 2.1 hyp/sec | Promising: 181 | AUC: 0.512
+[2026-03-28 00:40:56]   [4400/5000] 2.1 hyp/sec | Promising: 183 | AUC: 0.471
+[2026-03-28 00:41:35]   [4500/5000] 2.1 hyp/sec | Promising: 183 | AUC: 0.422
+[2026-03-28 00:42:12]   [4600/5000] 2.1 hyp/sec | Promising: 183 | AUC: 0.292
+[2026-03-28 00:42:53]   [4700/5000] 2.1 hyp/sec | Promising: 183 | AUC: 0.536
+[2026-03-28 00:43:31]   [4800/5000] 2.1 hyp/sec | Promising: 183 | AUC: 0.006
+[2026-03-28 00:44:10]   [4900/5000] 2.1 hyp/sec | Promising: 183 | AUC: 0.500
+[2026-03-28 00:44:50]   [5000/5000] 2.2 hyp/sec | Promising: 183 | AUC: 0.483
+[2026-03-28 00:44:50]   Phase 1 complete: 5000 hypotheses in 38.7 min
+[2026-03-28 00:44:50] [5/6] LLM-guided hypothesis generation (multiple rounds)...
+[2026-03-28 00:44:50] [6/6] Final FDR correction across 5000 hypotheses...
+[2026-03-28 00:44:50] 
+======================================================================
+[2026-03-28 00:44:50] OVERNIGHT RUN COMPLETE
+[2026-03-28 00:44:50] ======================================================================
+[2026-03-28 00:44:50] Total time: 38.8 minutes (0.6 hours)
+[2026-03-28 00:44:50] Hypotheses tested: 5000
+[2026-03-28 00:44:50] Rate: 2.1 hypotheses/second
+[2026-03-28 00:44:50] LLM calls: 0 (est. cost: $0.000)
+[2026-03-28 00:44:50] 
+SIGNIFICANT FINDINGS: 1731 / 5000
+[2026-03-28 00:44:50] 
+Top 20 biomarkers:
+[2026-03-28 00:44:50]   1. lfhf_28d_slope: AUC=0.562, d=0.931, p_adj=0.0099
+[2026-03-28 00:44:50]      Does lfhf_28d_slope predict PHQ-9 ≥ 5 (mild+ depression)?
+[2026-03-28 00:44:50]   2. lfhf_28d_slope: AUC=0.562, d=0.931, p_adj=0.0077
+[2026-03-28 00:44:50]      Does lfhf_28d_slope predict PHQ-9 increased from baseline?
+[2026-03-28 00:44:50]   3. lfhf_21d_slope: AUC=0.674, d=0.921, p_adj=0.0029
+[2026-03-28 00:44:50]      Does lfhf_21d_slope predict PHQ-9 ≥ 5 (mild+ depression)?
+[2026-03-28 00:44:50]   4. lfhf_21d_slope: AUC=0.674, d=0.921, p_adj=0.0029
+[2026-03-28 00:44:50]      Does lfhf_21d_slope predict PHQ-9 increased from baseline?
+[2026-03-28 00:44:50]   5. lfhf_21d_mean: AUC=0.665, d=0.825, p_adj=0.0029
+[2026-03-28 00:44:50]      Does lfhf_21d_mean predict PHQ-9 ≥ 5 (mild+ depression)?
+[2026-03-28 00:44:50]   6. lfhf_21d_mean: AUC=0.665, d=0.825, p_adj=0.0029
+[2026-03-28 00:44:50]      Does lfhf_21d_mean predict PHQ-9 increased from baseline?
+[2026-03-28 00:44:50]   7. rmssd_7d_std × sleep_onset_sd_21d: AUC=0.569, d=0.760, p_adj=0.0029
+[2026-03-28 00:44:50]      HRV×Sleep: rmssd_7d_std + sleep_onset_sd_21d predicts PHQ-9 ≥ 5 (mild+ depression)
+[2026-03-28 00:44:50]   8. rmssd_7d_std × sleep_onset_sd_21d: AUC=0.569, d=0.760, p_adj=0.0029
+[2026-03-28 00:44:50]      HRV×Sleep: rmssd_7d_std + sleep_onset_sd_21d predicts PHQ-9 increased from baseline
+[2026-03-28 00:44:50]   9. rmssd_7d_std × sleep_qual_21d_mean: AUC=0.597, d=0.760, p_adj=0.0029
+[2026-03-28 00:44:50]      HRV×Sleep: rmssd_7d_std + sleep_qual_21d_mean predicts PHQ-9 ≥ 5 (mild+ depression)
+[2026-03-28 00:44:50]   10. rmssd_7d_std × sleep_qual_21d_mean: AUC=0.597, d=0.760, p_adj=0.0029
+[2026-03-28 00:44:50]      HRV×Sleep: rmssd_7d_std + sleep_qual_21d_mean predicts PHQ-9 increased from baseline
+[2026-03-28 00:44:50]   11. rmssd_7d_std × sleep_qual_21d_std: AUC=0.604, d=0.760, p_adj=0.0029
+[2026-03-28 00:44:50]      HRV×Sleep: rmssd_7d_std + sleep_qual_21d_std predicts PHQ-9 ≥ 5 (mild+ depression)
+[2026-03-28 00:44:50]   12. rmssd_7d_std × sleep_qual_21d_std: AUC=0.604, d=0.760, p_adj=0.0029
+[2026-03-28 00:44:50]      HRV×Sleep: rmssd_7d_std + sleep_qual_21d_std predicts PHQ-9 increased from baseline
+[2026-03-28 00:44:50]   13. rmssd_7d_std × sleep_qual_21d_cv: AUC=0.606, d=0.760, p_adj=0.0029
+[2026-03-28 00:44:50]      HRV×Sleep: rmssd_7d_std + sleep_qual_21d_cv predicts PHQ-9 ≥ 5 (mild+ depression)
+[2026-03-28 00:44:50]   14. rmssd_7d_std × sleep_qual_21d_cv: AUC=0.606, d=0.760, p_adj=0.0029
+[2026-03-28 00:44:50]      HRV×Sleep: rmssd_7d_std + sleep_qual_21d_cv predicts PHQ-9 increased from baseline
+[2026-03-28 00:44:50]   15. rmssd_7d_std × sleep_qual_21d_slope: AUC=0.544, d=0.760, p_adj=0.0029
+[2026-03-28 00:44:50]      HRV×Sleep: rmssd_7d_std + sleep_qual_21d_slope predicts PHQ-9 ≥ 5 (mild+ depression)
+[2026-03-28 00:44:50]   16. rmssd_7d_std × sleep_qual_21d_slope: AUC=0.544, d=0.760, p_adj=0.0029
+[2026-03-28 00:44:50]      HRV×Sleep: rmssd_7d_std + sleep_qual_21d_slope predicts PHQ-9 increased from baseline
+[2026-03-28 00:44:50]   17. rmssd_7d_std × sleep_dur_21d_mean: AUC=0.577, d=0.760, p_adj=0.0029
+[2026-03-28 00:44:50]      HRV×Sleep: rmssd_7d_std + sleep_dur_21d_mean predicts PHQ-9 ≥ 5 (mild+ depression)
+[2026-03-28 00:44:50]   18. rmssd_7d_std × sleep_dur_21d_mean: AUC=0.577, d=0.760, p_adj=0.0029
+[2026-03-28 00:44:50]      HRV×Sleep: rmssd_7d_std + sleep_dur_21d_mean predicts PHQ-9 increased from baseline
+[2026-03-28 00:44:50]   19. rmssd_7d_std × sleep_dur_21d_std: AUC=0.599, d=0.760, p_adj=0.0029
+[2026-03-28 00:44:50]      HRV×Sleep: rmssd_7d_std + sleep_dur_21d_std predicts PHQ-9 ≥ 5 (mild+ depression)
+[2026-03-28 00:44:50]   20. rmssd_7d_std × sleep_dur_21d_std: AUC=0.599, d=0.760, p_adj=0.0029
+[2026-03-28 00:44:50]      HRV×Sleep: rmssd_7d_std + sleep_dur_21d_std predicts PHQ-9 increased from baseline
+[2026-03-28 00:44:50] 
+Findings by category:
+[2026-03-28 00:44:50]   interaction: 1592
+[2026-03-28 00:44:50]   sleep: 86
+[2026-03-28 00:44:50]   lfhf: 30
+[2026-03-28 00:44:50]   rmssd: 19
+[2026-03-28 00:44:50]   hr: 4
+[2026-03-28 00:44:50] 
+Results saved to: /Users/athifshaffy/Documents/Repo/COGITO/evolved26-hackathon/results/results.tsv
+[2026-03-28 00:44:50] Log saved to: /Users/athifshaffy/Documents/Repo/COGITO/evolved26-hackathon/results/overnight_log.txt
+[2026-03-28 12:18:19] ======================================================================
+[2026-03-28 12:18:19] AutoBiomarker — OVERNIGHT RUN
+[2026-03-28 12:18:19] Started at 2026-03-28 12:18:19
+[2026-03-28 12:18:19] Max hypotheses: 5000
+[2026-03-28 12:18:19] ======================================================================
+[2026-03-28 12:18:19] [1/6] Loading dataset...
+[2026-03-28 12:18:20] [2/6] Extracting temporal features (6 rolling windows)...
+[2026-03-28 12:18:23]   187 features extracted
+[2026-03-28 12:18:23] [3/6] Preparing outcome...
+[2026-03-28 12:18:23]   Outcome (PHQ-9 >= 5): 515 positive, 969 negative
+[2026-03-28 12:18:23] [4/6] Generating predefined hypotheses...
+[2026-03-28 12:18:23]   Will test 5000 predefined hypotheses
+[2026-03-28 12:19:32]   [100/5000] 1.4 hyp/sec | Promising: 0 | AUC: 0.274
+[2026-03-28 12:21:02]   [200/5000] 1.3 hyp/sec | Promising: 3 | AUC: 0.000
+[2026-03-28 12:22:16]   [300/5000] 1.3 hyp/sec | Promising: 15 | AUC: 0.503
+[2026-03-28 12:23:26]   [400/5000] 1.3 hyp/sec | Promising: 20 | AUC: 0.514
+[2026-03-28 12:24:23]   [500/5000] 1.4 hyp/sec | Promising: 20 | AUC: 0.500
+[2026-03-28 12:25:10]   [600/5000] 1.5 hyp/sec | Promising: 20 | AUC: 0.473
+[2026-03-28 12:25:55]   [700/5000] 1.5 hyp/sec | Promising: 38 | AUC: 0.500
+[2026-03-28 12:26:48]   [800/5000] 1.6 hyp/sec | Promising: 40 | AUC: 0.568
+[2026-03-28 12:27:35]   [900/5000] 1.6 hyp/sec | Promising: 58 | AUC: 0.382
+[2026-03-28 12:28:26]   [1000/5000] 1.7 hyp/sec | Promising: 58 | AUC: 0.475
+[2026-03-28 12:29:12]   [1100/5000] 1.7 hyp/sec | Promising: 70 | AUC: 0.495
+[2026-03-28 12:30:04]   [1200/5000] 1.7 hyp/sec | Promising: 72 | AUC: 0.278
+[2026-03-28 12:30:52]   [1300/5000] 1.7 hyp/sec | Promising: 72 | AUC: 0.229
+[2026-03-28 12:31:45]   [1400/5000] 1.7 hyp/sec | Promising: 72 | AUC: 0.506
+[2026-03-28 12:32:35]   [1500/5000] 1.8 hyp/sec | Promising: 72 | AUC: 0.565
+[2026-03-28 12:33:31]   [1600/5000] 1.8 hyp/sec | Promising: 74 | AUC: 0.684
+[2026-03-28 12:34:20]   [1700/5000] 1.8 hyp/sec | Promising: 86 | AUC: 0.472
+[2026-03-28 12:35:07]   [1800/5000] 1.8 hyp/sec | Promising: 94 | AUC: 0.500
+[2026-03-28 12:35:58]   [1900/5000] 1.8 hyp/sec | Promising: 105 | AUC: 0.452
+[2026-03-28 12:36:57]   [2000/5000] 1.8 hyp/sec | Promising: 109 | AUC: 0.072
+[2026-03-28 12:37:53]   [2100/5000] 1.8 hyp/sec | Promising: 109 | AUC: 0.463
+[2026-03-28 12:38:37]   [2200/5000] 1.8 hyp/sec | Promising: 109 | AUC: 0.358
+[2026-03-28 12:39:26]   [2300/5000] 1.8 hyp/sec | Promising: 109 | AUC: 0.408
+[2026-03-28 12:40:09]   [2400/5000] 1.8 hyp/sec | Promising: 109 | AUC: 0.557
+[2026-03-28 12:40:55]   [2500/5000] 1.8 hyp/sec | Promising: 109 | AUC: 0.500
+[2026-03-28 12:41:40]   [2600/5000] 1.9 hyp/sec | Promising: 111 | AUC: 0.496
+[2026-03-28 12:42:25]   [2700/5000] 1.9 hyp/sec | Promising: 123 | AUC: 0.500
+[2026-03-28 12:43:20]   [2800/5000] 1.9 hyp/sec | Promising: 129 | AUC: 0.619
+[2026-03-28 12:44:05]   [2900/5000] 1.9 hyp/sec | Promising: 131 | AUC: 0.309
+[2026-03-28 12:44:57]   [3000/5000] 1.9 hyp/sec | Promising: 131 | AUC: 0.205
+[2026-03-28 12:45:57]   [3100/5000] 1.9 hyp/sec | Promising: 131 | AUC: 0.475
+[2026-03-28 12:46:49]   [3200/5000] 1.9 hyp/sec | Promising: 131 | AUC: 0.391
+[2026-03-28 12:47:57]   [3300/5000] 1.9 hyp/sec | Promising: 131 | AUC: 0.474
+[2026-03-28 12:49:13]   [3400/5000] 1.8 hyp/sec | Promising: 131 | AUC: 0.511
+[2026-03-28 12:49:55]   [3500/5000] 1.9 hyp/sec | Promising: 131 | AUC: 0.364
+[2026-03-28 12:50:40]   [3600/5000] 1.9 hyp/sec | Promising: 133 | AUC: 0.477
+[2026-03-28 12:51:20]   [3700/5000] 1.9 hyp/sec | Promising: 133 | AUC: 0.437
+[2026-03-28 12:52:02]   [3800/5000] 1.9 hyp/sec | Promising: 137 | AUC: 0.500
+[2026-03-28 12:52:44]   [3900/5000] 1.9 hyp/sec | Promising: 137 | AUC: 0.478
+[2026-03-28 12:53:26]   [4000/5000] 1.9 hyp/sec | Promising: 137 | AUC: 0.521
+[2026-03-28 12:54:11]   [4100/5000] 1.9 hyp/sec | Promising: 137 | AUC: 0.519
+[2026-03-28 12:54:51]   [4200/5000] 1.9 hyp/sec | Promising: 137 | AUC: 0.525
+[2026-03-28 12:55:36]   [4300/5000] 1.9 hyp/sec | Promising: 137 | AUC: 0.499
+[2026-03-28 12:56:14]   [4400/5000] 1.9 hyp/sec | Promising: 137 | AUC: 0.455
+[2026-03-28 12:56:56]   [4500/5000] 1.9 hyp/sec | Promising: 137 | AUC: 0.330
+[2026-03-28 12:57:34]   [4600/5000] 2.0 hyp/sec | Promising: 137 | AUC: 0.304
+[2026-03-28 12:58:18]   [4700/5000] 2.0 hyp/sec | Promising: 137 | AUC: 0.542
+[2026-03-28 12:58:56]   [4800/5000] 2.0 hyp/sec | Promising: 137 | AUC: 0.002
+[2026-03-28 12:59:37]   [4900/5000] 2.0 hyp/sec | Promising: 137 | AUC: 0.500
+[2026-03-28 13:00:15]   [5000/5000] 2.0 hyp/sec | Promising: 137 | AUC: 0.553
+[2026-03-28 13:00:15]   Phase 1 complete: 5000 hypotheses in 41.9 min
+[2026-03-28 13:00:15] [5/6] LLM-guided hypothesis generation (multiple rounds)...
+[2026-03-28 13:00:15] [6/6] Final FDR correction across 5000 hypotheses...
+[2026-03-28 13:00:15] 
+======================================================================
+[2026-03-28 13:00:15] OVERNIGHT RUN COMPLETE
+[2026-03-28 13:00:15] ======================================================================
+[2026-03-28 13:00:15] Total time: 41.9 minutes (0.7 hours)
+[2026-03-28 13:00:15] Hypotheses tested: 5000
+[2026-03-28 13:00:15] Rate: 2.0 hypotheses/second
+[2026-03-28 13:00:15] LLM calls: 0 (est. cost: $0.000)
+[2026-03-28 13:00:15] 
+SIGNIFICANT FINDINGS: 0 / 5000
+[2026-03-28 13:00:15] 
+Results saved to: /Users/athifshaffy/Documents/Repo/COGITO/evolved26-hackathon/results/results.tsv
+[2026-03-28 13:00:15] Log saved to: /Users/athifshaffy/Documents/Repo/COGITO/evolved26-hackathon/results/overnight_log.txt

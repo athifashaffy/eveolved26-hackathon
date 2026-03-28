@@ -1,0 +1,835 @@
+[2026-03-28 13:46:10] ======================================================================
+[2026-03-28 13:46:10] AutoBiomarker — PERSISTENT SEARCH FOR SIGNIFICANCE
+[2026-03-28 13:46:10] Strategy: Small rounds (8 hypotheses) with mild FDR
+[2026-03-28 13:46:10] Max rounds: 50, Max cost: $5.0
+[2026-03-28 13:46:10] ======================================================================
+[2026-03-28 13:46:10] Loading dataset...
+Loaded HRV metrics: 38913 rows, 49 subjects
+Computed daily HRV: 1329 rows, 49 subjects
+Loaded sleep diary: 1372 rows, 49 subjects
+Loaded clinical metadata: 49 subjects
+  PHQ-9 baseline range: 0-14, mean=3.7
+Merged dataset: 1484 rows, 49 subjects
+Date range: 2018-01-01 00:00:00 to 2021-04-08 00:00:00
+Extracted 187 temporal features for 49 subjects
+[2026-03-28 13:46:12]   187 features available
+[2026-03-28 13:46:12] Loaded 5000 Round 1 results as prior knowledge
+[2026-03-28 13:46:13] 
+==================================================
+[2026-03-28 13:46:13] ROUND 1/50 | Cost so far: $0.0000
+[2026-03-28 13:46:13] ==================================================
+[2026-03-28 13:46:31]   LLM proposed 5 hypotheses ($0.0029)
+[2026-03-28 13:46:32]     Tested interaction lfhf_21d_slope x rmssd_7d_std: AUC=0.713, d=1.038
+[2026-03-28 13:46:32]     Tested interaction rmssd_7d_std x sleep_qual_21d_mean: AUC=0.597, d=0.992
+[2026-03-28 13:46:33]     Tested interaction lfhf_21d_slope x sleep_onset_sd_21d: AUC=0.673, d=1.057
+[2026-03-28 13:46:33]     Tested interaction rmssd_7d_std x lfhf_7d_slope: AUC=0.474, d=0.677
+[2026-03-28 13:46:34]     Tested interaction rmssd_7d_std x sleep_dur_3d_autocorr: AUC=0.477, d=0.648
+FDR correction: 0/5 hypotheses significant
+[2026-03-28 13:46:34]   lfhf_21d_slope × sleep_onset_sd_21d: AUC=0.673, d=1.057, p=0.0130, p_adj=0.0250 
+[2026-03-28 13:46:34]   lfhf_21d_slope × rmssd_7d_std: AUC=0.713, d=1.038, p=0.0150, p_adj=0.0250 
+[2026-03-28 13:46:34]   rmssd_7d_std × sleep_qual_21d_mean: AUC=0.597, d=0.992, p=0.0060, p_adj=0.0250 
+[2026-03-28 13:46:34] 
+==================================================
+[2026-03-28 13:46:34] ROUND 2/50 | Cost so far: $0.0029
+[2026-03-28 13:46:34] ==================================================
+[2026-03-28 13:46:51]   LLM proposed 5 hypotheses ($0.0034)
+[2026-03-28 13:46:52]     Tested interaction lfhf_21d_slope x rmssd_7d_std: AUC=0.713, d=1.038
+[2026-03-28 13:46:52]     Tested interaction rmssd_7d_std x sleep_onset_sd_21d: AUC=0.555, d=0.992
+[2026-03-28 13:46:53]     Tested interaction lfhf_21d_slope x sleep_qual_21d_mean: AUC=0.760, d=1.057
+[2026-03-28 13:46:53]     Tested interaction rmssd_7d_std x lfhf_7d_slope: AUC=0.474, d=0.677
+[2026-03-28 13:46:54]     Tested interaction lfhf_21d_slope x rmssd_14d_std: AUC=0.692, d=1.038
+FDR correction: 0/5 hypotheses significant
+[2026-03-28 13:46:54]   lfhf_21d_slope × sleep_qual_21d_mean: AUC=0.760, d=1.057, p=0.0140, p_adj=0.0250 
+[2026-03-28 13:46:54]   lfhf_21d_slope × rmssd_7d_std: AUC=0.713, d=1.038, p=0.0150, p_adj=0.0250 
+[2026-03-28 13:46:54]   lfhf_21d_slope × rmssd_14d_std: AUC=0.692, d=1.038, p=0.0200, p_adj=0.0250 
+[2026-03-28 13:46:54] 
+==================================================
+[2026-03-28 13:46:54] ROUND 3/50 | Cost so far: $0.0063
+[2026-03-28 13:46:54] ==================================================
+[2026-03-28 13:47:25]   LLM proposed 5 hypotheses ($0.0036)
+[2026-03-28 13:47:25]     Tested interaction lfhf_21d_slope x rmssd_14d_std: AUC=0.692, d=1.038
+[2026-03-28 13:47:26]     Tested interaction rmssd_7d_std x lfhf_14d_slope: AUC=0.622, d=0.732
+[2026-03-28 13:47:26]     Tested interaction lfhf_21d_slope x rmssd_7d_std: AUC=0.713, d=1.038
+[2026-03-28 13:47:27]     Tested interaction rmssd_21d_slope x lfhf_14d_std: AUC=0.329, d=0.063
+[2026-03-28 13:47:27]     Tested interaction rmssd_14d_std x lfhf_7d_slope: AUC=0.394, d=0.675
+FDR correction: 0/5 hypotheses significant
+[2026-03-28 13:47:27]   lfhf_21d_slope × rmssd_14d_std: AUC=0.692, d=1.038, p=0.0150, p_adj=0.0375 
+[2026-03-28 13:47:27]   lfhf_21d_slope × rmssd_7d_std: AUC=0.713, d=1.038, p=0.0150, p_adj=0.0375 
+[2026-03-28 13:47:27]   rmssd_7d_std × lfhf_14d_slope: AUC=0.622, d=0.732, p=0.0250, p_adj=0.0416 
+[2026-03-28 13:47:27] 
+==================================================
+[2026-03-28 13:47:27] ROUND 4/50 | Cost so far: $0.0099
+[2026-03-28 13:47:27] ==================================================
+[2026-03-28 13:47:56]   LLM proposed 5 hypotheses ($0.0039)
+[2026-03-28 13:47:57]     Tested single lfhf_14d_slope: AUC=0.508, d=0.839
+[2026-03-28 13:47:57]     Error testing hypothesis 20019: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 13:47:58]     Tested composite composite_r2_20020: AUC=0.047, d=0.320
+[2026-03-28 13:47:58]     Tested single rmssd_14d_autocorr: AUC=0.521, d=0.479
+[2026-03-28 13:47:58]     Error testing hypothesis 20022: operands could not be broadcast together with shapes (45014,) (1484,) 
+FDR correction: 0/3 hypotheses significant
+[2026-03-28 13:47:58]   lfhf_14d_slope: AUC=0.508, d=0.839, p=0.0160, p_adj=0.0480 
+[2026-03-28 13:47:58]   rmssd_14d_autocorr: AUC=0.521, d=0.479, p=0.1628, p_adj=0.2443 
+[2026-03-28 13:47:58]   composite_r2_20020: AUC=0.047, d=0.320, p=0.2577, p_adj=0.2577 
+[2026-03-28 13:47:58] 
+==================================================
+[2026-03-28 13:47:58] ROUND 5/50 | Cost so far: $0.0138
+[2026-03-28 13:47:58] ==================================================
+[2026-03-28 13:48:26]   LLM proposed 5 hypotheses ($0.0040)
+[2026-03-28 13:48:27]     Tested single lfhf_14d_slope: AUC=0.508, d=0.839
+[2026-03-28 13:48:27]     Error testing hypothesis 20025: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 13:48:28]     Tested composite composite_r2_20026: AUC=0.047, d=0.320
+[2026-03-28 13:48:28]     Skipped interaction: lfhf_10d_slope or rmssd_14d_autocorr not in features
+[2026-03-28 13:48:28]     Error testing hypothesis 20028: operands could not be broadcast together with shapes (45014,) (1484,) 
+FDR correction: 0/2 hypotheses significant
+[2026-03-28 13:48:28]   lfhf_14d_slope: AUC=0.508, d=0.839, p=0.0140, p_adj=0.0280 
+[2026-03-28 13:48:28]   composite_r2_20026: AUC=0.047, d=0.320, p=0.2967, p_adj=0.2967 
+[2026-03-28 13:48:28]   Saved 20 results to /Users/athifshaffy/Documents/Repo/COGITO/evolved26-hackathon/src/../results/persistent_search_results.tsv
+[2026-03-28 13:48:28] 
+==================================================
+[2026-03-28 13:48:28] ROUND 6/50 | Cost so far: $0.0178
+[2026-03-28 13:48:28] ==================================================
+[2026-03-28 13:48:46]   LLM proposed 5 hypotheses ($0.0042)
+[2026-03-28 13:48:46]     Skipped interaction: lfhf_10d_slope or rmssd_10d_std not in features
+[2026-03-28 13:48:47]     Error testing hypothesis 20031: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 13:48:47]     Tested composite composite_r2_20032: AUC=0.047, d=0.320
+[2026-03-28 13:48:48]     Tested interaction rmssd_14d_autocorr x lfhf_14d_slope: AUC=0.614, d=0.479
+[2026-03-28 13:48:48]     Error testing hypothesis 20034: operands could not be broadcast together with shapes (45014,) (1484,) 
+FDR correction: 0/2 hypotheses significant
+[2026-03-28 13:48:48]   rmssd_14d_autocorr × lfhf_14d_slope: AUC=0.614, d=0.479, p=0.1518, p_adj=0.3037 
+[2026-03-28 13:48:48]   composite_r2_20032: AUC=0.047, d=0.320, p=0.3167, p_adj=0.3167 
+[2026-03-28 13:48:48] 
+==================================================
+[2026-03-28 13:48:48] ROUND 7/50 | Cost so far: $0.0220
+[2026-03-28 13:48:48] ==================================================
+[2026-03-28 13:49:07]   LLM proposed 5 hypotheses ($0.0044)
+[2026-03-28 13:49:07]     Skipped interaction: lfhf_10d_slope or rmssd_10d_std not in features
+[2026-03-28 13:49:07]     Tested interaction lfhf_14d_slope x rmssd_14d_autocorr: AUC=0.614, d=0.839
+[2026-03-28 13:49:08]     Error testing hypothesis 20038: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 13:49:08]     Tested composite composite_r2_20039: AUC=0.047, d=0.320
+[2026-03-28 13:49:09]     Tested interaction lfhf_7d_slope x hr_7d_std: AUC=0.286, d=0.464
+FDR correction: 0/3 hypotheses significant
+[2026-03-28 13:49:09]   lfhf_14d_slope × rmssd_14d_autocorr: AUC=0.614, d=0.839, p=0.0170, p_adj=0.0509 
+[2026-03-28 13:49:09]   lfhf_7d_slope × hr_7d_std: AUC=0.286, d=0.464, p=0.1209, p_adj=0.1813 
+[2026-03-28 13:49:09]   composite_r2_20039: AUC=0.047, d=0.320, p=0.2967, p_adj=0.2967 
+[2026-03-28 13:49:09] 
+==================================================
+[2026-03-28 13:49:09] ROUND 8/50 | Cost so far: $0.0264
+[2026-03-28 13:49:09] ==================================================
+[2026-03-28 13:49:40]   LLM proposed 5 hypotheses ($0.0044)
+[2026-03-28 13:49:40]     Tested single lfhf_14d_slope: AUC=0.508, d=0.839
+[2026-03-28 13:49:41]     Tested single rmssd_7d_autocorr: AUC=0.420, d=0.552
+[2026-03-28 13:49:41]     Error testing hypothesis 20044: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 13:49:41]     Tested composite composite_r2_20045: AUC=0.047, d=0.320
+[2026-03-28 13:49:42]     Tested interaction lfhf_7d_slope x hr_7d_std: AUC=0.286, d=0.464
+FDR correction: 0/4 hypotheses significant
+[2026-03-28 13:49:42]   lfhf_14d_slope: AUC=0.508, d=0.839, p=0.0130, p_adj=0.0519 
+[2026-03-28 13:49:42]   rmssd_7d_autocorr: AUC=0.420, d=0.552, p=0.0679, p_adj=0.1359 
+[2026-03-28 13:49:42]   lfhf_7d_slope × hr_7d_std: AUC=0.286, d=0.464, p=0.1339, p_adj=0.1785 
+[2026-03-28 13:49:42] 
+==================================================
+[2026-03-28 13:49:42] ROUND 9/50 | Cost so far: $0.0308
+[2026-03-28 13:49:42] ==================================================
+[2026-03-28 13:50:21]   LLM proposed 8 hypotheses ($0.0051)
+[2026-03-28 13:50:22]     Tested composite composite_r2_20048: AUC=0.174, d=0.521
+[2026-03-28 13:50:22]     Tested composite composite_r2_20049: AUC=0.025, d=0.147
+[2026-03-28 13:50:23]     Tested composite composite_r2_20050: AUC=0.000, d=0.355
+[2026-03-28 13:50:24]     Tested composite composite_r2_20051: AUC=0.060, d=0.384
+[2026-03-28 13:50:24]     Tested composite composite_r2_20052: AUC=0.001, d=0.018
+[2026-03-28 13:50:25]     Tested composite composite_r2_20053: AUC=0.000, d=0.069
+[2026-03-28 13:50:25]     Tested composite composite_r2_20054: AUC=0.000, d=0.106
+[2026-03-28 13:50:26]     Tested composite composite_r2_20055: AUC=0.044, d=0.332
+FDR correction: 0/8 hypotheses significant
+[2026-03-28 13:50:26]   composite_r2_20048: AUC=0.174, d=0.521, p=0.0889, p_adj=0.5315 
+[2026-03-28 13:50:26]   composite_r2_20051: AUC=0.060, d=0.384, p=0.2178, p_adj=0.5315 
+[2026-03-28 13:50:26]   composite_r2_20050: AUC=0.000, d=0.355, p=0.2288, p_adj=0.5315 
+[2026-03-28 13:50:26] 
+==================================================
+[2026-03-28 13:50:26] ROUND 10/50 | Cost so far: $0.0359
+[2026-03-28 13:50:26] ==================================================
+[2026-03-28 13:50:53]   LLM proposed 5 hypotheses ($0.0046)
+[2026-03-28 13:50:53]     Tested composite composite_r2_20057: AUC=0.009, d=0.350
+[2026-03-28 13:50:54]     Tested composite composite_r2_20058: AUC=0.025, d=0.147
+[2026-03-28 13:50:55]     Tested composite composite_r2_20059: AUC=0.003, d=0.031
+[2026-03-28 13:50:55]     Tested composite composite_r2_20060: AUC=0.005, d=0.207
+[2026-03-28 13:50:56]     Tested composite composite_r2_20061: AUC=0.000, d=0.385
+FDR correction: 0/5 hypotheses significant
+[2026-03-28 13:50:56]   composite_r2_20061: AUC=0.000, d=0.385, p=0.2158, p_adj=0.6618 
+[2026-03-28 13:50:56]   composite_r2_20057: AUC=0.009, d=0.350, p=0.2647, p_adj=0.6618 
+[2026-03-28 13:50:56]   composite_r2_20060: AUC=0.005, d=0.207, p=0.4955, p_adj=0.7742 
+[2026-03-28 13:50:56]   Saved 42 results to /Users/athifshaffy/Documents/Repo/COGITO/evolved26-hackathon/src/../results/persistent_search_results.tsv
+[2026-03-28 13:50:56] 
+==================================================
+[2026-03-28 13:50:56] ROUND 11/50 | Cost so far: $0.0406
+[2026-03-28 13:50:56] ==================================================
+[2026-03-28 13:51:44]   LLM proposed 8 hypotheses ($0.0052)
+[2026-03-28 13:51:44]     Tested composite composite_r2_20063: AUC=0.016, d=0.312
+[2026-03-28 13:51:45]     Tested composite composite_r2_20064: AUC=0.002, d=0.030
+[2026-03-28 13:51:45]     Tested composite composite_r2_20065: AUC=0.007, d=0.206
+[2026-03-28 13:51:46]     Tested composite composite_r2_20066: AUC=0.007, d=0.092
+[2026-03-28 13:51:46]     Tested composite composite_r2_20067: AUC=0.029, d=0.327
+[2026-03-28 13:51:47]     Tested composite composite_r2_20068: AUC=0.013, d=0.224
+[2026-03-28 13:51:48]     Tested composite composite_r2_20069: AUC=0.003, d=0.129
+[2026-03-28 13:51:48]     Tested composite composite_r2_20070: AUC=0.061, d=0.337
+FDR correction: 0/8 hypotheses significant
+[2026-03-28 13:51:48]   composite_r2_20070: AUC=0.061, d=0.337, p=0.2587, p_adj=0.8136 
+[2026-03-28 13:51:48]   composite_r2_20067: AUC=0.029, d=0.327, p=0.2627, p_adj=0.8136 
+[2026-03-28 13:51:48]   composite_r2_20063: AUC=0.016, d=0.312, p=0.3187, p_adj=0.8136 
+[2026-03-28 13:51:48] 
+==================================================
+[2026-03-28 13:51:48] ROUND 12/50 | Cost so far: $0.0457
+[2026-03-28 13:51:48] ==================================================
+[2026-03-28 13:53:14]   LLM proposed 8 hypotheses ($0.0053)
+[2026-03-28 13:53:14]     Tested composite composite_r2_20072: AUC=0.053, d=0.496
+[2026-03-28 13:53:15]     Tested composite composite_r2_20073: AUC=0.003, d=0.232
+[2026-03-28 13:53:16]     Tested composite composite_r2_20074: AUC=0.141, d=0.488
+[2026-03-28 13:53:16]     Tested composite composite_r2_20075: AUC=0.000, d=0.266
+[2026-03-28 13:53:17]     Tested composite composite_r2_20076: AUC=0.010, d=0.240
+[2026-03-28 13:53:17]     Tested composite composite_r2_20077: AUC=0.003, d=0.233
+[2026-03-28 13:53:18]     Tested composite composite_r2_20078: AUC=0.119, d=0.307
+[2026-03-28 13:53:18]     Tested composite composite_r2_20079: AUC=0.004, d=0.220
+FDR correction: 0/8 hypotheses significant
+[2026-03-28 13:53:18]   composite_r2_20072: AUC=0.053, d=0.496, p=0.1139, p_adj=0.4685 
+[2026-03-28 13:53:18]   composite_r2_20074: AUC=0.141, d=0.488, p=0.1199, p_adj=0.4685 
+[2026-03-28 13:53:18]   composite_r2_20078: AUC=0.119, d=0.307, p=0.3207, p_adj=0.4685 
+[2026-03-28 13:53:18] 
+==================================================
+[2026-03-28 13:53:18] ROUND 13/50 | Cost so far: $0.0510
+[2026-03-28 13:53:18] ==================================================
+[2026-03-28 13:55:40]   LLM proposed 8 hypotheses ($0.0051)
+[2026-03-28 13:55:40]     Tested composite composite_r2_20081: AUC=0.060, d=0.384
+[2026-03-28 13:55:41]     Tested composite composite_r2_20082: AUC=0.130, d=0.454
+[2026-03-28 13:55:42]     Tested composite composite_r2_20083: AUC=0.092, d=0.344
+[2026-03-28 13:55:42]     Tested composite composite_r2_20084: AUC=0.011, d=0.109
+[2026-03-28 13:55:43]     Tested composite composite_r2_20085: AUC=0.130, d=0.454
+[2026-03-28 13:55:43]     Tested composite composite_r2_20086: AUC=0.001, d=0.023
+[2026-03-28 13:55:44]     Tested composite composite_r2_20087: AUC=0.253, d=0.681
+[2026-03-28 13:55:45]     Tested composite composite_r2_20088: AUC=0.194, d=0.508
+FDR correction: 0/8 hypotheses significant
+[2026-03-28 13:55:45]   composite_r2_20087: AUC=0.253, d=0.681, p=0.0180, p_adj=0.1439 
+[2026-03-28 13:55:45]   composite_r2_20088: AUC=0.194, d=0.508, p=0.1099, p_adj=0.3017 
+[2026-03-28 13:55:45]   composite_r2_20082: AUC=0.130, d=0.454, p=0.1399, p_adj=0.3017 
+[2026-03-28 13:55:45] 
+==================================================
+[2026-03-28 13:55:45] ROUND 14/50 | Cost so far: $0.0561
+[2026-03-28 13:55:45] ==================================================
+[2026-03-28 13:58:02]   LLM proposed 8 hypotheses ($0.0049)
+[2026-03-28 13:58:02]     Tested composite composite_r2_20090: AUC=0.000, d=0.227
+[2026-03-28 13:58:03]     Tested composite composite_r2_20091: AUC=0.154, d=0.375
+[2026-03-28 13:58:03]     Tested composite composite_r2_20092: AUC=0.105, d=0.301
+[2026-03-28 13:58:04]     Tested composite composite_r2_20093: AUC=0.000, d=0.004
+[2026-03-28 13:58:05]     Tested composite composite_r2_20094: AUC=0.000, d=0.218
+[2026-03-28 13:58:05]     Tested composite composite_r2_20095: AUC=0.006, d=0.226
+[2026-03-28 13:58:06]     Tested composite composite_r2_20096: AUC=0.051, d=0.284
+[2026-03-28 13:58:06]     Tested composite composite_r2_20097: AUC=0.172, d=0.463
+FDR correction: 0/8 hypotheses significant
+[2026-03-28 13:58:06]   composite_r2_20097: AUC=0.172, d=0.463, p=0.1159, p_adj=0.5480 
+[2026-03-28 13:58:06]   composite_r2_20091: AUC=0.154, d=0.375, p=0.1988, p_adj=0.5480 
+[2026-03-28 13:58:06]   composite_r2_20092: AUC=0.105, d=0.301, p=0.3257, p_adj=0.5480 
+[2026-03-28 13:58:06] 
+==================================================
+[2026-03-28 13:58:06] ROUND 15/50 | Cost so far: $0.0610
+[2026-03-28 13:58:06] ==================================================
+[2026-03-28 14:00:14]   LLM proposed 8 hypotheses ($0.0050)
+[2026-03-28 14:00:15]     Tested composite composite_r2_20099: AUC=0.000, d=0.143
+[2026-03-28 14:00:15]     Tested composite composite_r2_20100: AUC=0.132, d=0.503
+[2026-03-28 14:00:16]     Tested composite composite_r2_20101: AUC=0.036, d=0.417
+[2026-03-28 14:00:16]     Tested composite composite_r2_20102: AUC=0.002, d=0.307
+[2026-03-28 14:00:17]     Tested composite composite_r2_20103: AUC=0.000, d=0.025
+[2026-03-28 14:00:18]     Tested composite composite_r2_20104: AUC=0.000, d=0.219
+[2026-03-28 14:00:18]     Tested composite composite_r2_20105: AUC=0.007, d=0.296
+[2026-03-28 14:00:19]     Tested composite composite_r2_20106: AUC=0.013, d=0.481
+FDR correction: 0/8 hypotheses significant
+[2026-03-28 14:00:19]   composite_r2_20100: AUC=0.132, d=0.503, p=0.0999, p_adj=0.4036 
+[2026-03-28 14:00:19]   composite_r2_20106: AUC=0.013, d=0.481, p=0.1009, p_adj=0.4036 
+[2026-03-28 14:00:19]   composite_r2_20101: AUC=0.036, d=0.417, p=0.1608, p_adj=0.4289 
+[2026-03-28 14:00:19]   Saved 82 results to /Users/athifshaffy/Documents/Repo/COGITO/evolved26-hackathon/src/../results/persistent_search_results.tsv
+[2026-03-28 14:00:19] 
+==================================================
+[2026-03-28 14:00:19] ROUND 16/50 | Cost so far: $0.0660
+[2026-03-28 14:00:19] ==================================================
+[2026-03-28 14:00:44]   LLM proposed 8 hypotheses ($0.0044)
+[2026-03-28 14:00:44]     Tested interaction lfhf_21d_slope x rmssd_7d_std: AUC=0.713, d=1.038
+[2026-03-28 14:00:44]     Error testing hypothesis 20109: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:00:45]     Tested interaction hr_14d_slope x sleep_dur_3d_autocorr: AUC=0.397, d=0.511
+[2026-03-28 14:00:45]     Tested composite composite_r2_20111: AUC=0.000, d=0.056
+[2026-03-28 14:00:45]     Error testing hypothesis 20112: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:00:46]     Tested interaction rmssd_3d_slope x hr_3d_slope: AUC=0.266, d=0.923
+[2026-03-28 14:00:47]     Tested composite composite_r2_20114: AUC=0.000, d=0.344
+[2026-03-28 14:00:47]     Error testing hypothesis 20115: operands could not be broadcast together with shapes (45014,) (1484,) 
+FDR correction: 0/5 hypotheses significant
+[2026-03-28 14:00:47]   lfhf_21d_slope × rmssd_7d_std: AUC=0.713, d=1.038, p=0.0180, p_adj=0.0450 
+[2026-03-28 14:00:47]   rmssd_3d_slope × hr_3d_slope: AUC=0.266, d=0.923, p=0.0040, p_adj=0.0200 
+[2026-03-28 14:00:47]   hr_14d_slope × sleep_dur_3d_autocorr: AUC=0.397, d=0.511, p=0.1489, p_adj=0.2481 
+[2026-03-28 14:00:47] 
+==================================================
+[2026-03-28 14:00:47] ROUND 17/50 | Cost so far: $0.0704
+[2026-03-28 14:00:47] ==================================================
+[2026-03-28 14:01:18]   LLM proposed 8 hypotheses ($0.0044)
+[2026-03-28 14:01:19]     Tested composite composite_r2_20117: AUC=0.000, d=0.014
+[2026-03-28 14:01:19]     Tested interaction rmssd_14d_std x sleep_qual_21d_mean: AUC=0.585, d=0.673
+[2026-03-28 14:01:19]     Error testing hypothesis 20119: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:01:20]     Tested composite composite_r2_20120: AUC=0.000, d=0.241
+[2026-03-28 14:01:21]     Tested interaction rmssd_21d_mean x sleep_lat_14d_std: AUC=0.519, d=0.474
+[2026-03-28 14:01:22]     Tested composite composite_r2_20122: AUC=0.000, d=0.067
+[2026-03-28 14:01:22]     Error testing hypothesis 20123: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:01:22]     Tested interaction rmssd_7d_std x lfhf_21d_autocorr: AUC=0.603, d=0.632
+FDR correction: 0/6 hypotheses significant
+[2026-03-28 14:01:22]   rmssd_14d_std × sleep_qual_21d_mean: AUC=0.585, d=0.673, p=0.0709, p_adj=0.4076 
+[2026-03-28 14:01:22]   rmssd_7d_std × lfhf_21d_autocorr: AUC=0.603, d=0.632, p=0.1359, p_adj=0.4076 
+[2026-03-28 14:01:22]   rmssd_21d_mean × sleep_lat_14d_std: AUC=0.519, d=0.474, p=0.2657, p_adj=0.5315 
+[2026-03-28 14:01:22] 
+==================================================
+[2026-03-28 14:01:22] ROUND 18/50 | Cost so far: $0.0748
+[2026-03-28 14:01:22] ==================================================
+[2026-03-28 14:01:46]   LLM proposed 8 hypotheses ($0.0046)
+[2026-03-28 14:01:47]     Tested composite composite_r2_20126: AUC=0.097, d=0.455
+[2026-03-28 14:01:47]     Tested composite composite_r2_20127: AUC=0.000, d=0.011
+[2026-03-28 14:01:48]     Tested composite composite_r2_20128: AUC=0.013, d=0.363
+[2026-03-28 14:01:48]     Tested interaction rmssd_21d_autocorr x sleep_lat_14d_std: AUC=0.583, d=0.613
+[2026-03-28 14:01:49]     Tested composite composite_r2_20130: AUC=0.000, d=0.224
+[2026-03-28 14:01:50]     Tested composite composite_r2_20131: AUC=0.000, d=0.018
+[2026-03-28 14:01:50]     Tested interaction lfhf_21d_slope x rmssd_7d_std: AUC=0.713, d=1.038
+[2026-03-28 14:01:51]     Tested composite composite_r2_20133: AUC=0.024, d=0.207
+FDR correction: 0/8 hypotheses significant
+[2026-03-28 14:01:51]   lfhf_21d_slope × rmssd_7d_std: AUC=0.713, d=1.038, p=0.0110, p_adj=0.0879 
+[2026-03-28 14:01:51]   rmssd_21d_autocorr × sleep_lat_14d_std: AUC=0.583, d=0.613, p=0.1578, p_adj=0.4209 
+[2026-03-28 14:01:51]   composite_r2_20126: AUC=0.097, d=0.455, p=0.1409, p_adj=0.4209 
+[2026-03-28 14:01:51] 
+==================================================
+[2026-03-28 14:01:51] ROUND 19/50 | Cost so far: $0.0794
+[2026-03-28 14:01:51] ==================================================
+[2026-03-28 14:02:28]   LLM proposed 8 hypotheses ($0.0046)
+[2026-03-28 14:02:29]     Tested composite composite_r2_20135: AUC=0.097, d=0.455
+[2026-03-28 14:02:29]     Tested interaction hr_14d_slope x sleep_qual_21d_mean: AUC=0.552, d=0.459
+[2026-03-28 14:02:30]     Tested composite composite_r2_20137: AUC=0.000, d=0.203
+[2026-03-28 14:02:30]     Error testing hypothesis 20138: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:02:30]     Tested composite composite_r2_20139: AUC=0.000, d=0.063
+[2026-03-28 14:02:31]     Tested interaction rmssd_21d_autocorr x sleep_dur_3d_autocorr: AUC=0.519, d=0.611
+[2026-03-28 14:02:31]     Tested composite composite_r2_20141: AUC=0.000, d=0.224
+[2026-03-28 14:02:32]     Error testing hypothesis 20142: operands could not be broadcast together with shapes (45014,) (1484,) 
+FDR correction: 0/6 hypotheses significant
+[2026-03-28 14:02:32]   rmssd_21d_autocorr × sleep_dur_3d_autocorr: AUC=0.519, d=0.611, p=0.1499, p_adj=0.4555 
+[2026-03-28 14:02:32]   hr_14d_slope × sleep_qual_21d_mean: AUC=0.552, d=0.459, p=0.2288, p_adj=0.4575 
+[2026-03-28 14:02:32]   composite_r2_20135: AUC=0.097, d=0.455, p=0.1518, p_adj=0.4555 
+[2026-03-28 14:02:32] 
+==================================================
+[2026-03-28 14:02:32] ROUND 20/50 | Cost so far: $0.0839
+[2026-03-28 14:02:32] ==================================================
+[2026-03-28 14:02:55]   LLM proposed 8 hypotheses ($0.0046)
+[2026-03-28 14:02:56]     Tested composite composite_r2_20144: AUC=0.000, d=0.106
+[2026-03-28 14:02:56]     Tested interaction rmssd_14d_mean x hr_14d_cv: AUC=0.310, d=0.293
+[2026-03-28 14:02:57]     Tested composite composite_r2_20146: AUC=0.000, d=0.004
+[2026-03-28 14:02:57]     Error testing hypothesis 20147: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:02:57]     Tested composite composite_r2_20148: AUC=0.000, d=0.105
+[2026-03-28 14:02:58]     Tested interaction lfhf_14d_autocorr x rmssd_14d_autocorr: AUC=0.521, d=0.552
+[2026-03-28 14:02:58]     Tested composite composite_r2_20150: AUC=0.000, d=0.056
+[2026-03-28 14:02:59]     Error testing hypothesis 20151: operands could not be broadcast together with shapes (45014,) (1484,) 
+FDR correction: 0/6 hypotheses significant
+[2026-03-28 14:02:59]   lfhf_14d_autocorr × rmssd_14d_autocorr: AUC=0.521, d=0.552, p=0.0999, p_adj=0.5994 
+[2026-03-28 14:02:59]   rmssd_14d_mean × hr_14d_cv: AUC=0.310, d=0.293, p=0.3786, p_adj=0.9910 
+[2026-03-28 14:02:59]   composite_r2_20144: AUC=0.000, d=0.106, p=0.7652, p_adj=0.9910 
+[2026-03-28 14:02:59]   Saved 113 results to /Users/athifshaffy/Documents/Repo/COGITO/evolved26-hackathon/src/../results/persistent_search_results.tsv
+[2026-03-28 14:02:59] 
+==================================================
+[2026-03-28 14:02:59] ROUND 21/50 | Cost so far: $0.0886
+[2026-03-28 14:02:59] ==================================================
+[2026-03-28 14:03:24]   LLM proposed 8 hypotheses ($0.0046)
+[2026-03-28 14:03:25]     Tested composite composite_r2_20153: AUC=0.000, d=0.106
+[2026-03-28 14:03:25]     Tested interaction rmssd_14d_std x hr_14d_cv: AUC=0.339, d=0.675
+[2026-03-28 14:03:26]     Tested composite composite_r2_20155: AUC=0.000, d=0.004
+[2026-03-28 14:03:26]     Error testing hypothesis 20156: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:03:26]     Tested composite composite_r2_20157: AUC=0.000, d=0.128
+[2026-03-28 14:03:27]     Tested interaction lfhf_14d_autocorr x rmssd_14d_autocorr: AUC=0.521, d=0.552
+[2026-03-28 14:03:27]     Tested composite composite_r2_20159: AUC=0.000, d=0.236
+[2026-03-28 14:03:27]     Error testing hypothesis 20160: operands could not be broadcast together with shapes (45014,) (1484,) 
+FDR correction: 0/6 hypotheses significant
+[2026-03-28 14:03:27]   rmssd_14d_std × hr_14d_cv: AUC=0.339, d=0.675, p=0.0539, p_adj=0.3237 
+[2026-03-28 14:03:27]   lfhf_14d_autocorr × rmssd_14d_autocorr: AUC=0.521, d=0.552, p=0.1189, p_adj=0.3566 
+[2026-03-28 14:03:27]   composite_r2_20159: AUC=0.000, d=0.236, p=0.4256, p_adj=0.8511 
+[2026-03-28 14:03:27] 
+==================================================
+[2026-03-28 14:03:27] ROUND 22/50 | Cost so far: $0.0932
+[2026-03-28 14:03:27] ==================================================
+[2026-03-28 14:03:51]   LLM proposed 8 hypotheses ($0.0045)
+[2026-03-28 14:03:51]     Tested composite composite_r2_20162: AUC=0.000, d=0.106
+[2026-03-28 14:03:52]     Tested interaction rmssd_14d_mean x hr_14d_cv: AUC=0.310, d=0.293
+[2026-03-28 14:03:52]     Error testing hypothesis 20164: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:03:53]     Tested composite composite_r2_20165: AUC=0.000, d=0.004
+[2026-03-28 14:03:53]     Tested interaction rmssd_7d_std x hr_7d_mean: AUC=0.462, d=0.677
+[2026-03-28 14:03:54]     Tested composite composite_r2_20167: AUC=0.000, d=0.018
+[2026-03-28 14:03:54]     Error testing hypothesis 20168: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:03:54]     Tested interaction lfhf_14d_slope x rmssd_14d_slope: AUC=0.502, d=0.839
+FDR correction: 0/6 hypotheses significant
+[2026-03-28 14:03:54]   lfhf_14d_slope × rmssd_14d_slope: AUC=0.502, d=0.839, p=0.0150, p_adj=0.0599 
+[2026-03-28 14:03:54]   rmssd_7d_std × hr_7d_mean: AUC=0.462, d=0.677, p=0.0200, p_adj=0.0599 
+[2026-03-28 14:03:54]   rmssd_14d_mean × hr_14d_cv: AUC=0.310, d=0.293, p=0.3686, p_adj=0.7373 
+[2026-03-28 14:03:54] 
+==================================================
+[2026-03-28 14:03:54] ROUND 23/50 | Cost so far: $0.0978
+[2026-03-28 14:03:54] ==================================================
+[2026-03-28 14:04:29]   LLM proposed 8 hypotheses ($0.0047)
+[2026-03-28 14:04:29]     Tested interaction lfhf_21d_slope x rmssd_7d_std: AUC=0.713, d=1.038
+[2026-03-28 14:04:30]     Tested composite composite_r2_20172: AUC=0.000, d=0.203
+[2026-03-28 14:04:30]     Error testing hypothesis 20173: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:04:31]     Tested interaction rmssd_14d_autocorr x lfhf_14d_autocorr: AUC=0.521, d=0.479
+[2026-03-28 14:04:32]     Tested composite composite_r2_20175: AUC=0.000, d=0.004
+[2026-03-28 14:04:32]     Error testing hypothesis 20176: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:04:33]     Tested interaction rmssd_7d_std x hr_7d_cv: AUC=0.477, d=0.677
+[2026-03-28 14:04:33]     Tested composite composite_r2_20178: AUC=0.000, d=0.313
+FDR correction: 0/6 hypotheses significant
+[2026-03-28 14:04:33]   lfhf_21d_slope × rmssd_7d_std: AUC=0.713, d=1.038, p=0.0180, p_adj=0.0959 
+[2026-03-28 14:04:33]   rmssd_7d_std × hr_7d_cv: AUC=0.477, d=0.677, p=0.0320, p_adj=0.0959 
+[2026-03-28 14:04:33]   rmssd_14d_autocorr × lfhf_14d_autocorr: AUC=0.521, d=0.479, p=0.1568, p_adj=0.3137 
+[2026-03-28 14:04:33] 
+==================================================
+[2026-03-28 14:04:33] ROUND 24/50 | Cost so far: $0.1025
+[2026-03-28 14:04:33] ==================================================
+[2026-03-28 14:04:55]   LLM proposed 8 hypotheses ($0.0045)
+[2026-03-28 14:04:56]     Tested interaction rmssd_7d_slope x lfhf_21d_slope: AUC=0.641, d=0.142
+[2026-03-28 14:04:57]     Tested composite composite_r2_20181: AUC=0.000, d=0.105
+[2026-03-28 14:04:57]     Error testing hypothesis 20182: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:04:58]     Tested interaction lfhf_14d_autocorr x rmssd_14d_autocorr: AUC=0.521, d=0.552
+[2026-03-28 14:04:58]     Tested composite composite_r2_20184: AUC=0.000, d=0.356
+[2026-03-28 14:04:58]     Error testing hypothesis 20185: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:04:59]     Tested interaction rmssd_21d_slope x hr_21d_slope: AUC=0.447, d=0.063
+[2026-03-28 14:04:59]     Tested composite composite_r2_20187: AUC=0.000, d=0.149
+FDR correction: 0/6 hypotheses significant
+[2026-03-28 14:04:59]   lfhf_14d_autocorr × rmssd_14d_autocorr: AUC=0.521, d=0.552, p=0.1129, p_adj=0.6773 
+[2026-03-28 14:04:59]   composite_r2_20184: AUC=0.000, d=0.356, p=0.2537, p_adj=0.7612 
+[2026-03-28 14:04:59]   composite_r2_20187: AUC=0.000, d=0.149, p=0.6094, p_adj=0.8631 
+[2026-03-28 14:04:59] 
+==================================================
+[2026-03-28 14:04:59] ROUND 25/50 | Cost so far: $0.1070
+[2026-03-28 14:04:59] ==================================================
+[2026-03-28 14:05:25]   LLM proposed 8 hypotheses ($0.0047)
+[2026-03-28 14:05:26]     Tested composite composite_r2_20189: AUC=0.000, d=0.106
+[2026-03-28 14:05:26]     Tested interaction rmssd_21d_slope x hr_21d_cv: AUC=0.018, d=0.063
+[2026-03-28 14:05:27]     Tested composite composite_r2_20191: AUC=0.000, d=0.083
+[2026-03-28 14:05:27]     Error testing hypothesis 20192: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:05:27]     Tested composite composite_r2_20193: AUC=0.000, d=0.203
+[2026-03-28 14:05:28]     Tested interaction lfhf_21d_autocorr x rmssd_21d_autocorr: AUC=0.475, d=0.561
+[2026-03-28 14:05:28]     Tested composite composite_r2_20195: AUC=0.000, d=0.356
+[2026-03-28 14:05:29]     Error testing hypothesis 20196: operands could not be broadcast together with shapes (45014,) (1484,) 
+FDR correction: 0/6 hypotheses significant
+[2026-03-28 14:05:29]   lfhf_21d_autocorr × rmssd_21d_autocorr: AUC=0.475, d=0.561, p=0.1988, p_adj=0.7193 
+[2026-03-28 14:05:29]   composite_r2_20195: AUC=0.000, d=0.356, p=0.2398, p_adj=0.7193 
+[2026-03-28 14:05:29]   composite_r2_20193: AUC=0.000, d=0.203, p=0.5115, p_adj=0.8811 
+[2026-03-28 14:05:29]   Saved 143 results to /Users/athifshaffy/Documents/Repo/COGITO/evolved26-hackathon/src/../results/persistent_search_results.tsv
+[2026-03-28 14:05:29] 
+==================================================
+[2026-03-28 14:05:29] ROUND 26/50 | Cost so far: $0.1116
+[2026-03-28 14:05:29] ==================================================
+[2026-03-28 14:05:53]   LLM proposed 8 hypotheses ($0.0046)
+[2026-03-28 14:05:53]     Tested interaction lfhf_21d_slope x rmssd_7d_std: AUC=0.713, d=1.038
+[2026-03-28 14:05:54]     Tested interaction rmssd_3d_slope x sleep_dur_3d_autocorr: AUC=0.223, d=1.113
+[2026-03-28 14:05:54]     Tested composite composite_r2_20200: AUC=0.000, d=0.004
+[2026-03-28 14:05:54]     Error testing hypothesis 20201: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:05:55]     Tested interaction rmssd_7d_std x hr_7d_cv: AUC=0.477, d=0.677
+[2026-03-28 14:05:55]     Tested composite composite_r2_20203: AUC=0.000, d=0.083
+[2026-03-28 14:05:56]     Tested interaction rmssd_21d_slope x hr_21d_slope: AUC=0.447, d=0.063
+[2026-03-28 14:05:56]     Error testing hypothesis 20205: operands could not be broadcast together with shapes (45014,) (1484,) 
+FDR correction: 1/6 hypotheses significant
+[2026-03-28 14:05:56]   rmssd_3d_slope × sleep_dur_3d_autocorr: AUC=0.223, d=1.113, p=0.0010, p_adj=0.0060 *** SIGNIFICANT ***
+[2026-03-28 14:05:56]   lfhf_21d_slope × rmssd_7d_std: AUC=0.713, d=1.038, p=0.0150, p_adj=0.0450 
+[2026-03-28 14:05:56]   rmssd_7d_std × hr_7d_cv: AUC=0.477, d=0.677, p=0.0350, p_adj=0.0699 
+[2026-03-28 14:05:56] 
+  !!! FOUND 1 SIGNIFICANT FINDING(S) !!!
+[2026-03-28 14:05:56]   >>> rmssd_3d_slope × sleep_dur_3d_autocorr: AUC=0.223, d=1.113, p_adj=0.0060
+[2026-03-28 14:05:56]       R2 Interaction: rmssd_3d_slope x sleep_dur_3d_autocorr | Examining the interaction between short-term parasympathetic activity and sleep duration autocorrelation, which may reflect the body's ability to adapt to changes in sleep patterns and its impact on depressive symptoms.
+[2026-03-28 14:05:56]   Saved 149 results to /Users/athifshaffy/Documents/Repo/COGITO/evolved26-hackathon/src/../results/persistent_search_results.tsv
+[2026-03-28 14:05:56] 
+  Total significant findings so far: 1
+[2026-03-28 14:05:56]   Continuing search for more findings...
+[2026-03-28 14:05:56] 
+==================================================
+[2026-03-28 14:05:56] ROUND 27/50 | Cost so far: $0.1163
+[2026-03-28 14:05:56] ==================================================
+[2026-03-28 14:06:14]   LLM proposed 5 hypotheses ($0.0043)
+[2026-03-28 14:06:15]     Tested interaction rmssd_7d_slope x lfhf_21d_slope: AUC=0.641, d=0.142
+[2026-03-28 14:06:15]     Tested composite composite_r2_20208: AUC=0.000, d=0.167
+[2026-03-28 14:06:16]     Tested interaction lfhf_21d_autocorr x sleep_qual_21d_mean: AUC=0.517, d=0.480
+[2026-03-28 14:06:16]     Error testing hypothesis 20210: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:06:17]     Tested interaction rmssd_3d_slope x lfhf_3d_slope: AUC=0.256, d=0.923
+FDR correction: 1/4 hypotheses significant
+[2026-03-28 14:06:17]   rmssd_3d_slope × lfhf_3d_slope: AUC=0.256, d=0.923, p=0.0010, p_adj=0.0040 *** SIGNIFICANT ***
+[2026-03-28 14:06:17]   lfhf_21d_autocorr × sleep_qual_21d_mean: AUC=0.517, d=0.480, p=0.2478, p_adj=0.4955 
+[2026-03-28 14:06:17]   composite_r2_20208: AUC=0.000, d=0.167, p=0.5644, p_adj=0.7313 
+[2026-03-28 14:06:17] 
+  !!! FOUND 1 SIGNIFICANT FINDING(S) !!!
+[2026-03-28 14:06:17]   >>> rmssd_3d_slope × lfhf_3d_slope: AUC=0.256, d=0.923, p_adj=0.0040
+[2026-03-28 14:06:17]       R2 Interaction: rmssd_3d_slope x lfhf_3d_slope | Investigating the interaction between short-term parasympathetic activity slope (rmssd_3d_slope) and short-term sympathetic activity slope (lfhf_3d_slope) to identify potential biomarkers for depression
+[2026-03-28 14:06:17]   Saved 153 results to /Users/athifshaffy/Documents/Repo/COGITO/evolved26-hackathon/src/../results/persistent_search_results.tsv
+[2026-03-28 14:06:17] 
+  Total significant findings so far: 2
+[2026-03-28 14:06:17]   Continuing search for more findings...
+[2026-03-28 14:06:17] 
+==================================================
+[2026-03-28 14:06:17] ROUND 28/50 | Cost so far: $0.1206
+[2026-03-28 14:06:17] ==================================================
+[2026-03-28 14:06:35]   LLM proposed 8 hypotheses ($0.0045)
+[2026-03-28 14:06:35]     Tested interaction rmssd_21d_slope x lfhf_21d_slope: AUC=0.617, d=0.063
+[2026-03-28 14:06:36]     Tested composite composite_r2_20214: AUC=0.000, d=0.167
+[2026-03-28 14:06:36]     Tested interaction lfhf_21d_slope x sleep_qual_21d_mean: AUC=0.760, d=1.057
+[2026-03-28 14:06:37]     Error testing hypothesis 20216: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:06:37]     Tested interaction rmssd_7d_slope x hr_7d_cv: AUC=0.213, d=0.210
+[2026-03-28 14:06:38]     Tested composite composite_r2_20218: AUC=0.000, d=0.083
+[2026-03-28 14:06:38]     Tested interaction rmssd_21d_slope x sleep_dur_21d_mean: AUC=0.272, d=0.050
+[2026-03-28 14:06:38]     Error testing hypothesis 20220: operands could not be broadcast together with shapes (45014,) (1484,) 
+FDR correction: 0/6 hypotheses significant
+[2026-03-28 14:06:38]   lfhf_21d_slope × sleep_qual_21d_mean: AUC=0.760, d=1.057, p=0.0160, p_adj=0.0959 
+[2026-03-28 14:06:38]   rmssd_7d_slope × hr_7d_cv: AUC=0.213, d=0.210, p=0.4925, p_adj=0.9191 
+[2026-03-28 14:06:38]   composite_r2_20214: AUC=0.000, d=0.167, p=0.5804, p_adj=0.9191 
+[2026-03-28 14:06:38] 
+==================================================
+[2026-03-28 14:06:38] ROUND 29/50 | Cost so far: $0.1251
+[2026-03-28 14:06:38] ==================================================
+[2026-03-28 14:07:00]   LLM proposed 8 hypotheses ($0.0045)
+[2026-03-28 14:07:01]     Tested interaction rmssd_21d_slope x lfhf_21d_slope: AUC=0.617, d=0.063
+[2026-03-28 14:07:01]     Tested interaction rmssd_7d_std x hr_7d_cv: AUC=0.477, d=0.677
+[2026-03-28 14:07:02]     Tested composite composite_r2_20224: AUC=0.000, d=0.083
+[2026-03-28 14:07:02]     Error testing hypothesis 20225: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:07:02]     Tested interaction rmssd_3d_slope x sleep_dur_3d_autocorr: AUC=0.223, d=1.113
+[2026-03-28 14:07:03]     Tested composite composite_r2_20227: AUC=0.000, d=0.004
+[2026-03-28 14:07:03]     Tested interaction hr_14d_cv x rmssd_14d_std: AUC=0.339, d=0.304
+[2026-03-28 14:07:04]     Error testing hypothesis 20229: operands could not be broadcast together with shapes (45014,) (1484,) 
+FDR correction: 0/6 hypotheses significant
+[2026-03-28 14:07:04]   rmssd_3d_slope × sleep_dur_3d_autocorr: AUC=0.223, d=1.113, p=0.0020, p_adj=0.0120 
+[2026-03-28 14:07:04]   rmssd_7d_std × hr_7d_cv: AUC=0.477, d=0.677, p=0.0320, p_adj=0.0959 
+[2026-03-28 14:07:04]   hr_14d_cv × rmssd_14d_std: AUC=0.339, d=0.304, p=0.3556, p_adj=0.7113 
+[2026-03-28 14:07:04] 
+==================================================
+[2026-03-28 14:07:04] ROUND 30/50 | Cost so far: $0.1295
+[2026-03-28 14:07:04] ==================================================
+[2026-03-28 14:07:25]   LLM proposed 8 hypotheses ($0.0045)
+[2026-03-28 14:07:25]     Tested interaction rmssd_21d_slope x lfhf_21d_slope: AUC=0.617, d=0.063
+[2026-03-28 14:07:26]     Tested interaction rmssd_7d_std x hr_7d_cv: AUC=0.477, d=0.677
+[2026-03-28 14:07:26]     Tested composite composite_r2_20233: AUC=0.000, d=0.083
+[2026-03-28 14:07:27]     Tested interaction lfhf_21d_slope x sleep_qual_21d_mean: AUC=0.760, d=1.057
+[2026-03-28 14:07:27]     Tested composite composite_r2_20235: AUC=0.000, d=0.067
+[2026-03-28 14:07:28]     Tested interaction rmssd_3d_slope x sleep_dur_3d_autocorr: AUC=0.223, d=1.113
+[2026-03-28 14:07:28]     Tested composite composite_r2_20237: AUC=0.000, d=0.083
+[2026-03-28 14:07:29]     Tested interaction hr_14d_cv x rmssd_14d_std: AUC=0.339, d=0.304
+FDR correction: 1/8 hypotheses significant
+[2026-03-28 14:07:29]   rmssd_3d_slope × sleep_dur_3d_autocorr: AUC=0.223, d=1.113, p=0.0010, p_adj=0.0080 *** SIGNIFICANT ***
+[2026-03-28 14:07:29]   lfhf_21d_slope × sleep_qual_21d_mean: AUC=0.760, d=1.057, p=0.0100, p_adj=0.0400 
+[2026-03-28 14:07:29]   rmssd_7d_std × hr_7d_cv: AUC=0.477, d=0.677, p=0.0270, p_adj=0.0719 
+[2026-03-28 14:07:29] 
+  !!! FOUND 1 SIGNIFICANT FINDING(S) !!!
+[2026-03-28 14:07:29]   >>> rmssd_3d_slope × sleep_dur_3d_autocorr: AUC=0.223, d=1.113, p_adj=0.0080
+[2026-03-28 14:07:29]       R2 Interaction: rmssd_3d_slope x sleep_dur_3d_autocorr | Investigating the interaction between short-term parasympathetic nervous system activity and sleep duration autocorrelation
+[2026-03-28 14:07:29]   Saved 173 results to /Users/athifshaffy/Documents/Repo/COGITO/evolved26-hackathon/src/../results/persistent_search_results.tsv
+[2026-03-28 14:07:29] 
+  Total significant findings so far: 3
+[2026-03-28 14:07:29]   Continuing search for more findings...
+[2026-03-28 14:07:29]   Saved 173 results to /Users/athifshaffy/Documents/Repo/COGITO/evolved26-hackathon/src/../results/persistent_search_results.tsv
+[2026-03-28 14:07:29] 
+==================================================
+[2026-03-28 14:07:29] ROUND 31/50 | Cost so far: $0.1340
+[2026-03-28 14:07:29] ==================================================
+[2026-03-28 14:07:42]   LLM proposed 5 hypotheses ($0.0042)
+[2026-03-28 14:07:43]     Tested interaction rmssd_7d_slope x lfhf_21d_slope: AUC=0.641, d=0.142
+[2026-03-28 14:07:43]     Tested composite composite_r2_20241: AUC=0.000, d=0.169
+[2026-03-28 14:07:43]     Error testing hypothesis 20242: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:07:44]     Tested interaction lfhf_3d_slope x rmssd_3d_autocorr: AUC=0.095, d=0.098
+[2026-03-28 14:07:45]     Tested composite composite_r2_20244: AUC=0.000, d=0.004
+FDR correction: 0/4 hypotheses significant
+[2026-03-28 14:07:45]   composite_r2_20241: AUC=0.000, d=0.169, p=0.5754, p_adj=0.9870 
+[2026-03-28 14:07:45]   rmssd_7d_slope × lfhf_21d_slope: AUC=0.641, d=0.142, p=0.7363, p_adj=0.9870 
+[2026-03-28 14:07:45]   lfhf_3d_slope × rmssd_3d_autocorr: AUC=0.095, d=0.098, p=0.7443, p_adj=0.9870 
+[2026-03-28 14:07:45] 
+==================================================
+[2026-03-28 14:07:45] ROUND 32/50 | Cost so far: $0.1382
+[2026-03-28 14:07:45] ==================================================
+[2026-03-28 14:08:04]   LLM proposed 8 hypotheses ($0.0045)
+[2026-03-28 14:08:05]     Tested interaction rmssd_7d_slope x lfhf_21d_slope: AUC=0.641, d=0.142
+[2026-03-28 14:08:05]     Tested composite composite_r2_20247: AUC=0.000, d=0.068
+[2026-03-28 14:08:06]     Tested interaction rmssd_3d_autocorr x sleep_dur_3d_autocorr: AUC=0.198, d=0.216
+[2026-03-28 14:08:06]     Tested composite composite_r2_20249: AUC=0.052, d=0.364
+[2026-03-28 14:08:07]     Tested interaction rmssd_7d_std x hr_7d_cv: AUC=0.477, d=0.677
+[2026-03-28 14:08:07]     Error testing hypothesis 20251: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:08:08]     Tested composite composite_r2_20252: AUC=0.000, d=0.083
+[2026-03-28 14:08:08]     Tested interaction rmssd_3d_slope x sleep_dur_3d_autocorr: AUC=0.223, d=1.113
+FDR correction: 0/7 hypotheses significant
+[2026-03-28 14:08:08]   rmssd_3d_slope × sleep_dur_3d_autocorr: AUC=0.223, d=1.113, p=0.0030, p_adj=0.0210 
+[2026-03-28 14:08:08]   rmssd_7d_std × hr_7d_cv: AUC=0.477, d=0.677, p=0.0400, p_adj=0.1399 
+[2026-03-28 14:08:08]   composite_r2_20249: AUC=0.052, d=0.364, p=0.2478, p_adj=0.5781 
+[2026-03-28 14:08:08] 
+==================================================
+[2026-03-28 14:08:08] ROUND 33/50 | Cost so far: $0.1428
+[2026-03-28 14:08:08] ==================================================
+[2026-03-28 14:08:24]   LLM proposed 5 hypotheses ($0.0042)
+[2026-03-28 14:08:24]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:08:25]     Tested interaction sleep_dur_3d_autocorr x hr_14d_cv: AUC=0.007, d=0.110
+[2026-03-28 14:08:25]     Tested composite composite_r2_20257: AUC=0.000, d=0.056
+[2026-03-28 14:08:26]     Tested interaction rmssd_3d_autocorr x sleep_qual_21d_mean: AUC=0.441, d=0.312
+[2026-03-28 14:08:26]     Tested interaction lfhf_21d_slope x hr_28d_slope: AUC=0.595, d=0.823
+FDR correction: 0/5 hypotheses significant
+[2026-03-28 14:08:26]   lfhf_21d_slope × hr_28d_slope: AUC=0.595, d=0.823, p=0.1049, p_adj=0.2622 
+[2026-03-28 14:08:26]   rmssd_3d_slope × lfhf_21d_slope: AUC=0.686, d=0.666, p=0.0919, p_adj=0.2622 
+[2026-03-28 14:08:26]   rmssd_3d_autocorr × sleep_qual_21d_mean: AUC=0.441, d=0.312, p=0.3287, p_adj=0.5478 
+[2026-03-28 14:08:26] 
+==================================================
+[2026-03-28 14:08:26] ROUND 34/50 | Cost so far: $0.1469
+[2026-03-28 14:08:26] ==================================================
+[2026-03-28 14:08:39]   LLM proposed 5 hypotheses ($0.0042)
+[2026-03-28 14:08:40]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:08:40]     Tested interaction hr_3d_cv x sleep_dur_3d_autocorr: AUC=0.319, d=0.366
+[2026-03-28 14:08:41]     Tested composite composite_r2_20263: AUC=0.000, d=0.056
+[2026-03-28 14:08:41]     Error testing hypothesis 20264: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:08:41]     Tested interaction rmssd_14d_slope x sleep_lat_3d_mean: AUC=0.521, d=0.463
+FDR correction: 0/4 hypotheses significant
+[2026-03-28 14:08:41]   rmssd_3d_slope × lfhf_21d_slope: AUC=0.686, d=0.666, p=0.0799, p_adj=0.3197 
+[2026-03-28 14:08:41]   rmssd_14d_slope × sleep_lat_3d_mean: AUC=0.521, d=0.463, p=0.1788, p_adj=0.3223 
+[2026-03-28 14:08:41]   hr_3d_cv × sleep_dur_3d_autocorr: AUC=0.319, d=0.366, p=0.2418, p_adj=0.3223 
+[2026-03-28 14:08:41] 
+==================================================
+[2026-03-28 14:08:41] ROUND 35/50 | Cost so far: $0.1512
+[2026-03-28 14:08:41] ==================================================
+[2026-03-28 14:08:56]   LLM proposed 5 hypotheses ($0.0042)
+[2026-03-28 14:08:56]     Tested interaction rmssd_7d_slope x lfhf_21d_slope: AUC=0.641, d=0.142
+[2026-03-28 14:08:57]     Tested interaction hr_3d_cv x sleep_dur_3d_autocorr: AUC=0.319, d=0.366
+[2026-03-28 14:08:57]     Tested composite composite_r2_20269: AUC=0.000, d=0.083
+[2026-03-28 14:08:58]     Tested interaction rmssd_3d_slope x sleep_qual_21d_mean: AUC=0.458, d=0.782
+[2026-03-28 14:08:58]     Tested interaction lfhf_21d_slope x rmssd_7d_autocorr: AUC=0.656, d=1.038
+FDR correction: 0/5 hypotheses significant
+[2026-03-28 14:08:58]   lfhf_21d_slope × rmssd_7d_autocorr: AUC=0.656, d=1.038, p=0.0150, p_adj=0.0375 
+[2026-03-28 14:08:58]   rmssd_3d_slope × sleep_qual_21d_mean: AUC=0.458, d=0.782, p=0.0150, p_adj=0.0375 
+[2026-03-28 14:08:58]   hr_3d_cv × sleep_dur_3d_autocorr: AUC=0.319, d=0.366, p=0.2308, p_adj=0.3846 
+[2026-03-28 14:08:58]   Saved 198 results to /Users/athifshaffy/Documents/Repo/COGITO/evolved26-hackathon/src/../results/persistent_search_results.tsv
+[2026-03-28 14:08:58] 
+==================================================
+[2026-03-28 14:08:58] ROUND 36/50 | Cost so far: $0.1554
+[2026-03-28 14:08:58] ==================================================
+[2026-03-28 14:09:14]   LLM proposed 5 hypotheses ($0.0042)
+[2026-03-28 14:09:15]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:09:15]     Tested interaction rmssd_3d_autocorr x sleep_qual_21d_mean: AUC=0.441, d=0.312
+[2026-03-28 14:09:16]     Tested composite composite_r2_20275: AUC=0.000, d=0.083
+[2026-03-28 14:09:16]     Tested interaction hr_3d_cv x sleep_dur_3d_autocorr: AUC=0.319, d=0.366
+[2026-03-28 14:09:17]     Tested interaction rmssd_7d_slope x lfhf_7d_slope: AUC=0.273, d=0.210
+FDR correction: 0/5 hypotheses significant
+[2026-03-28 14:09:17]   rmssd_3d_slope × lfhf_21d_slope: AUC=0.686, d=0.666, p=0.0729, p_adj=0.3646 
+[2026-03-28 14:09:17]   hr_3d_cv × sleep_dur_3d_autocorr: AUC=0.319, d=0.366, p=0.2148, p_adj=0.4912 
+[2026-03-28 14:09:17]   rmssd_3d_autocorr × sleep_qual_21d_mean: AUC=0.441, d=0.312, p=0.2947, p_adj=0.4912 
+[2026-03-28 14:09:17] 
+==================================================
+[2026-03-28 14:09:17] ROUND 37/50 | Cost so far: $0.1596
+[2026-03-28 14:09:17] ==================================================
+[2026-03-28 14:09:41]   LLM proposed 8 hypotheses ($0.0046)
+[2026-03-28 14:09:41]     Tested interaction rmssd_7d_slope x lfhf_21d_slope: AUC=0.641, d=0.142
+[2026-03-28 14:09:42]     Tested interaction hr_3d_cv x rmssd_14d_autocorr: AUC=0.512, d=0.657
+[2026-03-28 14:09:42]     Tested composite composite_r2_20281: AUC=0.000, d=0.056
+[2026-03-28 14:09:43]     Tested interaction sleep_dur_3d_autocorr x rmssd_3d_slope: AUC=0.223, d=0.173
+[2026-03-28 14:09:43]     Tested composite composite_r2_20283: AUC=0.000, d=0.551
+[2026-03-28 14:09:44]     Tested interaction rmssd_14d_autocorr x sleep_qual_21d_mean: AUC=0.465, d=0.239
+[2026-03-28 14:09:45]     Tested composite composite_r2_20285: AUC=0.000, d=0.281
+[2026-03-28 14:09:45]     Tested interaction lfhf_7d_slope x sleep_lat_3d_mean: AUC=0.452, d=0.467
+FDR correction: 0/8 hypotheses significant
+[2026-03-28 14:09:45]   hr_3d_cv × rmssd_14d_autocorr: AUC=0.512, d=0.657, p=0.0529, p_adj=0.2438 
+[2026-03-28 14:09:45]   composite_r2_20283: AUC=0.000, d=0.551, p=0.0609, p_adj=0.2438 
+[2026-03-28 14:09:45]   lfhf_7d_slope × sleep_lat_3d_mean: AUC=0.452, d=0.467, p=0.1479, p_adj=0.3943 
+[2026-03-28 14:09:45] 
+==================================================
+[2026-03-28 14:09:45] ROUND 38/50 | Cost so far: $0.1643
+[2026-03-28 14:09:45] ==================================================
+[2026-03-28 14:09:57]   LLM proposed 5 hypotheses ($0.0042)
+[2026-03-28 14:09:58]     Tested interaction rmssd_7d_slope x hr_7d_cv: AUC=0.213, d=0.210
+[2026-03-28 14:09:58]     Tested interaction lfhf_21d_slope x sleep_qual_21d_mean: AUC=0.760, d=1.057
+[2026-03-28 14:09:59]     Tested composite composite_r2_20290: AUC=0.000, d=0.056
+[2026-03-28 14:09:59]     Tested interaction rmssd_3d_autocorr x sleep_lat_3d_mean: AUC=0.469, d=0.188
+[2026-03-28 14:10:00]     Tested interaction hr_14d_slope x sleep_dur_14d_mean: AUC=0.413, d=0.737
+FDR correction: 0/5 hypotheses significant
+[2026-03-28 14:10:00]   lfhf_21d_slope × sleep_qual_21d_mean: AUC=0.760, d=1.057, p=0.0120, p_adj=0.0599 
+[2026-03-28 14:10:00]   hr_14d_slope × sleep_dur_14d_mean: AUC=0.413, d=0.737, p=0.0360, p_adj=0.0899 
+[2026-03-28 14:10:00]   rmssd_7d_slope × hr_7d_cv: AUC=0.213, d=0.210, p=0.4935, p_adj=0.6469 
+[2026-03-28 14:10:00] 
+==================================================
+[2026-03-28 14:10:00] ROUND 39/50 | Cost so far: $0.1685
+[2026-03-28 14:10:00] ==================================================
+[2026-03-28 14:10:13]   LLM proposed 5 hypotheses ($0.0042)
+[2026-03-28 14:10:13]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:10:14]     Tested interaction hr_3d_cv x sleep_qual_21d_mean: AUC=0.526, d=0.516
+[2026-03-28 14:10:14]     Tested composite composite_r2_20296: AUC=0.000, d=0.056
+[2026-03-28 14:10:15]     Tested interaction rmssd_14d_autocorr x sleep_lat_3d_mean: AUC=0.512, d=0.477
+[2026-03-28 14:10:15]     Tested interaction lfhf_7d_slope x sleep_dur_3d_autocorr: AUC=0.145, d=0.363
+FDR correction: 0/5 hypotheses significant
+[2026-03-28 14:10:15]   rmssd_3d_slope × lfhf_21d_slope: AUC=0.686, d=0.666, p=0.0889, p_adj=0.2473 
+[2026-03-28 14:10:15]   hr_3d_cv × sleep_qual_21d_mean: AUC=0.526, d=0.516, p=0.0989, p_adj=0.2473 
+[2026-03-28 14:10:15]   rmssd_14d_autocorr × sleep_lat_3d_mean: AUC=0.512, d=0.477, p=0.1648, p_adj=0.2747 
+[2026-03-28 14:10:15] 
+==================================================
+[2026-03-28 14:10:15] ROUND 40/50 | Cost so far: $0.1727
+[2026-03-28 14:10:15] ==================================================
+[2026-03-28 14:10:31]   LLM proposed 5 hypotheses ($0.0042)
+[2026-03-28 14:10:32]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:10:32]     Tested interaction rmssd_7d_autocorr x sleep_qual_21d_mean: AUC=0.381, d=0.186
+[2026-03-28 14:10:33]     Tested composite composite_r2_20302: AUC=0.000, d=0.083
+[2026-03-28 14:10:33]     Tested interaction hr_3d_cv x sleep_dur_3d_autocorr: AUC=0.319, d=0.366
+[2026-03-28 14:10:34]     Tested interaction lfhf_7d_slope x rmssd_7d_slope: AUC=0.273, d=0.464
+FDR correction: 0/5 hypotheses significant
+[2026-03-28 14:10:34]   rmssd_3d_slope × lfhf_21d_slope: AUC=0.686, d=0.666, p=0.0829, p_adj=0.2872 
+[2026-03-28 14:10:34]   lfhf_7d_slope × rmssd_7d_slope: AUC=0.273, d=0.464, p=0.1149, p_adj=0.2872 
+[2026-03-28 14:10:34]   hr_3d_cv × sleep_dur_3d_autocorr: AUC=0.319, d=0.366, p=0.2278, p_adj=0.3796 
+[2026-03-28 14:10:34]   Saved 226 results to /Users/athifshaffy/Documents/Repo/COGITO/evolved26-hackathon/src/../results/persistent_search_results.tsv
+[2026-03-28 14:10:34] 
+==================================================
+[2026-03-28 14:10:34] ROUND 41/50 | Cost so far: $0.1769
+[2026-03-28 14:10:34] ==================================================
+[2026-03-28 14:11:40]   LLM proposed 8 hypotheses ($0.0047)
+[2026-03-28 14:11:40]     Tested interaction rmssd_3d_slope x sleep_dur_3d_autocorr: AUC=0.223, d=1.113
+[2026-03-28 14:11:41]     Tested interaction lfhf_21d_slope x rmssd_7d_autocorr: AUC=0.656, d=1.038
+[2026-03-28 14:11:41]     Tested composite composite_r2_20308: AUC=0.000, d=0.088
+[2026-03-28 14:11:42]     Tested interaction hr_3d_cv x sleep_qual_21d_mean: AUC=0.526, d=0.516
+[2026-03-28 14:11:42]     Error testing hypothesis 20310: "['rmssd_10d_entropy'] not in index"
+[2026-03-28 14:11:42]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:11:43]     Tested composite composite_r2_20312: AUC=0.000, d=0.088
+FDR correction: 0/6 hypotheses significant
+[2026-03-28 14:11:43]   rmssd_3d_slope × sleep_dur_3d_autocorr: AUC=0.223, d=1.113, p=0.0020, p_adj=0.0120 
+[2026-03-28 14:11:43]   lfhf_21d_slope × rmssd_7d_autocorr: AUC=0.656, d=1.038, p=0.0160, p_adj=0.0480 
+[2026-03-28 14:11:43]   rmssd_3d_slope × lfhf_21d_slope: AUC=0.686, d=0.666, p=0.0979, p_adj=0.1958 
+[2026-03-28 14:11:43] 
+==================================================
+[2026-03-28 14:11:43] ROUND 42/50 | Cost so far: $0.1816
+[2026-03-28 14:11:43] ==================================================
+[2026-03-28 14:12:35]   LLM proposed 5 hypotheses ($0.0043)
+[2026-03-28 14:12:35]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:12:35]     Error testing hypothesis 20316: "['sleep_dur_10d_entropy'] not in index"
+[2026-03-28 14:12:36]     Tested composite composite_r2_20317: AUC=0.000, d=0.128
+[2026-03-28 14:12:36]     Tested interaction lfhf_7d_slope x sleep_qual_21d_mean: AUC=0.470, d=0.224
+[2026-03-28 14:12:37]     Tested interaction rmssd_14d_autocorr x sleep_lat_3d_mean: AUC=0.512, d=0.477
+FDR correction: 0/4 hypotheses significant
+[2026-03-28 14:12:37]   rmssd_3d_slope × lfhf_21d_slope: AUC=0.686, d=0.666, p=0.1079, p_adj=0.3676 
+[2026-03-28 14:12:37]   rmssd_14d_autocorr × sleep_lat_3d_mean: AUC=0.512, d=0.477, p=0.1838, p_adj=0.3676 
+[2026-03-28 14:12:37]   lfhf_7d_slope × sleep_qual_21d_mean: AUC=0.470, d=0.224, p=0.4925, p_adj=0.6567 
+[2026-03-28 14:12:37] 
+==================================================
+[2026-03-28 14:12:37] ROUND 43/50 | Cost so far: $0.1859
+[2026-03-28 14:12:37] ==================================================
+[2026-03-28 14:14:05]   LLM proposed 8 hypotheses ($0.0046)
+[2026-03-28 14:14:06]     Tested interaction rmssd_3d_slope x hr_3d_cv: AUC=0.304, d=0.923
+[2026-03-28 14:14:06]     Tested interaction lfhf_21d_slope x rmssd_14d_autocorr: AUC=0.619, d=1.038
+[2026-03-28 14:14:07]     Tested composite composite_r2_20324: AUC=0.000, d=0.128
+[2026-03-28 14:14:07]     Tested interaction rmssd_3d_slope x sleep_qual_21d_mean: AUC=0.458, d=0.782
+[2026-03-28 14:14:08]     Error testing hypothesis 20326: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:14:08]     Tested interaction hr_14d_slope x rmssd_14d_autocorr: AUC=0.535, d=0.510
+[2026-03-28 14:14:09]     Tested composite composite_r2_20328: AUC=0.000, d=0.056
+FDR correction: 0/6 hypotheses significant
+[2026-03-28 14:14:09]   lfhf_21d_slope × rmssd_14d_autocorr: AUC=0.619, d=1.038, p=0.0120, p_adj=0.0240 
+[2026-03-28 14:14:09]   rmssd_3d_slope × hr_3d_cv: AUC=0.304, d=0.923, p=0.0030, p_adj=0.0180 
+[2026-03-28 14:14:09]   rmssd_3d_slope × sleep_qual_21d_mean: AUC=0.458, d=0.782, p=0.0080, p_adj=0.0240 
+[2026-03-28 14:14:09] 
+==================================================
+[2026-03-28 14:14:09] ROUND 44/50 | Cost so far: $0.1905
+[2026-03-28 14:14:09] ==================================================
+[2026-03-28 14:15:00]   LLM proposed 5 hypotheses ($0.0042)
+[2026-03-28 14:15:00]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:15:01]     Tested existing window sleep_dur_5d_slope: AUC=0.071, d=0.411
+[2026-03-28 14:15:02]     Tested composite composite_r2_20332: AUC=0.000, d=0.056
+[2026-03-28 14:15:02]     Tested interaction hr_3d_cv x sleep_qual_21d_mean: AUC=0.526, d=0.516
+[2026-03-28 14:15:03]     Tested interaction rmssd_14d_autocorr x lfhf_14d_slope: AUC=0.614, d=0.479
+FDR correction: 0/5 hypotheses significant
+[2026-03-28 14:15:03]   rmssd_3d_slope × lfhf_21d_slope: AUC=0.686, d=0.666, p=0.0929, p_adj=0.1986 
+[2026-03-28 14:15:03]   hr_3d_cv × sleep_qual_21d_mean: AUC=0.526, d=0.516, p=0.0969, p_adj=0.1986 
+[2026-03-28 14:15:03]   rmssd_14d_autocorr × lfhf_14d_slope: AUC=0.614, d=0.479, p=0.1459, p_adj=0.1986 
+[2026-03-28 14:15:03] 
+==================================================
+[2026-03-28 14:15:03] ROUND 45/50 | Cost so far: $0.1947
+[2026-03-28 14:15:03] ==================================================
+[2026-03-28 14:16:04]   LLM proposed 8 hypotheses ($0.0046)
+[2026-03-28 14:16:04]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:16:05]     Tested interaction rmssd_14d_autocorr x hr_14d_slope: AUC=0.535, d=0.479
+[2026-03-28 14:16:06]     Tested composite composite_r2_20339: AUC=0.000, d=0.056
+[2026-03-28 14:16:06]     Tested interaction rmssd_3d_slope x sleep_qual_21d_mean: AUC=0.458, d=0.782
+[2026-03-28 14:16:06]     Error testing hypothesis 20341: "['rmssd_10d_change_point'] not in index"
+[2026-03-28 14:16:07]     Tested interaction lfhf_21d_slope x sleep_lat_3d_mean: AUC=0.704, d=1.038
+[2026-03-28 14:16:07]     Tested composite composite_r2_20343: AUC=0.000, d=0.128
+FDR correction: 0/6 hypotheses significant
+[2026-03-28 14:16:07]   lfhf_21d_slope × sleep_lat_3d_mean: AUC=0.704, d=1.038, p=0.0170, p_adj=0.0569 
+[2026-03-28 14:16:07]   rmssd_3d_slope × sleep_qual_21d_mean: AUC=0.458, d=0.782, p=0.0190, p_adj=0.0569 
+[2026-03-28 14:16:07]   rmssd_3d_slope × lfhf_21d_slope: AUC=0.686, d=0.666, p=0.0889, p_adj=0.1778 
+[2026-03-28 14:16:07]   Saved 253 results to /Users/athifshaffy/Documents/Repo/COGITO/evolved26-hackathon/src/../results/persistent_search_results.tsv
+[2026-03-28 14:16:07] 
+==================================================
+[2026-03-28 14:16:07] ROUND 46/50 | Cost so far: $0.1992
+[2026-03-28 14:16:07] ==================================================
+[2026-03-28 14:16:29]   LLM proposed 5 hypotheses ($0.0040)
+[2026-03-28 14:16:30]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:16:30]     Tested interaction rmssd_14d_autocorr x hr_14d_slope: AUC=0.535, d=0.479
+[2026-03-28 14:16:31]     Tested composite composite_r2_20347: AUC=0.000, d=0.056
+[2026-03-28 14:16:31]     Error testing hypothesis 20348: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:16:31]     Tested interaction rmssd_3d_slope x sleep_qual_21d_mean: AUC=0.458, d=0.782
+FDR correction: 0/4 hypotheses significant
+[2026-03-28 14:16:31]   rmssd_3d_slope × sleep_qual_21d_mean: AUC=0.458, d=0.782, p=0.0300, p_adj=0.1199 
+[2026-03-28 14:16:31]   rmssd_3d_slope × lfhf_21d_slope: AUC=0.686, d=0.666, p=0.0939, p_adj=0.1878 
+[2026-03-28 14:16:31]   rmssd_14d_autocorr × hr_14d_slope: AUC=0.535, d=0.479, p=0.1578, p_adj=0.2105 
+[2026-03-28 14:16:31] 
+==================================================
+[2026-03-28 14:16:31] ROUND 47/50 | Cost so far: $0.2032
+[2026-03-28 14:16:31] ==================================================
+[2026-03-28 14:16:46]   LLM proposed 5 hypotheses ($0.0042)
+[2026-03-28 14:16:46]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:16:47]     Tested interaction hr_3d_cv x sleep_qual_21d_mean: AUC=0.526, d=0.516
+[2026-03-28 14:16:47]     Error testing hypothesis 20353: "['sleep_dur_10d_entropy'] not in index"
+[2026-03-28 14:16:47]     Tested composite composite_r2_20354: AUC=0.000, d=0.056
+[2026-03-28 14:16:48]     Tested interaction rmssd_3d_slope x sleep_lat_3d_mean: AUC=0.472, d=0.990
+FDR correction: 0/4 hypotheses significant
+[2026-03-28 14:16:48]   rmssd_3d_slope × sleep_lat_3d_mean: AUC=0.472, d=0.990, p=0.0030, p_adj=0.0120 
+[2026-03-28 14:16:48]   rmssd_3d_slope × lfhf_21d_slope: AUC=0.686, d=0.666, p=0.0879, p_adj=0.1359 
+[2026-03-28 14:16:48]   hr_3d_cv × sleep_qual_21d_mean: AUC=0.526, d=0.516, p=0.1019, p_adj=0.1359 
+[2026-03-28 14:16:48] 
+==================================================
+[2026-03-28 14:16:48] ROUND 48/50 | Cost so far: $0.2074
+[2026-03-28 14:16:48] ==================================================
+[2026-03-28 14:17:10]   LLM proposed 5 hypotheses ($0.0041)
+[2026-03-28 14:17:10]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:17:10]     Error testing hypothesis 20358: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:17:11]     Tested composite composite_r2_20359: AUC=0.000, d=0.128
+[2026-03-28 14:17:11]     Tested interaction lfhf_21d_slope x sleep_qual_21d_mean: AUC=0.760, d=1.057
+[2026-03-28 14:17:11]     Error testing hypothesis 20361: operands could not be broadcast together with shapes (45014,) (1484,) 
+FDR correction: 0/3 hypotheses significant
+[2026-03-28 14:17:11]   lfhf_21d_slope × sleep_qual_21d_mean: AUC=0.760, d=1.057, p=0.0140, p_adj=0.0420 
+[2026-03-28 14:17:11]   rmssd_3d_slope × lfhf_21d_slope: AUC=0.686, d=0.666, p=0.1089, p_adj=0.1633 
+[2026-03-28 14:17:11]   composite_r2_20359: AUC=0.000, d=0.128, p=0.6843, p_adj=0.6843 
+[2026-03-28 14:17:11] 
+==================================================
+[2026-03-28 14:17:11] ROUND 49/50 | Cost so far: $0.2115
+[2026-03-28 14:17:11] ==================================================
+[2026-03-28 14:17:28]   LLM proposed 5 hypotheses ($0.0041)
+[2026-03-28 14:17:28]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:17:28]     Error testing hypothesis 20364: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:17:29]     Tested composite composite_r2_20365: AUC=0.000, d=0.128
+[2026-03-28 14:17:29]     Tested interaction lfhf_21d_slope x sleep_qual_21d_mean: AUC=0.760, d=1.057
+[2026-03-28 14:17:29]     Error testing hypothesis 20367: operands could not be broadcast together with shapes (45014,) (1484,) 
+FDR correction: 0/3 hypotheses significant
+[2026-03-28 14:17:29]   lfhf_21d_slope × sleep_qual_21d_mean: AUC=0.760, d=1.057, p=0.0070, p_adj=0.0210 
+[2026-03-28 14:17:29]   rmssd_3d_slope × lfhf_21d_slope: AUC=0.686, d=0.666, p=0.0929, p_adj=0.1394 
+[2026-03-28 14:17:29]   composite_r2_20365: AUC=0.000, d=0.128, p=0.6773, p_adj=0.6773 
+[2026-03-28 14:17:29] 
+==================================================
+[2026-03-28 14:17:29] ROUND 50/50 | Cost so far: $0.2156
+[2026-03-28 14:17:29] ==================================================
+[2026-03-28 14:17:51]   LLM proposed 5 hypotheses ($0.0042)
+[2026-03-28 14:17:51]     Tested interaction rmssd_3d_slope x lfhf_21d_slope: AUC=0.686, d=0.666
+[2026-03-28 14:17:52]     Tested interaction rmssd_3d_slope x sleep_qual_21d_mean: AUC=0.458, d=0.782
+[2026-03-28 14:17:52]     Error testing hypothesis 20371: operands could not be broadcast together with shapes (45014,) (1484,) 
+[2026-03-28 14:17:52]     Tested composite composite_r2_20372: AUC=0.000, d=0.128
+[2026-03-28 14:17:53]     Tested interaction lfhf_21d_slope x sleep_lat_3d_mean: AUC=0.704, d=1.038
+FDR correction: 0/4 hypotheses significant
+[2026-03-28 14:17:53]   lfhf_21d_slope × sleep_lat_3d_mean: AUC=0.704, d=1.038, p=0.0230, p_adj=0.0460 
+[2026-03-28 14:17:53]   rmssd_3d_slope × sleep_qual_21d_mean: AUC=0.458, d=0.782, p=0.0120, p_adj=0.0460 
+[2026-03-28 14:17:53]   rmssd_3d_slope × lfhf_21d_slope: AUC=0.686, d=0.666, p=0.0909, p_adj=0.1212 
+[2026-03-28 14:17:53]   Saved 271 results to /Users/athifshaffy/Documents/Repo/COGITO/evolved26-hackathon/src/../results/persistent_search_results.tsv
+[2026-03-28 14:17:53]   Saved 271 results to /Users/athifshaffy/Documents/Repo/COGITO/evolved26-hackathon/src/../results/persistent_search_results.tsv
+[2026-03-28 14:17:53] 
+======================================================================
+[2026-03-28 14:17:53] PERSISTENT SEARCH COMPLETE
+[2026-03-28 14:17:53] ======================================================================
+[2026-03-28 14:17:53] Rounds: 50
+[2026-03-28 14:17:53] Total hypotheses tested: 271
+[2026-03-28 14:17:53] Significant findings: 3
+[2026-03-28 14:17:53] Total LLM cost: $0.2198
+[2026-03-28 14:17:53] Time: 31.7 min
+[2026-03-28 14:17:53] 
+ALL SIGNIFICANT FINDINGS:
+[2026-03-28 14:17:53]   1. rmssd_3d_slope × sleep_dur_3d_autocorr: AUC=0.223, d=1.113, p_adj=0.0060
+[2026-03-28 14:17:53]   2. rmssd_3d_slope × sleep_dur_3d_autocorr: AUC=0.223, d=1.113, p_adj=0.0080
+[2026-03-28 14:17:53]   3. rmssd_3d_slope × lfhf_3d_slope: AUC=0.256, d=0.923, p_adj=0.0040

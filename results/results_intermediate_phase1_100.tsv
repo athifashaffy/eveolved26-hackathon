@@ -1,0 +1,101 @@
+id	feature	auc	p_value	p_adjusted	cohens_d	n_pos	n_neg	ci_lower	ci_upper	status	description
+1	rmssd_3d_mean	0.155	0.86014	0.0	0.0507	371	737	0.1306	0.1803	PENDING	Does rmssd_3d_mean predict PHQ-9 ≥ 5 (mild+ depression)?
+2	rmssd_3d_mean	0.155	0.874126	0.0	0.0507	371	737	0.1321	0.1803	PENDING	Does rmssd_3d_mean predict PHQ-9 increased from baseline?
+3	rmssd_3d_std	0.3891	0.116883	0.0	0.502	371	737	0.3487	0.4266	PENDING	Does rmssd_3d_std predict PHQ-9 ≥ 5 (mild+ depression)?
+4	rmssd_3d_std	0.3891	0.0999	0.0	0.502	371	737	0.3517	0.426	PENDING	Does rmssd_3d_std predict PHQ-9 increased from baseline?
+5	rmssd_3d_cv	0.4154	0.070929	0.0	0.5385	371	737	0.379	0.4501	PENDING	Does rmssd_3d_cv predict PHQ-9 ≥ 5 (mild+ depression)?
+6	rmssd_3d_cv	0.4154	0.077922	0.0	0.5385	371	737	0.3776	0.456	PENDING	Does rmssd_3d_cv predict PHQ-9 increased from baseline?
+7	rmssd_3d_slope	0.1931	0.002997	0.0	0.9228	371	737	0.162	0.2224	PENDING	Does rmssd_3d_slope predict PHQ-9 ≥ 5 (mild+ depression)?
+8	rmssd_3d_slope	0.1931	0.005994	0.0	0.9228	371	737	0.1645	0.2235	PENDING	Does rmssd_3d_slope predict PHQ-9 increased from baseline?
+9	rmssd_3d_autocorr	0.044	0.582418	0.0	0.1579	371	737	0.0335	0.0561	PENDING	Does rmssd_3d_autocorr predict PHQ-9 ≥ 5 (mild+ depression)?
+10	rmssd_3d_autocorr	0.044	0.627373	0.0	0.1579	371	737	0.033	0.0569	PENDING	Does rmssd_3d_autocorr predict PHQ-9 increased from baseline?
+11	rmssd_5d_mean	0.3558	0.97003	0.0	0.009	319	617	0.3197	0.3962	PENDING	Does rmssd_5d_mean predict PHQ-9 ≥ 5 (mild+ depression)?
+12	rmssd_5d_mean	0.3558	0.975025	0.0	0.009	319	617	0.3195	0.3942	PENDING	Does rmssd_5d_mean predict PHQ-9 increased from baseline?
+13	rmssd_5d_std	0.4424	0.063936	0.0	0.563	319	617	0.4011	0.4839	PENDING	Does rmssd_5d_std predict PHQ-9 ≥ 5 (mild+ depression)?
+14	rmssd_5d_std	0.4424	0.065934	0.0	0.563	319	617	0.3978	0.4849	PENDING	Does rmssd_5d_std predict PHQ-9 increased from baseline?
+15	rmssd_5d_cv	0.428	0.071928	0.0	0.5602	319	617	0.3866	0.4734	PENDING	Does rmssd_5d_cv predict PHQ-9 ≥ 5 (mild+ depression)?
+16	rmssd_5d_cv	0.428	0.076923	0.0	0.5602	319	617	0.3893	0.466	PENDING	Does rmssd_5d_cv predict PHQ-9 increased from baseline?
+17	rmssd_5d_slope	0.0927	0.707293	0.0	0.122	319	617	0.0697	0.1186	PENDING	Does rmssd_5d_slope predict PHQ-9 ≥ 5 (mild+ depression)?
+18	rmssd_5d_slope	0.0927	0.68032	0.0	0.122	319	617	0.0687	0.1155	PENDING	Does rmssd_5d_slope predict PHQ-9 increased from baseline?
+19	rmssd_5d_autocorr	0.3469	0.136863	0.0	0.4544	319	617	0.3133	0.3804	PENDING	Does rmssd_5d_autocorr predict PHQ-9 ≥ 5 (mild+ depression)?
+20	rmssd_5d_autocorr	0.3469	0.121878	0.0	0.4544	319	617	0.3123	0.3816	PENDING	Does rmssd_5d_autocorr predict PHQ-9 increased from baseline?
+21	rmssd_7d_mean	0.3961	0.856144	0.0	0.0548	278	514	0.3537	0.4343	PENDING	Does rmssd_7d_mean predict PHQ-9 ≥ 5 (mild+ depression)?
+22	rmssd_7d_mean	0.3961	0.869131	0.0	0.0548	278	514	0.3576	0.4379	PENDING	Does rmssd_7d_mean predict PHQ-9 increased from baseline?
+23	rmssd_7d_std	0.4821	0.025974	0.0	0.6775	278	514	0.436	0.5269	PENDING	Does rmssd_7d_std predict PHQ-9 ≥ 5 (mild+ depression)?
+24	rmssd_7d_std	0.4821	0.022977	0.0	0.6775	278	514	0.4398	0.5289	PENDING	Does rmssd_7d_std predict PHQ-9 increased from baseline?
+25	rmssd_7d_cv	0.4573	0.030969	0.0	0.6572	278	514	0.4119	0.5021	PENDING	Does rmssd_7d_cv predict PHQ-9 ≥ 5 (mild+ depression)?
+26	rmssd_7d_cv	0.4573	0.023976	0.0	0.6572	278	514	0.4074	0.502	PENDING	Does rmssd_7d_cv predict PHQ-9 increased from baseline?
+27	rmssd_7d_slope	0.1771	0.513487	0.0	0.2102	278	514	0.1447	0.207	PENDING	Does rmssd_7d_slope predict PHQ-9 ≥ 5 (mild+ depression)?
+28	rmssd_7d_slope	0.1771	0.511489	0.0	0.2102	278	514	0.1446	0.2128	PENDING	Does rmssd_7d_slope predict PHQ-9 increased from baseline?
+29	rmssd_7d_autocorr	0.4201	0.090909	0.0	0.5519	278	514	0.3794	0.4595	PENDING	Does rmssd_7d_autocorr predict PHQ-9 ≥ 5 (mild+ depression)?
+30	rmssd_7d_autocorr	0.4201	0.05994	0.0	0.5519	278	514	0.3811	0.4609	PENDING	Does rmssd_7d_autocorr predict PHQ-9 increased from baseline?
+31	rmssd_14d_mean	0.4134	0.38961	0.0	0.293	169	277	0.3586	0.4702	PENDING	Does rmssd_14d_mean predict PHQ-9 ≥ 5 (mild+ depression)?
+32	rmssd_14d_mean	0.4134	0.407592	0.0	0.293	169	277	0.3599	0.464	PENDING	Does rmssd_14d_mean predict PHQ-9 increased from baseline?
+33	rmssd_14d_std	0.4004	0.043956	0.0	0.6751	169	277	0.341	0.4555	PENDING	Does rmssd_14d_std predict PHQ-9 ≥ 5 (mild+ depression)?
+34	rmssd_14d_std	0.4004	0.046953	0.0	0.6751	169	277	0.3446	0.4556	PENDING	Does rmssd_14d_std predict PHQ-9 increased from baseline?
+35	rmssd_14d_cv	0.3424	0.104895	0.0	0.5718	169	277	0.2875	0.4003	PENDING	Does rmssd_14d_cv predict PHQ-9 ≥ 5 (mild+ depression)?
+36	rmssd_14d_cv	0.3424	0.111888	0.0	0.5718	169	277	0.2888	0.3963	PENDING	Does rmssd_14d_cv predict PHQ-9 increased from baseline?
+37	rmssd_14d_slope	0.0751	0.185814	0.0	0.4529	169	277	0.0501	0.1022	PENDING	Does rmssd_14d_slope predict PHQ-9 ≥ 5 (mild+ depression)?
+38	rmssd_14d_slope	0.0751	0.191808	0.0	0.4529	169	277	0.0499	0.1057	PENDING	Does rmssd_14d_slope predict PHQ-9 increased from baseline?
+39	rmssd_14d_autocorr	0.5206	0.15984	0.0	0.4791	169	277	0.4636	0.5709	PENDING	Does rmssd_14d_autocorr predict PHQ-9 ≥ 5 (mild+ depression)?
+40	rmssd_14d_autocorr	0.5206	0.16983	0.0	0.4791	169	277	0.4677	0.5735	PENDING	Does rmssd_14d_autocorr predict PHQ-9 increased from baseline?
+41	rmssd_21d_mean	0.3466	0.251748	0.0	0.4743	85	128	0.2798	0.4287	PENDING	Does rmssd_21d_mean predict PHQ-9 ≥ 5 (mild+ depression)?
+42	rmssd_21d_mean	0.3466	0.253746	0.0	0.4743	85	128	0.2678	0.4247	PENDING	Does rmssd_21d_mean predict PHQ-9 increased from baseline?
+43	rmssd_21d_std	0.0858	0.463536	0.0	0.3006	85	128	0.0443	0.1403	PENDING	Does rmssd_21d_std predict PHQ-9 ≥ 5 (mild+ depression)?
+44	rmssd_21d_std	0.0858	0.461538	0.0	0.3006	85	128	0.0442	0.1406	PENDING	Does rmssd_21d_std predict PHQ-9 increased from baseline?
+45	rmssd_21d_cv	0.019	0.762238	0.0	0.1273	85	128	0.0031	0.0381	PENDING	Does rmssd_21d_cv predict PHQ-9 ≥ 5 (mild+ depression)?
+46	rmssd_21d_cv	0.019	0.748252	0.0	0.1273	85	128	0.0022	0.0391	PENDING	Does rmssd_21d_cv predict PHQ-9 increased from baseline?
+47	rmssd_21d_slope	0.0	0.881119	0.0	0.0627	85	128	0.0	0.0	PENDING	Does rmssd_21d_slope predict PHQ-9 ≥ 5 (mild+ depression)?
+48	rmssd_21d_slope	0.0	0.872128	0.0	0.0627	85	128	0.0	0.0	PENDING	Does rmssd_21d_slope predict PHQ-9 increased from baseline?
+49	rmssd_21d_autocorr	0.5375	0.145854	0.0	0.613	85	128	0.4546	0.6236	PENDING	Does rmssd_21d_autocorr predict PHQ-9 ≥ 5 (mild+ depression)?
+50	rmssd_21d_autocorr	0.5375	0.145854	0.0	0.613	85	128	0.465	0.61	PENDING	Does rmssd_21d_autocorr predict PHQ-9 increased from baseline?
+51	rmssd_28d_mean	0.0586	0.413586	0.0	0.3946	21	26	0.0	0.15	PENDING	Does rmssd_28d_mean predict PHQ-9 ≥ 5 (mild+ depression)?
+52	rmssd_28d_mean	0.0586	0.426573	0.0	0.3946	21	26	0.0	0.1491	PENDING	Does rmssd_28d_mean predict PHQ-9 increased from baseline?
+53	rmssd_28d_std	0.0385	0.737263	0.0	0.1662	21	26	0.0	0.1	PENDING	Does rmssd_28d_std predict PHQ-9 ≥ 5 (mild+ depression)?
+54	rmssd_28d_std	0.0385	0.752248	0.0	0.1662	21	26	0.0	0.1056	PENDING	Does rmssd_28d_std predict PHQ-9 increased from baseline?
+55	rmssd_28d_cv	0.0952	0.99001	0.0	0.0077	21	26	0.0038	0.213	PENDING	Does rmssd_28d_cv predict PHQ-9 ≥ 5 (mild+ depression)?
+56	rmssd_28d_cv	0.0952	0.979021	0.0	0.0077	21	26	0.0057	0.2082	PENDING	Does rmssd_28d_cv predict PHQ-9 increased from baseline?
+57	rmssd_28d_slope	0.0293	0.814186	0.0	0.1416	21	26	0.0	0.0809	PENDING	Does rmssd_28d_slope predict PHQ-9 ≥ 5 (mild+ depression)?
+58	rmssd_28d_slope	0.0293	0.751249	0.0	0.1416	21	26	0.0	0.0818	PENDING	Does rmssd_28d_slope predict PHQ-9 increased from baseline?
+59	rmssd_28d_autocorr	0.0	0.213786	0.0	0.6245	21	26	0.0	0.0	PENDING	Does rmssd_28d_autocorr predict PHQ-9 ≥ 5 (mild+ depression)?
+60	rmssd_28d_autocorr	0.0	0.207792	0.0	0.6245	21	26	0.0	0.0	PENDING	Does rmssd_28d_autocorr predict PHQ-9 increased from baseline?
+61	hr_3d_mean	0.4315	0.24975	0.0	0.3474	371	737	0.3985	0.4673	PENDING	Does hr_3d_mean predict PHQ-9 ≥ 5 (mild+ depression)?
+62	hr_3d_mean	0.4315	0.237762	0.0	0.3474	371	737	0.3974	0.4681	PENDING	Does hr_3d_mean predict PHQ-9 increased from baseline?
+63	hr_3d_std	0.3358	0.171828	0.0	0.424	371	737	0.2987	0.3739	PENDING	Does hr_3d_std predict PHQ-9 ≥ 5 (mild+ depression)?
+64	hr_3d_std	0.3358	0.157842	0.0	0.424	371	737	0.3	0.3741	PENDING	Does hr_3d_std predict PHQ-9 increased from baseline?
+65	hr_3d_cv	0.2942	0.245754	0.0	0.3411	371	737	0.2602	0.3322	PENDING	Does hr_3d_cv predict PHQ-9 ≥ 5 (mild+ depression)?
+66	hr_3d_cv	0.2942	0.254745	0.0	0.3411	371	737	0.2586	0.331	PENDING	Does hr_3d_cv predict PHQ-9 increased from baseline?
+67	hr_3d_slope	0.2541	0.003996	0.0	0.9506	371	737	0.2216	0.2862	PENDING	Does hr_3d_slope predict PHQ-9 ≥ 5 (mild+ depression)?
+68	hr_3d_slope	0.2541	0.003996	0.0	0.9506	371	737	0.2238	0.2876	PENDING	Does hr_3d_slope predict PHQ-9 increased from baseline?
+69	hr_3d_autocorr	0.016	0.33966	0.0	0.2943	371	737	0.0104	0.0228	PENDING	Does hr_3d_autocorr predict PHQ-9 ≥ 5 (mild+ depression)?
+70	hr_3d_autocorr	0.016	0.326673	0.0	0.2943	371	737	0.0103	0.0226	PENDING	Does hr_3d_autocorr predict PHQ-9 increased from baseline?
+71	hr_5d_mean	0.3964	0.206793	0.0	0.3728	319	617	0.3599	0.4343	PENDING	Does hr_5d_mean predict PHQ-9 ≥ 5 (mild+ depression)?
+72	hr_5d_mean	0.3964	0.220779	0.0	0.3728	319	617	0.361	0.4325	PENDING	Does hr_5d_mean predict PHQ-9 increased from baseline?
+73	hr_5d_std	0.3124	0.166833	0.0	0.4319	319	617	0.2758	0.3491	PENDING	Does hr_5d_std predict PHQ-9 ≥ 5 (mild+ depression)?
+74	hr_5d_std	0.3124	0.164835	0.0	0.4319	319	617	0.2727	0.3514	PENDING	Does hr_5d_std predict PHQ-9 increased from baseline?
+75	hr_5d_cv	0.2421	0.304695	0.0	0.3194	319	617	0.2067	0.2756	PENDING	Does hr_5d_cv predict PHQ-9 ≥ 5 (mild+ depression)?
+76	hr_5d_cv	0.2421	0.306693	0.0	0.3194	319	617	0.2099	0.2756	PENDING	Does hr_5d_cv predict PHQ-9 increased from baseline?
+77	hr_5d_slope	0.1521	0.158841	0.0	0.4281	319	617	0.1244	0.1801	PENDING	Does hr_5d_slope predict PHQ-9 ≥ 5 (mild+ depression)?
+78	hr_5d_slope	0.1521	0.152847	0.0	0.4281	319	617	0.1251	0.1799	PENDING	Does hr_5d_slope predict PHQ-9 increased from baseline?
+79	hr_5d_autocorr	0.0108	0.336663	0.0	0.3071	319	617	0.0064	0.0159	PENDING	Does hr_5d_autocorr predict PHQ-9 ≥ 5 (mild+ depression)?
+80	hr_5d_autocorr	0.0108	0.302697	0.0	0.3071	319	617	0.0062	0.0161	PENDING	Does hr_5d_autocorr predict PHQ-9 increased from baseline?
+81	hr_7d_mean	0.3363	0.151848	0.0	0.4413	278	514	0.3	0.3754	PENDING	Does hr_7d_mean predict PHQ-9 ≥ 5 (mild+ depression)?
+82	hr_7d_mean	0.3363	0.150849	0.0	0.4413	278	514	0.2999	0.3752	PENDING	Does hr_7d_mean predict PHQ-9 increased from baseline?
+83	hr_7d_std	0.263	0.127872	0.0	0.4919	278	514	0.2257	0.3024	PENDING	Does hr_7d_std predict PHQ-9 ≥ 5 (mild+ depression)?
+84	hr_7d_std	0.263	0.113886	0.0	0.4919	278	514	0.2252	0.3013	PENDING	Does hr_7d_std predict PHQ-9 increased from baseline?
+85	hr_7d_cv	0.1749	0.255744	0.0	0.3567	278	514	0.1442	0.2066	PENDING	Does hr_7d_cv predict PHQ-9 ≥ 5 (mild+ depression)?
+86	hr_7d_cv	0.1749	0.234765	0.0	0.3567	278	514	0.1462	0.2087	PENDING	Does hr_7d_cv predict PHQ-9 increased from baseline?
+87	hr_7d_slope	0.1308	0.070929	0.0	0.5335	278	514	0.1038	0.1609	PENDING	Does hr_7d_slope predict PHQ-9 ≥ 5 (mild+ depression)?
+88	hr_7d_slope	0.1308	0.081918	0.0	0.5335	278	514	0.1041	0.1582	PENDING	Does hr_7d_slope predict PHQ-9 increased from baseline?
+89	hr_7d_autocorr	0.27	0.283716	0.0	0.3325	278	514	0.2348	0.3066	PENDING	Does hr_7d_autocorr predict PHQ-9 ≥ 5 (mild+ depression)?
+90	hr_7d_autocorr	0.27	0.288711	0.0	0.3325	278	514	0.2361	0.3044	PENDING	Does hr_7d_autocorr predict PHQ-9 increased from baseline?
+91	hr_14d_mean	0.0331	0.485514	0.0	0.2392	169	277	0.0195	0.0499	PENDING	Does hr_14d_mean predict PHQ-9 ≥ 5 (mild+ depression)?
+92	hr_14d_mean	0.0331	0.463536	0.0	0.2392	169	277	0.0184	0.0509	PENDING	Does hr_14d_mean predict PHQ-9 increased from baseline?
+93	hr_14d_std	0.04	0.230769	0.0	0.3896	169	277	0.0194	0.0639	PENDING	Does hr_14d_std predict PHQ-9 ≥ 5 (mild+ depression)?
+94	hr_14d_std	0.04	0.251748	0.0	0.3896	169	277	0.0196	0.0633	PENDING	Does hr_14d_std predict PHQ-9 increased from baseline?
+95	hr_14d_cv	0.0164	0.416583	0.0	0.3036	169	277	0.0047	0.0323	PENDING	Does hr_14d_cv predict PHQ-9 ≥ 5 (mild+ depression)?
+96	hr_14d_cv	0.0164	0.357642	0.0	0.3036	169	277	0.0051	0.0304	PENDING	Does hr_14d_cv predict PHQ-9 increased from baseline?
+97	hr_14d_slope	0.4056	0.14985	0.0	0.5103	169	277	0.3493	0.4628	PENDING	Does hr_14d_slope predict PHQ-9 ≥ 5 (mild+ depression)?
+98	hr_14d_slope	0.4056	0.144855	0.0	0.5103	169	277	0.3518	0.4615	PENDING	Does hr_14d_slope predict PHQ-9 increased from baseline?
+99	hr_14d_autocorr	0.274	0.23976	0.0	0.431	169	277	0.2242	0.3225	PENDING	Does hr_14d_autocorr predict PHQ-9 ≥ 5 (mild+ depression)?
+100	hr_14d_autocorr	0.274	0.201798	0.0	0.431	169	277	0.2296	0.3195	PENDING	Does hr_14d_autocorr predict PHQ-9 increased from baseline?

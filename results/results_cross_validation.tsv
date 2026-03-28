@@ -1,0 +1,6 @@
+stat_type	baig_count	baig_pct	baig_best_d	dep_count	dep_pct	dep_best_d	generalizes
+autocorrelation	413	23.9	0.76	0	0.0	0	NO
+coefficient_of_variation	628	36.3	0.76	0	0.0	0	NO
+standard_deviation	498	28.8	0.76	0	0.0	0	NO
+slope	71	4.1	0.932	0	0.0	0	NO
+mean	121	7.0	0.825	0	0.0	0	NO

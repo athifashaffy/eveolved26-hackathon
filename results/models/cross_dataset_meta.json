@@ -1,0 +1,40 @@
+{
+  "datasets": [
+    "baigutanova",
+    "depresjon"
+  ],
+  "n_subjects": 104,
+  "shared_features": [
+    "signal_14d_autocorr",
+    "signal_14d_cv",
+    "signal_14d_mean",
+    "signal_14d_slope",
+    "signal_14d_std",
+    "signal_21d_autocorr",
+    "signal_21d_cv",
+    "signal_21d_mean",
+    "signal_21d_slope",
+    "signal_21d_std",
+    "signal_28d_autocorr",
+    "signal_28d_cv",
+    "signal_28d_mean",
+    "signal_28d_slope",
+    "signal_28d_std",
+    "signal_3d_autocorr",
+    "signal_3d_cv",
+    "signal_3d_mean",
+    "signal_3d_slope",
+    "signal_3d_std",
+    "signal_5d_autocorr",
+    "signal_5d_cv",
+    "signal_5d_mean",
+    "signal_5d_slope",
+    "signal_5d_std",
+    "signal_7d_autocorr",
+    "signal_7d_cv",
+    "signal_7d_mean",
+    "signal_7d_slope",
+    "signal_7d_std"
+  ],
+  "n_features_selected": 20
+}
