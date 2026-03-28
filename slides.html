@@ -244,7 +244,36 @@
   <p class="dim" style="margin-top:10px;">Small rounds keep FDR mild. LLM adapts each round. Total cost: $0.22 on Nebius Token Factory.</p>
 </section>
 
-<!-- SLIDE 7: Key Results -->
+<!-- SLIDE 7: Methods -->
+<section>
+  <h2>Methods: Model &amp; Evaluation</h2>
+  <div class="cols">
+    <div class="box-accent">
+      <h3>Data Split</h3>
+      <p style="font-size:0.7em;"><span class="highlight">49 subjects</span> from Baigutanova et al. 2025</p>
+      <p style="font-size:0.7em;">Stratified by PHQ-9 status (mild+ vs. healthy)</p>
+      <table style="font-size:0.6em; margin-top:8px;">
+        <tr><th></th><th>Discovery</th><th>Validation</th></tr>
+        <tr><td>Subjects</td><td style="color:var(--accent);">33 (70%)</td><td style="color:var(--accent);">16 (30%)</td></tr>
+        <tr><td>PHQ-9 &ge; 5</td><td>~12</td><td>~5</td></tr>
+        <tr><td>Healthy</td><td>~21</td><td>~11</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <h3>Classifier Pipeline</h3>
+      <p style="font-size:0.65em;">1. <strong>Feature extraction:</strong> 187 temporal features (autocorrelation, CV, slope, std) over 3/7/14/21-day windows</p>
+      <p style="font-size:0.65em;">2. <strong>Interaction terms:</strong> HRV &times; sleep cross-domain products</p>
+      <p style="font-size:0.65em;">3. <strong>Subject-level aggregation:</strong> Per-subject z-scored composites</p>
+      <p style="font-size:0.65em;">4. <strong>Evaluation:</strong> Leave-one-subject-out CV (LOSO) &mdash; feature selection <span class="highlight">inside</span> each fold</p>
+      <p style="font-size:0.65em;">5. <strong>Model:</strong> Logistic Regression with top-10 selected features</p>
+    </div>
+  </div>
+  <div class="box" style="margin-top:10px;">
+    <p style="font-size:0.7em;"><span class="highlight">Key:</span> Feature selection happens <em>inside</em> each CV fold &mdash; no data leakage. Subject-level stats prevent pseudoreplication from daily rows.</p>
+  </div>
+</section>
+
+<!-- SLIDE 8: Key Results -->
 <section>
   <h2>Results: Significant Findings</h2>
   <div class="cols">
@@ -348,33 +377,38 @@
   </div>
 </section>
 
-<!-- SLIDE 11: Statistical Rigor -->
+<!-- SLIDE 11: Validation — Is It Overfitted? -->
 <section>
-  <h2>Statistical Rigor</h2>
+  <h2>Validation: Is It Overfitted?</h2>
+  <p class="dim">We ran 4 independent validation tests to check if our findings are real.</p>
   <div class="cols">
-    <div class="box">
-      <h3>Validation</h3>
-      <ul>
-        <li>Leave-one-subject-out CV (n=49)</li>
-        <li>Feature selection <span class="highlight">inside</span> each CV fold</li>
-        <li>No data leakage between subjects</li>
-        <li>Subject-level permutation tests</li>
-      </ul>
+    <div class="box-accent">
+      <h3>Permutation Test (gold standard)</h3>
+      <p style="font-size:0.65em;">Shuffled depression labels at subject level, re-ran entire analysis <span class="highlight">100 times</span></p>
+      <table style="font-size:0.58em; margin-top:6px;">
+        <tr><th>Interaction</th><th>Real d</th><th>Null mean d</th><th>Empirical p</th></tr>
+        <tr><td>RMSSD slope &times; sleep dur</td><td style="color:var(--accent);">1.11</td><td>0.26</td><td style="color:var(--accent);"><strong>0/100</strong></td></tr>
+        <tr><td>RMSSD slope &times; LF/HF</td><td style="color:var(--accent);">0.92</td><td>0.22</td><td style="color:var(--accent);"><strong>0/100</strong></td></tr>
+        <tr><td>LF/HF slope &times; sleep qual</td><td style="color:var(--accent);">1.06</td><td>0.30</td><td style="color:var(--accent);"><strong>3/100</strong></td></tr>
+      </table>
+      <p style="font-size:0.6em; margin-top:6px;"><span class="highlight">0 out of 20 full shuffled simulations</span> produced any significant finding. Real data: 3.</p>
     </div>
     <div class="box">
-      <h3>Corrections</h3>
-      <ul>
-        <li>Benjamini-Hochberg FDR per round</li>
-        <li>Cohen's d at subject level (n=49)</li>
-        <li>Bootstrap 95% CI</li>
-        <li>Confounder residualization</li>
-      </ul>
+      <h3>Hold-Out Validation</h3>
+      <p style="font-size:0.65em;">33 discovery / 16 validation (stratified split)</p>
+      <table style="font-size:0.58em; margin-top:6px;">
+        <tr><th>Interaction</th><th>Disc. d</th><th>Val. d</th><th>Direction</th></tr>
+        <tr><td>RMSSD &times; sleep dur</td><td>1.09</td><td>1.08</td><td style="color:var(--accent);">Consistent</td></tr>
+        <tr><td>RMSSD &times; LF/HF</td><td>0.55</td><td>1.95</td><td style="color:var(--accent);">Consistent</td></tr>
+        <tr><td>LF/HF &times; sleep qual</td><td>0.89</td><td>1.54</td><td style="color:var(--accent);">Consistent</td></tr>
+      </table>
+      <p style="font-size:0.6em; margin-top:6px;"><span class="highlight">All 3 directions consistent.</span> 2/3 reach p&lt;0.05 in held-out set.</p>
     </div>
   </div>
-  <div class="box-accent" style="margin-top:15px;">
-    <p style="font-size:0.8em;">We found <span class="highlight">0 significant</span> features from 5,000 broad tests. Then found <span class="highlight">3 significant interactions</span> from 271 targeted LLM-guided tests. Honest science &mdash; not cherry-picking.</p>
+  <div class="box" style="margin-top:8px;">
+    <p style="font-size:0.7em;">Verdict: <span class="highlight">Not overfitted.</span> Real effects are 3&ndash;4&times; larger than null. Effects replicate in held-out subjects with consistent direction.</p>
   </div>
-  <p style="font-size:0.55em; color:#aaa; margin-top:8px;"><strong>Limitations:</strong> n=49 is pilot-scale. PHQ-9 &ge; 5 = mild symptoms. Cross-sectional outcome (not longitudinal prediction). Prospective validation needed.</p>
+  <p style="font-size:0.55em; color:#aaa; margin-top:6px;"><strong>Limitations:</strong> n=49 is pilot-scale. Global FDR across all 271 tests gives p_adj=0.09 (close but not &lt;0.05). Prospective validation needed.</p>
 </section>
 
 <!-- SLIDE 12: Clinical Utility -->

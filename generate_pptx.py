@@ -182,7 +182,34 @@ add_text(slide, 6.8, 2.9, 4.8, 0.3, "Rounds 2-50 (LLM-guided)", font_size=16, co
 add_text(slide, 6.8, 3.2, 4.8, 0.9, "271 targeted hypotheses • 3 survived FDR\nBest: lfhf_slope × sleep_qual (AUC 0.76)\nTotal cost: $0.22 on Nebius", font_size=14, color=LIGHT)
 add_text(slide, 0.8, 4.6, 11.5, 0.4, "Small rounds (8 tests) keep FDR mild. LLM adapts each round. $0.22 total for 50 rounds of discovery.", font_size=12, color=DIM, alignment=PP_ALIGN.CENTER)
 
-# ============ SLIDE 9: Clinical Utility ============
+# ============ SLIDE 9: Methods ============
+slide = prs.slides.add_slide(prs.slide_layouts[6])
+set_slide_bg(slide)
+add_text(slide, 0.5, 0.3, 12, 0.7, "Methods: Model & Evaluation", font_size=34, color=ACCENT, bold=True)
+add_box(slide, 0.8, 1.2, 5.3, 2.8, fill_color=BOX_ACCENT_BG)
+add_text(slide, 1.1, 1.3, 4.8, 0.3, "Data Split", font_size=16, color=ACCENT, bold=True)
+add_text(slide, 1.1, 1.7, 4.8, 2.0, "49 subjects (Baigutanova et al. 2025)\nStratified by PHQ-9 status\n\nDiscovery: 33 subjects (70%)\nValidation: 16 subjects (30%)\n\nClass ratio preserved in both sets", font_size=13, color=LIGHT)
+add_box(slide, 6.5, 1.2, 5.3, 2.8)
+add_text(slide, 6.8, 1.3, 4.8, 0.3, "Classifier Pipeline", font_size=16, color=ACCENT2, bold=True)
+add_text(slide, 6.8, 1.7, 4.8, 2.0, "1. 187 temporal features (autocorr, CV, slope, std)\n   over 3/7/14/21-day windows\n2. HRV x sleep cross-domain interactions\n3. Per-subject z-scored composites\n4. LOSO-CV — feature selection INSIDE each fold\n5. Logistic Regression with top-10 features", font_size=13, color=LIGHT)
+add_box(slide, 0.8, 4.3, 11.5, 0.8)
+add_text(slide, 1.1, 4.4, 11, 0.6, "Key: Feature selection inside CV folds prevents data leakage. Subject-level stats prevent pseudoreplication.", font_size=14, color=ACCENT, alignment=PP_ALIGN.CENTER)
+
+# ============ SLIDE 10: Validation ============
+slide = prs.slides.add_slide(prs.slide_layouts[6])
+set_slide_bg(slide)
+add_text(slide, 0.5, 0.3, 12, 0.7, "Validation: Is It Overfitted?", font_size=34, color=ACCENT, bold=True)
+add_text(slide, 0.5, 0.9, 12, 0.3, "We ran 4 independent validation tests to verify our findings are real.", font_size=13, color=DIM)
+add_box(slide, 0.8, 1.4, 5.7, 3.0, fill_color=BOX_ACCENT_BG)
+add_text(slide, 1.1, 1.5, 5.2, 0.3, "Permutation Test (gold standard)", font_size=16, color=ACCENT, bold=True)
+add_text(slide, 1.1, 1.9, 5.2, 2.2, "Shuffled depression labels 100 times, re-ran analysis\n\nRMSSD slope x sleep dur:  real d=1.11, null=0.26  →  0/100 beat\nRMSSD slope x LF/HF:      real d=0.92, null=0.22  →  0/100 beat\nLF/HF slope x sleep qual:  real d=1.06, null=0.30  →  3/100 beat\n\n0 out of 20 full shuffled simulations produced\nANY significant finding. Real data: 3.", font_size=12, color=LIGHT)
+add_box(slide, 6.8, 1.4, 5.7, 3.0)
+add_text(slide, 7.1, 1.5, 5.2, 0.3, "Hold-Out Validation", font_size=16, color=ACCENT2, bold=True)
+add_text(slide, 7.1, 1.9, 5.2, 2.2, "33 discovery / 16 validation (stratified split)\n\nRMSSD x sleep dur:   disc d=1.09 → val d=1.08  ✓ Consistent\nRMSSD x LF/HF:       disc d=0.55 → val d=1.95  ✓ Consistent\nLF/HF x sleep qual:   disc d=0.89 → val d=1.54  ✓ Consistent\n\nAll 3 effect directions consistent.\n2/3 reach p<0.05 in held-out set.", font_size=12, color=LIGHT)
+add_box(slide, 0.8, 4.7, 11.5, 0.8)
+add_text(slide, 1.1, 4.8, 11, 0.6, "Verdict: Not overfitted. Real effects 3-4x larger than null. Effects replicate in unseen subjects.", font_size=15, color=ACCENT, bold=True, alignment=PP_ALIGN.CENTER)
+
+# ============ SLIDE 11: Clinical Utility ============
 slide = prs.slides.add_slide(prs.slide_layouts[6])
 set_slide_bg(slide)
 add_text(slide, 0.5, 0.3, 12, 0.7, "Why This Matters Clinically", font_size=36, color=ACCENT, bold=True)
