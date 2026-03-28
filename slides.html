@@ -266,7 +266,10 @@
     </div>
   </div>
   <div class="box-accent" style="margin-top:15px;">
-    <p style="font-size:0.8em;"><span class="highlight">Benjamini-Hochberg FDR correction</span> across all 5,000 hypotheses &mdash; no cherry-picking</p>
+    <p style="font-size:0.8em;"><span class="highlight">Benjamini-Hochberg FDR correction</span> across all 5,000 tests &mdash; no cherry-picking</p>
+  </div>
+  <div class="box" style="margin-top:10px;">
+    <p style="font-size:0.65em; color:#aaa;"><strong>Known limitations:</strong> n=49 is pilot-scale (hypothesis-generating, not confirmatory). PHQ-9 &ge; 5 threshold captures mild symptoms. Features are correlated across windows &mdash; we report independent feature families, not raw test counts. Baseline-only confounder control; daily variation unaddressed. Prospective validation needed.</p>
   </div>
 </section>
 
@@ -291,7 +294,7 @@
   </div>
   <br>
   <div class="box-accent">
-    <p style="font-size:0.75em;">Two different modalities (HRV vs actigraphy) let us test whether temporal dynamics features are <span class="highlight">universal early warning signals</span> or modality-specific artifacts.</p>
+    <p style="font-size:0.75em;">Two different modalities (HRV vs actigraphy) let us test whether temporal dynamics features <span class="highlight">generalize across sensor types</span> or are modality-specific artifacts.</p>
   </div>
 </section>
 
@@ -301,46 +304,46 @@
   <div class="cols">
     <div>
       <p class="stat">5,000</p>
-      <p class="stat-label">hypotheses tested autonomously</p>
+      <p class="stat-label">feature-tests run autonomously</p>
     </div>
     <div>
-      <p class="stat">1,731</p>
-      <p class="stat-label">significant after FDR</p>
+      <p class="stat">22</p>
+      <p class="stat-label">independent feature families significant</p>
     </div>
     <div>
       <p class="stat" style="color:var(--accent2);">0.851</p>
-      <p class="stat-label">best model AUC</p>
+      <p class="stat-label">best model AUC (CI: 0.73&ndash;0.98)</p>
     </div>
   </div>
   <br>
   <div class="box-accent">
-    <p style="font-size:0.8em;">Top finding: <span class="highlight">LF/HF 28-day slope</span> (d=0.931, AUC=0.78) &mdash; rising sympathovagal imbalance trend predicts depression</p>
+    <p style="font-size:0.8em;">Top finding: <span class="highlight">LF/HF slope + sleep variability</span> &mdash; temporal instability in sympathovagal balance and sleep patterns tracks with higher PHQ-9</p>
     <p style="font-size:0.7em;">Variability features (CV, autocorr, std) dominate over level features (mean) &mdash; <span class="highlight">consistent with destabilization hypothesis</span></p>
-    <p style="font-size:0.7em;">A human researcher would need months to test 5,000 hypotheses with full statistical rigor.</p>
+    <p style="font-size:0.65em; color:#888;">5,000 tests map to 22 independent feature families after collapsing correlated windows. FDR applied across all 5,000.</p>
   </div>
 </section>
 
 <!-- SLIDE 10b: Cross-Dataset -->
 <section>
-  <h2>Cross-Dataset Validation</h2>
+  <h2>Cross-Dataset Exploration</h2>
   <div class="cols">
     <div class="box">
       <h3>Baigutanova (HRV+Sleep)</h3>
       <p>49 subjects, 28 days</p>
-      <p><span class="highlight">AUC 0.851</span></p>
-      <p class="dim">1,731 / 5,000 significant</p>
+      <p><span class="highlight">AUC 0.85</span> (CI: 0.73&ndash;0.98)</p>
+      <p class="dim">22 feature families significant after FDR</p>
     </div>
     <div class="box">
       <h3>Depresjon (Actigraphy)</h3>
       <p>55 subjects, motor activity</p>
-      <p><span class="highlight">AUC 0.755</span> (top feature)</p>
-      <p class="dim">Strong trends, needs larger n</p>
+      <p>Top feature d=1.0 (AUC 0.755)</p>
+      <p class="dim">Trends consistent but underpowered for FDR at n=55</p>
     </div>
   </div>
   <br>
   <div class="box-accent">
-    <p style="font-size:0.8em;"><span class="highlight">Transfer learning:</span> Model trained on HRV achieves <span class="highlight">AUC 0.66</span> on motor activity data</p>
-    <p style="font-size:0.7em;">Same temporal dynamics patterns show consistent direction across different sensor modalities &mdash; suggesting these capture <span class="highlight">general physiological destabilization</span>, not a modality artifact</p>
+    <p style="font-size:0.8em;"><span class="highlight">Transfer test:</span> Model trained on HRV achieves <span class="highlight">AUC 0.66</span> on motor activity data &mdash; preliminary, not conclusive</p>
+    <p style="font-size:0.7em;">Temporal dynamics features trend in the same direction across modalities. Larger samples needed to confirm generalization.</p>
   </div>
 </section>
 
@@ -350,9 +353,9 @@
   <table>
     <thead><tr><th>Approach</th><th>Features</th><th>AUC</th><th>Improvement</th></tr></thead>
     <tbody>
-      <tr><td>Standard</td><td>Mean RMSSD, mean HR</td><td style="color:#888;">0.612</td><td>&mdash;</td></tr>
-      <tr><td><span class="highlight">Ours (temporal)</span></td><td>Autocorr + CV + SD + Slope</td><td style="color:var(--accent);">0.851</td><td><span class="highlight">+40%</span></td></tr>
-      <tr><td><span class="highlight">Ours (transfer)</span></td><td>Same patterns on actigraphy</td><td style="color:var(--accent);">0.660</td><td>Above chance</td></tr>
+      <tr><td>Standard</td><td>Mean RMSSD, mean HR</td><td style="color:#888;">0.61</td><td>&mdash;</td></tr>
+      <tr><td><span class="highlight">Ours (temporal)</span></td><td>Autocorr + CV + SD + Slope</td><td style="color:var(--accent);">0.85 (CI: 0.73&ndash;0.98)</td><td><span class="highlight">+39%</span></td></tr>
+      <tr><td><span class="highlight">Ours (transfer)</span></td><td>Same patterns on actigraphy</td><td style="color:var(--accent);">0.66 (preliminary)</td><td>Above chance</td></tr>
     </tbody>
   </table>
   <br>
@@ -379,7 +382,7 @@
   <div class="box-accent">
     <p style="font-size:0.8em;">Fine-tuned on Nebius H100s: <span class="highlight">190K tokens</span>, 83 training examples</p>
     <p style="font-size:0.7em;">Training data: successful hypothesis proposals + result interpretations + null result reasoning</p>
-    <p style="font-size:0.7em;">Each round, the model learns what <em>works</em> &mdash; hit rate should improve with each iteration</p>
+    <p style="font-size:0.7em;">Round 1 complete. Pipeline designed for iterative improvement &mdash; Round 2 comparison pending.</p>
   </div>
 </section>
 
@@ -491,7 +494,7 @@
   </div>
   <br>
   <div class="box-accent">
-    <p style="font-size:0.75em;"><span class="highlight">Oncology crossover:</span> Cancer patients on chemotherapy show physiological destabilization before treatment failure. Same temporal dynamics features could predict treatment response from wearables.</p>
+    <p style="font-size:0.75em;">The discovery engine is <span class="highlight">domain-agnostic</span> &mdash; any longitudinal wearable dataset with clinical outcomes can be plugged in. Oncology treatment response monitoring is a natural next dataset.</p>
   </div>
 </section>
 
