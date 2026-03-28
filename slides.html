@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AutoBiomarker — Evolved26 Toronto</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css">
+<style>
+  :root {
+    --r-background-color: #0a0a1a;
+    --r-main-color: #e0e0e0;
+    --r-heading-color: #ffffff;
+    --accent: #00d4aa;
+    --accent2: #6c5ce7;
+    --warn: #ff6b6b;
+  }
+  .reveal { font-family: 'Inter', 'Segoe UI', sans-serif; }
+  .reveal h1, .reveal h2, .reveal h3 { font-weight: 700; }
+  .reveal h1 { font-size: 2.2em; }
+  .reveal h2 { font-size: 1.6em; color: var(--accent); }
+  .reveal h3 { font-size: 1.2em; color: var(--accent2); }
+  .reveal p, .reveal li { font-size: 0.75em; line-height: 1.5; }
+  .reveal .stat { font-size: 2.5em; font-weight: 800; color: var(--accent); }
+  .reveal .stat-label { font-size: 0.7em; color: #aaa; margin-top: -10px; }
+  .reveal .highlight { color: var(--accent); font-weight: 600; }
+  .reveal .warn { color: var(--warn); font-weight: 600; }
+  .reveal .dim { color: #888; font-size: 0.65em; }
+  .reveal .cols { display: flex; gap: 40px; align-items: flex-start; }
+  .reveal .cols > div { flex: 1; }
+  .reveal .box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 10px 0;
+  }
+  .reveal .box-accent {
+    background: rgba(0,212,170,0.08);
+    border: 1px solid rgba(0,212,170,0.3);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 10px 0;
+  }
+  .reveal .flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 0.7em;
+    margin: 20px 0;
+  }
+  .reveal .flow-box {
+    background: rgba(108,92,231,0.2);
+    border: 1px solid rgba(108,92,231,0.5);
+    border-radius: 8px;
+    padding: 10px 16px;
+    text-align: center;
+  }
+  .reveal .flow-arrow { color: var(--accent); font-size: 1.4em; }
+  .reveal table { font-size: 0.65em; margin: 0 auto; }
+  .reveal table th { background: rgba(0,212,170,0.15); color: var(--accent); }
+  .reveal table td, .reveal table th { padding: 8px 14px; border: 1px solid rgba(255,255,255,0.1); }
+  .reveal .tag {
+    display: inline-block;
+    background: rgba(0,212,170,0.15);
+    color: var(--accent);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.6em;
+    margin: 2px;
+  }
+  .reveal .tag-warn {
+    background: rgba(255,107,107,0.15);
+    color: var(--warn);
+  }
+  .reveal .title-sub {
+    font-size: 0.8em;
+    color: #aaa;
+    font-weight: 400;
+    margin-top: 10px;
+  }
+  .reveal .gap-card {
+    background: rgba(255,255,255,0.04);
+    border-left: 3px solid var(--accent);
+    padding: 12px 16px;
+    margin: 8px 0;
+    text-align: left;
+    font-size: 0.7em;
+  }
+  .reveal .gap-card strong { color: var(--accent); }
+  .reveal blockquote {
+    background: rgba(108,92,231,0.1);
+    border-left: 4px solid var(--accent2);
+    padding: 16px 24px;
+    font-style: italic;
+    font-size: 0.85em;
+  }
+  .reveal .logo-row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    font-size: 0.6em;
+    color: #888;
+  }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- SLIDE 1: Title -->
+<section>
+  <h1>AutoBiomarker</h1>
+  <p class="title-sub">Autonomous Discovery of Depression Early Warning Signals<br>from Wearable Data</p>
+  <br>
+  <p style="font-size:0.6em; color:#888;">Evolved26 Toronto &mdash; March 2026</p>
+  <div class="logo-row">
+    <span>Nebius Token Factory</span>
+    <span>&bull;</span>
+    <span>Karpathy Autoresearch</span>
+    <span>&bull;</span>
+    <span>Critical Slowing Down Theory</span>
+  </div>
+</section>
+
+<!-- SLIDE 2: The Problem -->
+<section>
+  <h2>The Problem</h2>
+  <div class="cols">
+    <div>
+      <p class="stat">280M</p>
+      <p class="stat-label">people with depression globally</p>
+    </div>
+    <div>
+      <p class="stat">5.4M</p>
+      <p class="stat-label">in Canada alone</p>
+    </div>
+    <div>
+      <p class="stat">50%</p>
+      <p class="stat-label">drop out of treatment</p>
+    </div>
+  </div>
+  <br>
+  <div class="box">
+    <p style="font-size:0.85em;">We can't predict who's getting worse until they tell us &mdash; <span class="warn">by which point they've often dropped out.</span></p>
+    <p style="font-size:0.85em;">What if their <span class="highlight">body already knows</span>?</p>
+  </div>
+</section>
+
+<!-- SLIDE 3: The Insight -->
+<section>
+  <h2>The Insight: Critical Slowing Down</h2>
+  <blockquote>
+    In physics, systems approaching a tipping point show measurable warning signs &mdash; they get <span class="highlight">sluggish</span> and start <span class="highlight">wobbling</span>.
+  </blockquote>
+  <br>
+  <div class="cols">
+    <div class="box">
+      <h3>Proven in</h3>
+      <p><span class="tag">Ecology</span> <span class="tag">Climate</span> <span class="tag">Finance</span> <span class="tag">Mood (PNAS 2014)</span></p>
+    </div>
+    <div class="box-accent">
+      <h3>Never tested on</h3>
+      <p><span class="tag-warn">Wearable HRV</span> <span class="tag-warn">Daily physiology</span> <span class="tag-warn">Depression prediction</span></p>
+    </div>
+  </div>
+  <p class="dim" style="margin-top:20px;">Scheffer 2009; van de Leemput et al. 2014, PNAS</p>
+</section>
+
+<!-- SLIDE 4: What We Do Differently -->
+<section>
+  <h2>What Everyone Measures vs. What We Measure</h2>
+  <div class="cols">
+    <div class="box">
+      <h3 style="color:#888;">Standard Approach</h3>
+      <p>How <strong>low</strong> is your HRV?</p>
+      <p style="font-size:0.65em; color:#888;">Single timepoint, cross-sectional<br>Small effect sizes (d &approx; 0.3)</p>
+    </div>
+    <div class="box-accent">
+      <h3>Our Approach</h3>
+      <p>How <span class="highlight">rigid</span> or <span class="highlight">chaotic</span> is your HRV <em>over time</em>?</p>
+      <p style="font-size:0.65em;">Temporal dynamics: autocorrelation, variance, CV<br>Day-to-day patterns across 28 days</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 5: Five Literature Gaps -->
+<section>
+  <h2>Five Novel Research Questions</h2>
+  <div class="gap-card"><strong>Gap 1:</strong> HRV coefficient of variation (day-to-day variability) &mdash; shown as behavioral biomarker (2025) but <span class="warn">never tested against PHQ-9</span></div>
+  <div class="gap-card"><strong>Gap 2:</strong> Critical slowing down in wearable HRV &mdash; proven in ecology/climate but <span class="warn">never applied to depression physiology</span></div>
+  <div class="gap-card"><strong>Gap 3:</strong> Three-way temporal ordering (HRV x sleep x mood) &mdash; <span class="warn">never modeled at the daily level</span></div>
+  <div class="gap-card"><strong>Gap 4:</strong> Digital allostatic load from wearables (low HRV + poor sleep + high resting HR) &mdash; <span class="warn">never validated against PHQ-9</span></div>
+  <div class="gap-card"><strong>Gap 5:</strong> Autonomous biomarker discovery loop &mdash; <span class="warn">doesn't exist yet</span></div>
+</section>
+
+<!-- SLIDE 6: System Architecture -->
+<section>
+  <h2>The Autoresearch Loop</h2>
+  <p class="dim">Adapted from Karpathy's autoresearch for biomarker discovery</p>
+  <div class="flow">
+    <div class="flow-box"><strong>Hypothesis Generator</strong><br><span class="dim">Llama 3.3 70B on Nebius</span></div>
+    <span class="flow-arrow">&rarr;</span>
+    <div class="flow-box"><strong>Feature Extractor</strong><br><span class="dim">200+ temporal features</span></div>
+    <span class="flow-arrow">&rarr;</span>
+    <div class="flow-box"><strong>Statistical Evaluator</strong><br><span class="dim">LOSO-CV, AUC, FDR</span></div>
+    <span class="flow-arrow">&rarr;</span>
+    <div class="flow-box" style="border-color:var(--accent);"><strong>KEEP / DISCARD</strong></div>
+  </div>
+  <div style="text-align:center; margin-top:10px;">
+    <span class="flow-arrow">&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;&larr;</span>
+    <span class="dim" style="display:block;">Results feed back into hypothesis generation</span>
+  </div>
+  <div class="box" style="margin-top:15px;">
+    <p style="font-size:0.75em;">Set it up before sleep. Wake up to <span class="highlight">500 hypotheses tested</span> with full statistical rigor.</p>
+  </div>
+</section>
+
+<!-- SLIDE 7: Features We Extract -->
+<section>
+  <h2>Temporal Feature Space</h2>
+  <table>
+    <thead>
+      <tr><th>Feature Type</th><th>What It Captures</th><th>Novel?</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Rolling Autocorrelation</td><td>System sluggishness (critical slowing down)</td><td><span class="highlight">Yes</span></td></tr>
+      <tr><td>Rolling Variance / SD</td><td>System wobbling before tipping point</td><td><span class="highlight">Yes</span></td></tr>
+      <tr><td>HRV-CV</td><td>Day-to-day HRV variability</td><td><span class="highlight">Yes</span></td></tr>
+      <tr><td>Rolling Slope</td><td>Trend direction (improving vs declining)</td><td>Partial</td></tr>
+      <tr><td>Digital Allostatic Load</td><td>Composite physiological strain</td><td><span class="highlight">Yes</span></td></tr>
+      <tr><td>Sleep Onset SD</td><td>Circadian irregularity</td><td><span class="highlight">Yes</span></td></tr>
+      <tr><td>Cross-variable coupling</td><td>HRV x Sleep x Mood interactions</td><td><span class="highlight">Yes</span></td></tr>
+    </tbody>
+  </table>
+  <p class="dim" style="margin-top:15px;">200+ features across 3 rolling windows (7d, 14d, 28d) for HRV, HR, LF/HF, mood, sleep</p>
+</section>
+
+<!-- SLIDE 8: Statistical Rigor -->
+<section>
+  <h2>Statistical Rigor</h2>
+  <div class="cols">
+    <div class="box">
+      <h3>Validation</h3>
+      <ul>
+        <li>Leave-one-subject-out CV (n=49)</li>
+        <li>No data leakage between subjects</li>
+        <li>Appropriate for small clinical samples</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Metrics</h3>
+      <ul>
+        <li>AUC-ROC (discrimination)</li>
+        <li>Cohen's d (effect size)</li>
+        <li>Bootstrap 95% CI (uncertainty)</li>
+        <li>Permutation p-values (non-parametric)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="box-accent" style="margin-top:15px;">
+    <p style="font-size:0.8em;"><span class="highlight">Benjamini-Hochberg FDR correction</span> across all 500 hypotheses &mdash; no cherry-picking</p>
+  </div>
+</section>
+
+<!-- SLIDE 9: Dataset -->
+<section>
+  <h2>Dataset: Baigutanova et al. 2025</h2>
+  <div class="cols">
+    <div>
+      <p class="stat">49</p>
+      <p class="stat-label">participants</p>
+    </div>
+    <div>
+      <p class="stat">28</p>
+      <p class="stat-label">continuous days</p>
+    </div>
+    <div>
+      <p class="stat">~1.3M</p>
+      <p class="stat-label">HRV data points</p>
+    </div>
+  </div>
+  <br>
+  <table>
+    <thead><tr><th>Stream</th><th>Resolution</th><th>Key Variables</th></tr></thead>
+    <tbody>
+      <tr><td>HRV Physiology</td><td>Per-minute</td><td>RMSSD, SDNN, pNN50, LF/HF, HR</td></tr>
+      <tr><td>Self-Report</td><td>Daily</td><td>Sleep quality, mood, stress, steps</td></tr>
+      <tr><td>Clinical</td><td>Baseline</td><td>PHQ-9, GAD-7, PSS, demographics</td></tr>
+    </tbody>
+  </table>
+  <p class="dim" style="margin-top:10px;">Open access: springernature.figshare.com &bull; Provided by hackathon organizers</p>
+</section>
+
+<!-- SLIDE 10: Results (placeholder) -->
+<section>
+  <h2>Results</h2>
+  <div class="cols">
+    <div>
+      <p class="stat">500</p>
+      <p class="stat-label">hypotheses tested autonomously</p>
+    </div>
+    <div>
+      <p class="stat">12h</p>
+      <p class="stat-label">total runtime</p>
+    </div>
+    <div>
+      <p class="stat" style="color:var(--accent2);">?</p>
+      <p class="stat-label">significant after FDR</p>
+    </div>
+  </div>
+  <br>
+  <div class="box-accent">
+    <p style="font-size:0.8em;">Top finding: <span class="highlight">[to be filled after running experiments]</span></p>
+    <p style="font-size:0.7em;">A human researcher would need months to test this many hypotheses.</p>
+    <p style="font-size:0.7em;">This is the <span class="highlight">first application</span> of critical slowing down theory to wearable depression monitoring.</p>
+  </div>
+</section>
+
+<!-- SLIDE 11: Comparison -->
+<section>
+  <h2>Our Features vs. Standard HRV</h2>
+  <table>
+    <thead><tr><th>Approach</th><th>Features</th><th>AUC</th><th>Novel?</th></tr></thead>
+    <tbody>
+      <tr><td>Standard</td><td>Mean RMSSD, mean HR</td><td style="color:#888;">[baseline]</td><td>No</td></tr>
+      <tr><td><span class="highlight">Ours</span></td><td>Temporal dynamics + interactions</td><td style="color:var(--accent);">[improvement]</td><td><span class="highlight">Yes</span></td></tr>
+    </tbody>
+  </table>
+  <br>
+  <div class="box">
+    <p style="font-size:0.75em;">Key question: Do <span class="highlight">temporal patterns</span> in HRV predict depression better than <span style="color:#888;">static levels</span>?</p>
+    <p style="font-size:0.65em; color:#888;">Results will populate during hackathon runtime</p>
+  </div>
+</section>
+
+<!-- SLIDE 12: Tech Stack -->
+<section>
+  <h2>Tech Stack</h2>
+  <div class="cols">
+    <div class="box">
+      <h3>Compute</h3>
+      <p><span class="tag">Nebius Token Factory</span></p>
+      <p><span class="tag">Llama 3.3 70B</span></p>
+      <p><span class="tag">H100 GPUs</span></p>
+    </div>
+    <div class="box">
+      <h3>Science</h3>
+      <p><span class="tag">scipy</span> <span class="tag">statsmodels</span></p>
+      <p><span class="tag">scikit-learn</span></p>
+      <p><span class="tag">tsfresh</span></p>
+    </div>
+    <div class="box">
+      <h3>Interface</h3>
+      <p><span class="tag">Streamlit</span></p>
+      <p><span class="tag">Plotly</span></p>
+      <p><span class="tag">matplotlib</span></p>
+    </div>
+  </div>
+  <br>
+  <p class="dim">Autoresearch loop pattern adapted from Karpathy (2026)</p>
+</section>
+
+<!-- SLIDE 13: Regulatory & Market -->
+<section>
+  <h2>Path to Market</h2>
+  <div class="cols">
+    <div class="box">
+      <h3>Regulatory</h3>
+      <ul style="font-size:0.7em;">
+        <li>Health Canada SaMD Class II</li>
+        <li>Clinical decision support exemption possible</li>
+        <li>Privacy by design (PIPEDA/GDPR)</li>
+        <li>Bias testing across demographics</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Customers</h3>
+      <ul style="font-size:0.7em;">
+        <li><span class="highlight">Pharma:</span> digital endpoint for trials</li>
+        <li><span class="highlight">Digital Tx:</span> precision intervention trigger</li>
+        <li><span class="highlight">Hospitals:</span> remote psychiatric monitoring</li>
+      </ul>
+    </div>
+  </div>
+  <div class="box-accent" style="margin-top:15px;">
+    <p style="font-size:0.75em;"><strong>Moat:</strong> Proprietary biomarker signatures + autonomous discovery engine</p>
+    <p style="font-size:0.65em;">Revenue: SaaS per-patient or per-trial licensing</p>
+  </div>
+</section>
+
+<!-- SLIDE 14: Validation Path -->
+<section>
+  <h2>What's Next</h2>
+  <div class="flow">
+    <div class="flow-box" style="border-color:var(--accent);">Hackathon<br><span class="dim">Discovery (now)</span></div>
+    <span class="flow-arrow">&rarr;</span>
+    <div class="flow-box">UKE Hamburg<br><span class="dim">Validation study with<br>Prof. Steffen's D-MCT patients</span></div>
+    <span class="flow-arrow">&rarr;</span>
+    <div class="flow-box">Multi-site Trial<br><span class="dim">Ontario Health + partners</span></div>
+    <span class="flow-arrow">&rarr;</span>
+    <div class="flow-box">SaMD Filing<br><span class="dim">Health Canada Class II</span></div>
+  </div>
+  <br>
+  <div class="box-accent">
+    <p style="font-size:0.8em;">Precision psychiatry from a wrist &mdash; <span class="highlight">before the patient knows they're getting worse</span>.</p>
+  </div>
+</section>
+
+<!-- SLIDE 15: Closing -->
+<section>
+  <h1>AutoBiomarker</h1>
+  <p style="font-size:0.9em; color:var(--accent);">Autonomous depression early warning signals<br>from wearable data</p>
+  <br>
+  <blockquote style="font-size:0.75em;">
+    "What if we could see depression coming &mdash; not from what patients say, but from what their body whispers?"
+  </blockquote>
+  <br>
+  <p class="dim">Team: [Your names] &bull; UKE Hamburg &bull; Evolved26 Toronto</p>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  slideNumber: true,
+  transition: 'slide',
+  backgroundTransition: 'fade',
+  width: 1280,
+  height: 720,
+  margin: 0.08,
+});
+</script>
+</body>
+</html>
