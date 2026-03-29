@@ -38,11 +38,11 @@ Quick reference for all acronyms used in slides and codebase.
 | Acronym | Meaning |
 |---|---|
 | **GPU** | Graphics Processing Unit |
-| **H100** | NVIDIA H100 GPU (used via Nebius) |
+| **8090** | 8090 Software Factory — Chamath Palihapitiya's AI-native SDLC platform |
 
 ## Key Thresholds to Know
 - **PHQ-9 >= 5** = mild+ depression (our outcome cutoff)
 - **Cohen's d >= 0.3** = minimum effect size we consider
 - **p_adj < 0.05** = significance after FDR correction
-- **AUC 0.76** = our best interaction result
-- **d = 1.06** = our best effect size (large by convention)
+- **AUC 0.78** = our best interaction result (inverted from raw 0.22)
+- **d = 1.11** = our best effect size (large by convention)

@@ -28,7 +28,7 @@
 
 *Point to the highlighted bar:*
 
-"But when you look at HRV AND sleep destabilizing at the same time — the interaction — you get 0.76. That's a 25% improvement and a Cohen's d of 1.06, which is a large effect."
+"But when you look at HRV AND sleep destabilizing at the same time — the interaction — you get 0.78. That's a 28% improvement and a Cohen's d of 1.11, which is a large effect."
 
 *Point to the CSD box:*
 
@@ -40,15 +40,15 @@
 
 ## Slide 4: Autoresearch Engine (40 sec)
 
-"How did we find this? We built an autoresearch engine — adapted from Karpathy's autoresearch concept — for biomarker discovery."
+"How did we find this? We built an autoresearch engine — adapted from Karpathy's autoresearch concept — using Nebius Token Factory for inference and 8090 Software Factory for development."
 
 *Walk through the flow:*
 
-"Llama 3.3 70B on Nebius proposes hypotheses. We extract 200+ temporal features. A statistical evaluator runs leave-one-subject-out cross-validation. Each hypothesis gets a KEEP or DISCARD. And the results feed back to the LLM to propose better hypotheses."
+"Llama 3.3 70B on Nebius AI Studio proposes hypotheses. We extract 187 temporal features. A statistical evaluator runs leave-one-subject-out cross-validation. Each hypothesis gets a KEEP or DISCARD. And the results feed back to the LLM to propose better hypotheses."
 
 *Point to Round 1 vs Round 2:*
 
-"Round 1: we tested 5,000 single-feature hypotheses. 137 looked promising but ZERO survived FDR correction across 5,000 tests. That's the honest result. Then the LLM adapted — proposed interaction features in small rounds of 8. Out of 271 targeted hypotheses, 3 survived. Total cost: 22 cents on Nebius."
+"Round 1: we tested 5,000 single-feature hypotheses. 636 looked promising but ZERO survived FDR correction across 5,000 tests. That's the honest result. Then the LLM adapted — proposed interaction features in small rounds of 8. Out of 271 targeted hypotheses, 2 unique features survived FDR."
 
 ---
 
@@ -56,15 +56,15 @@
 
 *Point to the pipeline box:*
 
-"Quick methods overview: 49 subjects, 28 days of data. 187 temporal features. We compute HRV-times-sleep interaction terms. Critically, feature selection happens INSIDE each cross-validation fold — no data leakage."
+"Quick methods overview: 49 subjects — 17 with mild+ depression, 32 healthy — 28 days of data. 187 temporal features. We compute HRV-times-sleep interaction terms. Critically, feature selection happens INSIDE each cross-validation fold — no data leakage."
 
 *Point to the results table:*
 
-"The 3 significant interactions. All are HRV times sleep. The best one — LF/HF slope times sleep quality — gives AUC 0.76 with Cohen's d of 1.06."
+"The 2 significant interactions. Both are HRV times sleep. The best — RMSSD 3-day slope times sleep duration autocorrelation — gives AUC 0.78 with Cohen's d of 1.11. The AUC is inverted because the interaction is LOWER in depression — it reflects a loss of coordination between the two systems."
 
 *Point to volcano plot:*
 
-"The volcano plot shows all 271 hypotheses. Most cluster in the bottom left — small effect, not significant. The 3 blue dots in the upper right are our significant findings. They're clearly separated from the noise."
+"The volcano plot shows all 271 hypotheses. Most cluster in the bottom left — small effect, not significant. The 2 blue dots in the upper right are our significant findings. They're clearly separated from the noise."
 
 ---
 
@@ -74,11 +74,11 @@
 
 *Point to the bar chart:*
 
-"Permutation test: we shuffled depression labels 100 times and re-ran the entire analysis. The real effects — the blue bars — are 3 to 4 times larger than the null. Zero out of 20 full shuffled simulations produced ANY significant finding. Real data produced 3."
+"Permutation test: we shuffled depression labels 100 times and re-ran the entire analysis. The real effects — the blue bars — are 3 to 4 times larger than the null. Zero out of 20 full shuffled simulations produced ANY significant finding. Real data produced 2."
 
 *Point to hold-out table:*
 
-"Hold-out validation: 33 discovery, 16 validation subjects. All 3 effect directions are consistent. Two out of 3 reach significance in the held-out set."
+"Hold-out validation: 33 discovery, 16 validation subjects. Both effect directions are consistent. Effects replicate in the held-out set."
 
 *Point to cross-dataset:*
 
@@ -103,8 +103,6 @@
 *Key point:*
 
 "The discovery engine evolves freely. The clinical product is a frozen snapshot — locked model, no autonomous changes. That's what makes it regulatable."
-
-> Say this fast but say it. Scarpitti from Ontario Ministry of Health will be listening.
 
 ---
 
@@ -138,7 +136,7 @@
 
 *Let the numbers speak:*
 
-"AUC 0.76. 25% better than standard HRV. Total cost: 22 cents."
+"AUC 0.78. 28% better than standard HRV."
 
 *Pause. Then:*
 
@@ -167,3 +165,6 @@
 
 **"Why SaMD Class II and not Class I?"**
 "Class II because we provide clinical information that aids treatment decisions — that's beyond general wellness. CGMs established this pathway for wearable-derived signals."
+
+**"What's the AUC inversion about?"**
+"The raw AUC is below 0.5, which means the interaction feature is LOWER in depressed subjects — they lose the coordination between HRV and sleep. We report the inverted AUC (0.78) because the direction is clinically meaningful: loss of multi-system coordination."
