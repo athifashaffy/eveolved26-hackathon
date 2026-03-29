@@ -315,29 +315,29 @@
 <!-- SLIDE 8: Market & Products (20s)             -->
 <!-- ============================================ -->
 <section>
-  <h2>Two Products, Two Customers</h2>
+  <h2>Two Products, One Engine</h2>
   <div class="cols">
     <div class="box-accent">
-      <h3>Discovery Engine (R&amp;D Tool)</h3>
-      <p style="font-size:0.75em; font-weight:600;">Customer: <span class="highlight">Pharma Companies</span></p>
-      <p style="font-size:0.65em;">Autoresearch loop as a service for digital endpoint discovery in clinical trials</p>
+      <h3>Product 1: Discovery Engine (R&amp;D Tool)</h3>
+      <p style="font-size:0.65em;">The autoresearch loop &mdash; sold to pharma for digital endpoint discovery in clinical trials</p>
       <ul style="font-size:0.6em;">
-        <li>Not a medical device &mdash; no regulatory burden</li>
-        <li>Revenue: per-trial licensing</li>
-        <li>Revenue <span class="highlight">before</span> SaMD approval</li>
+        <li>Not a medical device &mdash; internal R&amp;D tool</li>
+        <li>No regulatory burden on discovery process</li>
+        <li>Revenue: per-trial licensing to pharma CROs</li>
       </ul>
     </div>
     <div class="box-accent">
-      <h3>Treatment Response Tracker (SaMD)</h3>
-      <p style="font-size:0.75em; font-weight:600;">Customer: <span class="highlight">Hospitals &amp; Clinics</span></p>
-      <p style="font-size:0.65em;">Frozen, validated model for continuous depressive state tracking</p>
+      <h3>Product 2: Monitoring Dashboard (SaMD)</h3>
+      <p style="font-size:0.65em;">Static, validated model for clinical monitoring</p>
       <ul style="font-size:0.6em;">
         <li>Health Canada SaMD Class II</li>
-        <li>Daily HRV &times; sleep score between appointments</li>
-        <li>Revenue: per-patient SaaS</li>
+        <li>Locked model &mdash; no autonomous changes</li>
+        <li>Clinical decision support, not diagnosis</li>
+        <li>Revenue: per-patient SaaS to hospitals</li>
       </ul>
     </div>
   </div>
+  <p style="font-size:0.55em; color:#636e72; margin-top:12px;">The discovery engine evolves freely. The clinical product is a snapshot &mdash; frozen, validated, regulatable. New discoveries trigger a new submission, not a moving target.</p>
 </section>
 
 <!-- ============================================ -->
@@ -495,14 +495,14 @@ Reveal.on('ready', () => {
         {
           label: 'Non-significant (n=' + volcanoDiscard.length + ')',
           data: volcanoDiscard,
-          backgroundColor: 'rgba(0,0,0,0.12)',
+          backgroundColor: 'rgba(56,79,162,0.2)',
           pointRadius: 3.5,
           pointHoverRadius: 5,
         },
         {
           label: 'Significant / KEEP (n=' + volcanoKeep.length + ')',
           data: volcanoKeep,
-          backgroundColor: TEAL,
+          backgroundColor: '#384fa2',
           pointRadius: 9,
           pointHoverRadius: 11,
           borderColor: '#1a1a2e',

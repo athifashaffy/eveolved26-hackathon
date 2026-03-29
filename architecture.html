@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>AutoBiomarker — System Architecture</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0f172a;
+    color: #e2e8f0;
+    font-family: 'Inter', 'SF Pro', -apple-system, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px;
+  }
+  .container {
+    width: 1400px;
+    max-width: 100%;
+  }
+  h1 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #f8fafc;
+  }
+  .subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 36px;
+  }
+
+  /* Grid layout */
+  .arch-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr 280px;
+    grid-template-rows: auto auto auto;
+    gap: 20px;
+    align-items: start;
+  }
+
+  /* Boxes */
+  .box {
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+  }
+  .box h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .box p, .box li {
+    font-size: 12px;
+    color: #94a3b8;
+    line-height: 1.5;
+  }
+  .box ul { list-style: none; padding: 0; }
+  .box li::before { content: "•"; color: #475569; margin-right: 6px; }
+
+  /* Color themes */
+  .data { background: #1e293b; border: 1px solid #334155; }
+  .engine { background: #172554; border: 1px solid #1e40af; }
+  .llm { background: #1a1a2e; border: 1px solid #7c3aed; }
+  .stats { background: #022c22; border: 1px solid #059669; }
+  .output { background: #1c1917; border: 1px solid #d97706; }
+  .product { background: #1e1b4b; border: 1px solid #6366f1; }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-purple { background: #7c3aed22; color: #a78bfa; border: 1px solid #7c3aed44; }
+  .badge-green { background: #05966922; color: #6ee7b7; border: 1px solid #05966944; }
+  .badge-blue { background: #1e40af22; color: #93c5fd; border: 1px solid #1e40af44; }
+  .badge-orange { background: #d9770622; color: #fbbf24; border: 1px solid #d9770644; }
+
+  /* Center column - the main pipeline */
+  .pipeline {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* Arrow connectors */
+  .arrow-down {
+    text-align: center;
+    color: #475569;
+    font-size: 20px;
+    line-height: 1;
+    padding: 2px 0;
+  }
+  .arrow-right {
+    color: #475569;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .arrow-label {
+    font-size: 10px;
+    color: #64748b;
+    text-align: center;
+    display: block;
+  }
+
+  /* Feedback loop */
+  .feedback-loop {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px 20px;
+    border: 2px dashed #334155;
+    border-radius: 12px;
+    margin-top: 4px;
+  }
+  .feedback-loop .arrow { color: #f59e0b; font-size: 16px; }
+  .feedback-loop p { font-size: 12px; color: #94a3b8; }
+
+  /* Pipeline row */
+  .pipe-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .pipe-row .box { flex: 1; }
+
+  /* Side panels */
+  .left-panel {
+    grid-column: 1;
+    grid-row: 1 / 4;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .right-panel {
+    grid-column: 3;
+    grid-row: 1 / 4;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* Products section */
+  .products {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 8px;
+    padding-top: 20px;
+    border-top: 1px solid #1e293b;
+  }
+
+  .icon { font-size: 18px; }
+  .highlight { color: #38bdf8; }
+  .accent { color: #a78bfa; }
+  .green { color: #6ee7b7; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>AutoBiomarker — System Architecture</h1>
+  <p class="subtitle">Autonomous biomarker discovery for depression early warning signals</p>
+
+  <div class="arch-grid">
+
+    <!-- LEFT PANEL: Data Sources -->
+    <div class="left-panel">
+      <div class="box data">
+        <h3><span class="icon">📡</span> Wearable Data</h3>
+        <ul>
+          <li>HRV (RMSSD, LF/HF ratio)</li>
+          <li>Sleep (duration, quality, onset)</li>
+          <li>28 days continuous</li>
+        </ul>
+        <p style="margin-top:8px;"><span class="badge badge-blue">Baigutanova 2025</span></p>
+        <p style="margin-top:4px; font-size:11px;">49 subjects, n=38,913 rows</p>
+      </div>
+
+      <div class="box data">
+        <h3><span class="icon">🏥</span> Clinical Labels</h3>
+        <ul>
+          <li>PHQ-9 depression scores</li>
+          <li>Threshold: PHQ-9 &ge; 5</li>
+          <li>17 depressed / 32 healthy</li>
+        </ul>
+      </div>
+
+      <div class="box data">
+        <h3><span class="icon">📊</span> Cross-Validation</h3>
+        <ul>
+          <li>Depresjon dataset (n=55)</li>
+          <li>Actigraphy + MADRS</li>
+          <li>Transfer AUC: 0.66</li>
+        </ul>
+        <p style="margin-top:4px;"><span class="badge badge-blue">Garcia-Ceja 2018</span></p>
+      </div>
+    </div>
+
+    <!-- CENTER: Main Pipeline -->
+    <div class="pipeline">
+
+      <!-- Step 1: Feature Extraction -->
+      <div class="box engine">
+        <h3><span class="icon">⚙️</span> Feature Extractor</h3>
+        <p>Extracts <span class="highlight">187 temporal dynamics features</span> from raw wearable data</p>
+        <ul style="margin-top:6px;">
+          <li>Autocorrelation, CV, slope, std dev</li>
+          <li>Rolling windows: 3d, 7d, 14d, 21d</li>
+          <li>Per-subject z-scoring</li>
+        </ul>
+      </div>
+
+      <div class="arrow-down">▼</div>
+
+      <!-- Step 2: LLM Hypothesis Generation -->
+      <div class="pipe-row">
+        <div class="box llm" style="flex:1.2;">
+          <h3><span class="icon">🧠</span> Hypothesis Generator <span class="badge badge-purple">LLM</span></h3>
+          <p><span class="accent">Llama 3.3 70B</span> on <span class="highlight">Nebius Token Factory</span></p>
+          <p style="margin-top:4px;">Proposes cross-modal interaction hypotheses (HRV &times; sleep)</p>
+          <ul style="margin-top:6px;">
+            <li>8 hypotheses per round (mild FDR)</li>
+            <li>Adapts strategy based on prior results</li>
+            <li>50 rounds, 271 total hypotheses</li>
+          </ul>
+        </div>
+        <div class="arrow-right">→</div>
+        <div class="box stats" style="flex:1;">
+          <h3><span class="icon">📐</span> Statistical Evaluator <span class="badge badge-green">Rigorous</span></h3>
+          <p>Tests each hypothesis with full statistical framework</p>
+          <ul style="margin-top:6px;">
+            <li>LOSO cross-validation</li>
+            <li>Feature selection <span class="green">inside</span> each fold</li>
+            <li>Cohen's d, AUC, BH-FDR correction</li>
+            <li>No data leakage</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="arrow-down">▼</div>
+
+      <!-- Step 3: Decision -->
+      <div class="box output" style="text-align:center;">
+        <h3 style="justify-content:center;"><span class="icon">✅</span> KEEP / DISCARD <span class="badge badge-orange">Per Round</span></h3>
+        <p>FDR-corrected p &lt; 0.05 → <strong style="color:#fbbf24;">KEEP</strong> &nbsp;|&nbsp; Otherwise → DISCARD</p>
+        <p style="margin-top:6px;"><strong style="color:#f8fafc;">Result: 2 unique FDR-significant interactions</strong></p>
+      </div>
+
+    </div>
+
+    <!-- RIGHT PANEL: Validation & Results -->
+    <div class="right-panel">
+      <div class="box stats">
+        <h3><span class="icon">🔬</span> Validation Suite</h3>
+        <ul>
+          <li>Permutation test (100 shuffles)</li>
+          <li>0/100 shuffles beat real</li>
+          <li>0/20 simulations → any finding</li>
+          <li>Hold-out: 33/16 split</li>
+          <li>Both effect directions consistent</li>
+        </ul>
+        <p style="margin-top:8px;"><span class="badge badge-green">NOT OVERFITTED</span></p>
+      </div>
+
+      <div class="box output">
+        <h3><span class="icon">🏆</span> Key Findings</h3>
+        <p style="color:#fbbf24; font-weight:600; margin-bottom:6px;">The interaction IS the biomarker</p>
+        <ul>
+          <li>RMSSD slope &times; sleep dur autocorr</li>
+          <li style="color:#6ee7b7;">AUC 0.78 | d = 1.11 | p = 0.006</li>
+          <li>RMSSD slope &times; LF/HF slope</li>
+          <li style="color:#6ee7b7;">AUC 0.74 | d = 0.92 | p = 0.004</li>
+          <li>+28% vs standard HRV (0.61)</li>
+        </ul>
+      </div>
+
+      <div class="box engine">
+        <h3><span class="icon">🛠️</span> Infrastructure</h3>
+        <ul>
+          <li><span class="accent">Nebius Token Factory</span> — inference</li>
+          <li><span class="highlight">8090 Software Factory</span> — dev</li>
+          <li>Python, scikit-learn, scipy</li>
+          <li>Streamlit dashboard</li>
+          <li>reveal.js slides</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Feedback loop -->
+    <div class="feedback-loop">
+      <span class="arrow">⟵</span>
+      <p><strong style="color:#f59e0b;">Feedback Loop:</strong> Results (KEEP/DISCARD + effect sizes) feed back to LLM → proposes refined hypotheses next round. Round 1: broad sweep (5,000) → 0 survive. Rounds 2-50: targeted interactions → <strong style="color:#6ee7b7;">2 survive FDR</strong></p>
+      <span class="arrow">⟵</span>
+    </div>
+
+    <!-- Products -->
+    <div class="products">
+      <div class="box product">
+        <h3><span class="icon">🔬</span> Product 1: Discovery Engine</h3>
+        <p style="color:#a5b4fc; font-weight:600;">R&D Tool for Pharma</p>
+        <ul style="margin-top:6px;">
+          <li>Autoresearch loop as a service</li>
+          <li>Digital endpoint discovery in trials</li>
+          <li>Not a medical device — no regulatory burden</li>
+          <li>Revenue: per-trial licensing to CROs</li>
+        </ul>
+      </div>
+      <div class="box product">
+        <h3><span class="icon">🏥</span> Product 2: Monitoring Dashboard</h3>
+        <p style="color:#a5b4fc; font-weight:600;">SaMD for Clinics</p>
+        <ul style="margin-top:6px;">
+          <li>Frozen, validated model snapshot</li>
+          <li>Health Canada SaMD Class II</li>
+          <li>Clinical decision support, not diagnosis</li>
+          <li>Revenue: per-patient SaaS to hospitals</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
