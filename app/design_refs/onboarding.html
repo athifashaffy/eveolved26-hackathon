@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "outline-variant": "#c5c5d3",
+              "on-primary-container": "#bcc7ff",
+              "on-secondary": "#ffffff",
+              "secondary": "#555d7f",
+              "on-secondary-fixed": "#111a38",
+              "surface-dim": "#d9dadb",
+              "surface-container-highest": "#e1e3e4",
+              "surface-container-high": "#e7e8e9",
+              "secondary-fixed-dim": "#bdc5ec",
+              "surface-container-lowest": "#ffffff",
+              "outline": "#757683",
+              "surface-container": "#edeeef",
+              "primary-container": "#384fa2",
+              "primary-fixed": "#dce1ff",
+              "on-tertiary-container": "#ffbc87",
+              "surface-tint": "#4259ac",
+              "secondary-fixed": "#dce1ff",
+              "on-primary-fixed-variant": "#284093",
+              "inverse-primary": "#b7c4ff",
+              "secondary-container": "#ced5fd",
+              "background": "#f8f9fa",
+              "tertiary-fixed": "#ffdcc3",
+              "tertiary": "#613200",
+              "tertiary-container": "#834500",
+              "primary-fixed-dim": "#b7c4ff",
+              "on-primary": "#ffffff",
+              "inverse-on-surface": "#f0f1f2",
+              "tertiary-fixed-dim": "#ffb77d",
+              "on-error": "#ffffff",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#545c7e",
+              "surface-container-low": "#f3f4f5",
+              "surface-bright": "#f8f9fa",
+              "on-tertiary-fixed-variant": "#6e3900",
+              "on-primary-fixed": "#001552",
+              "surface": "#f8f9fa",
+              "on-surface": "#191c1d",
+              "primary": "#1d3789",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed": "#2f1500",
+              "error-container": "#ffdad6",
+              "on-tertiary": "#ffffff",
+              "on-surface-variant": "#444651",
+              "on-secondary-fixed-variant": "#3d4566",
+              "surface-variant": "#e1e3e4",
+              "on-background": "#191c1d",
+              "inverse-surface": "#2e3132"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+<style>
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col items-center justify-between">
+<!-- Content Filter: Suppression of TopAppBar and BottomNavBar for Transactional/Onboarding Screen -->
+<main class="flex-1 w-full max-w-md px-8 flex flex-col items-center justify-center pt-12">
+<!-- Header / Identity -->
+<div class="mb-16 text-center">
+<h1 class="text-primary-container font-extrabold text-3xl tracking-tight">Signa</h1>
+</div>
+<!-- Illustration Area (The Clinical Curator Style) -->
+<div class="relative w-full aspect-square flex items-center justify-center mb-12">
+<!-- Tonal Scaffolding Background Circles -->
+<div class="absolute inset-0 bg-surface-container-low rounded-full scale-90 opacity-50"></div>
+<div class="absolute inset-0 bg-surface-container-lowest rounded-full scale-75 shadow-[0_12px_32px_rgba(29,55,137,0.06)]"></div>
+<!-- Smartwatch Illustration -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-48 h-64 bg-slate-200 rounded-[2.5rem] p-2 flex items-center justify-center shadow-inner relative border-4 border-white">
+<!-- Watch Face -->
+<div class="w-full h-full bg-primary-container rounded-[2rem] flex flex-col items-center justify-center overflow-hidden p-4">
+<!-- Heart Rate Line -->
+<div class="w-full h-12 flex items-center justify-center mb-4">
+<svg class="w-full stroke-on-primary-container fill-none stroke-2" viewbox="0 0 100 40">
+<path d="M0 20 L20 20 L25 10 L35 30 L40 20 L60 20 L65 5 L75 35 L80 20 L100 20"></path>
+</svg>
+</div>
+<!-- Moon / Sleep Icon -->
+<div class="bg-white/10 p-3 rounded-full mb-2">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="bedtime" style="font-variation-settings: 'FILL' 1;">bedtime</span>
+</div>
+<!-- Biometric Dots -->
+<div class="flex gap-1 mt-2">
+<div class="w-1.5 h-1.5 rounded-full bg-on-primary-container"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-on-primary-container/30"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-on-primary-container/30"></div>
+</div>
+</div>
+<!-- Physical Button Detail -->
+<div class="absolute -right-1 top-24 w-1.5 h-12 bg-slate-300 rounded-r-lg"></div>
+</div>
+</div>
+</div>
+<!-- Tagline / Messaging -->
+<div class="text-center space-y-4 mb-12">
+<h2 class="text-primary-container font-bold text-2xl leading-tight px-4">
+                Continuous depression monitoring from your wrist or through manual entry.
+            </h2>
+<p class="text-on-surface-variant body-md max-w-[280px] mx-auto">
+                Advanced physiological markers captured automatically or manually through your device.
+            </p>
+</div>
+<!-- CTA Section -->
+<div class="w-full space-y-4 mt-auto">
+<!-- Primary Action -->
+<button class="w-full bg-primary-container text-white py-4 rounded-xl font-bold text-lg active:scale-95 transition-transform duration-200 shadow-[0_12px_32px_rgba(29,55,137,0.08)]">
+                I'm a Patient
+            </button>
+<!-- Secondary Action (Ghost Border) -->
+<button class="w-full border-2 border-primary-container/40 text-primary-container py-4 rounded-xl font-bold text-lg active:scale-95 transition-transform duration-200">
+                I'm a Clinician
+            </button>
+</div>
+</main>
+<!-- Footer Disclaimer -->
+<footer class="w-full py-8 text-center">
+<div class="flex items-center justify-center gap-2 mb-2">
+<span class="material-symbols-outlined text-[14px] text-outline" data-icon="verified_user">verified_user</span>
+<p class="text-[10px] font-bold text-outline tracking-widest uppercase font-label">
+                Health Canada SaMD Class II
+            </p>
+</div>
+</footer>
+<!-- Imagery Placeholder Support -->
+<div class="hidden">
+<!-- Background texture if needed for editorial feel -->
+<img data-alt="subtle micro-pattern of soft blue geometric medical symbols on a white background with very low opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs6Lp3IC-zi-BSGr8dycPyqxITtfg4HIH0WehwDdrL0yp5A-vBUgng34vrVbCQbrCLvx5EgAZsG0BhXcuNDG-oI65efp2newdwkrWO_VXntBlHtCJqSTaHt1HkxnFMuURn8VN_kGbm-ZK8NKxNOdDJSPH-iBq0KiPCh8HzaOI19nt4iB4Vh6QM3DSuatCcbndze1WwEY9LiLl1CitZArx01lieOV464OqMStCbpzYL1uCkDpqw-MgBjGfcp7PhIHBGF8dL0hANLSY"/>
+</div>
+</body></html>

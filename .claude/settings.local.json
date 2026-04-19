@@ -21,7 +21,21 @@
       "Bash(git reset:*)",
       "Bash(mkdir -p /Users/baljinder/StudioProjects/eveolved26-hackathon/public)",
       "Bash(cp /Users/baljinder/StudioProjects/eveolved26-hackathon/slides.html /Users/baljinder/StudioProjects/eveolved26-hackathon/public/index.html)",
-      "Bash(npx vercel:*)"
+      "Bash(npx vercel:*)",
+      "Bash(claude mcp *)",
+      "mcp__stitch__list_projects",
+      "mcp__stitch__list_screens",
+      "Bash(curl -sL \"https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzAwMDY0ZmJmYTI4MjE5ZjcwNTNiNjljYTk1MDdiOTFkEgoSBhDygoiUExgBkgEkCgpwcm9qZWN0X2lkEhZCFDEwNTUxNDE0MjEwMzAwODcxNjYw&filename=&opi=89354086\" -o onboarding.html)",
+      "Bash(curl -sL \"https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzAwMDY0ZmJmYTI4MjFhMDEwNTNiNjljYTk1MDdiOTFkEgoSBhDygoiUExgBkgEkCgpwcm9qZWN0X2lkEhZCFDEwNTUxNDE0MjEwMzAwODcxNjYw&filename=&opi=89354086\" -o home_dashboard.html)",
+      "Bash(curl -sL \"https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzAwMDY0ZmJmYTI4MjE5ZTQwNTNiNjljYTk1MDdiOTFkEgoSBhDygoiUExgBkgEkCgpwcm9qZWN0X2lkEhZCFDEwNTUxNDE0MjEwMzAwODcxNjYw&filename=&opi=89354086\" -o wearable_connection.html)",
+      "Bash(curl -sL \"https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzAwMDY0ZmJmYTI4MjE5ZWYwNTNiNjljYTk1MDdiOTFkEgoSBhDygoiUExgBkgEkCgpwcm9qZWN0X2lkEhZCFDEwNTUxNDE0MjEwMzAwODcxNjYw&filename=&opi=89354086\" -o trends.html)",
+      "Bash(curl -sL \"https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzAwMDY0ZmJmYTI4MjE5ZTcwNTNiNjljYTk1MDdiOTFkEgoSBhDygoiUExgBkgEkCgpwcm9qZWN0X2lkEhZCFDEwNTUxNDE0MjEwMzAwODcxNjYw&filename=&opi=89354086\" -o alert.html)",
+      "Bash(flutter --version)",
+      "Bash(flutter create *)",
+      "Bash(flutter pub *)",
+      "Bash(flutter analyze *)",
+      "Bash(flutter build *)",
+      "Bash(flutter test *)"
     ]
   }
 }

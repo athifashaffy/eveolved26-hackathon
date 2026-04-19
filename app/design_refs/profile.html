@@ -1,0 +1,233 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>AutoBiomarker Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "outline-variant": "#c5c5d3",
+            "on-primary-container": "#bcc7ff",
+            "on-secondary": "#ffffff",
+            "secondary": "#555d7f",
+            "on-secondary-fixed": "#111a38",
+            "surface-dim": "#d9dadb",
+            "surface-container-highest": "#e1e3e4",
+            "surface-container-high": "#e7e8e9",
+            "secondary-fixed-dim": "#bdc5ec",
+            "surface-container-lowest": "#ffffff",
+            "outline": "#757683",
+            "surface-container": "#edeeef",
+            "primary-container": "#384fa2",
+            "primary-fixed": "#dce1ff",
+            "on-tertiary-container": "#ffbc87",
+            "surface-tint": "#4259ac",
+            "secondary-fixed": "#dce1ff",
+            "on-primary-fixed-variant": "#284093",
+            "inverse-primary": "#b7c4ff",
+            "secondary-container": "#ced5fd",
+            "background": "#f8f9fa",
+            "tertiary-fixed": "#ffdcc3",
+            "tertiary": "#613200",
+            "tertiary-container": "#834500",
+            "primary-fixed-dim": "#b7c4ff",
+            "on-primary": "#ffffff",
+            "inverse-on-surface": "#f0f1f2",
+            "tertiary-fixed-dim": "#ffb77d",
+            "on-error": "#ffffff",
+            "on-error-container": "#93000a",
+            "on-secondary-container": "#545c7e",
+            "surface-container-low": "#f3f4f5",
+            "surface-bright": "#f8f9fa",
+            "on-tertiary-fixed-variant": "#6e3900",
+            "on-primary-fixed": "#001552",
+            "surface": "#f8f9fa",
+            "on-surface": "#191c1d",
+            "primary": "#1d3789",
+            "error": "#ba1a1a",
+            "on-tertiary-fixed": "#2f1500",
+            "error-container": "#ffdad6",
+            "on-tertiary": "#ffffff",
+            "on-surface-variant": "#444651",
+            "on-secondary-fixed-variant": "#3d4566",
+            "surface-variant": "#e1e3e4",
+            "on-background": "#191c1d",
+            "inverse-surface": "#2e3132"
+          },
+          fontFamily: {
+            "headline": ["Manrope"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 {
+      font-family: 'Manrope', sans-serif;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-50/80 backdrop-blur-xl shadow-[0_12px_32px_rgba(29,55,137,0.08)]">
+<div class="flex justify-between items-center h-16 px-6 max-w-screen-xl mx-auto">
+<div class="flex items-center gap-4">
+<button class="p-2 -ml-2 text-blue-900 hover:bg-slate-200/50 transition-colors active:scale-95 duration-200 ease-out">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="text-blue-700 font-extrabold tracking-tighter text-lg">Signa</h1>
+</div>
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border-2 border-primary-container/10">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="Professional portrait of Sarah Mitchell, a middle-aged woman with a friendly expression in a clinical setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCB7UkQHg9ytNby8UG8vWy47mDXnW-BP2iTjcEAOPaVcogc40YpLEAkMQpo8qOGWSvw1faxrIefGSvL8uNdHmN6rIvj5d7Da-803Y4jZftydzqIB7xK-GZ3aqZpR8bdXnrijTEuuBBrWolOZ4lcY_YYaACG2uMP8BaCkn7JNLINSeqDUcQDNyUNvhsdp80CHW81M1-2_4w6GMJky9CqXAiG4F5LN5sB7FSSdg39805TmARZNXeKV7pKBmYIWHUI67HupMtu9Vb3ss">
+</div>
+</div>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-screen-md mx-auto space-y-6">
+<!-- Page Headline -->
+<div class="mb-4">
+<h2 class="text-primary-container font-headline font-bold text-2xl tracking-tight">Profile</h2>
+</div>
+<!-- User Card -->
+<section class="bg-surface-container-lowest rounded-3xl p-6 shadow-[0_8px_24px_rgba(29,55,137,0.04)] flex items-center gap-5">
+<div class="relative">
+<div class="w-20 h-20 rounded-full bg-slate-100 overflow-hidden ring-4 ring-primary/5">
+<img alt="Sarah Mitchell" class="w-full h-full object-cover" data-alt="Professional portrait of Sarah Mitchell, a middle-aged woman with a friendly expression in a clinical setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu7eGD0BOuQZnJwXdrF72p7prGT1eVTvUrvTDrXbteetm3Yj-iPFH2sZ5F1tZ5Oyhv4LzE_C9xXKHU_TtEO7wN-F4xd2T-ekoHQglRXg1eahgP_JlP6-B57_Z8cZLIWWHWWSFIBJzWxhuC3O7fJUQMEtYQnvL6X_4s4dxFoBUnrKJTLNxbcjfr2h_hsiluLqx-_GJmeW5U_dHtuJzISxTKJ07aGlkQl56dyYsU5RvSnkOCA7yzD7fQQZu-Z_dWIFdE9alhVf_tM28">
+</div>
+</div>
+<div class="flex-1">
+<h3 class="text-on-surface font-headline font-bold text-xl leading-tight">Sarah Mitchell</h3>
+<p class="text-on-surface-variant font-body text-sm mb-2">sarah.mitchell@healthmail.com</p>
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-primary-container text-white">
+          Patient
+        </span>
+</div>
+</section>
+<!-- Settings List -->
+<section class="bg-surface-container-low rounded-3xl overflow-hidden">
+<div class="divide-y divide-outline-variant/20">
+<!-- Notifications -->
+<button class="w-full flex items-center justify-between p-5 hover:bg-white/50 transition-colors active:scale-[0.98] duration-150">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-primary-container shadow-sm">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</div>
+<span class="font-body font-medium text-on-surface">Notifications</span>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</button>
+<!-- Care Team -->
+<button class="w-full flex items-center justify-between p-5 hover:bg-white/50 transition-colors active:scale-[0.98] duration-150">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-primary-container shadow-sm">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+</div>
+<span class="font-body font-medium text-on-surface">Care Team</span>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</button>
+<!-- Data Export -->
+<button class="w-full flex items-center justify-between p-5 hover:bg-white/50 transition-colors active:scale-[0.98] duration-150">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-primary-container shadow-sm">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</div>
+<span class="font-body font-medium text-on-surface">Data Export</span>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</button>
+<!-- Privacy & Security -->
+<button class="w-full flex items-center justify-between p-5 hover:bg-white/50 transition-colors active:scale-[0.98] duration-150">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-primary-container shadow-sm">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+</div>
+<span class="font-body font-medium text-on-surface">Privacy &amp; Security</span>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</button>
+<!-- About AutoBiomarker -->
+<button class="w-full flex items-center justify-between p-5 hover:bg-white/50 transition-colors active:scale-[0.98] duration-150">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-primary-container shadow-sm">
+<span class="material-symbols-outlined" data-icon="info">info</span>
+</div>
+<span class="font-body font-medium text-on-surface">About AutoBiomarker</span>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Clinical Info Box -->
+<section class="bg-surface-container-lowest rounded-3xl p-6 border-l-4 border-primary-container shadow-[0_12px_32px_rgba(29,55,137,0.06)]">
+<h4 class="text-primary-container font-headline font-bold text-lg mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="clinical_notes">clinical_notes</span>
+        Clinical Info
+      </h4>
+<div class="space-y-4">
+<div class="flex justify-between items-center border-b border-outline-variant/10 pb-2">
+<span class="text-outline font-label text-xs uppercase tracking-wider">Clinician</span>
+<span class="text-on-surface font-body font-semibold">Dr. R. Patel</span>
+</div>
+<div class="flex justify-between items-center border-b border-outline-variant/10 pb-2">
+<span class="text-outline font-label text-xs uppercase tracking-wider">Next Appointment</span>
+<span class="text-on-surface font-body font-semibold">Apr 12, 2026</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-outline font-label text-xs uppercase tracking-wider">Monitoring Since</span>
+<span class="text-on-surface font-body font-semibold">Feb 2026</span>
+</div>
+</div>
+</section>
+<!-- Compliance / Version Footer -->
+<footer class="pt-8 pb-12 text-center space-y-1">
+<p class="text-outline font-body text-[10px] leading-relaxed tracking-wide">
+        AutoBiomarker v1.0 | SaMD Class II | Model version: locked-2026.03
+      </p>
+<p class="text-outline/60 font-body text-[9px] uppercase tracking-widest">
+        Clinical Grade Performance • Certified Medical Device
+      </p>
+</footer>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/90 backdrop-blur-md shadow-[0_-8px_24px_rgba(0,0,0,0.04)] rounded-t-3xl">
+<a class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-blue-600 transition-transform active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-widest mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-blue-600 transition-transform active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-widest mt-1">Trends</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-blue-600 transition-transform active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="sync_alt">sync_alt</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-widest mt-1">Connect</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-blue-100 text-blue-800 rounded-2xl px-5 py-2 transition-transform active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-widest mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

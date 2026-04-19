@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Signa - Trends</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "outline-variant": "#c5c5d3",
+              "on-primary-container": "#bcc7ff",
+              "on-secondary": "#ffffff",
+              "secondary": "#555d7f",
+              "on-secondary-fixed": "#111a38",
+              "surface-dim": "#d9dadb",
+              "surface-container-highest": "#e1e3e4",
+              "surface-container-high": "#e7e8e9",
+              "secondary-fixed-dim": "#bdc5ec",
+              "surface-container-lowest": "#ffffff",
+              "outline": "#757683",
+              "surface-container": "#edeeef",
+              "primary-container": "#384fa2",
+              "primary-fixed": "#dce1ff",
+              "on-tertiary-container": "#ffbc87",
+              "surface-tint": "#4259ac",
+              "secondary-fixed": "#dce1ff",
+              "on-primary-fixed-variant": "#284093",
+              "inverse-primary": "#b7c4ff",
+              "secondary-container": "#ced5fd",
+              "background": "#f8f9fa",
+              "tertiary-fixed": "#ffdcc3",
+              "tertiary": "#613200",
+              "tertiary-container": "#834500",
+              "primary-fixed-dim": "#b7c4ff",
+              "on-primary": "#ffffff",
+              "inverse-on-surface": "#f0f1f2",
+              "tertiary-fixed-dim": "#ffb77d",
+              "on-error": "#ffffff",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#545c7e",
+              "surface-container-low": "#f3f4f5",
+              "surface-bright": "#f8f9fa",
+              "on-tertiary-fixed-variant": "#6e3900",
+              "on-primary-fixed": "#001552",
+              "surface": "#f8f9fa",
+              "on-surface": "#191c1d",
+              "primary": "#1d3789",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed": "#2f1500",
+              "error-container": "#ffdad6",
+              "on-tertiary": "#ffffff",
+              "on-surface-variant": "#444651",
+              "on-secondary-fixed-variant": "#3d4566",
+              "surface-variant": "#e1e3e4",
+              "on-background": "#191c1d",
+              "inverse-surface": "#2e3132"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background font-body text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-50/80 backdrop-blur-xl shadow-[0_12px_32px_rgba(29,55,137,0.08)]">
+<div class="flex justify-between items-center h-16 px-6 max-w-screen-xl mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-blue-900">menu</span>
+<h1 class="font-manrope font-bold text-lg tracking-tight text-blue-700">Signa</h1>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Close-up studio portrait of a professional man in a clean white shirt, soft natural lighting, medical professional aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkznrTfgLF6s_VyIcQjRxLqjBytWlpfHZrOWf8ssgCE1z7GVcNy8TafmOHuZmKCQPR7SqG1hW5FTqGKUip8f39DxdWyqiA_1QE0dpq2hU16G3R7JTTg0rByZGCtqxjzYquz_SJcm7FaTo9KaYZKMLFyxuZrOPmxHtXGxNiA0uvLg9nnI-dNIsJaCAGDlmoW40qzDfHNG_YuM6OQwfaEnzigDQDLICsqTED1e4wDyaWeZeaTwCjdtsXvjyBkvuqPx_F8Rg426BtaqA"/>
+</div>
+</div>
+</header>
+<main class="pt-20 px-6 max-w-screen-xl mx-auto">
+<!-- Page Title -->
+<div class="mb-6">
+<h2 class="font-headline text-2xl font-bold text-primary-container">Trends</h2>
+</div>
+<!-- Segmented Control -->
+<div class="bg-surface-container-low p-1 rounded-xl flex mb-8">
+<button class="flex-1 py-2 text-sm font-medium text-on-surface-variant hover:bg-slate-200/50 transition-colors rounded-lg">7 Days</button>
+<button class="flex-1 py-2 text-sm font-bold bg-primary-container text-white rounded-lg shadow-sm">30 Days</button>
+<button class="flex-1 py-2 text-sm font-medium text-on-surface-variant hover:bg-slate-200/50 transition-colors rounded-lg">90 Days</button>
+</div>
+<!-- Main Chart Section -->
+<section class="bg-surface-container-lowest rounded-3xl p-6 mb-6 shadow-[0_12px_32px_rgba(29,55,137,0.04)] overflow-hidden">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-headline text-lg font-bold text-primary-container">HRV x Sleep Interaction Score</h3>
+<p class="text-xs text-outline font-medium uppercase tracking-wider">Last 30 Days Clinical Overview</p>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary-container"></div>
+<span class="text-xs font-semibold text-on-surface-variant">Interaction Score</span>
+</div>
+</div>
+<!-- Asymmetric SVG Chart -->
+<div class="relative w-full h-64 mb-4">
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between opacity-20 pointer-events-none">
+<div class="border-b border-outline"></div>
+<div class="border-b border-outline"></div>
+<div class="border-b border-outline"></div>
+<div class="border-b border-outline"></div>
+</div>
+<!-- Clinical Threshold Line -->
+<div class="absolute top-[60%] w-full flex items-center gap-2 z-10">
+<div class="flex-1 border-t-2 border-dashed border-error opacity-60"></div>
+<span class="text-[10px] font-bold text-error bg-error-container/20 px-2 py-0.5 rounded-full whitespace-nowrap">Clinical Threshold (PHQ-9 ≥ 5)</span>
+</div>
+<!-- SVG Path for the curve -->
+<svg class="w-full h-full preserve-3d" viewbox="0 0 400 200">
+<!-- Interaction Score Curve -->
+<path class="drop-shadow-sm" d="M0,40 Q20,35 40,45 T80,50 T120,40 T160,140 T200,165 T240,110 T280,60 T320,45 T360,55 T400,40" fill="none" stroke="#384fa2" stroke-linecap="round" stroke-width="3"></path>
+<!-- Points of interest -->
+<circle cx="160" cy="140" fill="#384fa2" r="4"></circle>
+<circle cx="200" cy="165" fill="#384fa2" r="4"></circle>
+</svg>
+<!-- Alert Marker -->
+<div class="absolute left-[40%] top-[70%] transform -translate-x-1/2 flex flex-col items-center">
+<div class="w-2 h-2 rounded-full bg-tertiary-container animate-pulse"></div>
+<div class="h-8 w-0.5 bg-tertiary-container/30"></div>
+</div>
+</div>
+<!-- X-Axis Labels -->
+<div class="flex justify-between px-2">
+<span class="text-[10px] font-bold text-outline">MAR 01</span>
+<span class="text-[10px] font-bold text-outline">MAR 08</span>
+<span class="text-[10px] font-bold text-outline">MAR 15</span>
+<span class="text-[10px] font-bold text-outline">MAR 22</span>
+<span class="text-[10px] font-bold text-outline">MAR 30</span>
+</div>
+</section>
+<!-- Summary Cards Row -->
+<div class="grid grid-cols-3 gap-3 mb-6">
+<div class="bg-surface-container-low p-4 rounded-2xl flex flex-col items-center text-center">
+<span class="text-[10px] font-bold text-outline uppercase tracking-tight mb-1">Avg Score</span>
+<span class="text-lg font-bold text-primary">0.72</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-2xl flex flex-col items-center text-center">
+<span class="text-[10px] font-bold text-outline uppercase tracking-tight mb-1">Lowest</span>
+<span class="text-lg font-bold text-error">0.41</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-2xl flex flex-col items-center text-center">
+<span class="text-[10px] font-bold text-outline uppercase tracking-tight mb-1">Days Below</span>
+<span class="text-lg font-bold text-primary">3</span>
+</div>
+</div>
+<!-- Annotation / Alert -->
+<div class="flex items-center justify-center gap-2 bg-tertiary-fixed/30 py-3 px-4 rounded-xl border border-tertiary-container/10">
+<span class="material-symbols-outlined text-tertiary-container text-lg">warning</span>
+<p class="text-sm font-semibold text-on-tertiary-fixed-variant">Alert sent to clinician on Mar 15</p>
+</div>
+<!-- Insights Bento -->
+<div class="mt-8 grid grid-cols-2 gap-4">
+<div class="bg-secondary-container/20 p-5 rounded-3xl col-span-2">
+<div class="flex items-center gap-3 mb-3">
+<div class="p-2 bg-secondary-container rounded-lg">
+<span class="material-symbols-outlined text-on-secondary-container">psychology</span>
+</div>
+<h4 class="font-headline font-bold text-on-secondary-container">Clinical Insight</h4>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">Your interaction score recovered significantly following the March 15 adjustment. Continue monitoring sleep quality indicators.</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/90 backdrop-blur-md shadow-[0_-8px_24px_rgba(0,0,0,0.04)] rounded-t-3xl">
+<a class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-blue-600 transition-colors active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-widest">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-blue-100 text-blue-800 rounded-2xl px-5 py-2 active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1">insights</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-widest">Trends</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-blue-600 transition-colors active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1">sync_alt</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-widest">Connect</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-blue-600 transition-colors active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-widest">Profile</span>
+</a>
+</nav>
+</body></html>

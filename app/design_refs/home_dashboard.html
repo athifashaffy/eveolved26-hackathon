@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Signa Patient Dashboard</title>
+<!-- Google Fonts: Manrope & Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "outline-variant": "#c5c5d3",
+              "on-primary-container": "#bcc7ff",
+              "on-secondary": "#ffffff",
+              "secondary": "#555d7f",
+              "on-secondary-fixed": "#111a38",
+              "surface-dim": "#d9dadb",
+              "surface-container-highest": "#e1e3e4",
+              "surface-container-high": "#e7e8e9",
+              "secondary-fixed-dim": "#bdc5ec",
+              "surface-container-lowest": "#ffffff",
+              "outline": "#757683",
+              "surface-container": "#edeeef",
+              "primary-container": "#384fa2",
+              "primary-fixed": "#dce1ff",
+              "on-tertiary-container": "#ffbc87",
+              "surface-tint": "#4259ac",
+              "secondary-fixed": "#dce1ff",
+              "on-primary-fixed-variant": "#284093",
+              "inverse-primary": "#b7c4ff",
+              "secondary-container": "#ced5fd",
+              "background": "#f8f9fa",
+              "tertiary-fixed": "#ffdcc3",
+              "tertiary": "#613200",
+              "tertiary-container": "#834500",
+              "primary-fixed-dim": "#b7c4ff",
+              "on-primary": "#ffffff",
+              "inverse-on-surface": "#f0f1f2",
+              "tertiary-fixed-dim": "#ffb77d",
+              "on-error": "#ffffff",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#545c7e",
+              "surface-container-low": "#f3f4f5",
+              "surface-bright": "#f8f9fa",
+              "on-tertiary-fixed-variant": "#6e3900",
+              "on-primary-fixed": "#001552",
+              "surface": "#f8f9fa",
+              "on-surface": "#191c1d",
+              "primary": "#1d3789",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed": "#2f1500",
+              "error-container": "#ffdad6",
+              "on-tertiary": "#ffffff",
+              "on-surface-variant": "#444651",
+              "on-secondary-fixed-variant": "#3d4566",
+              "surface-variant": "#e1e3e4",
+              "on-background": "#191c1d",
+              "inverse-surface": "#2e3132"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "3xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        body {
+            background-color: #f8f9fa;
+        }
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="font-body text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-[0_12px_32px_rgba(29,55,137,0.08)]">
+<div class="flex justify-between items-center h-16 px-6 max-w-screen-xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high border-2 border-primary-container/10">
+<img alt="Sarah M. Profile" data-alt="Portrait of a young woman with a friendly smile, clean clinical aesthetic, soft studio lighting, professional medical app avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFkz_DUmo3Kip8D94dEIejCpOednjBfVbrth3I_9BiUqCVZSdL39P_FKSydYMw2t-7PW_Kd2iLxb295D2b4PtlF5ObTL7zd6SpaJLV-SXTtCnetivR2xGDjrXFWwXacY48A8PEQsO3ZClXdyeV-ztLamcMYWkgZA-HXDwjjipWqwGODCxge0jM_ANS3jBjF0qJS5rrDsEFKor7y17ywHiMISQoExLQ9HZt733w0nNjRxt3IUyTkFL_StUKu7LJVx_SPWr30Jv9k8I"/>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-500 dark:text-slate-400 font-label text-[10px] uppercase tracking-widest">Welcome back</span>
+<h1 class="font-manrope font-bold text-lg tracking-tight text-blue-900 dark:text-blue-400">Sarah M.</h1>
+</div>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors active:scale-95 duration-200 ease-out">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+</div>
+</header>
+<main class="pt-20 px-6 max-w-screen-md mx-auto space-y-6">
+<!-- Stability Score Card -->
+<section class="bg-surface-container-lowest rounded-3xl p-6 shadow-[0_8px_24px_rgba(0,0,0,0.02)]">
+<h2 class="font-headline font-bold text-primary-container text-xl mb-6">Stability Score</h2>
+<div class="flex flex-col items-center">
+<!-- Circular Gauge -->
+<div class="relative w-48 h-48 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container-high" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-width="12"></circle>
+<circle class="text-primary-container" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-dasharray="552.92" stroke-dashoffset="121.64" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-4xl font-manrope font-extrabold text-on-surface">78%</span>
+<div class="px-3 py-1 bg-tertiary-fixed rounded-full mt-1">
+<span class="text-on-tertiary-fixed font-bold text-xs uppercase tracking-wider">Stable</span>
+</div>
+</div>
+</div>
+<div class="mt-8 w-full flex justify-between items-center px-2">
+<span class="text-outline font-label text-[10px] uppercase tracking-widest font-bold">Last 14 days</span>
+<div class="flex items-center gap-1 text-on-tertiary-fixed-variant">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span class="text-xs font-bold font-label">Moderate Improvement</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Stat Cards Grid -->
+<div class="grid grid-cols-2 gap-4">
+<!-- HRV Trend Card -->
+<div class="bg-surface-container-lowest rounded-2xl p-4 shadow-[0_4px_12px_rgba(0,0,0,0.01)]">
+<span class="text-outline font-label text-[10px] uppercase tracking-widest font-bold">HRV Trend</span>
+<div class="mt-1 flex items-baseline gap-1">
+<span class="text-2xl font-manrope font-bold text-on-surface">64</span>
+<span class="text-[10px] text-outline font-medium">ms</span>
+</div>
+<!-- Sparkline Mockup Upward -->
+<div class="h-12 mt-4 flex items-end gap-1">
+<svg class="w-full h-full" viewbox="0 0 100 40">
+<path d="M0 35 Q 25 30, 40 32 T 70 15 T 100 5" fill="none" stroke="#2e7d32" stroke-linecap="round" stroke-width="2.5"></path>
+</svg>
+</div>
+<div class="mt-2 flex items-center text-xs text-green-700 font-bold">
+<span class="material-symbols-outlined text-xs">arrow_upward</span>
+<span>12%</span>
+</div>
+</div>
+<!-- Sleep Quality Card -->
+<div class="bg-surface-container-lowest rounded-2xl p-4 shadow-[0_4px_12px_rgba(0,0,0,0.01)]">
+<span class="text-outline font-label text-[10px] uppercase tracking-widest font-bold">Sleep Quality</span>
+<div class="mt-1 flex items-baseline gap-1">
+<span class="text-2xl font-manrope font-bold text-on-surface">82</span>
+<span class="text-[10px] text-outline font-medium">/100</span>
+</div>
+<!-- Sparkline Mockup Sideways -->
+<div class="h-12 mt-4 flex items-end gap-1">
+<svg class="w-full h-full" viewbox="0 0 100 40">
+<path d="M0 20 Q 20 22, 40 18 T 60 21 T 100 20" fill="none" stroke="#ed6c02" stroke-linecap="round" stroke-width="2.5"></path>
+</svg>
+</div>
+<div class="mt-2 flex items-center text-xs text-amber-700 font-bold">
+<span class="material-symbols-outlined text-xs">trending_flat</span>
+<span>Stable</span>
+</div>
+</div>
+</div>
+<!-- Daily Score History (Bar Chart Section) -->
+<section class="bg-surface-container-low rounded-3xl p-6">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-headline font-bold text-primary-container text-lg">Daily Score History</h2>
+<p class="text-body-md text-on-surface-variant">Your progress over the last two weeks</p>
+</div>
+<button class="text-primary-container text-xs font-bold uppercase tracking-wider px-3 py-1 bg-surface-container-highest rounded-lg">Details</button>
+</div>
+<!-- 14-day Bar Chart -->
+<div class="flex items-end justify-between h-32 gap-1.5 px-1">
+<div class="w-full bg-primary-container/20 rounded-t-full h-[60%]"></div>
+<div class="w-full bg-primary-container/20 rounded-t-full h-[45%]"></div>
+<div class="w-full bg-primary-container/20 rounded-t-full h-[70%]"></div>
+<div class="w-full bg-primary-container/20 rounded-t-full h-[55%]"></div>
+<div class="w-full bg-primary-container/20 rounded-t-full h-[85%]"></div>
+<div class="w-full bg-primary-container/20 rounded-t-full h-[65%]"></div>
+<div class="w-full bg-primary-container/20 rounded-t-full h-[75%]"></div>
+<div class="w-full bg-primary-container/20 rounded-t-full h-[80%]"></div>
+<div class="w-full bg-primary-container/20 rounded-t-full h-[90%]"></div>
+<div class="w-full bg-primary-container rounded-t-full h-[95%] shadow-[0_4px_12px_rgba(29,55,137,0.2)]"></div>
+<div class="w-full bg-primary-container rounded-t-full h-[70%]"></div>
+<div class="w-full bg-primary-container rounded-t-full h-[85%]"></div>
+<div class="w-full bg-primary-container rounded-t-full h-[75%]"></div>
+<div class="w-full bg-primary-container rounded-t-full h-[80%]"></div>
+</div>
+<div class="flex justify-between mt-3 px-1 text-[9px] font-label font-bold text-outline uppercase tracking-widest">
+<span>14 Days Ago</span>
+<span>Today</span>
+</div>
+</section>
+<!-- Wearable Connection Status -->
+<div class="bg-surface-container-lowest rounded-2xl p-5 flex items-center justify-between shadow-[0_4px_12px_rgba(0,0,0,0.01)]">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">watch</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface">Signa Wearable</h3>
+<p class="text-xs text-on-surface-variant">Last synced: 4 minutes ago</p>
+</div>
+</div>
+<div class="w-2.5 h-2.5 rounded-full bg-green-500 ring-4 ring-green-100"></div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-[0_-8px_24px_rgba(0,0,0,0.04)] rounded-t-3xl">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200 rounded-2xl px-5 py-2 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined filled-icon">home</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-widest mt-1">Home</span>
+</a>
+<!-- Trends -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-blue-600 dark:hover:text-blue-300 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-widest mt-1">Trends</span>
+</a>
+<!-- Connect -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-blue-600 dark:hover:text-blue-300 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">sync_alt</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-widest mt-1">Connect</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-blue-600 dark:hover:text-blue-300 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-widest mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

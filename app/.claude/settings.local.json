@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(flutter devices *)",
+      "Bash(flutter --version)",
+      "Bash(flutter run *)",
+      "Bash(flutter clean *)",
+      "Bash(flutter pub *)",
+      "Bash(curl -sL \"https://api.figshare.com/v2/articles/28509740\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); [print\\(f['name'], f['download_url'], f['size']\\) for f in d.get\\('files',[]\\)]\")",
+      "Bash(mkdir -p /Users/baljinder/StudioProjects/eveolved26-hackathon/data)",
+      "Read(//Users/baljinder/StudioProjects/eveolved26-hackathon/**)",
+      "Bash(curl -sL -o sensor_hrv_filtered.csv https://ndownloader.figshare.com/files/52669385)",
+      "Bash(curl -sL -o survey.csv https://ndownloader.figshare.com/files/52669394)",
+      "Bash(curl -sL -o sleep_diary.csv https://ndownloader.figshare.com/files/52669397)",
+      "Bash(python3 -c ' *)",
+      "Bash(python3 -m pip install --quiet pandas)",
+      "Bash(python3 *)",
+      "Bash(python3.13 -c \"import pandas; print\\(pandas.__version__\\)\")"
+    ]
+  }
+}
