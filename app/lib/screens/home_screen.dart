@@ -43,9 +43,11 @@ class HomeScreen extends StatelessWidget {
                     const SizedBox(width: 12),
                     Expanded(
                       child: _MetricCard(
-                        label: 'SLEEP QUALITY',
-                        value: snap.sleepScore.toString(),
-                        unit: '/100',
+                        label: 'SLEEP LAST NIGHT',
+                        value: snap.sleepMinutes > 0
+                            ? '${snap.sleepMinutes ~/ 60}h ${(snap.sleepMinutes % 60).toString().padLeft(2, '0')}m'
+                            : snap.sleepScore.toString(),
+                        unit: snap.sleepMinutes > 0 ? '' : '/100',
                         delta: snap.sleepTrendLabel,
                         deltaUp: null,
                         accent: AppColors.sparkAmber,
@@ -55,6 +57,11 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 16),
+                // Steps card
+                if (snap.last30Days.isNotEmpty)
+                  _StepsCard(snap: snap),
+                if (snap.last30Days.isNotEmpty)
+                  const SizedBox(height: 16),
                 _DailyHistoryCard(snap: snap),
                 const SizedBox(height: 16),
                 _DeviceTile(snap: snap),
@@ -469,7 +476,9 @@ class _DeviceTile extends StatelessWidget {
                         color: AppColors.onSurface)),
                 const SizedBox(height: 2),
                 Text(
-                  'Last synced: ${snap.lastSync.inMinutes} minutes ago',
+                  snap.deviceName == 'Demo Data'
+                      ? 'Connect Fitbit for real data'
+                      : 'Last synced: ${snap.lastSync.inMinutes}m ago',
                   style: GoogleFonts.inter(
                       fontSize: 12, color: AppColors.onSurfaceVariant),
                 ),
@@ -487,6 +496,76 @@ class _DeviceTile extends StatelessWidget {
                 width: 4,
               ),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _StepsCard extends StatelessWidget {
+  final StabilitySnapshot snap;
+  const _StepsCard({required this.snap});
+
+  @override
+  Widget build(BuildContext context) {
+    final today = snap.last30Days.isNotEmpty ? snap.last30Days.last : null;
+    final steps = today?.steps ?? 0;
+    const goal = 10000;
+    final pct = (steps / goal).clamp(0.0, 1.0);
+    final last7 = snap.last30Days.length >= 7
+        ? snap.last30Days.sublist(snap.last30Days.length - 7)
+        : snap.last30Days;
+    final avgSteps = last7.isEmpty
+        ? 0
+        : last7.map((r) => r.steps).reduce((a, b) => a + b) ~/ last7.length;
+
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: AppColors.surfaceContainerLowest,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.015),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('STEPS TODAY', style: AppTheme.labelUppercase()),
+              Text(
+                '$steps / $goal',
+                style: GoogleFonts.inter(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.onSurfaceVariant),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(999),
+            child: LinearProgressIndicator(
+              value: pct,
+              minHeight: 10,
+              backgroundColor: AppColors.surfaceContainerHigh,
+              valueColor: AlwaysStoppedAnimation<Color>(
+                pct >= 1.0 ? Colors.green : AppColors.primaryContainer,
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            '7-day avg: $avgSteps steps',
+            style: GoogleFonts.inter(
+                fontSize: 12, color: AppColors.onSurfaceVariant),
           ),
         ],
       ),

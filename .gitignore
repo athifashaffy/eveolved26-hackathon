@@ -1,7 +1,8 @@
 .env
+app/lib/data/secrets.dart
 __pycache__/
 *.pyc
-data/
+/data/
 *.egg-info/
 venv/
 .vercel

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../data/fitbit_service.dart';
 import '../data/healthkit_service.dart';
+import '../data/real_data.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_theme.dart';
 import '../widgets/signa_scaffold.dart';
@@ -15,6 +17,7 @@ class ConnectScreen extends StatefulWidget {
 
 class _ConnectScreenState extends State<ConnectScreen> {
   bool _healthKitConnected = false;
+  bool _fitbitConnected = false;
   bool _checking = false;
 
   @override
@@ -24,9 +27,13 @@ class _ConnectScreenState extends State<ConnectScreen> {
   }
 
   Future<void> _refresh() async {
-    final has = await HealthKitService.instance.hasPermission();
+    final hk = await HealthKitService.instance.hasPermission();
+    final fb = await FitbitService.instance.isAuthenticated();
     if (!mounted) return;
-    setState(() => _healthKitConnected = has);
+    setState(() {
+      _healthKitConnected = hk;
+      _fitbitConnected = fb;
+    });
   }
 
   Future<void> _connectHealthKit() async {
@@ -37,7 +44,9 @@ class _ConnectScreenState extends State<ConnectScreen> {
       _healthKitConnected = ok;
       _checking = false;
     });
-    if (!ok) {
+    if (ok) {
+      await RealData.load();
+    } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text(
@@ -47,12 +56,52 @@ class _ConnectScreenState extends State<ConnectScreen> {
     }
   }
 
-  void _connectFitbit() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Fitbit OAuth flow — configured post-auth milestone.'),
-      ),
-    );
+  Future<void> _connectFitbit() async {
+    if (_fitbitConnected) {
+      // Already connected — offer to disconnect
+      final confirm = await showDialog<bool>(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: const Text('Disconnect Fitbit?'),
+          content: const Text(
+              'Your Fitbit account will be unlinked. The app will use demo data until reconnected.'),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.pop(context, false),
+                child: const Text('Cancel')),
+            TextButton(
+                onPressed: () => Navigator.pop(context, true),
+                child: const Text('Disconnect')),
+          ],
+        ),
+      );
+      if (confirm == true) {
+        await FitbitService.instance.logout();
+        await RealData.load();
+        if (mounted) setState(() => _fitbitConnected = false);
+      }
+      return;
+    }
+
+    setState(() => _checking = true);
+    final ok = await FitbitService.instance.authenticate();
+    if (!mounted) return;
+
+    if (ok) {
+      await RealData.load();
+      setState(() {
+        _fitbitConnected = true;
+        _checking = false;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Fitbit connected — syncing data…')),
+      );
+    } else {
+      setState(() => _checking = false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Fitbit connection failed. Try again.')),
+      );
+    }
   }
 
   @override
@@ -74,9 +123,14 @@ class _ConnectScreenState extends State<ConnectScreen> {
                         color: AppColors.primaryContainer, size: 12)),
                 const SizedBox(height: 12),
                 _ActiveDeviceCard(
-                  connected: _healthKitConnected,
+                  connected: _fitbitConnected || _healthKitConnected,
+                  deviceName: _fitbitConnected
+                      ? 'Fitbit'
+                      : _healthKitConnected
+                          ? 'Apple Watch'
+                          : 'Apple Watch',
                   checking: _checking,
-                  onSync: _connectHealthKit,
+                  onSync: _fitbitConnected ? _connectFitbit : _connectHealthKit,
                 ),
                 const SizedBox(height: 28),
                 Text('ADD DEVICE',
@@ -100,7 +154,8 @@ class _ConnectScreenState extends State<ConnectScreen> {
                     _AddDeviceTile(
                       icon: Icons.favorite_rounded,
                       label: 'Fitbit',
-                      onTap: _connectFitbit,
+                      accent: _fitbitConnected,
+                      onTap: _checking ? () {} : _connectFitbit,
                     ),
                     _AddDeviceTile(
                       icon: Icons.radio_button_checked,
@@ -135,10 +190,12 @@ class _ConnectScreenState extends State<ConnectScreen> {
 class _ActiveDeviceCard extends StatelessWidget {
   final bool connected;
   final bool checking;
+  final String deviceName;
   final VoidCallback onSync;
   const _ActiveDeviceCard({
     required this.connected,
     required this.checking,
+    required this.deviceName,
     required this.onSync,
   });
 
@@ -181,7 +238,7 @@ class _ActiveDeviceCard extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            'Apple Watch',
+                            deviceName,
                             overflow: TextOverflow.ellipsis,
                             style: GoogleFonts.manrope(
                               fontSize: 18,
@@ -216,7 +273,9 @@ class _ActiveDeviceCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      connected ? 'Reading via HealthKit' : 'Tap to authorize',
+                      connected
+                          ? 'Tap to disconnect'
+                          : 'Tap to authorize',
                       style: GoogleFonts.inter(
                           fontSize: 12, color: AppColors.outline),
                     ),
@@ -231,6 +290,8 @@ class _ActiveDeviceCard extends StatelessWidget {
               _DataChip(label: 'HRV', active: connected),
               const SizedBox(width: 8),
               _DataChip(label: 'Sleep', active: connected),
+              const SizedBox(width: 8),
+              _DataChip(label: 'Steps', active: connected),
             ],
           ),
           const SizedBox(height: 20),
@@ -239,10 +300,10 @@ class _ActiveDeviceCard extends StatelessWidget {
             child: ElevatedButton(
               onPressed: checking ? null : onSync,
               child: Text(checking
-                  ? 'Requesting…'
+                  ? 'Connecting…'
                   : connected
                       ? 'Sync Now'
-                      : 'Authorize HealthKit'),
+                      : 'Connect Device'),
             ),
           ),
         ],
