@@ -16,7 +16,20 @@
       "Bash(python3 -c ' *)",
       "Bash(python3 -m pip install --quiet pandas)",
       "Bash(python3 *)",
-      "Bash(python3.13 -c \"import pandas; print\\(pandas.__version__\\)\")"
+      "Bash(python3.13 -c \"import pandas; print\\(pandas.__version__\\)\")",
+      "Bash(flutter upgrade *)",
+      "Bash(rm -rf /Users/baljinder/Flutter/flutter)",
+      "Bash(git clone *)",
+      "Bash(/Users/baljinder/Flutter/flutter/bin/flutter --version)",
+      "Bash(/Users/baljinder/Flutter/flutter/bin/flutter clean *)",
+      "Bash(/Users/baljinder/Flutter/flutter/bin/flutter pub *)",
+      "Bash(pod install *)",
+      "Bash(/Users/baljinder/Flutter/flutter/bin/flutter precache *)",
+      "Bash(/Users/baljinder/Flutter/flutter/bin/flutter doctor *)",
+      "Bash(open *)",
+      "Bash(/Users/baljinder/Flutter/flutter/bin/flutter run *)",
+      "Bash(xcodebuild *)",
+      "Bash(flutter analyze *)"
     ]
   }
 }

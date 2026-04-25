@@ -7,20 +7,23 @@ import 'package:http/http.dart' as http;
 import 'models.dart';
 import 'secrets.dart' as secrets;
 
-/// Fitbit OAuth 2.0 PKCE + REST API integration.
+/// Fitbit OAuth 2.0 (Server / confidential client) + PKCE + REST API integration.
 ///
-/// SETUP REQUIRED:
-/// 1. Create a Fitbit app at https://dev.fitbit.com/apps/new
-///    - OAuth 2.0 Application Type: Personal
-///    - Callback URL: signa://fitbit-callback
-///    - Default Access Type: Read-Only
-/// 2. Replace [clientId] with your app's Client ID.
+/// SETUP:
+///   - App type: Server (confidential client)
+///   - Callback URL: signa://fitbit-callback
+///   - Default Access Type: Read-Only
+///   - Client ID + Secret live in `secrets.dart` (gitignored).
+///
+/// Server apps require HTTP Basic auth (`base64(client_id:client_secret)`) on
+/// the token endpoint. PKCE is still applied for the auth code exchange.
 class FitbitService {
   FitbitService._();
   static final instance = FitbitService._();
 
   // ─── Configuration ────────────────────────────────────────────────────────
   static const clientId = secrets.fitbitClientId;
+  static const _clientSecret = secrets.fitbitClientSecret;
 
   static const _redirectUri = 'signa://fitbit-callback';
   static const _scopes = 'activity sleep heartrate';
@@ -85,15 +88,22 @@ class FitbitService {
     }
   }
 
+  Map<String, String> _tokenHeaders() {
+    final basic = base64.encode(utf8.encode('$clientId:$_clientSecret'));
+    return {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Basic $basic',
+    };
+  }
+
   Future<bool> _exchangeCode({
     required String code,
     required String verifier,
   }) async {
     final response = await http.post(
       Uri.parse(_tokenUrl),
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      headers: _tokenHeaders(),
       body: {
-        'client_id': clientId,
         'grant_type': 'authorization_code',
         'redirect_uri': _redirectUri,
         'code': code,
@@ -111,9 +121,8 @@ class FitbitService {
 
     final response = await http.post(
       Uri.parse(_tokenUrl),
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      headers: _tokenHeaders(),
       body: {
-        'client_id': clientId,
         'grant_type': 'refresh_token',
         'refresh_token': refreshToken,
       },

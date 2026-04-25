@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../data/app_settings.dart';
 import '../data/fitbit_service.dart';
 import '../data/healthkit_service.dart';
 import '../data/real_data.dart';
@@ -20,6 +21,12 @@ class _ConnectScreenState extends State<ConnectScreen> {
   bool _fitbitConnected = false;
   bool _checking = false;
 
+  String? get _activeSource => AppSettings.instance.activeSource;
+  bool get _fitbitIsActive =>
+      _fitbitConnected && _activeSource == AppSettings.sourceFitbit;
+  bool get _appleIsActive =>
+      _healthKitConnected && _activeSource == AppSettings.sourceAppleHealth;
+
   @override
   void initState() {
     super.initState();
@@ -37,6 +44,15 @@ class _ConnectScreenState extends State<ConnectScreen> {
   }
 
   Future<void> _connectHealthKit() async {
+    if (_healthKitConnected) {
+      if (!_appleIsActive) {
+        await _setActive(AppSettings.sourceAppleHealth);
+      } else {
+        await _showAppleDisconnectInfo();
+      }
+      return;
+    }
+
     setState(() => _checking = true);
     final ok = await HealthKitService.instance.requestAuthorization();
     if (!mounted) return;
@@ -45,7 +61,13 @@ class _ConnectScreenState extends State<ConnectScreen> {
       _checking = false;
     });
     if (ok) {
-      await RealData.load();
+      await RealData.onDeviceConnected(AppSettings.sourceAppleHealth);
+      if (!mounted) return;
+      setState(() {});
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text('Apple Health connected — syncing data…')),
+      );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -58,13 +80,16 @@ class _ConnectScreenState extends State<ConnectScreen> {
 
   Future<void> _connectFitbit() async {
     if (_fitbitConnected) {
-      // Already connected — offer to disconnect
+      if (!_fitbitIsActive) {
+        await _setActive(AppSettings.sourceFitbit);
+        return;
+      }
       final confirm = await showDialog<bool>(
         context: context,
         builder: (_) => AlertDialog(
           title: const Text('Disconnect Fitbit?'),
           content: const Text(
-              'Your Fitbit account will be unlinked. The app will use demo data until reconnected.'),
+              'Your Fitbit account will be unlinked. If Apple Health is also connected, the app will switch to it.'),
           actions: [
             TextButton(
                 onPressed: () => Navigator.pop(context, false),
@@ -77,7 +102,7 @@ class _ConnectScreenState extends State<ConnectScreen> {
       );
       if (confirm == true) {
         await FitbitService.instance.logout();
-        await RealData.load();
+        await RealData.onDeviceDisconnected(AppSettings.sourceFitbit);
         if (mounted) setState(() => _fitbitConnected = false);
       }
       return;
@@ -88,7 +113,7 @@ class _ConnectScreenState extends State<ConnectScreen> {
     if (!mounted) return;
 
     if (ok) {
-      await RealData.load();
+      await RealData.onDeviceConnected(AppSettings.sourceFitbit);
       setState(() {
         _fitbitConnected = true;
         _checking = false;
@@ -104,8 +129,63 @@ class _ConnectScreenState extends State<ConnectScreen> {
     }
   }
 
+  Future<void> _setActive(String source) async {
+    await RealData.setActiveSource(source);
+    if (!mounted) return;
+    setState(() {});
+    final label =
+        source == AppSettings.sourceFitbit ? 'Fitbit' : 'Apple Health';
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('$label is now the active data source')),
+    );
+  }
+
+  Future<void> _showAppleDisconnectInfo() async {
+    await showDialog<void>(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text('Disconnect Apple Health'),
+        content: const Text(
+          'Apple Health permissions are managed by iOS. To revoke access, open Settings → Privacy & Security → Health → Signa.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _activeCardAction() async {
+    final hasActive = _activeSource != null &&
+        (_fitbitIsActive || _appleIsActive);
+    if (hasActive) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Syncing from device…')),
+      );
+      await RealData.forceSync();
+      return;
+    }
+    if (_fitbitConnected) {
+      await _connectFitbit();
+    } else {
+      await _connectHealthKit();
+    }
+  }
+
+  String get _activeDeviceName {
+    if (_fitbitIsActive) return 'Fitbit';
+    if (_appleIsActive) return 'Apple Health';
+    if (_fitbitConnected) return 'Fitbit';
+    if (_healthKitConnected) return 'Apple Health';
+    return 'Apple Watch';
+  }
+
   @override
   Widget build(BuildContext context) {
+    final hasActive = _fitbitIsActive || _appleIsActive;
     return SignaScaffold(
       currentRoute: '/connect',
       child: Column(
@@ -123,20 +203,25 @@ class _ConnectScreenState extends State<ConnectScreen> {
                         color: AppColors.primaryContainer, size: 12)),
                 const SizedBox(height: 12),
                 _ActiveDeviceCard(
-                  connected: _fitbitConnected || _healthKitConnected,
-                  deviceName: _fitbitConnected
-                      ? 'Fitbit'
-                      : _healthKitConnected
-                          ? 'Apple Watch'
-                          : 'Apple Watch',
+                  connected: hasActive,
+                  deviceName: _activeDeviceName,
                   checking: _checking,
-                  onSync: _fitbitConnected ? _connectFitbit : _connectHealthKit,
+                  onSync: _activeCardAction,
                 ),
                 const SizedBox(height: 28),
                 Text('ADD DEVICE',
                     style: AppTheme.labelUppercase(
                         color: AppColors.primaryContainer, size: 12)),
                 const SizedBox(height: 12),
+                if (_fitbitConnected && _healthKitConnected)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    child: Text(
+                      'Tap a connected device to switch which one feeds your stability score.',
+                      style: GoogleFonts.inter(
+                          fontSize: 12, color: AppColors.onSurfaceVariant),
+                    ),
+                  ),
                 GridView.count(
                   crossAxisCount: 2,
                   shrinkWrap: true,
@@ -149,12 +234,14 @@ class _ConnectScreenState extends State<ConnectScreen> {
                       icon: Icons.watch_rounded,
                       label: 'Apple Watch',
                       accent: _healthKitConnected,
+                      active: _appleIsActive,
                       onTap: _connectHealthKit,
                     ),
                     _AddDeviceTile(
                       icon: Icons.favorite_rounded,
                       label: 'Fitbit',
                       accent: _fitbitConnected,
+                      active: _fitbitIsActive,
                       onTap: _checking ? () {} : _connectFitbit,
                     ),
                     _AddDeviceTile(
@@ -273,9 +360,7 @@ class _ActiveDeviceCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      connected
-                          ? 'Tap to disconnect'
-                          : 'Tap to authorize',
+                      connected ? 'Tap below to sync now' : 'Tap to authorize',
                       style: GoogleFonts.inter(
                           fontSize: 12, color: AppColors.outline),
                     ),
@@ -354,12 +439,14 @@ class _AddDeviceTile extends StatelessWidget {
   final VoidCallback onTap;
   final bool full;
   final bool accent;
+  final bool active;
   const _AddDeviceTile({
     required this.icon,
     required this.label,
     required this.onTap,
     this.full = false,
     this.accent = false,
+    this.active = false,
   });
 
   @override
@@ -372,41 +459,70 @@ class _AddDeviceTile extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.surfaceContainerLow,
           borderRadius: BorderRadius.circular(16),
+          border: active
+              ? Border.all(color: AppColors.primaryContainer, width: 2)
+              : null,
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: full
-              ? CrossAxisAlignment.center
-              : CrossAxisAlignment.center,
+        child: Stack(
           children: [
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.04),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: full
+                  ? CrossAxisAlignment.center
+                  : CrossAxisAlignment.center,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.04),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              child: Icon(icon,
-                  color: accent
-                      ? AppColors.primaryContainer
-                      : AppColors.onSurface,
-                  size: 24),
+                  child: Icon(icon,
+                      color: accent
+                          ? AppColors.primaryContainer
+                          : AppColors.onSurface,
+                      size: 24),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  label,
+                  style: GoogleFonts.inter(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.onSurface,
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 10),
-            Text(
-              label,
-              style: GoogleFonts.inter(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-                color: AppColors.onSurface,
+            if (active)
+              Positioned(
+                top: 0,
+                right: 0,
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryContainer,
+                    borderRadius: BorderRadius.circular(999),
+                  ),
+                  child: Text(
+                    'ACTIVE',
+                    style: GoogleFonts.inter(
+                      fontSize: 9,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: 0.5,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
               ),
-            ),
           ],
         ),
       ),

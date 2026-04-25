@@ -65,16 +65,33 @@ class DatabaseService {
 
   // ─── Readings ─────────────────────────────────────────────────────────────
 
-  Future<List<StabilityReading>> getReadings({int days = 90}) async {
+  Future<List<StabilityReading>> getReadings({
+    int days = 90,
+    List<String>? sources,
+  }) async {
     final d = await db;
     final cutoff = DateTime.now().subtract(Duration(days: days));
+    final clauses = <String>['date >= ?'];
+    final args = <Object?>[_dateStr(cutoff)];
+    if (sources != null && sources.isNotEmpty) {
+      final placeholders = List.filled(sources.length, '?').join(', ');
+      clauses.add('source IN ($placeholders)');
+      args.addAll(sources);
+    }
     final rows = await d.query(
       'readings',
-      where: 'date >= ?',
-      whereArgs: [_dateStr(cutoff)],
+      where: clauses.join(' AND '),
+      whereArgs: args,
       orderBy: 'date ASC',
     );
     return rows.map(_rowToReading).toList();
+  }
+
+  /// Raw rows for every reading in the DB (no day cap), ordered by date ASC.
+  /// Used by the CSV exporter so it can include the `source` column too.
+  Future<List<Map<String, Object?>>> getAllReadingsRaw() async {
+    final d = await db;
+    return d.query('readings', orderBy: 'date ASC');
   }
 
   Future<void> upsertReadings(List<StabilityReading> readings, String source) async {

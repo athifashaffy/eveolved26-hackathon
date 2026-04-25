@@ -439,65 +439,80 @@ class _DeviceTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: AppColors.surfaceContainerLowest,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.015),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              color: AppColors.secondaryContainer,
-              borderRadius: BorderRadius.circular(14),
+    final isDemo = snap.deviceName == 'Demo Data';
+    final isDisconnected = snap.deviceName == 'No device connected';
+    final indicatorColor = isDisconnected ? Colors.orange : Colors.green;
+    final subtitle = isDemo
+        ? 'Connect Fitbit for real data'
+        : isDisconnected
+            ? 'Tap to connect a device'
+            : 'Last synced: ${snap.lastSync.inMinutes}m ago';
+
+    return InkWell(
+      onTap: isDisconnected ? () => context.go('/connect') : null,
+      borderRadius: BorderRadius.circular(20),
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: AppColors.surfaceContainerLowest,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.015),
+              blurRadius: 12,
+              offset: const Offset(0, 4),
             ),
-            child: const Icon(Icons.watch,
-                color: AppColors.onSecondaryContainer),
-          ),
-          const SizedBox(width: 14),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(snap.deviceName,
-                    style: GoogleFonts.inter(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.onSurface)),
-                const SizedBox(height: 2),
-                Text(
-                  snap.deviceName == 'Demo Data'
-                      ? 'Connect Fitbit for real data'
-                      : 'Last synced: ${snap.lastSync.inMinutes}m ago',
-                  style: GoogleFonts.inter(
-                      fontSize: 12, color: AppColors.onSurfaceVariant),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            width: 10,
-            height: 10,
-            decoration: BoxDecoration(
-              color: Colors.green,
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: Colors.green.shade100,
-                width: 4,
+          ],
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                color: AppColors.secondaryContainer,
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: Icon(
+                isDisconnected ? Icons.watch_off_outlined : Icons.watch,
+                color: AppColors.onSecondaryContainer,
               ),
             ),
-          ),
-        ],
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(snap.deviceName,
+                      style: GoogleFonts.inter(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.onSurface)),
+                  const SizedBox(height: 2),
+                  Text(
+                    subtitle,
+                    style: GoogleFonts.inter(
+                        fontSize: 12, color: AppColors.onSurfaceVariant),
+                  ),
+                ],
+              ),
+            ),
+            isDisconnected
+                ? const Icon(Icons.chevron_right, color: AppColors.outline)
+                : Container(
+                    width: 10,
+                    height: 10,
+                    decoration: BoxDecoration(
+                      color: indicatorColor,
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: indicatorColor.withOpacity(0.25),
+                        width: 4,
+                      ),
+                    ),
+                  ),
+          ],
+        ),
       ),
     );
   }

@@ -7,6 +7,7 @@ import 'screens/home_screen.dart';
 import 'screens/onboarding_screen.dart';
 import 'screens/profile_screen.dart';
 import 'screens/trends_screen.dart';
+import 'data/app_settings.dart';
 import 'data/healthkit_service.dart';
 import 'data/real_data.dart';
 import 'theme/app_theme.dart';
@@ -20,6 +21,7 @@ Future<void> main() async {
       statusBarBrightness: Brightness.light,
     ),
   );
+  await AppSettings.instance.load();
   await HealthKitService.instance.requestAuthorization();
   await RealData.load();
   runApp(const SignaApp());

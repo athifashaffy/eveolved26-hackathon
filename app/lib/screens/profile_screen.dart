@@ -1,6 +1,11 @@
+import 'dart:io';
+import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
+import '../data/app_settings.dart';
 import '../data/database_service.dart';
 import '../data/fitbit_service.dart';
 import '../data/real_data.dart';
@@ -61,6 +66,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
         const SnackBar(content: Text('Sync complete')),
       );
     }
+  }
+
+  Future<void> _toggleDemoMode(bool value) async {
+    await AppSettings.instance.setUseDemoData(value);
+    if (mounted) setState(() {});
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          value
+              ? 'Demo data enabled'
+              : 'Demo data disabled — using watch data',
+        ),
+      ),
+    );
+    await RealData.forceSync();
+    if (mounted) setState(() {});
   }
 
   Future<void> _signOut() async {
@@ -204,6 +225,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                 // ─── Devices & Data ────────────────────────────────────────
                 _Section(title: 'DEVICES & DATA', tiles: [
+                  _ToggleSettingTile(
+                    icon: Icons.science_outlined,
+                    title: 'Demo Data',
+                    subtitle: AppSettings.instance.useDemoData
+                        ? 'Showing bundled sample dataset'
+                        : 'Showing data from your watch only',
+                    value: AppSettings.instance.useDemoData,
+                    onChanged: _toggleDemoMode,
+                  ),
                   _SettingTile(
                     icon: Icons.sync_alt_rounded,
                     title: 'Sync Now',
@@ -224,8 +254,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   _SettingTile(
                     icon: Icons.file_download_outlined,
-                    title: 'Export Data',
-                    subtitle: 'CSV · JSON',
+                    title: 'Share My Data',
+                    subtitle: 'CSV · Share to any app',
                     onTap: _exportData,
                   ),
                 ]),
@@ -254,21 +284,84 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future<void> _exportData() async {
-    final readings = await DatabaseService.instance.getReadings(days: 90);
-    final csv = StringBuffer('date,hrv_ms,sleep_min,sleep_score,steps,score\n');
-    for (final r in readings) {
-      csv.writeln(
-          '${r.date.toIso8601String().substring(0, 10)},${r.hrvMs},${r.sleepMinutes},${r.sleepScore},${r.steps},${r.score.toStringAsFixed(3)}');
-    }
-    if (mounted) {
+    try {
+      final rows = await DatabaseService.instance.getAllReadingsRaw();
+      final patient = await DatabaseService.instance.getPatient();
+
+      final buf = StringBuffer();
+      // Metadata header — comment lines so most CSV readers will skip them.
+      buf.writeln('# Signa export');
+      buf.writeln('# exported_at,${DateTime.now().toIso8601String()}');
+      buf.writeln('# patient_name,${_csvSafe(patient?.name)}');
+      buf.writeln('# patient_dob,${_csvSafe(patient?.dob)}');
+      buf.writeln('# patient_email,${_csvSafe(patient?.email)}');
+      buf.writeln('# clinician,${_csvSafe(patient?.clinician)}');
+      buf.writeln('# row_count,${rows.length}');
+
+      // Body — CSV header + data rows via ListToCsvConverter for proper escaping.
+      const header = [
+        'date',
+        'hrv_ms',
+        'sleep_min',
+        'sleep_score',
+        'steps',
+        'score',
+        'source',
+      ];
+      final data = <List<dynamic>>[
+        header,
+        for (final r in rows)
+          [
+            r['date'] ?? '',
+            r['hrv_ms'] ?? 0,
+            r['sleep_min'] ?? 0,
+            r['sleep_score'] ?? 0,
+            r['steps'] ?? 0,
+            (r['score'] as num?)?.toStringAsFixed(3) ?? '0.000',
+            r['source'] ?? '',
+          ],
+      ];
+      buf.write(const ListToCsvConverter().convert(data));
+
+      final csvText = buf.toString();
+
+      // Write to temp dir so the OS share sheet can read it.
+      final dir = await getTemporaryDirectory();
+      final stamp = DateTime.now()
+          .toIso8601String()
+          .replaceAll(':', '-')
+          .substring(0, 19);
+      final file = File('${dir.path}/signa_data_$stamp.csv');
+      await file.writeAsString(csvText);
+
+      if (!mounted) return;
       showDialog(
         context: context,
         builder: (_) => AlertDialog(
-          title: const Text('Export Data'),
-          content: SingleChildScrollView(
-            child: SelectableText(
-              csv.toString(),
-              style: GoogleFonts.robotoMono(fontSize: 11),
+          title: Text(
+            'Share My Data',
+            style: GoogleFonts.manrope(fontWeight: FontWeight.w700),
+          ),
+          content: SizedBox(
+            width: double.maxFinite,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '${rows.length} reading${rows.length == 1 ? '' : 's'} · ${file.path.split('/').last}',
+                    style: GoogleFonts.inter(
+                      fontSize: 12,
+                      color: AppColors.onSurfaceVariant,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  SelectableText(
+                    csvText,
+                    style: GoogleFonts.robotoMono(fontSize: 11),
+                  ),
+                ],
+              ),
             ),
           ),
           actions: [
@@ -276,10 +369,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
               onPressed: () => Navigator.pop(context),
               child: const Text('Close'),
             ),
+            Builder(builder: (btnContext) {
+              return FilledButton.icon(
+                icon: const Icon(Icons.ios_share, size: 18),
+                label: const Text('Share'),
+                onPressed: () async {
+                  // iOS (especially iPad) needs an anchor rect for the share
+                  // popover. Use the Share button's own bounds.
+                  final box = btnContext.findRenderObject() as RenderBox?;
+                  final origin = box != null && box.hasSize
+                      ? box.localToGlobal(Offset.zero) & box.size
+                      : const Rect.fromLTWH(0, 0, 1, 1);
+                  await Share.shareXFiles(
+                    [XFile(file.path, mimeType: 'text/csv')],
+                    subject: 'Signa data export',
+                    text:
+                        'Signa stability data — ${rows.length} reading${rows.length == 1 ? '' : 's'}',
+                    sharePositionOrigin: origin,
+                  );
+                },
+              );
+            }),
           ],
         ),
       );
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Export failed: $e')),
+      );
     }
+  }
+
+  String _csvSafe(String? v) {
+    if (v == null || v.isEmpty) return '';
+    // Strip newlines/commas so the comment header stays a single line.
+    return v.replaceAll(RegExp(r'[\r\n,]'), ' ').trim();
   }
 }
 
@@ -423,6 +548,67 @@ class _Section extends StatelessWidget {
           child: Column(children: tiles),
         ),
       ],
+    );
+  }
+}
+
+class _ToggleSettingTile extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String? subtitle;
+  final bool value;
+  final ValueChanged<bool> onChanged;
+  const _ToggleSettingTile({
+    required this.icon,
+    required this.title,
+    this.subtitle,
+    required this.value,
+    required this.onChanged,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => onChanged(!value),
+      borderRadius: BorderRadius.circular(16),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: AppColors.primaryContainer.withOpacity(0.08),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(icon, color: AppColors.primaryContainer, size: 20),
+            ),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(title,
+                      style: GoogleFonts.inter(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.onSurface)),
+                  if (subtitle != null)
+                    Text(subtitle!,
+                        style: GoogleFonts.inter(
+                            fontSize: 12,
+                            color: AppColors.onSurfaceVariant)),
+                ],
+              ),
+            ),
+            Switch.adaptive(
+              value: value,
+              onChanged: onChanged,
+              activeTrackColor: AppColors.primaryContainer,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
