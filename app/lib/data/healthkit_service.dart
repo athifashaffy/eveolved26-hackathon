@@ -1,8 +1,14 @@
 import 'package:health/health.dart';
+import 'app_settings.dart';
 import 'models.dart';
 
 /// Wraps the `health` package for Apple HealthKit (iOS) and
 /// Google Health Connect (Android).
+///
+/// iOS quirk: Apple deliberately hides read-permission grant state from
+/// apps, so `hasPermissions()` returns `null` for read-only types. We
+/// persist a "granted" flag in [AppSettings] after a successful auth
+/// request and use that as the source of truth on cold start.
 class HealthKitService {
   HealthKitService._();
   static final instance = HealthKitService._();
@@ -25,19 +31,29 @@ class HealthKitService {
   Future<bool> requestAuthorization() async {
     try {
       await _configure();
-      return await _health.requestAuthorization(_types);
+      final ok = await _health.requestAuthorization(_types);
+      if (ok) await AppSettings.instance.setAppleHealthGranted(true);
+      return ok;
     } catch (_) {
       return false;
     }
   }
 
   Future<bool> hasPermission() async {
+    if (AppSettings.instance.appleHealthGranted) return true;
     try {
       await _configure();
       return await _health.hasPermissions(_types) ?? false;
     } catch (_) {
       return false;
     }
+  }
+
+  /// Soft-disconnect from the app's perspective. iOS keeps the authorization
+  /// in Settings → Privacy → Health, but the app stops treating Apple Health
+  /// as a connected source until the user re-authorises.
+  Future<void> forgetAuthorization() async {
+    await AppSettings.instance.setAppleHealthGranted(false);
   }
 
   /// Fetches the last [days] days of HRV, sleep and steps data.

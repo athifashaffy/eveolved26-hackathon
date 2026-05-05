@@ -141,21 +141,31 @@ class _ConnectScreenState extends State<ConnectScreen> {
   }
 
   Future<void> _showAppleDisconnectInfo() async {
-    await showDialog<void>(
+    final forget = await showDialog<bool>(
       context: context,
       builder: (_) => AlertDialog(
         title: const Text('Disconnect Apple Health'),
         content: const Text(
-          'Apple Health permissions are managed by iOS. To revoke access, open Settings → Privacy & Security → Health → Signa.',
+          'Apple Health permissions live in iOS Settings → Privacy & Security → Health → Signa. '
+          'You can also stop Signa from using Apple Health on this device — your iOS authorization stays intact and you can reconnect later.',
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('OK'),
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Forget on this device'),
           ),
         ],
       ),
     );
+    if (forget == true) {
+      await HealthKitService.instance.forgetAuthorization();
+      await RealData.onDeviceDisconnected(AppSettings.sourceAppleHealth);
+      if (mounted) setState(() => _healthKitConnected = false);
+    }
   }
 
   Future<void> _activeCardAction() async {
