@@ -271,7 +271,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     icon: Icons.lock_outline,
                     title: 'Privacy',
                     subtitle: 'On-device processing · PHIPA',
-                    onTap: () {},
+                    onTap: () => context.push('/privacy'),
                   ),
                   _SettingTile(
                     icon: Icons.file_download_outlined,

@@ -5,6 +5,7 @@ import 'screens/alert_screen.dart';
 import 'screens/connect_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/onboarding_screen.dart';
+import 'screens/privacy_policy_screen.dart';
 import 'screens/profile_screen.dart';
 import 'screens/trends_screen.dart';
 import 'data/app_settings.dart';
@@ -36,6 +37,7 @@ final _router = GoRouter(
     GoRoute(path: '/connect', builder: (_, __) => const ConnectScreen()),
     GoRoute(path: '/profile', builder: (_, __) => const ProfileScreen()),
     GoRoute(path: '/alert', builder: (_, __) => const AlertScreen()),
+    GoRoute(path: '/privacy', builder: (_, __) => const PrivacyPolicyScreen()),
   ],
 );
 
