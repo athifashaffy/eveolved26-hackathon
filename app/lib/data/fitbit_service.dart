@@ -5,7 +5,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:http/http.dart' as http;
 import 'models.dart';
-import 'secrets.dart' as secrets;
 
 /// Fitbit OAuth 2.0 (Server / confidential client) + PKCE + REST API integration.
 ///
@@ -13,7 +12,12 @@ import 'secrets.dart' as secrets;
 ///   - App type: Server (confidential client)
 ///   - Callback URL: signa://fitbit-callback
 ///   - Default Access Type: Read-Only
-///   - Client ID + Secret live in `secrets.dart` (gitignored).
+///   - Client ID + Secret are injected at build/run time via --dart-define, so
+///     the app compiles and tests run without any gitignored secrets file:
+///       flutter run \
+///         --dart-define=FITBIT_CLIENT_ID=xxx \
+///         --dart-define=FITBIT_CLIENT_SECRET=yyy
+///     When absent, Fitbit is simply unavailable (Apple Health / demo still work).
 ///
 /// Server apps require HTTP Basic auth (`base64(client_id:client_secret)`) on
 /// the token endpoint. PKCE is still applied for the auth code exchange.
@@ -22,8 +26,14 @@ class FitbitService {
   static final instance = FitbitService._();
 
   // ─── Configuration ────────────────────────────────────────────────────────
-  static const clientId = secrets.fitbitClientId;
-  static const _clientSecret = secrets.fitbitClientSecret;
+  static const clientId =
+      String.fromEnvironment('FITBIT_CLIENT_ID', defaultValue: '');
+  static const _clientSecret =
+      String.fromEnvironment('FITBIT_CLIENT_SECRET', defaultValue: '');
+
+  /// Whether Fitbit credentials were supplied at build time.
+  static bool get isConfigured =>
+      clientId.isNotEmpty && _clientSecret.isNotEmpty;
 
   static const _redirectUri = 'signa://fitbit-callback';
   static const _scopes = 'activity sleep heartrate';
@@ -61,6 +71,7 @@ class FitbitService {
   // ─── OAuth 2.0 PKCE flow ──────────────────────────────────────────────────
 
   Future<bool> authenticate() async {
+    if (!isConfigured) return false;
     final verifier = _generateCodeVerifier();
     final challenge = _generateCodeChallenge(verifier);
 
