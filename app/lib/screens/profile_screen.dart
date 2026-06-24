@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,6 +7,7 @@ import 'package:share_plus/share_plus.dart';
 import '../app_info.dart';
 import '../data/app_settings.dart';
 import '../data/database_service.dart';
+import '../data/export_service.dart';
 import '../data/fitbit_service.dart';
 import '../data/models.dart';
 import '../data/real_data.dart';
@@ -276,7 +276,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   _SettingTile(
                     icon: Icons.file_download_outlined,
                     title: 'Share My Data',
-                    subtitle: 'CSV · Share to any app',
+                    subtitle: DataExportService.lastExportSubtitle(
+                      AppSettings.instance.lastExportAt,
+                      AppSettings.instance.lastExportFormat,
+                    ),
                     onTap: _exportData,
                   ),
                 ]),
@@ -308,110 +311,105 @@ class _ProfileScreenState extends State<ProfileScreen> {
     try {
       final rows = await DatabaseService.instance.getAllReadingsRaw();
       final patient = await DatabaseService.instance.getPatient();
+      final reports = await DatabaseService.instance.getAllSelfReports();
+      final now = DateTime.now();
 
-      final buf = StringBuffer();
-      // Metadata header — comment lines so most CSV readers will skip them.
-      buf.writeln('# Signa export');
-      buf.writeln('# exported_at,${DateTime.now().toIso8601String()}');
-      buf.writeln('# patient_name,${_csvSafe(patient?.name)}');
-      buf.writeln('# patient_dob,${_csvSafe(patient?.dob)}');
-      buf.writeln('# patient_email,${_csvSafe(patient?.email)}');
-      buf.writeln('# clinician,${_csvSafe(patient?.clinician)}');
-      buf.writeln('# row_count,${rows.length}');
+      String contentFor(String f) => f == 'json'
+          ? DataExportService.buildJson(
+              patient: patient,
+              readings: rows,
+              selfReports: reports,
+              versionLabel: kAppVersion,
+              exportedAt: now,
+            )
+          : DataExportService.buildCsv(
+              patient: patient,
+              readings: rows,
+              exportedAt: now,
+            );
 
-      // Body — CSV header + data rows via ListToCsvConverter for proper escaping.
-      const header = [
-        'date',
-        'hrv_ms',
-        'sleep_min',
-        'sleep_score',
-        'steps',
-        'score',
-        'source',
-      ];
-      final data = <List<dynamic>>[
-        header,
-        for (final r in rows)
-          [
-            r['date'] ?? '',
-            r['hrv_ms'] ?? 0,
-            r['sleep_min'] ?? 0,
-            r['sleep_score'] ?? 0,
-            r['steps'] ?? 0,
-            (r['score'] as num?)?.toStringAsFixed(3) ?? '0.000',
-            r['source'] ?? '',
-          ],
-      ];
-      buf.write(const ListToCsvConverter().convert(data));
-
-      final csvText = buf.toString();
-
-      // Write to temp dir so the OS share sheet can read it.
-      final dir = await getTemporaryDirectory();
-      final stamp = DateTime.now()
-          .toIso8601String()
-          .replaceAll(':', '-')
-          .substring(0, 19);
-      final file = File('${dir.path}/signa_data_$stamp.csv');
-      await file.writeAsString(csvText);
+      var fmt = 'json';
 
       if (!mounted) return;
-      showDialog(
+      await showDialog(
         context: context,
-        builder: (_) => AlertDialog(
-          title: Text(
-            'Share My Data',
-            style: GoogleFonts.manrope(fontWeight: FontWeight.w700),
-          ),
-          content: SizedBox(
-            width: double.maxFinite,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '${rows.length} reading${rows.length == 1 ? '' : 's'} · ${file.path.split('/').last}',
-                    style: GoogleFonts.inter(
-                      fontSize: 12,
-                      color: AppColors.onSurfaceVariant,
-                    ),
+        builder: (_) => StatefulBuilder(
+          builder: (dialogCtx, setLocal) {
+            final content = contentFor(fmt);
+            return AlertDialog(
+              title: Text('Share My Data',
+                  style: GoogleFonts.manrope(fontWeight: FontWeight.w700)),
+              content: SizedBox(
+                width: double.maxFinite,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SegmentedButton<String>(
+                        segments: const [
+                          ButtonSegment(value: 'json', label: Text('JSON')),
+                          ButtonSegment(value: 'csv', label: Text('CSV')),
+                        ],
+                        selected: {fmt},
+                        onSelectionChanged: (s) => setLocal(() => fmt = s.first),
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        '${rows.length} reading${rows.length == 1 ? '' : 's'} · '
+                        '${reports.length} check-in${reports.length == 1 ? '' : 's'}',
+                        style: GoogleFonts.inter(
+                            fontSize: 12, color: AppColors.onSurfaceVariant),
+                      ),
+                      const SizedBox(height: 12),
+                      SelectableText(content,
+                          style: GoogleFonts.robotoMono(fontSize: 11)),
+                    ],
                   ),
-                  const SizedBox(height: 12),
-                  SelectableText(
-                    csvText,
-                    style: GoogleFonts.robotoMono(fontSize: 11),
-                  ),
-                ],
+                ),
               ),
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Close'),
-            ),
-            Builder(builder: (btnContext) {
-              return FilledButton.icon(
-                icon: const Icon(Icons.ios_share, size: 18),
-                label: const Text('Share'),
-                onPressed: () async {
-                  // iOS (especially iPad) needs an anchor rect for the share
-                  // popover. Use the Share button's own bounds.
-                  final box = btnContext.findRenderObject() as RenderBox?;
-                  final origin = box != null && box.hasSize
-                      ? box.localToGlobal(Offset.zero) & box.size
-                      : const Rect.fromLTWH(0, 0, 1, 1);
-                  await Share.shareXFiles(
-                    [XFile(file.path, mimeType: 'text/csv')],
-                    subject: 'Signa data export',
-                    text:
-                        'Signa stability data — ${rows.length} reading${rows.length == 1 ? '' : 's'}',
-                    sharePositionOrigin: origin,
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(dialogCtx),
+                  child: const Text('Close'),
+                ),
+                Builder(builder: (btnContext) {
+                  return FilledButton.icon(
+                    icon: const Icon(Icons.ios_share, size: 18),
+                    label: const Text('Share'),
+                    onPressed: () async {
+                      final ext = fmt == 'json' ? 'json' : 'csv';
+                      final mime =
+                          fmt == 'json' ? 'application/json' : 'text/csv';
+                      final dir = await getTemporaryDirectory();
+                      final stamp = now
+                          .toIso8601String()
+                          .replaceAll(':', '-')
+                          .substring(0, 19);
+                      final file =
+                          File('${dir.path}/signa_export_$stamp.$ext');
+                      await file.writeAsString(content);
+
+                      final box =
+                          btnContext.findRenderObject() as RenderBox?;
+                      final origin = box != null && box.hasSize
+                          ? box.localToGlobal(Offset.zero) & box.size
+                          : const Rect.fromLTWH(0, 0, 1, 1);
+                      await Share.shareXFiles(
+                        [XFile(file.path, mimeType: mime)],
+                        subject: 'Signa data export',
+                        text:
+                            'Signa stability data — ${rows.length} reading${rows.length == 1 ? '' : 's'}',
+                        sharePositionOrigin: origin,
+                      );
+
+                      await AppSettings.instance.setLastExport(now, fmt);
+                      if (mounted) setState(() {});
+                    },
                   );
-                },
-              );
-            }),
-          ],
+                }),
+              ],
+            );
+          },
         ),
       );
     } catch (e) {
@@ -420,12 +418,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         SnackBar(content: Text('Export failed: $e')),
       );
     }
-  }
-
-  String _csvSafe(String? v) {
-    if (v == null || v.isEmpty) return '';
-    // Strip newlines/commas so the comment header stays a single line.
-    return v.replaceAll(RegExp(r'[\r\n,]'), ' ').trim();
   }
 }
 
