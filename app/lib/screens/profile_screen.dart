@@ -9,6 +9,7 @@ import '../app_info.dart';
 import '../data/app_settings.dart';
 import '../data/database_service.dart';
 import '../data/fitbit_service.dart';
+import '../data/models.dart';
 import '../data/real_data.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_theme.dart';
@@ -25,6 +26,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   PatientProfile? _patient;
   bool _loading = true;
+  bool _todayChecked = false;
 
   @override
   void initState() {
@@ -34,9 +36,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Future<void> _load() async {
     final p = await DatabaseService.instance.getPatient();
+    final todayReport =
+        await DatabaseService.instance.getSelfReportForDate(DateTime.now());
     if (!mounted) return;
     setState(() {
       _patient = p;
+      _todayChecked = todayReport != null;
       _loading = false;
     });
     // First launch — prompt to set up profile
@@ -65,6 +70,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Sync complete')),
+      );
+    }
+  }
+
+  Future<void> _openCheckIn() async {
+    final result = await showDialog<SelfReport>(
+      context: context,
+      builder: (_) => const _DailyCheckInDialog(),
+    );
+    if (result != null) {
+      await DatabaseService.instance.upsertSelfReport(result);
+      if (!mounted) return;
+      setState(() => _todayChecked = true);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Check-in saved')),
       );
     }
   }
@@ -217,9 +237,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   _SettingTile(
                     icon: Icons.assignment_outlined,
-                    title: 'PHQ-9 Log',
-                    subtitle: 'Optional weekly questionnaire',
-                    onTap: () {},
+                    title: 'Daily Check-in',
+                    subtitle: _todayChecked ? 'Logged today' : 'Not logged yet',
+                    onTap: _openCheckIn,
                   ),
                 ]),
                 const SizedBox(height: 20),
@@ -664,6 +684,149 @@ class _SettingTile extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+// ─── Daily check-in dialog ──────────────────────────────────────────────────
+
+class _DailyCheckInDialog extends StatefulWidget {
+  const _DailyCheckInDialog();
+
+  @override
+  State<_DailyCheckInDialog> createState() => _DailyCheckInDialogState();
+}
+
+class _DailyCheckInDialogState extends State<_DailyCheckInDialog> {
+  int _sleep = 3;
+  int _mood = 3;
+  final _notes = TextEditingController();
+
+  @override
+  void dispose() {
+    _notes.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text('Daily Check-in',
+          style: GoogleFonts.manrope(fontWeight: FontWeight.w700)),
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _RatingRow(
+              label: 'How did you sleep last night?',
+              value: _sleep,
+              onChanged: (v) => setState(() => _sleep = v),
+            ),
+            const SizedBox(height: 16),
+            _RatingRow(
+              label: 'Mood today?',
+              value: _mood,
+              onChanged: (v) => setState(() => _mood = v),
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: _notes,
+              maxLines: 2,
+              decoration: InputDecoration(
+                labelText: 'Notes (optional)',
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+              ),
+            ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('Cancel'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            final now = DateTime.now();
+            Navigator.pop(
+              context,
+              SelfReport(
+                date: DateTime(now.year, now.month, now.day),
+                sleepRating: _sleep,
+                moodRating: _mood,
+                notes: _notes.text.trim().isNotEmpty ? _notes.text.trim() : null,
+                createdAt: now,
+              ),
+            );
+          },
+          child: const Text('Save'),
+        ),
+      ],
+    );
+  }
+}
+
+class _RatingRow extends StatelessWidget {
+  final String label;
+  final int value;
+  final ValueChanged<int> onChanged;
+  const _RatingRow(
+      {required this.label, required this.value, required this.onChanged});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label,
+            style: GoogleFonts.inter(
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+                color: AppColors.onSurface)),
+        const SizedBox(height: 8),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            for (var i = 1; i <= 5; i++)
+              GestureDetector(
+                onTap: () => onChanged(i),
+                child: Container(
+                  width: 44,
+                  height: 44,
+                  decoration: BoxDecoration(
+                    color: i == value
+                        ? AppColors.primaryContainer
+                        : AppColors.primaryContainer.withOpacity(0.08),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Center(
+                    child: Text('$i',
+                        style: GoogleFonts.inter(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                            color: i == value
+                                ? Colors.white
+                                : AppColors.primaryContainer)),
+                  ),
+                ),
+              ),
+          ],
+        ),
+        const SizedBox(height: 4),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Very poor',
+                style: GoogleFonts.inter(fontSize: 10, color: AppColors.outline)),
+            Text('Very good',
+                style: GoogleFonts.inter(fontSize: 10, color: AppColors.outline)),
+          ],
+        ),
+      ],
     );
   }
 }
