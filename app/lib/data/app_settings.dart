@@ -10,6 +10,8 @@ class AppSettings {
   static const _kUseDemoData = 'use_demo_data';
   static const _kActiveSource = 'active_source';
   static const _kAppleHealthGranted = 'apple_health_granted';
+  static const _kLastExportAt = 'last_export_at';
+  static const _kLastExportFormat = 'last_export_format';
 
   /// Constants for the [activeSource] preference.
   static const sourceFitbit = 'fitbit';
@@ -18,6 +20,8 @@ class AppSettings {
   bool _useDemoData = true;
   String? _activeSource;
   bool _appleHealthGranted = false;
+  DateTime? _lastExportAt;
+  String? _lastExportFormat;
 
   bool get useDemoData => _useDemoData;
 
@@ -32,11 +36,18 @@ class AppSettings {
   /// `hasPermissions()` result (which returns null on iOS for read types).
   bool get appleHealthGranted => _appleHealthGranted;
 
+  /// When the user last shared an export, and which format ('csv' / 'json').
+  DateTime? get lastExportAt => _lastExportAt;
+  String? get lastExportFormat => _lastExportFormat;
+
   Future<void> load() async {
     final prefs = await SharedPreferences.getInstance();
     _useDemoData = prefs.getBool(_kUseDemoData) ?? true;
     _activeSource = prefs.getString(_kActiveSource);
     _appleHealthGranted = prefs.getBool(_kAppleHealthGranted) ?? false;
+    final ts = prefs.getString(_kLastExportAt);
+    _lastExportAt = ts != null ? DateTime.tryParse(ts) : null;
+    _lastExportFormat = prefs.getString(_kLastExportFormat);
   }
 
   Future<void> setUseDemoData(bool value) async {
@@ -59,5 +70,13 @@ class AppSettings {
     _appleHealthGranted = value;
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_kAppleHealthGranted, value);
+  }
+
+  Future<void> setLastExport(DateTime when, String format) async {
+    _lastExportAt = when;
+    _lastExportFormat = format;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_kLastExportAt, when.toIso8601String());
+    await prefs.setString(_kLastExportFormat, format);
   }
 }
