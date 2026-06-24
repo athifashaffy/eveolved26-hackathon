@@ -15,7 +15,7 @@ class DatabaseService {
     final dbPath = await getDatabasesPath();
     return openDatabase(
       join(dbPath, 'signa.db'),
-      version: 1,
+      version: 2,
       onCreate: (db, _) async {
         await db.execute('''
           CREATE TABLE patient (
@@ -39,6 +39,12 @@ class DatabaseService {
             source       TEXT NOT NULL DEFAULT 'demo'
           )
         ''');
+        await _createSelfReports(db);
+      },
+      onUpgrade: (db, oldV, newV) async {
+        if (oldV < 2) {
+          await _createSelfReports(db);
+        }
       },
     );
   }
@@ -120,7 +126,41 @@ class DatabaseService {
     await d.delete('readings');
   }
 
+  // ─── Self-reports ─────────────────────────────────────────────────────────
+
+  Future<void> upsertSelfReport(SelfReport r) async {
+    final d = await db;
+    await d.insert('self_reports', r.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
+  Future<List<SelfReport>> getAllSelfReports() async {
+    final d = await db;
+    final rows = await d.query('self_reports', orderBy: 'date ASC');
+    return rows.map(SelfReport.fromMap).toList();
+  }
+
+  Future<SelfReport?> getSelfReportForDate(DateTime date) async {
+    final d = await db;
+    final rows = await d.query('self_reports',
+        where: 'date = ?', whereArgs: [SelfReport.dateKey(date)], limit: 1);
+    if (rows.isEmpty) return null;
+    return SelfReport.fromMap(rows.first);
+  }
+
   // ─── Helpers ──────────────────────────────────────────────────────────────
+
+  static Future<void> _createSelfReports(Database db) async {
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS self_reports (
+        date         TEXT PRIMARY KEY,
+        sleep_rating INTEGER NOT NULL,
+        mood_rating  INTEGER NOT NULL,
+        notes        TEXT,
+        created_at   TEXT NOT NULL
+      )
+    ''');
+  }
 
   static StabilityReading _rowToReading(Map<String, dynamic> row) =>
       StabilityReading(
