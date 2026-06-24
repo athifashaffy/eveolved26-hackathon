@@ -1,7 +1,7 @@
 name: signa
 description: "Signa — continuous depression monitoring from wearable data."
 publish_to: 'none'
-version: 1.0.0+2
+version: 1.0.0+3
 
 environment:
   sdk: '>=3.4.3 <4.0.0'
@@ -31,8 +31,18 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+  flutter_launcher_icons: ^0.13.1
 
 flutter:
   uses-material-design: true
   assets:
     - assets/data/trends.json
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/signa_icon.png"
+  remove_alpha_ios: true
+  background_color_ios: "#FBF7EC"
+  adaptive_icon_background: "#FBF7EC"
+  adaptive_icon_foreground: "assets/icon/signa_icon.png"

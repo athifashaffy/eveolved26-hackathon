@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
+import '../app_info.dart';
 import '../data/app_settings.dart';
 import '../data/database_service.dart';
 import '../data/fitbit_service.dart';
@@ -266,7 +267,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   _SettingTile(
                     icon: Icons.info_outline,
                     title: 'About Signa',
-                    subtitle: 'v1.0.0 · Evolved26 Hackathon',
+                    subtitle: '$kAppVersionLabel · Evolved26 Hackathon',
                     onTap: () {},
                   ),
                   _SettingTile(
