@@ -41,6 +41,50 @@ class StabilityReading {
   }
 }
 
+/// A patient-entered daily self-report (sleep + mood), bundled into exports.
+class SelfReport {
+  final DateTime date; // the day this report is for (date-only)
+  final int sleepRating; // 1..5 (Very poor .. Very good)
+  final int moodRating; // 1..5
+  final String? notes;
+  final DateTime createdAt;
+
+  const SelfReport({
+    required this.date,
+    required this.sleepRating,
+    required this.moodRating,
+    this.notes,
+    required this.createdAt,
+  });
+
+  static String dateKey(DateTime d) =>
+      '${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
+
+  Map<String, Object?> toMap() => {
+        'date': dateKey(date),
+        'sleep_rating': sleepRating,
+        'mood_rating': moodRating,
+        'notes': notes,
+        'created_at': createdAt.toIso8601String(),
+      };
+
+  factory SelfReport.fromMap(Map<String, Object?> m) => SelfReport(
+        date: DateTime.parse(m['date'] as String),
+        sleepRating: (m['sleep_rating'] as num).toInt(),
+        moodRating: (m['mood_rating'] as num).toInt(),
+        notes: m['notes'] as String?,
+        createdAt: DateTime.parse(m['created_at'] as String),
+      );
+
+  /// Export-facing shape: stable keys, no internal timestamp, notes never null.
+  Map<String, Object?> toJson() => {
+        'date': dateKey(date),
+        'sleep_rating': sleepRating,
+        'mood_rating': moodRating,
+        'notes': notes ?? '',
+      };
+}
+
 enum StabilityStatus { stable, monitoring, alert }
 
 class StabilitySnapshot {
