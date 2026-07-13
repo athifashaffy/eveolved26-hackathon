@@ -4,7 +4,9 @@ import 'package:crypto/crypto.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:http/http.dart' as http;
+import 'health_data_source.dart';
 import 'models.dart';
+import '../domain/daily_signal.dart';
 
 /// Fitbit OAuth 2.0 (Server / confidential client) + PKCE + REST API integration.
 ///
@@ -21,7 +23,7 @@ import 'models.dart';
 ///
 /// Server apps require HTTP Basic auth (`base64(client_id:client_secret)`) on
 /// the token endpoint. PKCE is still applied for the auth code exchange.
-class FitbitService {
+class FitbitService implements HealthDataSource {
   FitbitService._();
   static final instance = FitbitService._();
 
@@ -158,7 +160,8 @@ class FitbitService {
     if (refreshToken != null) {
       await _storage.write(key: _keyRefreshToken, value: refreshToken);
     }
-    await _storage.write(key: _keyExpiresAt, value: expiresAt.toIso8601String());
+    await _storage.write(
+        key: _keyExpiresAt, value: expiresAt.toIso8601String());
     return true;
   }
 
@@ -168,6 +171,42 @@ class FitbitService {
   }
 
   // ─── Fitbit Web API ───────────────────────────────────────────────────────
+
+  @override
+  Future<HealthFetchResult> fetch(DateTime start, DateTime end) async {
+    final token = await _validAccessToken();
+    if (token == null) {
+      return const HealthFetchResult.failure(
+        SignalSource.fitbit,
+        HealthFetchFailure.permissionDenied,
+      );
+    }
+    final headers = <String, String>{'Authorization': 'Bearer $token'};
+    try {
+      final results = await Future.wait(<Future<Map<String, num>>>[
+        _getSteps(headers, _dateStr(start), _dateStr(end)),
+        _getSleep(headers, _dateStr(start), _dateStr(end)),
+        _getHrv(headers, _dateStr(start), _dateStr(end)),
+      ]);
+      final signals = FitbitSignalNormalizer.combine(
+        steps: results[0].map((key, value) => MapEntry(key, value.toInt())),
+        sleepMinutes:
+            results[1].map((key, value) => MapEntry(key, value.toInt())),
+        hrvRmssd:
+            results[2].map((key, value) => MapEntry(key, value.toDouble())),
+      );
+      return HealthFetchResult(
+        signals: signals,
+        source: SignalSource.fitbit,
+        fetchedAt: DateTime.now(),
+      );
+    } catch (_) {
+      return const HealthFetchResult.failure(
+        SignalSource.fitbit,
+        HealthFetchFailure.unknown,
+      );
+    }
+  }
 
   /// Returns up to [days] days of StabilityReadings from Fitbit.
   Future<List<StabilityReading>?> fetchReadings({int days = 30}) async {
@@ -244,7 +283,8 @@ class FitbitService {
     final list = data['activities-steps'] as List? ?? [];
     return {
       for (final item in list)
-        (item['dateTime'] as String): int.tryParse(item['value'] as String? ?? '0') ?? 0
+        (item['dateTime'] as String):
+            int.tryParse(item['value'] as String? ?? '0') ?? 0
     };
   }
 
@@ -286,8 +326,31 @@ class FitbitService {
 
     return {
       for (final item in list)
-        (item['dateTime'] as String): (item['value'] as Map?)?['restingHeartRate'] as int? ?? 0
+        (item['dateTime'] as String):
+            (item['value'] as Map?)?['restingHeartRate'] as int? ?? 0
     };
+  }
+
+  Future<Map<String, num>> _getHrv(
+    Map<String, String> headers,
+    String startDate,
+    String endDate,
+  ) async {
+    final url =
+        'https://api.fitbit.com/1/user/-/hrv/date/$startDate/$endDate.json';
+    final response = await http.get(Uri.parse(url), headers: headers);
+    if (response.statusCode != 200) return <String, num>{};
+    final data = jsonDecode(response.body) as Map<String, dynamic>;
+    final entries = data['hrv'] as List? ?? const <Object>[];
+    final values = <String, num>{};
+    for (final rawEntry in entries) {
+      final entry = rawEntry as Map<String, dynamic>;
+      final date = entry['dateTime'] as String?;
+      final value = entry['value'] as Map<String, dynamic>?;
+      final rmssd = value?['dailyRmssd'] as num?;
+      if (date != null && rmssd != null && rmssd > 0) values[date] = rmssd;
+    }
+    return values;
   }
 
   // ─── PKCE helpers ─────────────────────────────────────────────────────────
