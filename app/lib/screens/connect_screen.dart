@@ -10,7 +10,16 @@ import '../widgets/signa_scaffold.dart';
 import '../widgets/top_app_bar.dart';
 
 class ConnectScreen extends StatefulWidget {
-  const ConnectScreen({super.key});
+  final bool? initialHealthConnected;
+  final bool? initialFitbitConnected;
+  final Future<bool> Function()? requestHealthAuthorization;
+
+  const ConnectScreen({
+    super.key,
+    this.initialHealthConnected,
+    this.initialFitbitConnected,
+    this.requestHealthAuthorization,
+  });
 
   @override
   State<ConnectScreen> createState() => _ConnectScreenState();
@@ -34,8 +43,10 @@ class _ConnectScreenState extends State<ConnectScreen> {
   }
 
   Future<void> _refresh() async {
-    final hk = await HealthKitService.instance.hasPermission();
-    final fb = await FitbitService.instance.isAuthenticated();
+    final hk = widget.initialHealthConnected ??
+        await HealthKitService.instance.hasPermission();
+    final fb = widget.initialFitbitConnected ??
+        await FitbitService.instance.isAuthenticated();
     if (!mounted) return;
     setState(() {
       _healthKitConnected = hk;
@@ -54,7 +65,8 @@ class _ConnectScreenState extends State<ConnectScreen> {
     }
 
     setState(() => _checking = true);
-    final ok = await HealthKitService.instance.requestAuthorization();
+    final ok = await (widget.requestHealthAuthorization?.call() ??
+        HealthKitService.instance.requestAuthorization());
     if (!mounted) return;
     setState(() {
       _healthKitConnected = ok;
@@ -207,6 +219,43 @@ class _ConnectScreenState extends State<ConnectScreen> {
             child: ListView(
               padding: const EdgeInsets.fromLTRB(20, 16, 20, 120),
               children: [
+                Container(
+                  padding: const EdgeInsets.all(18),
+                  decoration: BoxDecoration(
+                    color: AppColors.secondaryContainer,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Your data stays on this phone',
+                        style: GoogleFonts.manrope(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.onSecondaryContainer,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Signa requests read-only access to HRV, sleep, and steps so it can learn your personal wellness baseline. You can continue with manual check-ins instead.',
+                        style: GoogleFonts.inter(
+                          height: 1.45,
+                          color: AppColors.onSecondaryContainer,
+                        ),
+                      ),
+                      const SizedBox(height: 14),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: _checking ? null : _connectHealthKit,
+                          child: const Text('Connect health data'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 24),
                 Text('ACTIVE DEVICE',
                     style: AppTheme.labelUppercase(
                         color: AppColors.primaryContainer, size: 12)),

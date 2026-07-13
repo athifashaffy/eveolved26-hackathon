@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../data/real_data.dart';
 import '../data/models.dart';
+import '../domain/wellness_score.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_theme.dart';
 import '../widgets/signa_scaffold.dart';
@@ -11,10 +12,16 @@ import '../widgets/status_badge.dart';
 import '../widgets/top_app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  final WellnessViewSnapshot? snapshotOverride;
+
+  const HomeScreen({super.key, this.snapshotOverride});
 
   @override
   Widget build(BuildContext context) {
+    final wellnessView = snapshotOverride ?? RealData.wellnessSnapshot();
+    if (wellnessView != null) {
+      return _WellnessToday(view: wellnessView);
+    }
     final snap = RealData.snapshot();
     return SignaScaffold(
       currentRoute: '/home',
@@ -97,6 +104,210 @@ class HomeScreen extends StatelessWidget {
     0.55,
     0.5
   ];
+}
+
+class _WellnessToday extends StatelessWidget {
+  final WellnessViewSnapshot view;
+
+  const _WellnessToday({required this.view});
+
+  @override
+  Widget build(BuildContext context) {
+    final wellness = view.wellness;
+    final learning = wellness.score == null;
+    return SignaScaffold(
+      currentRoute: '/home',
+      child: Column(
+        children: [
+          const SignaAppBar(),
+          Expanded(
+            child: ListView(
+              padding: const EdgeInsets.fromLTRB(20, 12, 20, 120),
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(24),
+                  decoration: BoxDecoration(
+                    color: AppColors.surfaceContainerLowest,
+                    borderRadius: BorderRadius.circular(28),
+                  ),
+                  child: learning
+                      ? _LearningContent(wellness: wellness)
+                      : _ReadyContent(view: view),
+                ),
+                const SizedBox(height: 16),
+                _InsightPanel(view: view),
+                if (view.syncIssue != null) ...[
+                  const SizedBox(height: 12),
+                  Text(
+                    'The latest sync did not finish. Your last saved view is still available.',
+                    style: GoogleFonts.inter(
+                      color: AppColors.onSurfaceVariant,
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _LearningContent extends StatelessWidget {
+  final WellnessScore wellness;
+
+  const _LearningContent({required this.wellness});
+
+  @override
+  Widget build(BuildContext context) {
+    final progress = (wellness.eligibleDays / 10).clamp(0.0, 1.0);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          wellness.state == BaselineState.recalibrating
+              ? 'Relearning your baseline'
+              : 'Learning your baseline',
+          style: GoogleFonts.manrope(
+            fontSize: 22,
+            fontWeight: FontWeight.w700,
+            color: AppColors.primaryContainer,
+          ),
+        ),
+        const SizedBox(height: 12),
+        Text(
+          '${wellness.eligibleDays} of 10 eligible days',
+          style: GoogleFonts.inter(
+            fontSize: 16,
+            fontWeight: FontWeight.w700,
+            color: AppColors.onSurface,
+          ),
+        ),
+        const SizedBox(height: 12),
+        LinearProgressIndicator(
+          value: progress,
+          minHeight: 10,
+          borderRadius: BorderRadius.circular(999),
+          color: AppColors.primaryContainer,
+          backgroundColor: AppColors.surfaceContainerHigh,
+        ),
+        const SizedBox(height: 16),
+        Text(
+          'Keep wearing your device',
+          style: GoogleFonts.manrope(
+            fontWeight: FontWeight.w700,
+            color: AppColors.onSurface,
+          ),
+        ),
+        const SizedBox(height: 6),
+        Text(
+          'An eligible day includes sleep plus HRV or activity. Signa will not show a score until it has enough of your own data.',
+          style: GoogleFonts.inter(
+            height: 1.5,
+            color: AppColors.onSurfaceVariant,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _ReadyContent extends StatelessWidget {
+  final WellnessViewSnapshot view;
+
+  const _ReadyContent({required this.view});
+
+  @override
+  Widget build(BuildContext context) {
+    final wellness = view.wellness;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Your Signa Score',
+          style: GoogleFonts.manrope(
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            color: AppColors.primaryContainer,
+          ),
+        ),
+        const SizedBox(height: 16),
+        Text(
+          '${wellness.score} / 100',
+          style: GoogleFonts.manrope(
+            fontSize: 42,
+            fontWeight: FontWeight.w800,
+            color: AppColors.onSurface,
+          ),
+        ),
+        const SizedBox(height: 6),
+        Text(
+          '${_confidenceName(wellness.confidence)} confidence',
+          style: GoogleFonts.inter(
+            fontWeight: FontWeight.w700,
+            color: AppColors.onSurfaceVariant,
+          ),
+        ),
+        const SizedBox(height: 18),
+        ...wellness.contributions.entries.map(
+          (entry) => Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Text(
+              entry.value.explanation,
+              style: GoogleFonts.inter(
+                height: 1.4,
+                color: AppColors.onSurfaceVariant,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  String _confidenceName(ScoreConfidence confidence) => switch (confidence) {
+        ScoreConfidence.unavailable => 'Unavailable',
+        ScoreConfidence.low => 'Low',
+        ScoreConfidence.medium => 'Medium',
+        ScoreConfidence.high => 'High',
+      };
+}
+
+class _InsightPanel extends StatelessWidget {
+  final WellnessViewSnapshot view;
+
+  const _InsightPanel({required this.view});
+
+  @override
+  Widget build(BuildContext context) => Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: AppColors.surfaceContainerLow,
+          borderRadius: BorderRadius.circular(22),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              view.insight.title,
+              style: GoogleFonts.manrope(
+                fontSize: 17,
+                fontWeight: FontWeight.w700,
+                color: AppColors.onSurface,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              view.insight.body,
+              style: GoogleFonts.inter(
+                height: 1.5,
+                color: AppColors.onSurfaceVariant,
+              ),
+            ),
+          ],
+        ),
+      );
 }
 
 class _StabilityCard extends StatelessWidget {

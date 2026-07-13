@@ -61,15 +61,7 @@ class OnboardingScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () => context.go('/connect'),
-                  child: const Text("I'm a Patient"),
-                ),
-              ),
-              const SizedBox(height: 12),
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton(
-                  onPressed: () => context.go('/home'),
-                  child: const Text("I'm a Clinician"),
+                  child: const Text('Get started'),
                 ),
               ),
               const SizedBox(height: 24),
