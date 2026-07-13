@@ -3,7 +3,7 @@
 ## Repository gates
 
 - [x] Bundle/package ID is `com.autobiomarker.signa`.
-- [x] Version is at least `1.0.0+4`.
+- [x] Version is `1.0.1+5`.
 - [x] Health access is read-only and requested after consent.
 - [x] Analyzer has zero issues and unit/widget tests pass.
 - [x] Android release no longer uses debug signing.

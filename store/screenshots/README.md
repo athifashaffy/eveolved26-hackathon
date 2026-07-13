@@ -1,7 +1,7 @@
 # Store screenshot capture plan
 
 Use synthetic data labelled **Demo Data** only. Locale: `en-CA`; release:
-`1.0.0+4`; light mode; text scales 1.0 and 1.3.
+`1.0.1+5`; light mode; text scales 1.0 and 1.3.
 
 Capture onboarding, baseline learning, Today with confidence, 30-day Trends,
 Ask Signa grounded explanation, and the clinician-summary entry point. Do not

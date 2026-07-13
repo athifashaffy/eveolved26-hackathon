@@ -5,7 +5,7 @@
 - Name: Signa
 - Subtitle: Your private wellness baseline
 - Bundle ID: `com.autobiomarker.signa`
-- Version: `1.0.0` (build 4)
+- Version: `1.0.1` (build 5)
 - Category: Health & Fitness
 - Age: 18+
 
