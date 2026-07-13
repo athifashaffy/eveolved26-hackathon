@@ -183,7 +183,7 @@ The first release is intended for users aged 18 and older. The coach is labeled 
 
 ### 7.2 Deployment
 
-The reference model is the instruction-tuned Gemma 3 1B checkpoint in a supported 4-bit mobile format, executed on-device through the native Google AI Edge mobile runtime on Android and iOS. The Flutter layer communicates with small, platform-specific adapters behind a shared `CoachEngine` interface.
+The reference model is the instruction-tuned Gemma 3 1B checkpoint in a supported 4-bit GGUF format, executed on-device through a pinned `llama.cpp` native runtime on Android and iOS. The Flutter layer communicates with small, platform-specific adapters behind a shared `CoachEngine` interface. Signa does not use the prebuilt MediaPipe Tasks runtime because its published privacy notice states that Tasks sends performance and utilization metrics to Google; that would violate Signa's no-runtime-telemetry requirement.
 
 The model is not part of the initial app download. A supported user may explicitly download it from the Coach screen, preferably over Wi-Fi. The artifact and signed version manifest are hosted as static files on a first-party Signa-controlled endpoint; the download request carries no health or coach data. The app shows the download size, license/notice, privacy behavior, and delete option before consent. The downloaded artifact is checksum-verified, versioned, and removable without deleting the user's Signa history.
 
@@ -258,6 +258,7 @@ The research pipeline under `src/` remains independent from the release app. No 
 - Logs and crash reports must not contain health values, notes, OAuth tokens, or personal identifiers.
 - No advertising SDK may receive health data or health-derived audience information.
 - Gemma inference and coach safety processing remain on-device. Coach prompts and responses are not logged, uploaded, used for analytics, or used for model training.
+- The inference runtime has no telemetry client and makes no network request. Device tests block all networking during inference and fail if a request occurs.
 - Downloaded model artifacts contain no user data and can be deleted independently.
 - The public privacy policy and in-app policy must describe the same behavior.
 - Any future research contribution or clinic sharing requires a separate, explicit consent flow.
@@ -290,7 +291,7 @@ The existing primary navy remains the anchor color. Warm cream, green, and amber
 
 ## 12. Testing and Verification
 
-### 11.1 Automated tests
+### 12.1 Automated tests
 
 - Baseline readiness and rolling-window behavior.
 - Robust statistics and every component subscore.
@@ -307,7 +308,7 @@ The existing primary navy remains the anchor color. Warm cream, green, and amber
 - Onboarding, permission-denial, reconnect, and empty-state widgets.
 - Accessibility labels and text scaling.
 
-### 11.2 Release verification
+### 12.2 Release verification
 
 - `flutter analyze` returns no warnings or errors.
 - All Flutter tests pass.
