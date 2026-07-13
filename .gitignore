@@ -11,6 +11,14 @@ venv/
 app/android/key.properties
 *.jks
 *.keystore
+app/.dart_tool/
+app/.flutter-plugins-dependencies
+app/build/
+app/tmp/
+app/android/.gradle/
+app/ios/.symlinks/
+app/ios/Flutter/Flutter.podspec
+app/ios/Pods/
 
 
 temp_auto_push.bat
