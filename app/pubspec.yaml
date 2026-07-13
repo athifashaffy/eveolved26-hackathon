@@ -1,7 +1,7 @@
 name: signa
 description: "Signa — understand your personal wellness patterns from wearable data."
 publish_to: 'none'
-version: 1.0.0+3
+version: 1.0.0+4
 
 environment:
   sdk: '>=3.4.3 <4.0.0'
@@ -36,17 +36,21 @@ dev_dependencies:
   flutter_lints: ^3.0.0
   flutter_launcher_icons: ^0.13.1
   sqflite_common_ffi: ^2.3.6
+  image: ^4.5.4
 
 flutter:
   uses-material-design: true
   assets:
     - assets/data/trends.json
+    - assets/brand/signa-s-1024.png
+    - assets/brand/signa-s-foreground.png
 
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/icon/signa_icon.png"
+  image_path: "assets/brand/signa-s-1024.png"
+  image_path_ios: "assets/brand/signa-s-1024.png"
   remove_alpha_ios: true
   background_color_ios: "#FBF7EC"
   adaptive_icon_background: "#FBF7EC"
-  adaptive_icon_foreground: "assets/icon/signa_icon.png"
+  adaptive_icon_foreground: "assets/brand/signa-s-foreground.png"
