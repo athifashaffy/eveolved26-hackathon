@@ -1,10 +1,99 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import '../domain/daily_signal.dart';
+import '../domain/wellness_score.dart';
+import '../scoring/baseline_engine.dart';
+import '../scoring/insight_engine.dart';
 import 'app_settings.dart';
+import 'daily_signal_repository.dart';
 import 'database_service.dart';
 import 'fitbit_service.dart';
+import 'health_data_source.dart';
 import 'healthkit_service.dart';
 import 'models.dart';
+
+class WellnessViewSnapshot {
+  final WellnessScore wellness;
+  final List<DailySignal> signals;
+  final WellnessInsight insight;
+  final DateTime? lastSyncAt;
+  final String? syncIssue;
+
+  const WellnessViewSnapshot({
+    required this.wellness,
+    required this.signals,
+    required this.insight,
+    required this.lastSyncAt,
+    this.syncIssue,
+  });
+
+  WellnessViewSnapshot copyWith({String? syncIssue}) => WellnessViewSnapshot(
+        wellness: wellness,
+        signals: signals,
+        insight: insight,
+        lastSyncAt: lastSyncAt,
+        syncIssue: syncIssue,
+      );
+}
+
+class WellnessDataController {
+  final DailySignalRepository repository;
+  final HealthDataSource source;
+  final BaselineEngine baselineEngine;
+  final InsightEngine insightEngine;
+  final DateTime Function() clock;
+
+  WellnessViewSnapshot? _snapshot;
+  DateTime? _lastFetchAttempt;
+
+  WellnessDataController({
+    required this.repository,
+    required this.source,
+    required this.baselineEngine,
+    required this.insightEngine,
+    required this.clock,
+  });
+
+  WellnessViewSnapshot? get current => _snapshot;
+
+  Future<WellnessViewSnapshot> load({bool refreshIfStale = true}) async {
+    _snapshot ??= await _recompute();
+    final stale = _lastFetchAttempt == null ||
+        clock().difference(_lastFetchAttempt!).inMinutes >= 15;
+    if (refreshIfStale && stale) return forceSync();
+    return _snapshot!;
+  }
+
+  Future<WellnessViewSnapshot> forceSync() async {
+    final now = clock();
+    _lastFetchAttempt = now;
+    final result = await source.fetch(
+      now.subtract(const Duration(days: 90)),
+      now,
+    );
+    if (!result.isSuccess) {
+      _snapshot ??= await _recompute();
+      _snapshot = _snapshot!.copyWith(syncIssue: result.failure!.name);
+      return _snapshot!;
+    }
+    await repository.upsertSignals(result.signals);
+    _snapshot = await _recompute(lastSyncAt: result.fetchedAt ?? now);
+    return _snapshot!;
+  }
+
+  Future<WellnessViewSnapshot> _recompute({DateTime? lastSyncAt}) async {
+    final signals = await repository.getSignals();
+    final reports = await repository.getSelfReports();
+    final wellness = baselineEngine.evaluate(signals, reports, clock());
+    await repository.saveScore(wellness);
+    return WellnessViewSnapshot(
+      wellness: wellness,
+      signals: signals,
+      insight: insightEngine.build(wellness),
+      lastSyncAt: lastSyncAt,
+    );
+  }
+}
 
 /// Single source of truth for stability readings.
 ///
@@ -20,10 +109,13 @@ class RealData {
   static const _demoSources = ['demo'];
 
   static StabilitySnapshot? _snapshot;
+  static WellnessViewSnapshot? _wellnessView;
   static String _deviceName = 'Demo Data';
   static DateTime _lastFetchedAt = DateTime.fromMillisecondsSinceEpoch(0);
 
   static StabilitySnapshot snapshot() => _snapshot ?? _fallback();
+
+  static WellnessViewSnapshot? wellnessSnapshot() => _wellnessView;
 
   /// Load data. On first call loads from SQLite immediately, then refreshes
   /// from remote if stale (>15 min). Safe to call on every foreground resume.
@@ -67,7 +159,8 @@ class RealData {
         ? AppSettings.sourceAppleHealth
         : AppSettings.sourceFitbit;
     final otherStillConnected = await _isSourceAuthorised(other);
-    await AppSettings.instance.setActiveSource(otherStillConnected ? other : null);
+    await AppSettings.instance
+        .setActiveSource(otherStillConnected ? other : null);
     await forceSync();
   }
 
@@ -98,21 +191,29 @@ class RealData {
       return;
     }
 
-    if (source == AppSettings.sourceFitbit) {
-      final readings = await FitbitService.instance.fetchReadings();
-      if (readings != null && readings.isNotEmpty) {
-        await DatabaseService.instance.upsertReadings(readings, 'fitbit');
-      }
-      _deviceName = 'Fitbit';
+    final now = DateTime.now();
+    final adapter = source == AppSettings.sourceFitbit
+        ? FitbitService.instance
+        : HealthKitService.instance;
+    final result = await adapter.fetch(
+      now.subtract(const Duration(days: 90)),
+      now,
+    );
+    _deviceName =
+        source == AppSettings.sourceFitbit ? 'Fitbit' : 'Apple Health';
+    final repository = DailySignalRepository(await DatabaseService.instance.db);
+    if (result.isSuccess) {
+      await repository.upsertSignals(result.signals);
+      await _loadWellnessFromDb(
+        repository,
+        lastSyncAt: result.fetchedAt ?? now,
+      );
     } else {
-      final readings = await HealthKitService.instance.fetchReadings();
-      if (readings != null && readings.isNotEmpty) {
-        await DatabaseService.instance.upsertReadings(readings, 'apple_health');
-      }
-      _deviceName = 'Apple Health';
+      await _loadWellnessFromDb(
+        repository,
+        syncIssue: result.failure?.name,
+      );
     }
-
-    await _loadFromDb([source]);
   }
 
   /// Resolve which live source to use this fetch. Promotes/repairs the
@@ -156,8 +257,14 @@ class RealData {
   }
 
   static Future<void> _loadFromDb(List<String> sources) async {
-    final readings = await DatabaseService.instance
-        .getReadings(days: 90, sources: sources);
+    if (!AppSettings.instance.useDemoData) {
+      await _loadWellnessFromDb(
+        DailySignalRepository(await DatabaseService.instance.db),
+      );
+      return;
+    }
+    final readings =
+        await DatabaseService.instance.getReadings(days: 90, sources: sources);
     if (readings.isEmpty) {
       _snapshot = StabilitySnapshot.fromReadings(
         const [],
@@ -172,6 +279,45 @@ class RealData {
       lastSync: Duration(
         minutes: DateTime.now().difference(_lastFetchedAt).inMinutes,
       ),
+    );
+    _lastFetchedAt = DateTime.now();
+  }
+
+  static Future<void> _loadWellnessFromDb(
+    DailySignalRepository repository, {
+    DateTime? lastSyncAt,
+    String? syncIssue,
+  }) async {
+    final signals = await repository.getSignals();
+    final reports = await repository.getSelfReports();
+    final wellness =
+        BaselineEngine().evaluate(signals, reports, DateTime.now());
+    await repository.saveScore(wellness);
+    _wellnessView = WellnessViewSnapshot(
+      wellness: wellness,
+      signals: signals,
+      insight: const InsightEngine().build(wellness),
+      lastSyncAt: lastSyncAt,
+      syncIssue: syncIssue,
+    );
+    final normalizedScore = (wellness.score ?? 0) / 100;
+    final readings = signals.map((signal) {
+      final sleepMinutes = signal.sleepMinutes ?? 0;
+      return StabilityReading(
+        date: signal.date,
+        score: normalizedScore,
+        hrvMs: signal.hrvMs?.round() ?? 0,
+        sleepMinutes: sleepMinutes,
+        sleepScore: (sleepMinutes / 480 * 100).clamp(0, 100).round(),
+        steps: signal.steps ?? 0,
+      );
+    }).toList();
+    _snapshot = StabilitySnapshot.fromReadings(
+      readings,
+      deviceName: _deviceName,
+      lastSync: lastSyncAt == null
+          ? Duration.zero
+          : DateTime.now().difference(lastSyncAt),
     );
     _lastFetchedAt = DateTime.now();
   }

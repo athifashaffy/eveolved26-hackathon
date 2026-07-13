@@ -22,7 +22,15 @@ class DataExportService {
     buf.writeln('# patient_email,${_csvSafe(patient?.email)}');
     buf.writeln('# clinician,${_csvSafe(patient?.clinician)}');
     buf.writeln('# row_count,${readings.length}');
-    const header = ['date', 'hrv_ms', 'sleep_min', 'sleep_score', 'steps', 'score', 'source'];
+    const header = [
+      'date',
+      'hrv_ms',
+      'sleep_min',
+      'sleep_score',
+      'steps',
+      'score',
+      'source'
+    ];
     final data = <List<dynamic>>[
       header,
       for (final r in readings)
@@ -49,7 +57,8 @@ class DataExportService {
   }) {
     final scores =
         readings.map((r) => (r['score'] as num?)?.toDouble() ?? 0.0).toList();
-    final avg = scores.isEmpty ? 0.0 : scores.reduce((a, b) => a + b) / scores.length;
+    final avg =
+        scores.isEmpty ? 0.0 : scores.reduce((a, b) => a + b) / scores.length;
     final dates = readings
         .map((r) => r['date']?.toString() ?? '')
         .where((s) => s.isNotEmpty)

@@ -3,7 +3,7 @@ class StabilityReading {
   final double score; // 0..1
   final int hrvMs;
   final int sleepMinutes; // raw minutes asleep
-  final int sleepScore;   // 0..100 (derived from sleepMinutes)
+  final int sleepScore; // 0..100 (derived from sleepMinutes)
   final int steps;
 
   const StabilityReading({
@@ -130,8 +130,10 @@ class StabilitySnapshot {
     if (readings.isEmpty) return _empty(deviceName);
 
     final sorted = [...readings]..sort((a, b) => a.date.compareTo(b.date));
-    final last30 = sorted.length > 30 ? sorted.sublist(sorted.length - 30) : sorted;
-    final last14 = last30.length > 14 ? last30.sublist(last30.length - 14) : last30;
+    final last30 =
+        sorted.length > 30 ? sorted.sublist(sorted.length - 30) : sorted;
+    final last14 =
+        last30.length > 14 ? last30.sublist(last30.length - 14) : last30;
     final latest = last30.last;
 
     // HRV delta vs 7-day prior window

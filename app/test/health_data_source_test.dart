@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:signa/data/health_data_source.dart';
 import 'package:signa/domain/daily_signal.dart';
@@ -47,5 +49,17 @@ void main() {
 
     expect(result.signals, isEmpty);
     expect(result.failure, HealthFetchFailure.permissionDenied);
+  });
+
+  test('source adapters contain no hand-written wellness score or HRV estimate',
+      () async {
+    final source =
+        await File('lib/data/healthkit_service.dart').readAsString() +
+            await File('lib/data/fitbit_service.dart').readAsString();
+
+    expect(source, isNot(contains('estimatedHrv')));
+    expect(source, isNot(contains('normHrv')));
+    expect(source, isNot(contains('normSleep')));
+    expect(source, isNot(contains('fetchReadings')));
   });
 }

@@ -5,7 +5,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:http/http.dart' as http;
 import 'health_data_source.dart';
-import 'models.dart';
 import '../domain/daily_signal.dart';
 
 /// Fitbit OAuth 2.0 (Server / confidential client) + PKCE + REST API integration.
@@ -208,67 +207,6 @@ class FitbitService implements HealthDataSource {
     }
   }
 
-  /// Returns up to [days] days of StabilityReadings from Fitbit.
-  Future<List<StabilityReading>?> fetchReadings({int days = 30}) async {
-    final token = await _validAccessToken();
-    if (token == null) return null;
-
-    final headers = {'Authorization': 'Bearer $token'};
-    final endDate = _dateStr(DateTime.now());
-    final startDate = _dateStr(DateTime.now().subtract(Duration(days: days)));
-
-    try {
-      final results = await Future.wait([
-        _getSteps(headers, startDate, endDate),
-        _getSleep(headers, startDate, endDate),
-        _getHeartRate(headers, startDate, endDate),
-      ]);
-
-      final stepsMap = results[0];
-      final sleepMap = results[1];
-      final hrMap = results[2];
-
-      // Build readings for each date
-      final allDates = <String>{
-        ...stepsMap.keys,
-        ...sleepMap.keys,
-        ...hrMap.keys,
-      };
-
-      final readings = <StabilityReading>[];
-      for (final dateStr in allDates) {
-        final steps = stepsMap[dateStr] ?? 0;
-        final sleepMin = sleepMap[dateStr] ?? 0;
-        final restingHr = hrMap[dateStr] ?? 0;
-
-        // Estimate HRV from resting HR (rough inverse: HRV ≈ 1000/HR * 3)
-        // Fitbit premium users get actual HRV; for standard we estimate
-        final estimatedHrv = restingHr > 0
-            ? ((1000 / restingHr) * 3).clamp(20.0, 80.0).toInt()
-            : 40;
-
-        final sleepScore = (sleepMin / 480 * 100).clamp(0, 100).toInt();
-        final normHrv = (estimatedHrv / 60).clamp(0.0, 1.0);
-        final normSleep = sleepScore / 100.0;
-        final score = (normHrv * 0.6 + normSleep * 0.4).clamp(0.0, 1.0);
-
-        readings.add(StabilityReading(
-          date: DateTime.parse(dateStr),
-          score: score,
-          hrvMs: estimatedHrv,
-          sleepMinutes: sleepMin,
-          sleepScore: sleepScore,
-          steps: steps,
-        ));
-      }
-
-      readings.sort((a, b) => a.date.compareTo(b.date));
-      return readings.isEmpty ? null : readings;
-    } catch (_) {
-      return null;
-    }
-  }
-
   Future<Map<String, int>> _getSteps(
     Map<String, String> headers,
     String startDate,
@@ -309,26 +247,6 @@ class FitbitService implements HealthDataSource {
       result[date] = (result[date] ?? 0) + minutes;
     }
     return result;
-  }
-
-  Future<Map<String, int>> _getHeartRate(
-    Map<String, String> headers,
-    String startDate,
-    String endDate,
-  ) async {
-    final url =
-        'https://api.fitbit.com/1/user/-/activities/heart/date/$startDate/$endDate.json';
-    final res = await http.get(Uri.parse(url), headers: headers);
-    if (res.statusCode != 200) return {};
-
-    final data = jsonDecode(res.body) as Map<String, dynamic>;
-    final list = data['activities-heart'] as List? ?? [];
-
-    return {
-      for (final item in list)
-        (item['dateTime'] as String):
-            (item['value'] as Map?)?['restingHeartRate'] as int? ?? 0
-    };
   }
 
   Future<Map<String, num>> _getHrv(
