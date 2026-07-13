@@ -15,7 +15,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>signa</string>
+	<string>Signa</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -38,9 +38,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSHealthShareUsageDescription</key>
-	<string>Signa reads your heart-rate variability and sleep data from Apple Health to compute your daily stability score.</string>
-	<key>NSHealthUpdateUsageDescription</key>
-	<string>Signa does not write to Apple Health.</string>
+	<string>With your permission, Signa reads HRV, sleep, and steps to learn your usual range on this phone.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
