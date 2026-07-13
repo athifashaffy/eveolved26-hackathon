@@ -12,17 +12,17 @@ void main() {
       confidence: ScoreConfidence.high,
       eligibleDays: 28,
       contributions: <ScoreComponent, ComponentContribution>{
-        ScoreComponent.sleep: ComponentContribution(
+        ScoreComponent.sleep: const ComponentContribution(
           score: 42,
           weight: .35,
           explanation: 'Sleep timing differed from your usual range.',
         ),
-        ScoreComponent.hrv: ComponentContribution(
+        ScoreComponent.hrv: const ComponentContribution(
           score: 96,
           weight: .35,
           explanation: 'Recent HRV stayed close to your usual range.',
         ),
-        ScoreComponent.activity: ComponentContribution(
+        ScoreComponent.activity: const ComponentContribution(
           score: 78,
           weight: .15,
           explanation: 'Activity stayed near your usual range.',

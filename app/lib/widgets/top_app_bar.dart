@@ -28,7 +28,7 @@ class SignaAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.surface.withOpacity(0.88),
+        color: AppColors.surface.withValues(alpha: 0.88),
         boxShadow: [
           BoxShadow(
             color: AppColors.shadowTint(opacity: 0.06),
@@ -51,7 +51,7 @@ class SignaAppBar extends StatelessWidget implements PreferredSizeWidget {
                 onTap: onBack,
                 child: Container(
                   padding: const EdgeInsets.all(8),
-                  child: Icon(Icons.arrow_back_rounded,
+                  child: const Icon(Icons.arrow_back_rounded,
                       color: AppColors.primary, size: 24),
                 ),
               ),
@@ -63,7 +63,7 @@ class SignaAppBar extends StatelessWidget implements PreferredSizeWidget {
                   color: AppColors.surfaceContainerHigh,
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: AppColors.primaryContainer.withOpacity(0.1),
+                    color: AppColors.primaryContainer.withValues(alpha: 0.1),
                     width: 2,
                   ),
                 ),
@@ -118,7 +118,7 @@ class SignaAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Container(
                   width: 40,
                   height: 40,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.transparent,
                   ),

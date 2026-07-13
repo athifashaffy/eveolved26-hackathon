@@ -125,6 +125,7 @@ class _ConnectScreenState extends State<ConnectScreen> {
 
     if (ok) {
       await RealData.onDeviceConnected(AppSettings.sourceFitbit);
+      if (!mounted) return;
       setState(() {
         _fitbitConnected = true;
         _checking = false;
@@ -367,7 +368,7 @@ class _ActiveDeviceCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: AppColors.primaryContainer.withOpacity(0.1),
+                  color: AppColors.primaryContainer.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(14),
                 ),
                 child: const Icon(Icons.watch,
@@ -534,7 +535,7 @@ class _AddDeviceTile extends StatelessWidget {
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.04),
+                        color: Colors.black.withValues(alpha: 0.04),
                         blurRadius: 8,
                         offset: const Offset(0, 2),
                       ),

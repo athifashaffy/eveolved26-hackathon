@@ -10,8 +10,8 @@ class AppTheme {
     final manrope = GoogleFonts.manropeTextTheme();
     final inter = GoogleFonts.interTextTheme();
     return TextTheme(
-      displayLarge: manrope.displayLarge?.copyWith(
-          fontWeight: FontWeight.w800, color: AppColors.onSurface),
+      displayLarge: manrope.displayLarge
+          ?.copyWith(fontWeight: FontWeight.w800, color: AppColors.onSurface),
       displayMedium: manrope.displayMedium?.copyWith(
           fontSize: 44,
           fontWeight: FontWeight.w700,
@@ -24,21 +24,21 @@ class AppTheme {
           fontSize: 24,
           fontWeight: FontWeight.w700,
           color: AppColors.primaryContainer),
-      titleLarge: manrope.titleLarge?.copyWith(
-          fontWeight: FontWeight.w700, color: AppColors.onSurface),
+      titleLarge: manrope.titleLarge
+          ?.copyWith(fontWeight: FontWeight.w700, color: AppColors.onSurface),
       titleMedium: inter.titleMedium?.copyWith(
           fontSize: 18,
           fontWeight: FontWeight.w500,
           color: AppColors.onSurface),
-      titleSmall: inter.titleSmall?.copyWith(
-          fontWeight: FontWeight.w600, color: AppColors.onSurface),
+      titleSmall: inter.titleSmall
+          ?.copyWith(fontWeight: FontWeight.w600, color: AppColors.onSurface),
       bodyLarge: inter.bodyLarge?.copyWith(color: AppColors.onSurfaceVariant),
-      bodyMedium: inter.bodyMedium?.copyWith(
-          fontSize: 14, color: AppColors.onSurfaceVariant),
+      bodyMedium: inter.bodyMedium
+          ?.copyWith(fontSize: 14, color: AppColors.onSurfaceVariant),
       bodySmall: inter.bodySmall?.copyWith(color: AppColors.onSurfaceVariant),
       labelLarge: inter.labelLarge?.copyWith(fontWeight: FontWeight.w700),
-      labelMedium: inter.labelMedium?.copyWith(
-          fontWeight: FontWeight.w700, color: AppColors.outline),
+      labelMedium: inter.labelMedium
+          ?.copyWith(fontWeight: FontWeight.w700, color: AppColors.outline),
       labelSmall: inter.labelSmall?.copyWith(
           fontSize: 11,
           fontWeight: FontWeight.w700,
@@ -110,8 +110,9 @@ class AppTheme {
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           foregroundColor: AppColors.primaryContainer,
-          side:
-              BorderSide(color: AppColors.primaryContainer.withOpacity(0.4), width: 2),
+          side: BorderSide(
+              color: AppColors.primaryContainer.withValues(alpha: 0.4),
+              width: 2),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),

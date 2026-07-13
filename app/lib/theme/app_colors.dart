@@ -66,5 +66,5 @@ class AppColors {
 
   // Tinted shadow (signature clinical shadow)
   static Color shadowTint({double opacity = 0.08}) =>
-      primary.withOpacity(opacity);
+      primary.withValues(alpha: opacity);
 }

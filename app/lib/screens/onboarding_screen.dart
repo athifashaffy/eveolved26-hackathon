@@ -103,7 +103,7 @@ class _WatchHero extends StatelessWidget {
           heightFactor: 0.9,
           child: Container(
             decoration: BoxDecoration(
-              color: AppColors.surfaceContainerLow.withOpacity(0.6),
+              color: AppColors.surfaceContainerLow.withValues(alpha: 0.6),
               shape: BoxShape.circle,
             ),
           ),
@@ -156,7 +156,7 @@ class _WatchHero extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.12),
+                    color: Colors.white.withValues(alpha: 0.12),
                     shape: BoxShape.circle,
                   ),
                   child:
@@ -185,7 +185,7 @@ class _WatchHero extends StatelessWidget {
         width: 6,
         height: 6,
         decoration: BoxDecoration(
-          color: AppColors.onPrimaryContainer.withOpacity(opacity),
+          color: AppColors.onPrimaryContainer.withValues(alpha: opacity),
           shape: BoxShape.circle,
         ),
       );

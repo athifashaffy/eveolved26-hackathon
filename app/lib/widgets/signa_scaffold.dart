@@ -42,18 +42,21 @@ class SignaScaffold extends StatelessWidget {
     return Container(
       margin: EdgeInsets.zero,
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.95),
+        color: Colors.white.withValues(alpha: 0.95),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.04),
+            color: Colors.black.withValues(alpha: 0.04),
             blurRadius: 24,
             offset: const Offset(0, -8),
           ),
         ],
       ),
       padding: EdgeInsets.only(
-          top: 12, bottom: 24 + MediaQuery.of(context).padding.bottom * 0, left: 16, right: 16),
+          top: 12,
+          bottom: 24 + MediaQuery.of(context).padding.bottom * 0,
+          left: 16,
+          right: 16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: _items.map((it) {
@@ -80,7 +83,7 @@ class _NavItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         decoration: BoxDecoration(
           color: active
-              ? AppColors.primaryContainer.withOpacity(0.12)
+              ? AppColors.primaryContainer.withValues(alpha: 0.12)
               : Colors.transparent,
           borderRadius: BorderRadius.circular(16),
         ),
