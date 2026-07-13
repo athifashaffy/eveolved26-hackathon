@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../data/real_data.dart';
+import '../data/database_service.dart';
 import '../data/models.dart';
+import '../domain/daily_signal.dart';
+import '../domain/timeline_marker.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_theme.dart';
 import '../widgets/signa_scaffold.dart';
@@ -15,12 +18,35 @@ class TrendsScreen extends StatefulWidget {
   State<TrendsScreen> createState() => _TrendsScreenState();
 }
 
+List<DailySignal> filterSignalsForRange(
+  List<DailySignal> signals,
+  DateTime now,
+  int days,
+) {
+  final today = DateTime(now.year, now.month, now.day);
+  final start = today.subtract(Duration(days: days - 1));
+  return signals
+      .where((signal) =>
+          !signal.date.isBefore(start) && !signal.date.isAfter(today))
+      .toList()
+    ..sort((left, right) => left.date.compareTo(right.date));
+}
+
 class _TrendsScreenState extends State<TrendsScreen> {
   int _range = 1; // 0 = 7d, 1 = 30d, 2 = 90d
 
   @override
   Widget build(BuildContext context) {
     final snap = RealData.snapshot();
+    final wellnessView = RealData.wellnessSnapshot();
+    final rangeDays = const <int>[7, 30, 90][_range];
+    final signals = wellnessView == null
+        ? const <DailySignal>[]
+        : filterSignalsForRange(
+            wellnessView.signals,
+            DateTime.now(),
+            rangeDays,
+          );
     return SignaScaffold(
       currentRoute: '/trends',
       child: Column(
@@ -41,69 +67,85 @@ class _TrendsScreenState extends State<TrendsScreen> {
                   onChange: (v) => setState(() => _range = v),
                 ),
                 const SizedBox(height: 24),
-                _ChartCard(readings: snap.last30Days),
+                if (wellnessView != null)
+                  _SignalChartCard(signals: signals, days: rangeDays)
+                else
+                  _ChartCard(readings: snap.last30Days),
                 const SizedBox(height: 16),
-                Builder(builder: (_) {
-                  final rs = snap.last30Days;
-                  final avg = rs.isEmpty
-                      ? 0.0
-                      : rs.map((r) => r.score).reduce((a, b) => a + b) /
-                          rs.length;
-                  final lowest = rs.isEmpty
-                      ? 0.0
-                      : rs.map((r) => r.score).reduce((a, b) => a < b ? a : b);
-                  final daysBelow = rs.where((r) => r.score < 0.5).length;
-                  return Row(
+                if (wellnessView != null)
+                  Row(
                     children: [
                       Expanded(
                         child: _SummaryTile(
-                            label: 'AVG SCORE',
-                            value: avg.toStringAsFixed(2),
-                            color: AppColors.primary),
+                          label: 'DATA DAYS',
+                          value: signals.length.toString(),
+                          color: AppColors.primary,
+                        ),
                       ),
                       const SizedBox(width: 10),
                       Expanded(
                         child: _SummaryTile(
-                            label: 'LOWEST',
-                            value: lowest.toStringAsFixed(2),
-                            color: AppColors.error),
+                          label: 'HRV DAYS',
+                          value: signals
+                              .where((s) => s.hrvMs != null)
+                              .length
+                              .toString(),
+                          color: AppColors.sparkGreen,
+                        ),
                       ),
                       const SizedBox(width: 10),
                       Expanded(
                         child: _SummaryTile(
-                            label: 'DAYS BELOW',
-                            value: daysBelow.toString(),
-                            color: AppColors.primary),
-                      ),
-                    ],
-                  );
-                }),
-                const SizedBox(height: 16),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-                  decoration: BoxDecoration(
-                    color: AppColors.tertiaryFixed.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.edit_calendar_outlined,
-                          color: AppColors.tertiaryContainer),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Text(
-                          'Add context to remember what changed around Mar 15',
-                          style: GoogleFonts.inter(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.onTertiaryFixedVariant,
-                          ),
+                          label: 'SLEEP DAYS',
+                          value: signals
+                              .where((s) => s.sleepMinutes != null)
+                              .length
+                              .toString(),
+                          color: AppColors.sparkAmber,
                         ),
                       ),
                     ],
-                  ),
-                ),
+                  )
+                else
+                  Builder(builder: (_) {
+                    final rs = snap.last30Days;
+                    final avg = rs.isEmpty
+                        ? 0.0
+                        : rs.map((r) => r.score).reduce((a, b) => a + b) /
+                            rs.length;
+                    final lowest = rs.isEmpty
+                        ? 0.0
+                        : rs
+                            .map((r) => r.score)
+                            .reduce((a, b) => a < b ? a : b);
+                    final daysBelow = rs.where((r) => r.score < 0.5).length;
+                    return Row(
+                      children: [
+                        Expanded(
+                          child: _SummaryTile(
+                              label: 'AVG SCORE',
+                              value: avg.toStringAsFixed(2),
+                              color: AppColors.primary),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: _SummaryTile(
+                              label: 'LOWEST',
+                              value: lowest.toStringAsFixed(2),
+                              color: AppColors.error),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: _SummaryTile(
+                              label: 'DAYS BELOW',
+                              value: daysBelow.toString(),
+                              color: AppColors.primary),
+                        ),
+                      ],
+                    );
+                  }),
+                const SizedBox(height: 16),
+                _MarkerPanel(days: rangeDays),
                 const SizedBox(height: 28),
                 _InsightCard(),
               ],
@@ -111,6 +153,142 @@ class _TrendsScreenState extends State<TrendsScreen> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _SignalChartCard extends StatelessWidget {
+  final List<DailySignal> signals;
+  final int days;
+
+  const _SignalChartCard({required this.signals, required this.days});
+
+  @override
+  Widget build(BuildContext context) {
+    final hrv = _relativeSpots(signals.map((signal) => signal.hrvMs).toList());
+    final sleep = _relativeSpots(
+      signals.map((signal) => signal.sleepMinutes?.toDouble()).toList(),
+    );
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: AppColors.surfaceContainerLowest,
+        borderRadius: BorderRadius.circular(28),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Personal signal trend',
+            style: GoogleFonts.manrope(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+              color: AppColors.primaryContainer,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            'LAST $days DAYS • RELATIVE TO EACH SIGNAL’S RANGE',
+            style: AppTheme.labelUppercase(size: 9),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Green is HRV and amber is sleep. Gaps mean data was unavailable.',
+            style: GoogleFonts.inter(
+              fontSize: 12,
+              color: AppColors.onSurfaceVariant,
+            ),
+          ),
+          const SizedBox(height: 18),
+          SizedBox(
+            height: 210,
+            child: signals.isEmpty
+                ? const Center(child: Text('No signal data in this range'))
+                : LineChart(
+                    LineChartData(
+                      minY: 0,
+                      maxY: 1,
+                      minX: 0,
+                      maxX: (signals.length - 1).clamp(1, 1000).toDouble(),
+                      borderData: FlBorderData(show: false),
+                      titlesData: const FlTitlesData(show: false),
+                      gridData: const FlGridData(show: false),
+                      lineBarsData: [
+                        LineChartBarData(
+                          spots: hrv,
+                          color: AppColors.sparkGreen,
+                          barWidth: 3,
+                          dotData: const FlDotData(show: false),
+                        ),
+                        LineChartBarData(
+                          spots: sleep,
+                          color: AppColors.sparkAmber,
+                          barWidth: 3,
+                          dotData: const FlDotData(show: false),
+                        ),
+                      ],
+                    ),
+                  ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  List<FlSpot> _relativeSpots(List<double?> values) {
+    final present = values.whereType<double>().toList();
+    if (present.isEmpty) return const <FlSpot>[];
+    final minimum =
+        present.reduce((left, right) => left < right ? left : right);
+    final maximum =
+        present.reduce((left, right) => left > right ? left : right);
+    final scale = maximum == minimum ? 1.0 : maximum - minimum;
+    return values.asMap().entries.where((entry) => entry.value != null).map(
+      (entry) {
+        final relative =
+            maximum == minimum ? .5 : (entry.value! - minimum) / scale;
+        return FlSpot(entry.key.toDouble(), relative);
+      },
+    ).toList();
+  }
+}
+
+class _MarkerPanel extends StatelessWidget {
+  final int days;
+
+  const _MarkerPanel({required this.days});
+
+  @override
+  Widget build(BuildContext context) {
+    final end = DateTime.now();
+    final start = end.subtract(Duration(days: days - 1));
+    return FutureBuilder<List<TimelineMarker>>(
+      future: DatabaseService.instance.getTimelineMarkers(start, end),
+      builder: (context, snapshot) {
+        final markers = snapshot.data ?? const <TimelineMarker>[];
+        return Container(
+          padding: const EdgeInsets.all(14),
+          decoration: BoxDecoration(
+            color: AppColors.tertiaryFixed.withValues(alpha: 0.3),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: markers.isEmpty
+              ? const Text('No context markers in this range')
+              : Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: markers
+                      .map(
+                        (marker) => Chip(
+                          avatar: const Icon(Icons.edit_calendar_outlined,
+                              size: 16),
+                          label: Text(marker.category.name),
+                        ),
+                      )
+                      .toList(),
+                ),
+        );
+      },
     );
   }
 }
@@ -240,7 +418,7 @@ class _ChartCard extends StatelessWidget {
                   drawVerticalLine: false,
                   horizontalInterval: 0.25,
                   getDrawingHorizontalLine: (_) => FlLine(
-                    color: AppColors.outlineVariant.withOpacity(0.4),
+                    color: AppColors.outlineVariant.withValues(alpha: 0.4),
                     strokeWidth: 1,
                     dashArray: [4, 6],
                   ),
@@ -260,8 +438,9 @@ class _ChartCard extends StatelessWidget {
                       interval: 7,
                       getTitlesWidget: (v, _) {
                         final i = v.round();
-                        if (i < 0 || i >= readings.length)
+                        if (i < 0 || i >= readings.length) {
                           return const SizedBox.shrink();
+                        }
                         const months = [
                           'JAN',
                           'FEB',
@@ -291,7 +470,7 @@ class _ChartCard extends StatelessWidget {
                 extraLinesData: ExtraLinesData(horizontalLines: [
                   HorizontalLine(
                     y: 0.5,
-                    color: AppColors.error.withOpacity(0.5),
+                    color: AppColors.error.withValues(alpha: 0.5),
                     strokeWidth: 1.5,
                     dashArray: [6, 6],
                     label: HorizontalLineLabel(
@@ -334,8 +513,8 @@ class _ChartCard extends StatelessWidget {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                          AppColors.primaryContainer.withOpacity(0.18),
-                          AppColors.primaryContainer.withOpacity(0.0),
+                          AppColors.primaryContainer.withValues(alpha: 0.18),
+                          AppColors.primaryContainer.withValues(alpha: 0.0),
                         ],
                       ),
                     ),
@@ -385,7 +564,7 @@ class _InsightCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColors.secondaryContainer.withOpacity(0.25),
+        color: AppColors.secondaryContainer.withValues(alpha: 0.25),
         borderRadius: BorderRadius.circular(28),
       ),
       child: Column(

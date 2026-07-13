@@ -136,6 +136,12 @@ class _WellnessToday extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 _InsightPanel(view: view),
+                const SizedBox(height: 16),
+                OutlinedButton.icon(
+                  onPressed: () => context.push('/check-in'),
+                  icon: const Icon(Icons.edit_note_outlined),
+                  label: const Text('Add today’s context'),
+                ),
                 if (view.syncIssue != null) ...[
                   const SizedBox(height: 12),
                   Text(
@@ -323,7 +329,7 @@ class _StabilityCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(28),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.025),
+            color: Colors.black.withValues(alpha: 0.025),
             blurRadius: 24,
             offset: const Offset(0, 8),
           ),
@@ -472,7 +478,7 @@ class _MetricCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.015),
+            color: Colors.black.withValues(alpha: 0.015),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),
@@ -631,7 +637,8 @@ class _DailyHistoryCard extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: highlight
                               ? AppColors.primaryContainer
-                              : AppColors.primaryContainer.withOpacity(0.2),
+                              : AppColors.primaryContainer
+                                  .withValues(alpha: 0.2),
                           borderRadius: const BorderRadius.vertical(
                               top: Radius.circular(999)),
                         ),
@@ -681,7 +688,7 @@ class _DeviceTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.015),
+              color: Colors.black.withValues(alpha: 0.015),
               blurRadius: 12,
               offset: const Offset(0, 4),
             ),
@@ -729,7 +736,7 @@ class _DeviceTile extends StatelessWidget {
                       color: indicatorColor,
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: indicatorColor.withOpacity(0.25),
+                        color: indicatorColor.withValues(alpha: 0.25),
                         width: 4,
                       ),
                     ),
@@ -765,7 +772,7 @@ class _StepsCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.015),
+            color: Colors.black.withValues(alpha: 0.015),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),

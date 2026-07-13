@@ -1,6 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'models.dart';
+import '../domain/timeline_marker.dart';
 
 /// Single SQLite database for patient profile + synced readings.
 class DatabaseService {
@@ -201,6 +202,48 @@ class DatabaseService {
     if (rows.isEmpty) return null;
     return SelfReport.fromMap(rows.first);
   }
+
+  Future<void> upsertTimelineMarker(TimelineMarker marker) async {
+    await upsertTimelineMarkerIn(await db, marker);
+  }
+
+  Future<List<TimelineMarker>> getTimelineMarkers(
+    DateTime start,
+    DateTime end,
+  ) =>
+      getTimelineMarkersFromDatabase(db, start, end);
+
+  static Future<void> upsertTimelineMarkerIn(
+    Database db,
+    TimelineMarker marker,
+  ) async {
+    await db.insert(
+      'timeline_markers',
+      marker.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+  static Future<List<TimelineMarker>> getTimelineMarkersFrom(
+    Database db,
+    DateTime start,
+    DateTime end,
+  ) async {
+    final rows = await db.query(
+      'timeline_markers',
+      where: 'date >= ? AND date <= ?',
+      whereArgs: <Object?>[_dateStr(start), _dateStr(end)],
+      orderBy: 'date ASC',
+    );
+    return rows.map(TimelineMarker.fromMap).toList();
+  }
+
+  static Future<List<TimelineMarker>> getTimelineMarkersFromDatabase(
+    Future<Database> database,
+    DateTime start,
+    DateTime end,
+  ) async =>
+      getTimelineMarkersFrom(await database, start, end);
 
   // ─── Helpers ──────────────────────────────────────────────────────────────
 
