@@ -15,9 +15,14 @@ class DatabaseService {
     final dbPath = await getDatabasesPath();
     return openDatabase(
       join(dbPath, 'signa.db'),
-      version: 2,
-      onCreate: (db, _) async {
-        await db.execute('''
+      version: 3,
+      onCreate: (db, _) => createSchema(db),
+      onUpgrade: migrateSchema,
+    );
+  }
+
+  static Future<void> createSchema(DatabaseExecutor db) async {
+    await db.execute('''
           CREATE TABLE patient (
             id       INTEGER PRIMARY KEY AUTOINCREMENT,
             name     TEXT NOT NULL DEFAULT '',
@@ -27,7 +32,7 @@ class DatabaseService {
             created_at TEXT NOT NULL
           )
         ''');
-        await db.execute('''
+    await db.execute('''
           CREATE TABLE readings (
             id           INTEGER PRIMARY KEY AUTOINCREMENT,
             date         TEXT NOT NULL UNIQUE,
@@ -39,14 +44,42 @@ class DatabaseService {
             source       TEXT NOT NULL DEFAULT 'demo'
           )
         ''');
-        await _createSelfReports(db);
-      },
-      onUpgrade: (db, oldV, newV) async {
-        if (oldV < 2) {
-          await _createSelfReports(db);
-        }
-      },
-    );
+    await _createSelfReports(db);
+    await _createWellnessTables(db);
+  }
+
+  static Future<void> migrateSchema(
+    DatabaseExecutor db,
+    int oldVersion,
+    int newVersion,
+  ) async {
+    if (oldVersion < 2) await _createSelfReports(db);
+    if (oldVersion < 3) {
+      await _createWellnessTables(db);
+      final tables = await db.rawQuery(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='readings'",
+      );
+      if (tables.isNotEmpty) {
+        await db.execute('''
+          INSERT OR REPLACE INTO daily_signals (
+            date, source, hrv_ms, sleep_minutes, sleep_midpoint_minutes, steps
+          )
+          SELECT
+            date,
+            CASE source
+              WHEN 'healthkit' THEN 'appleHealth'
+              WHEN 'apple_health' THEN 'appleHealth'
+              WHEN 'health_connect' THEN 'healthConnect'
+              ELSE source
+            END,
+            NULLIF(hrv_ms, 0),
+            NULLIF(sleep_min, 0),
+            NULL,
+            NULLIF(steps, 0)
+          FROM readings
+        ''');
+      }
+    }
   }
 
   // ─── Patient ──────────────────────────────────────────────────────────────
@@ -100,7 +133,8 @@ class DatabaseService {
     return d.query('readings', orderBy: 'date ASC');
   }
 
-  Future<void> upsertReadings(List<StabilityReading> readings, String source) async {
+  Future<void> upsertReadings(
+      List<StabilityReading> readings, String source) async {
     final d = await db;
     final batch = d.batch();
     for (final r in readings) {
@@ -124,6 +158,26 @@ class DatabaseService {
   Future<void> clearReadings() async {
     final d = await db;
     await d.delete('readings');
+  }
+
+  Future<void> deleteAllUserData() async {
+    final database = await db;
+    await deleteAllUserDataFrom(database);
+  }
+
+  static Future<void> deleteAllUserDataFrom(Database db) async {
+    await db.transaction((transaction) async {
+      for (final table in <String>[
+        'patient',
+        'readings',
+        'self_reports',
+        'daily_signals',
+        'wellness_scores',
+        'timeline_markers',
+      ]) {
+        await transaction.delete(table);
+      }
+    });
   }
 
   // ─── Self-reports ─────────────────────────────────────────────────────────
@@ -150,7 +204,7 @@ class DatabaseService {
 
   // ─── Helpers ──────────────────────────────────────────────────────────────
 
-  static Future<void> _createSelfReports(Database db) async {
+  static Future<void> _createSelfReports(DatabaseExecutor db) async {
     await db.execute('''
       CREATE TABLE IF NOT EXISTS self_reports (
         date         TEXT PRIMARY KEY,
@@ -158,6 +212,40 @@ class DatabaseService {
         mood_rating  INTEGER NOT NULL,
         notes        TEXT,
         created_at   TEXT NOT NULL
+      )
+    ''');
+  }
+
+  static Future<void> _createWellnessTables(DatabaseExecutor db) async {
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS daily_signals (
+        date TEXT NOT NULL,
+        source TEXT NOT NULL,
+        hrv_ms REAL,
+        sleep_minutes INTEGER,
+        sleep_midpoint_minutes INTEGER,
+        steps INTEGER,
+        PRIMARY KEY (date, source)
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS wellness_scores (
+        date TEXT PRIMARY KEY,
+        score INTEGER,
+        score_version TEXT NOT NULL,
+        state TEXT NOT NULL,
+        confidence TEXT NOT NULL,
+        eligible_days INTEGER NOT NULL,
+        contributions_json TEXT NOT NULL
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS timeline_markers (
+        id TEXT PRIMARY KEY,
+        date TEXT NOT NULL,
+        category TEXT NOT NULL,
+        note TEXT,
+        created_at TEXT NOT NULL
       )
     ''');
   }
