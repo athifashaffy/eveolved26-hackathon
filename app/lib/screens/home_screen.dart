@@ -58,18 +58,16 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 // Steps card
-                if (snap.last30Days.isNotEmpty)
-                  _StepsCard(snap: snap),
-                if (snap.last30Days.isNotEmpty)
-                  const SizedBox(height: 16),
+                if (snap.last30Days.isNotEmpty) _StepsCard(snap: snap),
+                if (snap.last30Days.isNotEmpty) const SizedBox(height: 16),
                 _DailyHistoryCard(snap: snap),
                 const SizedBox(height: 16),
                 _DeviceTile(snap: snap),
                 const SizedBox(height: 16),
                 OutlinedButton.icon(
-                  onPressed: () => context.push('/alert'),
-                  icon: const Icon(Icons.warning_amber_rounded),
-                  label: const Text('View recent alert'),
+                  onPressed: () => context.push('/trends'),
+                  icon: const Icon(Icons.insights_outlined),
+                  label: const Text('Understand recent changes'),
                 ),
               ],
             ),
@@ -80,10 +78,24 @@ class HomeScreen extends StatelessWidget {
   }
 
   static const List<double> _curveUp = [
-    0.85, 0.8, 0.78, 0.65, 0.55, 0.4, 0.3, 0.15
+    0.85,
+    0.8,
+    0.78,
+    0.65,
+    0.55,
+    0.4,
+    0.3,
+    0.15
   ];
   static const List<double> _curveFlat = [
-    0.55, 0.5, 0.55, 0.5, 0.55, 0.5, 0.55, 0.5
+    0.55,
+    0.5,
+    0.55,
+    0.5,
+    0.55,
+    0.5,
+    0.55,
+    0.5
   ];
 }
 

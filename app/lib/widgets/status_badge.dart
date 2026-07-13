@@ -11,20 +11,20 @@ class StatusBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     final (fg, bg, label) = switch (status) {
       StabilityStatus.stable => (
-        AppColors.statusStableFg,
-        AppColors.statusStableBg,
-        'Stable'
-      ),
+          AppColors.statusStableFg,
+          AppColors.statusStableBg,
+          'Steady'
+        ),
       StabilityStatus.monitoring => (
-        AppColors.statusMonitoringFg,
-        AppColors.statusMonitoringBg,
-        'Monitoring'
-      ),
+          AppColors.statusMonitoringFg,
+          AppColors.statusMonitoringBg,
+          'Mixed signals'
+        ),
       StabilityStatus.alert => (
-        AppColors.statusAlertFg,
-        AppColors.statusAlertBg,
-        'Alert'
-      ),
+          AppColors.statusAlertFg,
+          AppColors.statusAlertBg,
+          'Worth a check-in'
+        ),
     };
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),

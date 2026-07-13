@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'screens/alert_screen.dart';
 import 'screens/connect_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/onboarding_screen.dart';
@@ -36,7 +35,6 @@ final _router = GoRouter(
     GoRoute(path: '/trends', builder: (_, __) => const TrendsScreen()),
     GoRoute(path: '/connect', builder: (_, __) => const ConnectScreen()),
     GoRoute(path: '/profile', builder: (_, __) => const ProfileScreen()),
-    GoRoute(path: '/alert', builder: (_, __) => const AlertScreen()),
     GoRoute(path: '/privacy', builder: (_, __) => const PrivacyPolicyScreen()),
   ],
 );

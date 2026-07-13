@@ -95,9 +95,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          value
-              ? 'Demo data enabled'
-              : 'Demo data disabled — using watch data',
+          value ? 'Demo data enabled' : 'Demo data disabled — using watch data',
         ),
       ),
     );
@@ -130,7 +128,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
-    final name = _patient?.name.isNotEmpty == true ? _patient!.name : 'Set up profile';
+    final name =
+        _patient?.name.isNotEmpty == true ? _patient!.name : 'Set up profile';
     final email = _patient?.email ?? '';
     final initials = _patient?.initials ?? '?';
 
@@ -168,7 +167,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               width: 80,
                               height: 80,
                               decoration: BoxDecoration(
-                                color: AppColors.primaryContainer.withOpacity(0.12),
+                                color: AppColors.primaryContainer
+                                    .withOpacity(0.12),
                                 shape: BoxShape.circle,
                               ),
                               child: Center(
@@ -188,9 +188,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               decoration: BoxDecoration(
                                 color: AppColors.primaryContainer,
                                 shape: BoxShape.circle,
-                                border: Border.all(color: Colors.white, width: 2),
+                                border:
+                                    Border.all(color: Colors.white, width: 2),
                               ),
-                              child: const Icon(Icons.edit, color: Colors.white, size: 13),
+                              child: const Icon(Icons.edit,
+                                  color: Colors.white, size: 13),
                             ),
                           ],
                         ),
@@ -219,20 +221,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 const SizedBox(height: 20),
 
-                // ─── Clinical ──────────────────────────────────────────────
-                _Section(title: 'CLINICAL', tiles: [
+                // ─── Care & context ────────────────────────────────────────
+                _Section(title: 'CARE & CONTEXT', tiles: [
                   _SettingTile(
                     icon: Icons.medical_services_outlined,
-                    title: 'Linked Clinician',
+                    title: 'Clinician for reports',
                     subtitle: _patient?.clinician?.isNotEmpty == true
                         ? _patient!.clinician!
                         : 'Tap to add',
                     onTap: _editProfile,
                   ),
                   _SettingTile(
-                    icon: Icons.notifications_active_outlined,
-                    title: 'Alerts',
-                    subtitle: 'Score < 0.50 → clinician notified',
+                    icon: Icons.description_outlined,
+                    title: 'Prepare appointment questions',
+                    subtitle: 'You choose what to discuss or share',
                     onTap: () {},
                   ),
                   _SettingTile(
@@ -351,7 +353,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ButtonSegment(value: 'csv', label: Text('CSV')),
                         ],
                         selected: {fmt},
-                        onSelectionChanged: (s) => setLocal(() => fmt = s.first),
+                        onSelectionChanged: (s) =>
+                            setLocal(() => fmt = s.first),
                       ),
                       const SizedBox(height: 12),
                       Text(
@@ -385,12 +388,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           .toIso8601String()
                           .replaceAll(':', '-')
                           .substring(0, 19);
-                      final file =
-                          File('${dir.path}/signa_export_$stamp.$ext');
+                      final file = File('${dir.path}/signa_export_$stamp.$ext');
                       await file.writeAsString(content);
 
-                      final box =
-                          btnContext.findRenderObject() as RenderBox?;
+                      final box = btnContext.findRenderObject() as RenderBox?;
                       final origin = box != null && box.hasSize
                           ? box.localToGlobal(Offset.zero) & box.size
                           : const Rect.fromLTWH(0, 0, 1, 1);
@@ -471,12 +472,17 @@ class _EditProfileDialogState extends State<_EditProfileDialog> {
                 padding: const EdgeInsets.only(bottom: 16),
                 child: Text(
                   'Enter your details to personalise Signa.',
-                  style: GoogleFonts.inter(fontSize: 13, color: AppColors.outline),
+                  style:
+                      GoogleFonts.inter(fontSize: 13, color: AppColors.outline),
                 ),
               ),
-            _Field(controller: _name, label: 'Full Name *', hint: 'e.g. Athif Shaffy'),
+            _Field(
+                controller: _name,
+                label: 'Full Name *',
+                hint: 'e.g. Athif Shaffy'),
             const SizedBox(height: 12),
-            _Field(controller: _dob, label: 'Date of Birth', hint: 'YYYY-MM-DD'),
+            _Field(
+                controller: _dob, label: 'Date of Birth', hint: 'YYYY-MM-DD'),
             const SizedBox(height: 12),
             _Field(controller: _email, label: 'Email', hint: 'you@example.com'),
             const SizedBox(height: 12),
@@ -500,9 +506,11 @@ class _EditProfileDialogState extends State<_EditProfileDialog> {
               PatientProfile(
                 name: _name.text.trim(),
                 dob: _dob.text.trim().isNotEmpty ? _dob.text.trim() : null,
-                email: _email.text.trim().isNotEmpty ? _email.text.trim() : null,
-                clinician:
-                    _clinician.text.trim().isNotEmpty ? _clinician.text.trim() : null,
+                email:
+                    _email.text.trim().isNotEmpty ? _email.text.trim() : null,
+                clinician: _clinician.text.trim().isNotEmpty
+                    ? _clinician.text.trim()
+                    : null,
               ),
             );
           },
@@ -609,8 +617,7 @@ class _ToggleSettingTile extends StatelessWidget {
                   if (subtitle != null)
                     Text(subtitle!,
                         style: GoogleFonts.inter(
-                            fontSize: 12,
-                            color: AppColors.onSurfaceVariant)),
+                            fontSize: 12, color: AppColors.onSurfaceVariant)),
                 ],
               ),
             ),
@@ -667,8 +674,7 @@ class _SettingTile extends StatelessWidget {
                   if (subtitle != null)
                     Text(subtitle!,
                         style: GoogleFonts.inter(
-                            fontSize: 12,
-                            color: AppColors.onSurfaceVariant)),
+                            fontSize: 12, color: AppColors.onSurfaceVariant)),
                 ],
               ),
             ),
@@ -750,7 +756,8 @@ class _DailyCheckInDialogState extends State<_DailyCheckInDialog> {
                 date: DateTime(now.year, now.month, now.day),
                 sleepRating: _sleep,
                 moodRating: _mood,
-                notes: _notes.text.trim().isNotEmpty ? _notes.text.trim() : null,
+                notes:
+                    _notes.text.trim().isNotEmpty ? _notes.text.trim() : null,
                 createdAt: now,
               ),
             );
@@ -813,9 +820,11 @@ class _RatingRow extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Very poor',
-                style: GoogleFonts.inter(fontSize: 10, color: AppColors.outline)),
+                style:
+                    GoogleFonts.inter(fontSize: 10, color: AppColors.outline)),
             Text('Very good',
-                style: GoogleFonts.inter(fontSize: 10, color: AppColors.outline)),
+                style:
+                    GoogleFonts.inter(fontSize: 10, color: AppColors.outline)),
           ],
         ),
       ],

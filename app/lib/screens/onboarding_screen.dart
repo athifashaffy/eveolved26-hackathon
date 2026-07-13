@@ -37,7 +37,7 @@ class OnboardingScreen extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               Text(
-                'Continuous depression monitoring from your wrist or through manual entry.',
+                'Understand how sleep, recovery, activity, and mood move together.',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.manrope(
                   fontSize: 22,
@@ -82,7 +82,7 @@ class OnboardingScreen extends StatelessWidget {
                   const SizedBox(width: 6),
                   Flexible(
                     child: Text(
-                      'HEALTH CANADA SAMD CLASS II',
+                      'PRIVATE WELLNESS INSIGHTS',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: AppTheme.labelUppercase(size: 9),
@@ -167,8 +167,8 @@ class _WatchHero extends StatelessWidget {
                     color: Colors.white.withOpacity(0.12),
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(Icons.bedtime,
-                      color: Colors.white, size: 26),
+                  child:
+                      const Icon(Icons.bedtime, color: Colors.white, size: 26),
                 ),
                 const SizedBox(height: 8),
                 Row(

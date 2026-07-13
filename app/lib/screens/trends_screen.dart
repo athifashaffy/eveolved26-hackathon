@@ -47,7 +47,8 @@ class _TrendsScreenState extends State<TrendsScreen> {
                   final rs = snap.last30Days;
                   final avg = rs.isEmpty
                       ? 0.0
-                      : rs.map((r) => r.score).reduce((a, b) => a + b) / rs.length;
+                      : rs.map((r) => r.score).reduce((a, b) => a + b) /
+                          rs.length;
                   final lowest = rs.isEmpty
                       ? 0.0
                       : rs.map((r) => r.score).reduce((a, b) => a < b ? a : b);
@@ -87,12 +88,12 @@ class _TrendsScreenState extends State<TrendsScreen> {
                   ),
                   child: Row(
                     children: [
-                      const Icon(Icons.warning_amber_rounded,
+                      const Icon(Icons.edit_calendar_outlined,
                           color: AppColors.tertiaryContainer),
                       const SizedBox(width: 10),
                       Expanded(
                         child: Text(
-                          'Alert sent to clinician on Mar 15',
+                          'Add context to remember what changed around Mar 15',
                           style: GoogleFonts.inter(
                             fontSize: 13,
                             fontWeight: FontWeight.w600,
@@ -138,9 +139,8 @@ class _Segmented extends StatelessWidget {
                 duration: const Duration(milliseconds: 180),
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 decoration: BoxDecoration(
-                  color: active
-                      ? AppColors.primaryContainer
-                      : Colors.transparent,
+                  color:
+                      active ? AppColors.primaryContainer : Colors.transparent,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Text(
@@ -149,9 +149,7 @@ class _Segmented extends StatelessWidget {
                   style: GoogleFonts.inter(
                     fontSize: 13,
                     fontWeight: active ? FontWeight.w700 : FontWeight.w500,
-                    color: active
-                        ? Colors.white
-                        : AppColors.onSurfaceVariant,
+                    color: active ? Colors.white : AppColors.onSurfaceVariant,
                   ),
                 ),
               ),
@@ -262,8 +260,22 @@ class _ChartCard extends StatelessWidget {
                       interval: 7,
                       getTitlesWidget: (v, _) {
                         final i = v.round();
-                        if (i < 0 || i >= readings.length) return const SizedBox.shrink();
-                        const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+                        if (i < 0 || i >= readings.length)
+                          return const SizedBox.shrink();
+                        const months = [
+                          'JAN',
+                          'FEB',
+                          'MAR',
+                          'APR',
+                          'MAY',
+                          'JUN',
+                          'JUL',
+                          'AUG',
+                          'SEP',
+                          'OCT',
+                          'NOV',
+                          'DEC'
+                        ];
                         final d = readings[i].date;
                         return Padding(
                           padding: const EdgeInsets.only(top: 6),
@@ -341,7 +353,8 @@ class _ChartCard extends StatelessWidget {
 class _SummaryTile extends StatelessWidget {
   final String label, value;
   final Color color;
-  const _SummaryTile({required this.label, required this.value, required this.color});
+  const _SummaryTile(
+      {required this.label, required this.value, required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -401,9 +414,7 @@ class _InsightCard extends StatelessWidget {
           Text(
             'Your interaction score recovered significantly following the March 15 adjustment. Continue monitoring sleep quality indicators.',
             style: GoogleFonts.inter(
-                fontSize: 13,
-                color: AppColors.onSurfaceVariant,
-                height: 1.6),
+                fontSize: 13, color: AppColors.onSurfaceVariant, height: 1.6),
           ),
         ],
       ),

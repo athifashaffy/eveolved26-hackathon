@@ -65,8 +65,7 @@ class _ConnectScreenState extends State<ConnectScreen> {
       if (!mounted) return;
       setState(() {});
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-            content: Text('Apple Health connected — syncing data…')),
+        const SnackBar(content: Text('Apple Health connected — syncing data…')),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -169,8 +168,8 @@ class _ConnectScreenState extends State<ConnectScreen> {
   }
 
   Future<void> _activeCardAction() async {
-    final hasActive = _activeSource != null &&
-        (_fitbitIsActive || _appleIsActive);
+    final hasActive =
+        _activeSource != null && (_fitbitIsActive || _appleIsActive);
     if (hasActive) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Syncing from device…')),
@@ -414,8 +413,7 @@ class _DataChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color =
-        active ? Colors.green.shade700 : AppColors.onSurfaceVariant;
+    final color = active ? Colors.green.shade700 : AppColors.onSurfaceVariant;
     final bg = active ? Colors.green.shade50 : AppColors.surfaceContainerLow;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -477,9 +475,8 @@ class _AddDeviceTile extends StatelessWidget {
           children: [
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: full
-                  ? CrossAxisAlignment.center
-                  : CrossAxisAlignment.center,
+              crossAxisAlignment:
+                  full ? CrossAxisAlignment.center : CrossAxisAlignment.center,
               children: [
                 Container(
                   padding: const EdgeInsets.all(12),
