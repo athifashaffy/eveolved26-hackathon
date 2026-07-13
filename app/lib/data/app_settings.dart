@@ -79,4 +79,17 @@ class AppSettings {
     await prefs.setString(_kLastExportAt, when.toIso8601String());
     await prefs.setString(_kLastExportFormat, format);
   }
+
+  /// Clears every persisted Signa preference after the user confirms data
+  /// deletion. Live fields are reset too so the current process cannot keep
+  /// using stale consent or source state.
+  Future<void> reset() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+    _useDemoData = false;
+    _activeSource = null;
+    _appleHealthGranted = false;
+    _lastExportAt = null;
+    _lastExportFormat = null;
+  }
 }

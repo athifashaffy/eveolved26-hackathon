@@ -6,6 +6,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import '../app_info.dart';
 import '../data/app_settings.dart';
+import '../data/clinician_report_service.dart';
+import '../data/daily_signal_repository.dart';
 import '../data/database_service.dart';
 import '../data/export_service.dart';
 import '../data/fitbit_service.dart';
@@ -91,7 +93,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Future<void> _toggleDemoMode(bool value) async {
     await AppSettings.instance.setUseDemoData(value);
-    if (mounted) setState(() {});
+    if (!mounted) return;
+    setState(() {});
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
@@ -103,23 +106,68 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (mounted) setState(() {});
   }
 
-  Future<void> _signOut() async {
-    final confirm = await showDialog<bool>(
+  Future<void> _shareClinicianReport() async {
+    try {
+      final now = DateTime.now();
+      final from = now.subtract(const Duration(days: 90));
+      final repository =
+          DailySignalRepository(await DatabaseService.instance.db);
+      final report = ClinicianReportData(
+        displayName: _patient?.name ?? '',
+        from: from,
+        to: now,
+        signals: await repository.getSignals(days: 90),
+        scores: await repository.getScores(days: 90),
+        markers: await DatabaseService.instance.getTimelineMarkers(from, now),
+      );
+      final bytes = await ClinicianReportService.buildPdf(report);
+      final directory = await getTemporaryDirectory();
+      final file = File('${directory.path}/signa_wellness_summary.pdf');
+      await file.writeAsBytes(bytes, flush: true);
+      if (!mounted) return;
+      await Share.shareXFiles(
+        [XFile(file.path, mimeType: 'application/pdf')],
+        subject: 'Signa wellness summary',
+        text: 'A user-generated 90-day Signa wellness summary.',
+      );
+      await AppSettings.instance.setLastExport(now, 'pdf');
+      if (mounted) setState(() {});
+    } catch (error) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Could not prepare summary: $error')),
+      );
+    }
+  }
+
+  Future<void> _deleteAllData() async {
+    final confirmed = await showDialog<bool>(
       context: context,
-      builder: (_) => AlertDialog(
-        title: const Text('Sign out?'),
-        content: const Text('Your local data will be kept on this device.'),
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Erase all Signa data?'),
+        content: const Text(
+          'This permanently removes your profile, wearable history, scores, '
+          'check-ins, private notes, device links, and app settings from this '
+          'phone. This cannot be undone.',
+        ),
         actions: [
           TextButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: const Text('Cancel')),
-          TextButton(
-              onPressed: () => Navigator.pop(context, true),
-              child: const Text('Sign out')),
+            onPressed: () => Navigator.pop(dialogContext, false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(dialogContext, true),
+            child: const Text('Erase permanently'),
+          ),
         ],
       ),
     );
-    if (confirm == true && mounted) context.go('/');
+    if (confirmed != true) return;
+
+    await DatabaseService.instance.deleteAllUserData();
+    await FitbitService.instance.logout();
+    await AppSettings.instance.reset();
+    if (mounted) context.go('/welcome');
   }
 
   @override
@@ -168,7 +216,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               height: 80,
                               decoration: BoxDecoration(
                                 color: AppColors.primaryContainer
-                                    .withOpacity(0.12),
+                                    .withValues(alpha: 0.12),
                                 shape: BoxShape.circle,
                               ),
                               child: Center(
@@ -272,8 +320,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   _SettingTile(
                     icon: Icons.lock_outline,
                     title: 'Privacy',
-                    subtitle: 'On-device processing · PHIPA',
+                    subtitle: 'Local processing · you control sharing',
                     onTap: () => context.push('/privacy'),
+                  ),
+                  _SettingTile(
+                    icon: Icons.picture_as_pdf_outlined,
+                    title: 'Clinician wellness summary',
+                    subtitle: '90 days · private notes excluded',
+                    onTap: _shareClinicianReport,
                   ),
                   _SettingTile(
                     icon: Icons.file_download_outlined,
@@ -292,13 +346,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   _SettingTile(
                     icon: Icons.info_outline,
                     title: 'About Signa',
-                    subtitle: '$kAppVersionLabel · Evolved26 Hackathon',
+                    subtitle: kAppVersionLabel,
                     onTap: () {},
                   ),
                   _SettingTile(
-                    icon: Icons.logout_rounded,
-                    title: 'Sign out',
-                    onTap: _signOut,
+                    icon: Icons.delete_forever_outlined,
+                    title: 'Erase all data',
+                    subtitle: 'Permanently delete everything on this phone',
+                    onTap: _deleteAllData,
                   ),
                 ]),
               ],
@@ -380,6 +435,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     icon: const Icon(Icons.ios_share, size: 18),
                     label: const Text('Share'),
                     onPressed: () async {
+                      final box = btnContext.findRenderObject() as RenderBox?;
+                      final origin = box != null && box.hasSize
+                          ? box.localToGlobal(Offset.zero) & box.size
+                          : const Rect.fromLTWH(0, 0, 1, 1);
                       final ext = fmt == 'json' ? 'json' : 'csv';
                       final mime =
                           fmt == 'json' ? 'application/json' : 'text/csv';
@@ -391,10 +450,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       final file = File('${dir.path}/signa_export_$stamp.$ext');
                       await file.writeAsString(content);
 
-                      final box = btnContext.findRenderObject() as RenderBox?;
-                      final origin = box != null && box.hasSize
-                          ? box.localToGlobal(Offset.zero) & box.size
-                          : const Rect.fromLTWH(0, 0, 1, 1);
                       await Share.shareXFiles(
                         [XFile(file.path, mimeType: mime)],
                         subject: 'Signa data export',
@@ -599,7 +654,7 @@ class _ToggleSettingTile extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: AppColors.primaryContainer.withOpacity(0.08),
+                color: AppColors.primaryContainer.withValues(alpha: 0.08),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(icon, color: AppColors.primaryContainer, size: 20),
@@ -656,7 +711,7 @@ class _SettingTile extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: AppColors.primaryContainer.withOpacity(0.08),
+                color: AppColors.primaryContainer.withValues(alpha: 0.08),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(icon, color: AppColors.primaryContainer, size: 20),
@@ -799,7 +854,7 @@ class _RatingRow extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: i == value
                         ? AppColors.primaryContainer
-                        : AppColors.primaryContainer.withOpacity(0.08),
+                        : AppColors.primaryContainer.withValues(alpha: 0.08),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Center(

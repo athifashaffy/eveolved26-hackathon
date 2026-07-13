@@ -36,11 +36,11 @@ class DataExportService {
       for (final r in readings)
         [
           r['date'] ?? '',
-          r['hrv_ms'] ?? 0,
-          r['sleep_min'] ?? 0,
-          r['sleep_score'] ?? 0,
-          r['steps'] ?? 0,
-          (r['score'] as num?)?.toStringAsFixed(3) ?? '0.000',
+          r['hrv_ms'] ?? '',
+          r['sleep_min'] ?? '',
+          r['sleep_score'] ?? '',
+          r['steps'] ?? '',
+          (r['score'] as num?)?.toStringAsFixed(3) ?? '',
           r['source'] ?? '',
         ],
     ];
@@ -55,8 +55,10 @@ class DataExportService {
     required String versionLabel,
     required DateTime exportedAt,
   }) {
-    final scores =
-        readings.map((r) => (r['score'] as num?)?.toDouble() ?? 0.0).toList();
+    final scores = readings
+        .map((r) => (r['score'] as num?)?.toDouble())
+        .whereType<double>()
+        .toList();
     final avg =
         scores.isEmpty ? 0.0 : scores.reduce((a, b) => a + b) / scores.length;
     final dates = readings
@@ -68,7 +70,7 @@ class DataExportService {
         'app': 'Signa',
         'version': versionLabel,
         'exported_at': exportedAt.toIso8601String(),
-        'schema_version': 1,
+        'schema_version': 2,
       },
       'patient': {
         'name': patient?.name ?? '',
@@ -81,11 +83,11 @@ class DataExportService {
         for (final r in readings)
           {
             'date': r['date'] ?? '',
-            'hrv_ms': r['hrv_ms'] ?? 0,
-            'sleep_min': r['sleep_min'] ?? 0,
-            'sleep_score': r['sleep_score'] ?? 0,
-            'steps': r['steps'] ?? 0,
-            'score': (r['score'] as num?)?.toDouble() ?? 0.0,
+            'hrv_ms': r['hrv_ms'],
+            'sleep_min': r['sleep_min'],
+            'sleep_score': r['sleep_score'],
+            'steps': r['steps'],
+            'score': (r['score'] as num?)?.toDouble(),
             'source': r['source'] ?? '',
           },
       ],

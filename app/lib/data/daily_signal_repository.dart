@@ -69,7 +69,21 @@ class DailySignalRepository {
       limit: 1,
     );
     if (rows.isEmpty) return null;
-    final row = rows.single;
+    return _scoreFromRow(rows.single);
+  }
+
+  Future<List<WellnessScore>> getScores({int days = 90}) async {
+    final cutoff = DateTime.now().subtract(Duration(days: days));
+    final rows = await database.query(
+      'wellness_scores',
+      where: 'date >= ?',
+      whereArgs: <Object?>[DailySignal.dateKey(cutoff)],
+      orderBy: 'date ASC',
+    );
+    return rows.map(_scoreFromRow).toList();
+  }
+
+  WellnessScore _scoreFromRow(Map<String, Object?> row) {
     final rawContributions = jsonDecode(row['contributions_json']! as String)
         as Map<String, dynamic>;
     final contributions = rawContributions.map((name, rawValue) {
