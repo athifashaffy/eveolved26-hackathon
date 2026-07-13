@@ -167,6 +167,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
     await DatabaseService.instance.deleteAllUserData();
     await FitbitService.instance.logout();
     await AppSettings.instance.reset();
+    final support = await getApplicationSupportDirectory();
+    final modelDirectory = Directory('${support.path}/models');
+    if (await modelDirectory.exists()) {
+      await modelDirectory.delete(recursive: true);
+    }
     if (mounted) context.go('/welcome');
   }
 

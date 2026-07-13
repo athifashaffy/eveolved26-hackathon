@@ -25,22 +25,22 @@ class PrivacyPolicyScreen extends StatelessWidget {
             child: ListView(
               padding: const EdgeInsets.fromLTRB(20, 8, 20, 40),
               children: const [
-                _Updated('Last updated: June 23, 2026'),
+                _Updated('Last updated: July 13, 2026'),
                 _Para(
                   'Signa is designed privacy-first. Your health data is '
-                  'processed and stored only on this device. We do not run a '
-                  'server and we never upload your data anywhere automatically.',
+                  'processed and stored on this device. Signa does not upload '
+                  'your score, check-ins, questions, answers, or private notes.',
                 ),
                 _Heading('On-device only'),
                 _Para(
-                  'All analysis — including your Stability Score — is computed '
-                  'locally on your phone. Nothing leaves the device unless you '
-                  'choose to export and share it.',
+                  'Your personal Signa Score and coach explanations are '
+                  'computed locally on your phone. Nothing is automatically '
+                  'shared with a clinic, employer, insurer, or the Signa team.',
                 ),
                 _Heading('What we store'),
                 _Para(
                   'Heart rate variability (HRV), sleep, steps, your computed '
-                  'stability scores, your daily check-ins (sleep and mood '
+                  'wellness scores, your daily check-ins (sleep and mood '
                   'self-reports), and the profile details you enter (name, date '
                   'of birth, email, linked clinician).',
                 ),
@@ -48,19 +48,30 @@ class PrivacyPolicyScreen extends StatelessWidget {
                 _Para(
                   'Data is read from Apple Health or Fitbit only after you '
                   'explicitly authorize access. You can revoke access at any '
-                  'time in your device or Fitbit account settings.',
+                  'time in your device or Fitbit account settings. Fitbit sync '
+                  'uses Fitbit’s service to retrieve the data you authorized.',
+                ),
+                _Heading('Optional on-device coach'),
+                _Para(
+                  'Ask Signa uses only reviewed derived facts, not raw wearable '
+                  'records, profile details, OAuth tokens, exports, or private '
+                  'notes. Conversation history is kept in memory and cleared '
+                  'when you leave or background the app. An optional model '
+                  'download, when enabled after device testing, is a static '
+                  'file request with no health or conversation content.',
                 ),
                 _Heading('Sharing your data'),
                 _Para(
-                  'Exports (CSV or JSON) are created only when you tap "Share My '
+                  'Exports (CSV, JSON, or a wellness PDF) are created only when you tap "Share My '
                   'Data". You choose who receives the file — for example, you '
                   'can show or send it to your physician. Once shared, the '
                   'recipient controls that copy.',
                 ),
                 _Heading('Deleting your data'),
                 _Para(
-                  'Uninstalling Signa removes all locally stored data from this '
-                  'device, including readings, check-ins, and your profile.',
+                  'Use "Erase all data" in Profile to remove readings, scores, '
+                  'check-ins, notes, your profile, device tokens, settings, and '
+                  'any downloaded coach model from this phone.',
                 ),
                 _Heading('Not a medical device'),
                 _Para(

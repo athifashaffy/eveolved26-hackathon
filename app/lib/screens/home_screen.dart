@@ -142,6 +142,12 @@ class _WellnessToday extends StatelessWidget {
                   icon: const Icon(Icons.edit_note_outlined),
                   label: const Text('Add today’s context'),
                 ),
+                const SizedBox(height: 10),
+                OutlinedButton.icon(
+                  onPressed: () => context.push('/coach'),
+                  icon: const Icon(Icons.auto_awesome_outlined),
+                  label: const Text('Ask Signa privately'),
+                ),
                 if (view.syncIssue != null) ...[
                   const SizedBox(height: 12),
                   Text(
