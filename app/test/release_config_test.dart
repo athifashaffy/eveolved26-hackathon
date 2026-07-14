@@ -18,8 +18,14 @@ void main() {
       contains("kAppVersion = '1.0.1+6'"),
     );
     expect(gradle, contains('applicationId = "com.autobiomarker.signa"'));
-    expect(project,
-        contains('PRODUCT_BUNDLE_IDENTIFIER = com.autobiomarker.signa;'));
+    expect(
+      project,
+      contains('PRODUCT_BUNDLE_IDENTIFIER = com.thealphanova.signa;'),
+    );
+    expect(
+      project,
+      contains('CURRENT_PROJECT_VERSION = "\$(FLUTTER_BUILD_NUMBER)";'),
+    );
     expect(manifest, contains('android:label="Signa"'));
     expect(plist, contains('<string>Signa</string>'));
   });
