@@ -4,7 +4,7 @@
 
 - App name: Signa
 - Package: `com.autobiomarker.signa`
-- Release: `1.0.1` (6)
+- Release: `1.0.1` (7)
 - Category: Health & Fitness
 - Target audience: adults 18+
 

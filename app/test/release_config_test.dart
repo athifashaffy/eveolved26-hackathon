@@ -12,10 +12,10 @@ void main() {
         File('ios/Runner.xcodeproj/project.pbxproj').readAsStringSync();
     final plist = File('ios/Runner/Info.plist').readAsStringSync();
 
-    expect(pubspec, contains('version: 1.0.1+6'));
+    expect(pubspec, contains('version: 1.0.1+7'));
     expect(
       File('lib/app_info.dart').readAsStringSync(),
-      contains("kAppVersion = '1.0.1+6'"),
+      contains("kAppVersion = '1.0.1+7'"),
     );
     expect(gradle, contains('applicationId = "com.autobiomarker.signa"'));
     expect(

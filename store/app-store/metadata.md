@@ -5,7 +5,7 @@
 - Name: Signa
 - Subtitle: Your private wellness baseline
 - Bundle ID: `com.thealphanova.signa`
-- Version: `1.0.1` (build 6)
+- Version: `1.0.1` (build 7)
 - Category: Health & Fitness
 - Age: 18+
 

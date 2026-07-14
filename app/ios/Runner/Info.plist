@@ -41,6 +41,8 @@
 	<true/>
 	<key>NSHealthShareUsageDescription</key>
 	<string>With your permission, Signa reads HRV, sleep, and steps to learn your usual range on this phone.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Signa requests read-only Apple Health access to build your private wellness baseline. It does not add, edit, or delete Apple Health data.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

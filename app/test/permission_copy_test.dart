@@ -17,6 +17,14 @@ void main() {
 
     final plist = File('ios/Runner/Info.plist').readAsStringSync();
     expect(plist, contains('NSHealthShareUsageDescription'));
+    expect(plist, contains('NSHealthUpdateUsageDescription'));
+    expect(
+      plist,
+      contains(
+        'Signa requests read-only Apple Health access to build your private '
+        'wellness baseline. It does not add, edit, or delete Apple Health data.',
+      ),
+    );
     expect(plist.toLowerCase(), contains('usual range'));
     expect(plist.toLowerCase(), isNot(contains('stability score')));
     expect(
