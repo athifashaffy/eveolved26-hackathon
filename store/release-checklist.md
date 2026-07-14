@@ -19,7 +19,7 @@
 - [ ] Publish privacy and support pages at stable HTTPS URLs.
 - [ ] Complete owner/legal/privacy review of wellness and coach copy.
 - [ ] Supply Apple Developer team/provisioning through Xcode or CI.
-- [ ] Supply `android/key.properties` and owner-held upload keystore.
+- [x] Supply `android/key.properties` and owner-held upload keystore.
 - [ ] Configure Fitbit production OAuth credentials and redirect registration.
 - [ ] Complete Apple privacy, HealthKit, age, and export-compliance forms.
 - [ ] Complete Google Data safety, Health apps, Health Connect, and age forms.
@@ -45,4 +45,6 @@ Ask Signa uses reviewed deterministic on-device explanations.
 - [ ] Google Play closed testing first.
 - [ ] Recruit only consented 20–50 person pilot cohort.
 - [ ] Name rollback owner and 24-hour contact.
-- [ ] Record signed `.ipa`/`.aab` SHA-256 hashes without committing binaries.
+- [x] Android build 8 AAB SHA-256:
+  `4a9c6673bdd11040110508a40470359e1f1679f3315f7d4a86e84b6cc3def19c`.
+- [ ] Record the signed IPA SHA-256 without committing the binary.
