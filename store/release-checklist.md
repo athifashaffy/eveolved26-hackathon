@@ -3,8 +3,8 @@
 ## Repository gates
 
 - [x] iOS bundle ID is `com.thealphanova.signa`.
-- [x] Android package ID is `com.autobiomarker.signa`.
-- [x] Version is `1.0.1+7`.
+- [x] Android package ID is `com.thealphanova.signa`.
+- [x] Version is `1.0.1+8`.
 - [x] Health access is read-only and requested after consent.
 - [x] Analyzer has zero issues and unit/widget tests pass.
 - [x] Android release no longer uses debug signing.

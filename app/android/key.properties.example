@@ -1,5 +1,5 @@
 # Copy to key.properties and keep the real file outside version control.
 storeFile=/absolute/path/to/signa-upload.jks
 storePassword=REPLACE_ME
-keyAlias=signa-upload
+keyAlias=alias_name
 keyPassword=REPLACE_ME

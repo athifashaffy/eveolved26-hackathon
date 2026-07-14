@@ -11,13 +11,22 @@ void main() {
     final project =
         File('ios/Runner.xcodeproj/project.pbxproj').readAsStringSync();
     final plist = File('ios/Runner/Info.plist').readAsStringSync();
+    final androidMain = File(
+      'android/app/src/main/kotlin/com/thealphanova/signa/MainActivity.kt',
+    );
 
-    expect(pubspec, contains('version: 1.0.1+7'));
+    expect(pubspec, contains('version: 1.0.1+8'));
     expect(
       File('lib/app_info.dart').readAsStringSync(),
-      contains("kAppVersion = '1.0.1+7'"),
+      contains("kAppVersion = '1.0.1+8'"),
     );
-    expect(gradle, contains('applicationId = "com.autobiomarker.signa"'));
+    expect(gradle, contains('namespace = "com.thealphanova.signa"'));
+    expect(gradle, contains('applicationId = "com.thealphanova.signa"'));
+    expect(androidMain.existsSync(), isTrue);
+    expect(
+      androidMain.readAsStringSync(),
+      contains('package com.thealphanova.signa'),
+    );
     expect(
       project,
       contains('PRODUCT_BUNDLE_IDENTIFIER = com.thealphanova.signa;'),
@@ -55,6 +64,8 @@ void main() {
     expect(gradle, isNot(contains('signingConfig = signingConfigs.debug')));
     expect(ignore, contains('key.properties'));
     expect(ignore, contains('*.jks'));
-    expect(File('android/key.properties.example').existsSync(), isTrue);
+    final example = File('android/key.properties.example');
+    expect(example.existsSync(), isTrue);
+    expect(example.readAsStringSync(), contains('keyAlias=alias_name'));
   });
 }

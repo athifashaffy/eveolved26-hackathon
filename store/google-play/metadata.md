@@ -3,8 +3,8 @@
 ## Identity
 
 - App name: Signa
-- Package: `com.autobiomarker.signa`
-- Release: `1.0.1` (7)
+- Package: `com.thealphanova.signa`
+- Release: `1.0.1` (8)
 - Category: Health & Fitness
 - Target audience: adults 18+
 
